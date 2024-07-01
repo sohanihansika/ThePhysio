@@ -12,6 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/employees")
+@CrossOrigin(origins = "http://localhost:3000") // Replace with your React app URL
+
+
 public class EmployeeController {
 
     private EmployeeService employeeService;
