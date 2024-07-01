@@ -5,25 +5,99 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8ddf262-e948-48b0-853d-7b540bcac4b7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/ThePhysio.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/.eslintrc.cjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/public/vite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/src/App.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/src/assets/react.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/src/main.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/tailwind.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/vite.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/App.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/CSS/NewHome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/IMG/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/IMG/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/IMG/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/IMG/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/IMG/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/IMG/LOGO.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/layout/Navbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/pages/Home.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/pages/NewHome.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/pages/gym.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/reportWebVitals.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/setupTests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/users/AddUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/users/EditUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/users/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../secondtry-front/src/users/ViewUser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/ThePhysioApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/controller/EmployeeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/dto/EmployeeDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/dto/LoginDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ThePhysioFrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ThePhysioFrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../ThePhysioFrontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/dto/EmployeeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/dto/EmployeeDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/entity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/entity/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/mapper/EmployeeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/mapper/EmployeeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/repository/EmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/repository/EmployeeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/impl/EmployeeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/impl/EmployeeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/ThePhysioApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/ThePhysioApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/controller/EmployeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/controller/EmployeeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/dto/EmployeeDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/dto/EmployeeDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/entity/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/entity/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/mapper/EmployeeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/mapper/EmployeeMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/repository/EmployeeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/repository/EmployeeRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/EmployeeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/EmployeeService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/impl/EmployeeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/impl/EmployeeServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/entity/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/mapper/EmployeeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/repository/EmployeeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/EmployeeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/impl/EmployeeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/groupproject2/the_physio/ThePhysioApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/ThePhysioApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/controller/EmployeeController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/dto/EmployeeDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/dto/LoginDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/entity/Employee.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/exception/ResourceNotFoundException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/mapper/EmployeeMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/repository/EmployeeRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/EmployeeService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/impl/EmployeeServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/groupproject2/the_physio/ThePhysioApplicationTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,12 +134,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/HP/Downloads/tryyyyyyyyyyyyyy/fullstack-backend"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Downloads/tryyyyyyyyyyyyyy/fullstack-backend&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -88,7 +162,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/sohani" />
+                        <option value="sohani" />
                       </list>
                     </value>
                   </entry>
