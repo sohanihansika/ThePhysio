@@ -1,0 +1,100 @@
+/* NewHome.css */
+/* Contact Section CSS */
+.contact .info-wrap {
+    margin-bottom: 30px;
+  }
+  
+  .contact .info-item {
+    margin-bottom: 20px;
+  }
+  
+  .contact .info-item i {
+    font-size: 24px;
+    color: #172B59;
+    line-height: 1;
+    margin-right: 15px;
+  }
+  
+  .contact .info-item h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #172B59;
+  }
+  
+  .contact .info-item p {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .contact .php-email-form {
+    width: 100%;
+  }
+  
+  .contact .php-email-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .contact .php-email-form input,
+  .contact .php-email-form textarea {
+    padding: 10px;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+  }
+  
+  .contact .php-email-form button[type="submit"] {
+    background: #172B59;
+    border: 0;
+    padding: 10px 24px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 4px;
+  }
+  
+  .contact .php-email-form button[type="submit"]:hover {
+    background: #3c4a8a;
+  }
+  
+  .contact .php-email-form .loading {
+    display: none;
+    color: #fff;
+    background: #172B59;
+    padding: 15px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .contact .php-email-form .error-message {
+    display: none;
+    color: #fff;
+    background: #ed3c0d;
+    padding: 15px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .contact .php-email-form .sent-message {
+    display: none;
+    color: #fff;
+    background: #172B59;
+    padding: 15px;
+    font-size: 14px;
+    text-align: center;
+  }
+  /* NewHome.css */
+
+/* Adjust image sizes */
+.container-fluid img,
+.row img {
+  max-width: 50%;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Optional: Center align images */
+}
+
+/* Specific styling for Physio images */
+.physio-images img {
+  width: 150px;
+  height: 150px;
+}
