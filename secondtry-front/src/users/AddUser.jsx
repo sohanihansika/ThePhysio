@@ -9,9 +9,11 @@ export default function AddUser() {
     firstName: "",
     lastName: "",
     email: "",
+    password: "",
+
   });
 
-  const { firstName, lastName, email } = employee;
+  const { firstName, lastName, email,password } = employee;
 
   const onInputChange = (e) => {
     setEmployee({ ...employee, [e.target.name]: e.target.value });
@@ -73,6 +75,19 @@ export default function AddUser() {
                 placeholder="Enter email address"
                 name="email"
                 value={email}
+                onChange={(e) => onInputChange(e)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="firstName" className="form-label">
+Password              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter first name"
+                name="password"
+                value={password}
                 onChange={(e) => onInputChange(e)}
                 required
               />

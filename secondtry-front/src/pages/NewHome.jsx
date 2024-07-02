@@ -94,7 +94,7 @@ const NewHome = () => {
             </div>
           </nav>
         </section>
-        <Link className='btn btn-outline-light' to='/home'>Edit</Link>
+
 
         <section data-bs-version="5.1" className="features3 coinm5 cid-tA5h1AFdOZ" id="features3-4">
           <div className="container">
