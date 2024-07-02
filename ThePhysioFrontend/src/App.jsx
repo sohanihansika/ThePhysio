@@ -1,7 +1,30 @@
-export default function App() {
+// App.jsx
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './pages/auth/login';
+import Navbar from './components/Navbar/Navbar';
+import AdminVideo from "./pages/admin/uploadvideos/videos";
+import patientReviews from "./pages/patient/reviews";
+
+
+
+
+function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello!
-    </h1>
-  )
+    <Router>
+      <div>
+
+        <Routes>
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/navbar" element={<Navbar />} />
+          <Route path="/admin-video" element={<AdminVideo />} />
+          <Route path="/patient-reviews" element={<patientReviews />} />
+        </Routes>
+
+      </div>
+    </Router>
+  );
 }
+
+export default App;
