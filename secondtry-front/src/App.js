@@ -10,6 +10,8 @@ import ViewUser from './users/ViewUser';
 import Login from './users/Login';
 import GYM from './pages/gym';
 import NewHome from './pages/NewHome';
+import Register from './component/register';
+
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/viewemployee/:id" element={<ViewUser />} />
           <Route exact path="/editemployee/:id" element={<EditUser />} />
+          <Route exact path="/register" element= { <Register/>} />
 
 
           

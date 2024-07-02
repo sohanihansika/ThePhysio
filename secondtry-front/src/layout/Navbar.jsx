@@ -16,8 +16,7 @@ export default function Navbar() {
         <div className="col text-end">
           <Link className='btn btn-outline-light me-2' to='/gym'>GYM</Link>
           <Link className='btn btn-outline-light me-2' to='/login'>Login</Link>
-          <Link className='btn btn-outline-light' to='/adduser'>Users</Link>
-          <Link className='btn btn-outline-light' to='/edituser'>Edit</Link>
+          <Link className='btn btn-outline-light' to='/home'>Users</Link>
 
         </div>
       </div>

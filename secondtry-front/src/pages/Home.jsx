@@ -72,7 +72,7 @@ export default function Home() {
             ))}
           </tbody>
         </table>
-        <Link className="btn btn-primary mb-2" to="/addemployee">Add Employee</Link>
+        <Link className="btn btn-primary mb-2" to="/adduser">Add Employee</Link>
 
         {/* Modal for confirmation */}
         {deleteEmployeeId && (
