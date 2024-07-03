@@ -1,7 +1,17 @@
-export default function App() {
-  return (
-    <h1 className="text-3xl font-bold underline">
-      Hello!
-    </h1>
-  )
+import React from "react";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import GymHome from "./gym-home";
+
+function App() {
+  return(
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/gym" element={<GymHome />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
+
+export default App;
