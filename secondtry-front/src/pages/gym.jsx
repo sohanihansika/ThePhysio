@@ -1,4 +1,5 @@
 import React from 'react';
+import CardGym  from '../component/card-gym';
 
 export default function Gym() {
   return (
@@ -12,18 +13,21 @@ export default function Gym() {
         </div>
       </div>
       <div className="row mt-5">
-        <div className="col-md-4 text-center">
-          <h3>Personal Training</h3>
-          <p>Get personalized training plans from certified trainers.</p>
-        </div>
-        <div className="col-md-4 text-center">
-          <h3>Group Classes</h3>
-          <p>Join group fitness classes tailored to your needs.</p>
-        </div>
-        <div className="col-md-4 text-center">
-          <h3>Amenities</h3>
-          <p>Enjoy modern gym facilities and amenities.</p>
-        </div>
+        <CardGym
+        svgIcon={<i class="fa-regular fa-whistle"></i>}
+        heading={"Personal Training"}
+        description={"personalized training plans from certified trainers."}
+        />
+        <CardGym
+        svgIcon={<i class="fa-regular fa-people-group"></i>}
+        heading={"Group Classes"}
+        description={"Join group fitness classes tailored to your needs."}
+        />
+        <CardGym
+        svgIcon={<i class="fa-regular fa-dumbbell"></i>}
+        heading={"Amenities"}
+        description={"Enjoy modern gym facilities and amenities."}
+        />
       </div>
     </div>
   );
