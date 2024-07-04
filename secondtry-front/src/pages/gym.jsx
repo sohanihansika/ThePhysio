@@ -1,5 +1,5 @@
 import React from 'react';
-import CardGym  from '../component/card-gym';
+// import CardGym  from '../component/card-gym';
 
 export default function Gym() {
   return (
