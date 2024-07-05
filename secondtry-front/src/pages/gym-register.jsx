@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './GymRegister.css';
+// import './GymRegister.css';
 
 export default function GymRegister() {
   const [selectedTab, setSelectedTab] = useState('credit-card');
@@ -121,7 +121,7 @@ export default function GymRegister() {
                       </button>
                     </p>
                     <p className="text-muted">
-                      Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected back to the website to view details of your order.
+                      Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected to gym profile.
                     </p>
                   </div>
                 )}
@@ -155,7 +155,7 @@ export default function GymRegister() {
                       </p>
                     </div>
                     <p className="text-muted">
-                      Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected back to the website to view details of your order.
+                    Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected to gym profile.
                     </p>
                   </div>
                 )}

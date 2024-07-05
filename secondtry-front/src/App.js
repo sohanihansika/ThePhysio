@@ -11,6 +11,7 @@ import Login from './users/Login';
 import GYM from './pages/gym';
 import NewHome from './pages/NewHome';
 import Register from './component/register';
+import GymRegister from './pages/gym-register';
 
 
 
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/edituser" element={<EditUser />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/gym" element={<GYM />} />
+          <Route exact path="/gym-register" element={<GymRegister />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/viewemployee/:id" element={<ViewUser />} />
           <Route exact path="/editemployee/:id" element={<EditUser />} />
