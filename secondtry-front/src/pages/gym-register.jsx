@@ -1,12 +1,39 @@
 import React, { useState } from 'react';
+import { Tooltip } from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import './GymRegister.css';
-
-export default function GymRegister() {
+const GymRegister = () => {
   const [selectedTab, setSelectedTab] = useState('credit-card');
+  const [cardOwner, setCardOwner] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryMonth, setExpiryMonth] = useState('');
+  const [expiryYear, setExpiryYear] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [paypalType, setPaypalType] = useState('Domestic');
+  const [selectedBank, setSelectedBank] = useState('');
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
   };
+
+  const handlePayment = (e) => {
+    e.preventDefault();
+    // Handle payment logic here
+    console.log({
+      cardOwner,
+      cardNumber,
+      expiryMonth,
+      expiryYear,
+      cvv,
+      paypalType,
+      selectedBank,
+    });
+  };
+
+  React.useEffect(() => {
+    const tooltips = document.querySelectorAll('[data-toggle="tooltip"]');
+    tooltips.forEach((tooltip) => new Tooltip(tooltip));
+  }, []);
 
   return (
     <div className="container py-5">
@@ -53,19 +80,35 @@ export default function GymRegister() {
               <div className="tab-content">
                 {selectedTab === 'credit-card' && (
                   <div id="credit-card" className="tab-pane fade show active pt-3">
-                    <form onSubmit={(e) => e.preventDefault()}>
+                    <form role="form" onSubmit={handlePayment}>
                       <div className="form-group">
-                        <label>
+                        <label htmlFor="username">
                           <h6>Card Owner</h6>
                         </label>
-                        <input type="text" name="username" placeholder="Card Owner Name" required className="form-control" />
+                        <input
+                          type="text"
+                          name="username"
+                          placeholder="Card Owner Name"
+                          required
+                          className="form-control"
+                          value={cardOwner}
+                          onChange={(e) => setCardOwner(e.target.value)}
+                        />
                       </div>
                       <div className="form-group">
-                        <label>
+                        <label htmlFor="cardNumber">
                           <h6>Card number</h6>
                         </label>
                         <div className="input-group">
-                          <input type="text" name="cardNumber" placeholder="Valid card number" className="form-control" required />
+                          <input
+                            type="text"
+                            name="cardNumber"
+                            placeholder="Valid card number"
+                            className="form-control"
+                            required
+                            value={cardNumber}
+                            onChange={(e) => setCardNumber(e.target.value)}
+                          />
                           <div className="input-group-append">
                             <span className="input-group-text text-muted">
                               <i className="fab fa-cc-visa mx-1"></i>
@@ -82,22 +125,46 @@ export default function GymRegister() {
                               <h6>Expiration Date</h6>
                             </label>
                             <div className="input-group">
-                              <input type="number" placeholder="MM" className="form-control" required />
-                              <input type="number" placeholder="YY" className="form-control" required />
+                              <input
+                                type="number"
+                                placeholder="MM"
+                                name="expiryMonth"
+                                className="form-control"
+                                required
+                                value={expiryMonth}
+                                onChange={(e) => setExpiryMonth(e.target.value)}
+                              />
+                              <input
+                                type="number"
+                                placeholder="YY"
+                                name="expiryYear"
+                                className="form-control"
+                                required
+                                value={expiryYear}
+                                onChange={(e) => setExpiryYear(e.target.value)}
+                              />
                             </div>
                           </div>
                         </div>
                         <div className="col-sm-4">
                           <div className="form-group mb-4">
-                            <label>
-                              <h6>CVV <i className="fa fa-question-circle d-inline"></i></h6>
+                            <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
+                              <h6>
+                                CVV <i className="fa fa-question-circle d-inline"></i>
+                              </h6>
                             </label>
-                            <input type="text" required className="form-control" />
+                            <input
+                              type="text"
+                              required
+                              className="form-control"
+                              value={cvv}
+                              onChange={(e) => setCvv(e.target.value)}
+                            />
                           </div>
                         </div>
                       </div>
                       <div className="card-footer">
-                        <button type="button" className="subscribe btn btn-primary btn-block shadow-sm">
+                        <button type="submit" className="subscribe btn btn-primary btn-block shadow-sm">
                           Confirm Payment
                         </button>
                       </div>
@@ -109,10 +176,22 @@ export default function GymRegister() {
                     <h6 className="pb-2">Select your PayPal account type</h6>
                     <div className="form-group">
                       <label className="radio-inline">
-                        <input type="radio" name="optradio" defaultChecked /> Domestic
+                        <input
+                          type="radio"
+                          name="optradio"
+                          checked={paypalType === 'Domestic'}
+                          onChange={() => setPaypalType('Domestic')}
+                        />
+                        Domestic
                       </label>
-                      <label className="radio-inline">
-                        <input type="radio" name="optradio" className="ml-5" /> International
+                      <label className="radio-inline ml-5">
+                        <input
+                          type="radio"
+                          name="optradio"
+                          checked={paypalType === 'International'}
+                          onChange={() => setPaypalType('International')}
+                        />
+                        International
                       </label>
                     </div>
                     <p>
@@ -121,17 +200,23 @@ export default function GymRegister() {
                       </button>
                     </p>
                     <p className="text-muted">
-                      Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected to gym profile.
+                    Note: After clicking on the button, you will be directed to a secure gateway for payment. After
+                    completing the payment process, you will be redirected back to your gym profile.
                     </p>
                   </div>
                 )}
                 {selectedTab === 'net-banking' && (
                   <div id="net-banking" className="tab-pane fade pt-3">
                     <div className="form-group">
-                      <label>
+                      <label htmlFor="SelectYourBank">
                         <h6>Select your Bank</h6>
                       </label>
-                      <select className="form-control">
+                      <select
+                        className="form-control"
+                        id="ccmonth"
+                        value={selectedBank}
+                        onChange={(e) => setSelectedBank(e.target.value)}
+                      >
                         <option value="" selected disabled>
                           --Please select your Bank--
                         </option>
@@ -155,7 +240,8 @@ export default function GymRegister() {
                       </p>
                     </div>
                     <p className="text-muted">
-                    Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected to gym profile.
+                      Note: After clicking on the button, you will be directed to a secure gateway for payment. After
+                      completing the payment process, you will be redirected back to your gym profile.
                     </p>
                   </div>
                 )}
@@ -166,4 +252,6 @@ export default function GymRegister() {
       </div>
     </div>
   );
-}
+};
+
+export default GymRegister;
