@@ -11,6 +11,10 @@ import Login from './users/Login';
 import GYM from './pages/gym';
 import NewHome from './pages/NewHome';
 import Register from './component/register';
+import AddPhysio from './Physio/AddPhysio';
+import EditPhysio from './Physio/EditPhysio';
+import ViewPhysio from './Physio/ViewPhysio';
+import PhysioHome from './pages/PhysioHome';
 
 
 
@@ -31,7 +35,10 @@ function App() {
           <Route exact path="/viewemployee/:id" element={<ViewUser />} />
           <Route exact path="/editemployee/:id" element={<EditUser />} />
           <Route exact path="/register" element= { <Register/>} />
-
+          <Route exact path="/addphysio" element={<AddPhysio />} />
+          <Route exact path="/editphysio/:id" element={<EditPhysio />} />
+          <Route exact path="/viewphysio/:id" element={<ViewPhysio />} />
+          <Route exact path="/physiohome" element={<PhysioHome />} />
 
           
 
