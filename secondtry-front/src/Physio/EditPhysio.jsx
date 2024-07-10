@@ -22,7 +22,7 @@ export default function EditPhysio() {
   useEffect(() => {
     const loadEmployee = async () => {
       try {
-        const result = await axios.get(`http://localhost:8080/api/employees/${id}`);
+        const result = await axios.get(`http://localhost:8080/api/physios/${id}`);
         setEmployee(result.data);
       } catch (error) {
         console.error("Error loading employee:", error);
@@ -34,7 +34,7 @@ export default function EditPhysio() {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/api/employees/${id}`, employee);
+      await axios.put(`http://localhost:8080/api/physios/${id}`, employee);
       navigate("/");
     } catch (error) {
       console.error("Error updating employee:", error);

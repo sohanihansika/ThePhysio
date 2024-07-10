@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function AddPhysio() {
   let navigate = useNavigate();
 
-  const [employee, setEmployee] = useState({
+  const [physio, setPhysio] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -13,16 +13,16 @@ export default function AddPhysio() {
 
   });
 
-  const { firstName, lastName, email,password } = employee;
+  const { firstName, lastName, email,password } = physio;
 
   const onInputChange = (e) => {
-    setEmployee({ ...employee, [e.target.name]: e.target.value });
+    setPhysio({ ...physio, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/employees", employee);
+      await axios.post("http://localhost:8080/api/physios", physio);
       navigate("/");
     } catch (error) {
       console.error("Error creating employee:", error);

@@ -3,17 +3,17 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default function PhysioHome() {
-  const [employees, setEmployees] = useState([]);
+  const [physios, setPhysios] = useState([]);
   const [deleteEmployeeId, setDeleteEmployeeId] = useState(null); // State to track employee ID for deletion
 
   useEffect(() => {
-    loadEmployees();
+    loadPhysios();
   }, []);
 
-  const loadEmployees = async () => {
+  const loadPhysios = async () => {
     try {
-      const result = await axios.get('http://localhost:8080/api/employees');
-      setEmployees(result.data);
+      const result = await axios.get('http://localhost:8080/api/physios');
+      setPhysios(result.data);
     } catch (error) {
       console.error('Error loading employees:', error);
     }
@@ -21,8 +21,8 @@ export default function PhysioHome() {
 
   const deleteEmployee = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/employees/${id}`);
-      loadEmployees(); // Call loadEmployees to reload employees after deletion
+      await axios.delete(`http://localhost:8080/api/physios/${id}`);
+      loadPhysios(); // Call loadPhysios to reload employees after deletion
       setDeleteEmployeeId(null); // Clear deleteEmployeeId state after deletion
     } catch (error) {
       console.error("Error deleting employee:", error);
@@ -51,20 +51,20 @@ export default function PhysioHome() {
             </tr>
           </thead>
           <tbody>
-            {employees.map((employee, index) => (
-              <tr key={employee.id}>
+            {physios.map((physio, index) => (
+              <tr key={physio.id}>
                 <th scope="row">{index + 1}</th>
-                <td>{employee.firstName}</td>
-                <td>{employee.lastName}</td>
-                <td>{employee.email}</td>
+                <td>{physio.firstName}</td>
+                <td>{physio.lastName}</td>
+                <td>{physio.email}</td>
                 <td>
-                  <Link className="btn btn-primary mx-2" to={`/viewphysio/${employee.id}`}>
+                  <Link className="btn btn-primary mx-2" to={`/viewphysio/${physio.id}`}>
                     View
                   </Link>
-                  <Link className="btn btn-outline-primary mx-2" to={`/editphysio/${employee.id}`}>
+                  <Link className="btn btn-outline-primary mx-2" to={`/editphysio/${physio.id}`}>
                     Edit
                   </Link>
-                  <button className="btn btn-danger mx-2" onClick={() => confirmDelete(employee.id)}>
+                  <button className="btn btn-danger mx-2" onClick={() => confirmDelete(physio.id)}>
                     Delete
                   </button>
                 </td>
