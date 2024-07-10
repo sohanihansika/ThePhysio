@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {useParams, useHistory} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import {Form, Button} from 'react-bootstrap';
 
 const SchedulePage = () => {
-    const {trainerId} = usearams();
+    const {trainerId} = useParams();
     const [date, setDate] =useState('');
     const [time, setTime] = useState('');
     const [availableTimes, setAvailableTimes] = useState([]);
-    const history = useHistory();
+    const navigate = useNavigate;
 
     useEffect(() => {
         axios.get(`/api/trainers/${trainerId}/available-times`).then(response => {
@@ -16,9 +16,9 @@ const SchedulePage = () => {
         });
     }, [trainerId]);
 
-    const handleSchedule =() = {
+    const handleSchedule =() => {
         axios.post(`/api/scedule`, {trainerId, date, time}).then(response => {
-            history.push('/');
+            navigate('/gym-profile');
         });
     };
 

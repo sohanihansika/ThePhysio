@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Tooltip } from 'bootstrap';
+import {useNavigate} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import './GymRegister.css';
 const GymRegister = () => {
@@ -11,7 +12,7 @@ const GymRegister = () => {
   const [cvv, setCvv] = useState('');
   const [paypalType, setPaypalType] = useState('Domestic');
   const [selectedBank, setSelectedBank] = useState('');
-
+  const navigate = useNavigate();
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
   };
@@ -28,6 +29,7 @@ const GymRegister = () => {
       paypalType,
       selectedBank,
     });
+    navigate('/gym-profile');
   };
 
   React.useEffect(() => {
