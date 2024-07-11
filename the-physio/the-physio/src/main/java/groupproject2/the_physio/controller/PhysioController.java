@@ -1,6 +1,7 @@
 package groupproject2.the_physio.controller;
 
 import groupproject2.the_physio.dto.EmployeeDto;
+import groupproject2.the_physio.dto.LoginDto;
 import groupproject2.the_physio.dto.PhysioDto;
 import groupproject2.the_physio.service.PhysioService;
 import lombok.AllArgsConstructor;
@@ -47,5 +48,11 @@ public class PhysioController {
     public ResponseEntity<String> deletePhysio(@PathVariable("id") Long physioId){
         physioService.deletePhysio(physioId);
         return ResponseEntity.ok("Employee delete successfully!.");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginPhysio(@RequestBody LoginDto loginDto){
+        LoginDto loginDto1 = physioService.loginPhysio(loginDto);
+        return ResponseEntity.ok(loginDto1);
     }
 }
