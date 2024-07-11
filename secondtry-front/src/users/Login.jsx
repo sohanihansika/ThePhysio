@@ -178,7 +178,7 @@ const Login = ({ setUserRole }) => {
             <input type="submit" value="Log In" />
           </div>
         </form>
-        <p>You don't have an account? <Link to="/register">Log in</Link></p>
+        <p>You don't have an account? <Link to="/register">Register</Link></p>
         {errorMessage && (
           <div className="alert alert-danger" role="alert">
             {errorMessage}
