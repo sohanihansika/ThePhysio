@@ -1,6 +1,7 @@
 package groupproject2.the_physio.service.impl;
 
 import groupproject2.the_physio.dto.EmployeeDto;
+import groupproject2.the_physio.dto.LoginDto;
 import groupproject2.the_physio.dto.PhysioDto;
 import groupproject2.the_physio.entity.Employee;
 import groupproject2.the_physio.entity.Physio;
@@ -72,6 +73,21 @@ public class PhysioServiceImpl implements PhysioService {
         );
 
         physioRepository.deleteById(physioId);
+    }
+
+    @Override
+    public LoginDto loginPhysio(LoginDto loginDto) {
+        // Retrieve employee by email from database
+        Physio physio = physioRepository.findByEmail(loginDto.getEmail())
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with email: " + loginDto.getEmail()));
+
+        // Check if the provided password matches the hashed password
+        if (!new BCryptPasswordEncoder().matches(loginDto.getPassword(), physio.getPassword())) {
+            throw new ResourceNotFoundException("Invalid password");
+        }
+
+        // Prepare and return LoginDto response
+        return new LoginDto(physio.getEmail(), "Login successful");
     }
 
 }

@@ -3,6 +3,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './layout/Navbar';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from 'react'; // Add this import
 
 import AddUser from './users/AddUser';
 import EditUser from './users/EditUser';
@@ -10,6 +11,7 @@ import ViewUser from './users/ViewUser';
 import Login from './users/Login';
 import GYM from './pages/gym';
 import NewHome from './pages/NewHome';
+import NewHome2 from './pages/NewPhysioHome';
 import Register from './component/register';
 import AddPhysio from './Physio/AddPhysio';
 import EditPhysio from './Physio/EditPhysio';
@@ -19,17 +21,22 @@ import PhysioHome from './pages/PhysioHome';
 
 
 function App() {
+
+  const [userRole, setUserRole] = useState(null); // State to manage user role
+
   return (
     <div className="App">
       
       <Router>
-        <Navbar />
+      <Navbar userRole={userRole} /> {/* Pass userRole to Navbar */}
 
         <Routes>
-          <Route exact path="/" element={<NewHome />} />
+          <Route exact path="/employee" element={<NewHome />} />
+          <Route exact path="/Physio" element={<NewHome2 />} />
          <Route exact path="/adduser" element={<AddUser />} />
           <Route exact path="/edituser" element={<EditUser />} />
-          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/" element={<Login setUserRole={setUserRole} />} /> {/* Pass setUserRole to Login */}
+
           <Route exact path="/gym" element={<GYM />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/viewemployee/:id" element={<ViewUser />} />

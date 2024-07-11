@@ -40,6 +40,129 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
+/*Doctors section*/
+/* NewHome.css */
+
+/* Background section styles */
+.background-section {
+  background-color: #f0f0f0;
+  padding: 100px 0;
+  text-align: center;
+  color: #172b59; /* Adjust text color */
+}
+
+.background-text h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.background-text h2 {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.btnrow {
+  margin-top: 30px;
+}
+
+.btn {
+  background-color: #172b59;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0e1a35;
+}
+
+/* Physiotherapists section styles */
+.home {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.topicdiv h1 {
+  font-size: 2.5rem;
+  color: #172b59;
+  margin-bottom: 30px;
+}
+
+.profiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.coachcard {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.coachcard:hover {
+  transform: translateY(-10px);
+}
+
+.coachcard a {
+  text-decoration: none;
+  color: #172b59;
+  display: block;
+}
+
+.coach-img {
+  height: 200px;
+  overflow: hidden;
+}
+
+.coach-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.Name {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.Description {
+  padding: 20px;
+  text-align: left;
+}
+
+.Description p {
+  margin-bottom: 10px;
+}
+
+.navigation {
+  margin-top: 30px;
+}
+
+.nav-button {
+  background-color: #172b59;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #0e1a35;
+}
+
+
 /* ABOUT US section */
 .about-us {
   padding: 50px;
@@ -88,7 +211,6 @@ body {
 .sec {
   background-color: #f8f9fa; /* Light background color */
   padding: 40px;
-  margin-bottom: 40px;
 }
 
 .tagrow {
