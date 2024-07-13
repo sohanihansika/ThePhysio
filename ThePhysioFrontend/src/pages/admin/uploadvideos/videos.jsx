@@ -72,9 +72,9 @@ function VideoUpload() {
 
       <div className="mt-8 w-full max-w-full overflow-x-auto">
         <h2 className="text-2xl font-bold mb-4 text-white font-sans">Uploaded Videos</h2>
-        <div className="flex flex-row space-x-4">
+        <div className="grid grid-cols-5 gap-4">
           {videos.map((video, index) => (
-            <div key={index} className="bg-white p-4 rounded-md shadow-md w-1/4">
+            <div key={index} className="bg-white p-4 rounded-md shadow-md">
               <video controls className="mb-4 w-full">
                 <source src={video.url} type={video.file.type} />
               </video>
