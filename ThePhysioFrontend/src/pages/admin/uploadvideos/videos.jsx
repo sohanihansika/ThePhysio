@@ -16,12 +16,12 @@ function VideoUpload() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <h1 className="text-2xl font-bold mb-4">Upload a Video</h1>
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md w-full max-w-md">
+      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
         <input
           type="file"
           accept="video/*"
           onChange={handleVideoChange}
-          className="mb-4"
+          className="mb-4 w-full py-2 px-3 border rounded-md shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
         {video && (
           <video controls className="mb-4 w-full">
@@ -30,7 +30,7 @@ function VideoUpload() {
         )}
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
         >
           Upload
         </button>

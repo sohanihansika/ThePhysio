@@ -1,70 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const PhysiotherapistSession = () => {
+const App = () => {
   const [reviews, setReviews] = useState([]);
-  const [newReview, setNewReview] = useState({
-    patientName: '',
-    rating: '',
-    comment: ''
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewReview({ ...newReview, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setReviews([...reviews, newReview]);
-    setNewReview({ patientName: '', rating: '', comment: '' });
-  };
+  // Example: Fetching reviews from an API
+  useEffect(() => {
+    fetch('https://api.example.com/reviews')
+      .then(response => response.json())
+      .then(data => setReviews(data.reviews)) // Assuming data.reviews is an array of reviews
+      .catch(error => console.error('Error fetching reviews:', error));
+  }, []);
 
   return (
-    <div>
-      <h1>Physiotherapist Session Reviews</h1>
-      
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          name="patientName" 
-          value={newReview.patientName} 
-          onChange={handleChange} 
-          placeholder="Your Name" 
-          required 
-        />
-        <input 
-          type="number" 
-          name="rating" 
-          value={newReview.rating} 
-          onChange={handleChange} 
-          placeholder="Rating (1-5)" 
-          min="1" 
-          max="5" 
-          required 
-        />
-        <textarea 
-          name="comment" 
-          value={newReview.comment} 
-          onChange={handleChange} 
-          placeholder="Your Review" 
-          required 
-        />
-        <button type="submit">Submit Review</button>
-      </form>
-
+    <div className="App">
       <div>
-        <h2>Reviews</h2>
-        {reviews.length === 0 && <p>No reviews yet.</p>}
-        {reviews.map((review, index) => (
-          <div key={index}>
-            <h3>{review.patientName}</h3>
-            <p>Rating: {review.rating}</p>
-            <p>{review.comment}</p>
-          </div>
-        ))}
+        <h1>Applied Reviews</h1>
+        <ul>
+          {reviews.map(review => (
+            <li key={review.id}>
+              <div>
+                <strong>Author:</strong> {review.author}
+              </div>
+              <div>
+                <strong>Rating:</strong> {review.rating}/5
+              </div>
+              <div>
+                <strong>Comment:</strong> {review.comment}
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
 };
 
-export default PhysiotherapistSession;
+export default App;
