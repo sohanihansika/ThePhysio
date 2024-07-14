@@ -1,6 +1,7 @@
 package groupproject2.the_physio.controller;
 
 import groupproject2.the_physio.dto.EmployeeDto;
+import groupproject2.the_physio.dto.LoginDto;
 import groupproject2.the_physio.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,9 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/employees")
+@CrossOrigin(origins = "http://localhost:3000") // Replace with your React app URL
+
+
 public class EmployeeController {
 
     private EmployeeService employeeService;
@@ -50,5 +54,12 @@ public class EmployeeController {
     public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long employeeId){
         employeeService.deleteEmployee(employeeId);
         return ResponseEntity.ok("Employee delete successfully!.");
+    }
+
+    //build login employee REST API
+    @PostMapping("/login")
+    public ResponseEntity<?> loginEmployee(@RequestBody LoginDto loginDto){
+        LoginDto loginDto1 = employeeService.loginEmployee(loginDto);
+        return ResponseEntity.ok(loginDto1);
     }
 }

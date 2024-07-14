@@ -1,0 +1,12 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    height: auto; /* Adjust for smaller screens */
+  }
+}
