@@ -1,0 +1,63 @@
+/* Sidebar styles */
+.sidebar {
+    display: none;
+  }/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0; /* Initially hidden */
+    background-color: #172B59;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: width 0.3s; /* Smooth transition for width */
+    z-index: 9999; /* Ensure the sidebar is on top of other content */
+  }
+  
+  .sidebar.open {
+    width: 250px; /* Width of expanded sidebar */
+  }
+  
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+    color: white;
+    background: #172B59; /* Background color same as sidebar */
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px; /* Icon size */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000; /* Ensure the icon is on top of other content */
+  }
+  
+  .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 15px; /* Padding inside sidebar */
+  }
+  
+  .sidebar-menu .btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  @media (max-width: 900px) {
+    .navbar {
+      display: none; /* Hide the navbar */
+    }
+  
+    .menu-icon {
+      display: block; /* Show the menu icon */
+    }
+  
+    .sidebar {
+      display: block; /* Show the sidebar */
+    }
+  }
+  

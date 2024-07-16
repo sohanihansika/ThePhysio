@@ -1,7 +1,23 @@
-export default function App() {
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Table from "./components/table"; // Ensure this path and casing is correct
+
+// Import Navbar and NewHome components
+// import Navbar from "./components/Navbar"; // Adjust the path as needed
+// import NewHome from "./components/NewHome"; // Adjust the path as needed
+
+function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello!
-    </h1>
-  )
+    <div className="App">
+      <Router>
+        <Navbar />
+        <Routes>
+          
+          
+          <Route path="/table" element={<Table />} />
+        </Routes>
+      </Router>
+    </div>
+  );
 }
+
+export default App;
