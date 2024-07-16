@@ -11,7 +11,7 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/api/employees/login", { email, password });
+      const response = await axios.post("http://localhost:8082/api/employees/login", { email, password });
       if (response.status === 200) {
         navigate("/");
       }
