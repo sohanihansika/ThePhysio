@@ -190,23 +190,81 @@ const NewHome = () => {
       </div>
 
       {/* APPOINTMENT section */}
-      <div className="sec">
-        <div className="tagrow">
-          <h2>BOOK AN APPOINTMENT</h2>
-        </div>
-        <div className="box">
-          <div className="calander">
-            <iframe
-              src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FColombo&showTitle=0&showDate=1&showPrint=0&showCalendars=0&mode=WEEK&src=Y2FpbmRvb3I0NEBnbWFpbC5jb20&src=YWRkcmVzc2Jvb2sjY29udGFjdEBnbWFpbC5jb20&color=%23B39DDB&color=%23E6C8FD"
-              width="100%"
-              height="600"
-              frameBorder="0"
-              scrolling="no"
-              title="Booking Calendar"
-            ></iframe>
-          </div>
-        </div>
-      </div>
+      <div class="calander-container">
+        <center>
+            <h2 class="date">June 2024</h2>
+            <a class="btn btn-primary btn-xs" href="#" target="_self">Prev Month</a>
+            <a class="btn btn-primary btn-xs" href="#">Current Month</a>
+            <a class="btn btn-primary btn-xs" href="#">Next Month</a>
+        </center>
+        
+        <table class="calander">
+            <tr>
+                <th class="header">Sunday</th>
+                <th class="header">Monday</th>
+                <th class="header">Tuesday</th>
+                <th class="header">Wednesday</th>
+                <th class="header">Thursday</th>
+                <th class="header">Friday</th>
+                <th class="header">Saturday</th>
+            </tr>
+            <tr>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td><a class="btn btn-danger btn-xs"><h4>1</h4></a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-danger btn-xs"><h4>2</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>3</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>4</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>5</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>6</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>7</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>8</h4></a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-danger btn-xs"><h4>9</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>10</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>11</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>12</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>13</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>14</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>15</h4></a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-danger btn-xs"><h4>16</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>17</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>18</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>19</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>20</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>21</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>22</h4></a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-danger btn-xs"><h4>23</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>24</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>25</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>26</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>27</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>28</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>29</h4></a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-danger btn-xs"><h4>30</h4></a></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+            </tr>
+        </table>
+    </div>
+
 
       {/* PRICING section */}
       <div className="sec">

@@ -50,6 +50,10 @@ const NewHome = () => {
                     <p>Name: {physio.firstName} {physio.lastName}</p>
                     <p>email: {physio.email}</p>
                     <p>Specialty: {physio.specialty}</p>
+                    <p>Yeas of experiance: {physio.yearsOfExperience}</p>
+                    <p>Contact Number: {physio.contactNumber}</p>
+
+
                   </div>
                 </a>
               </div>
