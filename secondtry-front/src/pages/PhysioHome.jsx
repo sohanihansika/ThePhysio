@@ -47,7 +47,11 @@ export default function PhysioHome() {
               <th scope="col">First Name</th>
               <th scope="col">Last Name</th>
               <th scope="col">Email</th>
-              <th scope="col">Actions</th>
+              <th scope="col">Specialty</th>
+              <th scope="col">Contact Number</th>
+              <th scope="col">Action</th>
+
+
             </tr>
           </thead>
           <tbody>
@@ -57,6 +61,9 @@ export default function PhysioHome() {
                 <td>{physio.firstName}</td>
                 <td>{physio.lastName}</td>
                 <td>{physio.email}</td>
+                <td>{physio.specialty}</td>
+                <td>{physio.contactNumber}</td>
+
                 <td>
                   <Link className="btn btn-primary mx-2" to={`/viewphysio/${physio.id}`}>
                     View

@@ -13,8 +13,10 @@ export default function AddPhysio() {
 
   });
 
-  const { firstName, lastName, email,password } = physio;
-
+  const { 
+    firstName, lastName, email, password, specialty, yearsOfExperience, 
+    contactNumber, addressLine1, addressLine2, city, 
+  } = physio;
   const onInputChange = (e) => {
     setPhysio({ ...physio, [e.target.name]: e.target.value });
   };
@@ -23,7 +25,7 @@ export default function AddPhysio() {
     e.preventDefault();
     try {
       await axios.post("http://localhost:8080/api/physios", physio);
-      navigate("/");
+      navigate("/physiohome");
     } catch (error) {
       console.error("Error creating employee:", error);
       // Handle error gracefully
@@ -92,10 +94,93 @@ Password              </label>
                 required
               />
             </div>
+            <div className="mb-3">
+              <label htmlFor="specialty" className="form-label">
+                Specialty
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter specialty"
+                name="specialty"
+                value={specialty}
+                onChange={(e) => onInputChange(e)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="yearsOfExperience" className="form-label">
+                Years of Experience
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Enter years of experience"
+                name="yearsOfExperience"
+                value={yearsOfExperience}
+                onChange={(e) => onInputChange(e)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="contactNumber" className="form-label">
+                Contact Number
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter contact number"
+                name="contactNumber"
+                value={contactNumber}
+                onChange={(e) => onInputChange(e)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="addressLine1" className="form-label">
+                Address Line 1
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter address line 1"
+                name="addressLine1"
+                value={addressLine1}
+                onChange={(e) => onInputChange(e)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="addressLine2" className="form-label">
+                Address Line 2
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter address line 2"
+                name="addressLine2"
+                value={addressLine2}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="city" className="form-label">
+                City
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter city"
+                name="city"
+                value={city}
+                onChange={(e) => onInputChange(e)}
+                required
+              />
+            </div>
             <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>
-            <Link className="btn btn-outline-danger mx-2" to="/">
+            <Link className="btn btn-outline-danger mx-2" to="/physiohome">
               Cancel
             </Link>
           </form>
