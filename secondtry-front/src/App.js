@@ -1,8 +1,8 @@
-import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import Navbar from './layout/Navbar';
-import Home from './pages/Home';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import './App.css';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+// //import Navbar from './layout/Navbar';
+// import Home from './pages/Home';
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import AddUser from './users/AddUser';
 import EditUser from './users/EditUser';
@@ -11,32 +11,26 @@ import Login from './users/Login';
 import GYM from './pages/gym';
 import NewHome from './pages/NewHome';
 import Register from './component/register';
-import GymRegister from './pages/gym-register';
-import GymProfile from './pages/gym-profile';
-import SchedulePage from './pages/SchedulePage';
+
+
 
 function App() {
   return (
     <div className="App">
       
-      <Router>
-        <Navbar />
+//       <Router>
+//         <Navbar />
 
         <Routes>
           <Route exact path="/" element={<NewHome />} />
-          <Route exact path="/adduser" element={<AddUser />} />
+         <Route exact path="/adduser" element={<AddUser />} />
           <Route exact path="/edituser" element={<EditUser />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/gym" element={<GYM />} />
-          <Route exact path="/gym-register" element={<GymRegister />} />
-          <Route exact path="/gym-profile" element={<GymProfile />} />
-          <Route exact path="/schedule" element={<SchedulePage />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/viewemployee/:id" element={<ViewUser />} />
           <Route exact path="/editemployee/:id" element={<EditUser />} />
           <Route exact path="/register" element= { <Register/>} />
-          <Route exact path="/manager-dashboard" element= { <ManagerDashboard/>} />
-          <Route exact path="/trainer/:id" element={<TrainerProfile />} />
 
 
           

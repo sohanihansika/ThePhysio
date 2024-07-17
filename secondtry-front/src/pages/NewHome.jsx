@@ -1,174 +1,331 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import doctor from '../IMG/doctor.jpg';
+/*import logo image*/
+import '../CSS/NewHome.css';
 
 const NewHome = () => {
   return (
-    <html className="desktop mbr-site-loaded">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-        <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon" />
-        <meta name="description" content="" />
-        <title>Cryptocurrency</title>
-        <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css" />
-        <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css" />
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css" />
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css" />
-        <link rel="stylesheet" href="assets/dropdown/css/style.css" />
-        <link rel="stylesheet" href="assets/socicon/css/styles.css" />
-        <link rel="stylesheet" href="assets/theme/css/style.css" />
-        <link rel="stylesheet" href="assets/recaptcha.css" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Golos+Text:400,500,600,700,800,900&display=swap"
-        />
-        <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css" />
-        <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css" />
-      </head>
-      <body>
-        <section data-bs-version="5.1" className="menu menu1 coinm5 cid-tA5gTKB5Ip">
-          <nav className="navbar navbar-dropdown navbar-expand-lg">
-            <div className="menu_box container-fluid">
-              <div className="navbar-brand d-flex d-lg-none">
-                <span className="navbar-logo">
-                  <a href="../index.html">
-                    <img src="assets/images/logo.png" alt="" />
-                  </a>
-                </span>
-              </div>
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-bs-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarNavAltMarkup"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <div className="hamburger">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
+    <div>
+      {/* Background section */}
+      <section className="background-section">
+        <div className="background-text">
+          <h1>THEPHYSIO Clinic</h1>
+          <h2>Your partner in physiotherapy and wellness</h2>
+          <div className="btnrow">
+            <a href="#" className="btn">Explore</a>
+          </div> 
+        </div>
+      </section>
+
+      {/* Doctors section */}
+      <section class="home">
+        <div class="topicdiv">
+            <h1>Physiotheraphists</h1>
+        </div>
+        <div class="coaches">
+            <div class="profiles">
+                <div class="coachcard">
+                    <a href="path/to/your/coachcard/1">
+                        <div class="coach-img">
+                        <div className="pic"><img src={doctor} className="img-fluid" alt="Doctor 1" /></div>
+                        </div>
+                        <div class="Name">Physiotheraphist 1</div>
+                        <div class="Description">
+                            Name: Hasini Hewa
+                            Age: 33
+                            Special: Neurological physiotherapy
+                        </div>
+                        
+
+                    </a>
                 </div>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <div className="navbar-brand d-none d-lg-flex">
-                  <span className="navbar-logo">
-                    <a href="../index.html">
-                      <img src="assets/images/logo.png" alt="" />
+                <div class="coachcard">
+                    <a href="path/to/your/coachcard/2">
+                        <div class="coach-img">
+                        <div className="pic"><img src={doctor} className="img-fluid" alt="Doctor 1" /></div>
+                        </div>
+                        <div class="Name">Physiotheraphist 2</div>
+                        <div class="Description">
+                            Name: Hasini Hewa
+                            Age: 33
+                            Special: Neurological physiotherapy
+                        </div>
                     </a>
-                  </span>
                 </div>
-                <ul className="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                  <li className="nav-item">
-                    <a className="nav-link link text-info display-4" href="../index.html">
-                      Home
+                <div class="coachcard">
+                    <a href="path/to/your/coachcard/2">
+                        <div class="coach-img">
+                        <div className="pic"><img src={doctor} className="img-fluid" alt="Doctor 1" /></div>
+                        </div>
+                        <div class="Name">Physiotheraphist 3</div>
+                        <div class="Description">
+                            Name: Hasini Hewa
+                            Age: 33
+                            Special: Neurological physiotherapy
+                        </div>
                     </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link link text-info display-4" href="#features3-4">
-                      Team
+                </div>
+                <div class="coachcard">
+                    <a href="path/to/your/coachcard/2">
+                        <div class="coach-img">
+                        <div className="pic"><img src={doctor} className="img-fluid" alt="Doctor 1" /></div>
+                        </div>
+                        <div class="Name">Physiotheraphist 4</div>
+                        <div class="Description">
+                            Name: Hasini Hewa
+                            Age: 33
+                            Special: Neurological physiotherapy
+                        </div>
                     </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link link text-info display-4" href="#tabs1-8">
-                      Types
+                </div>
+                <div class="coachcard">
+                    <a href="path/to/your/coachcard/2">
+                        <div class="coach-img">
+                        <div className="pic"><img src={doctor} className="img-fluid" alt="Doctor 1" /></div>
+                        </div>
+                        <div class="Name">Physiotheraphist 5</div>
+                        <div class="Description">
+                            Name: Hasini Hewa
+                            Age: 33
+                            Special: Neurological physiotherapy
+                        </div>
                     </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link link text-info display-4" href="#content6-b">
-                      FAQ
+                </div>
+                <div class="coachcard">
+                    <a href="path/to/your/coachcard/2">
+                        <div class="coach-img">
+                        <div className="pic"><img src={doctor} className="img-fluid" alt="Doctor 1" /></div>
+                        </div>
+                        <div class="Name">Physiotheraphist 6</div>
+                        <div class="Description">
+                                                      {/* add these 3 as 3 lines with line braek */}
+
+                            Name: Hasini Hewa
+                            Age: 33
+                            Special: Neurological physiotherapy
+                        </div>
                     </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link link text-info display-4" href="#form1-a">
-                      Contacts
-                    </a>
-                  </li>
-                </ul>
-              </div>
+                </div>
             </div>
-          </nav>
-        </section>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-button left">&#10094;</button>
+            <button class="nav-button right">&#10095;</button>
+        </div>
+    </section>
 
-
-        <section data-bs-version="5.1" className="features3 coinm5 cid-tA5h1AFdOZ" id="features3-4">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <h2 className="mbr-section-title mbr-fonts-style display-2">
-                  Our team
-                </h2>
-              </div>
-              <div className="col-12 col-lg-6 item features-image">
-                <div className="item-wrapper">
-                  <div className="blur-wrap"></div>
-                  <div className="item-img">
-                    <img src="assets/images/image5.jpg" alt="" />
-                    <div className="name-wrapper">
-                      <div className="name-wrap">
-                        <h3 className="mbr-name mbr-fonts-style display-5">
-                          Billy Johnson
-                        </h3>
-                        <p className="mbr-desc mbr-fonts-style display-4">
-                          Cryptocurrency expert
-                        </p>
-                      </div>
-                      <a className="link-wrap" href="#">
-                        <span className="mbr-iconfont socicon socicon-facebook"></span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="item-content">
-                    <p className="mbr-text mbr-fonts-style display-4">
-                      Cryptocurrency is a digital or virtual currency that uses cryptography for security and operates independently of a central bank.
-                      <br />
-                      <br />
-                      Cryptocurrencies are typically decentralized, meaning they are not controlled by any government or financial institution.
-                      Instead, they rely on a distributed ledger technology called blockchain, which records all transactions in a transparent and immutable way.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="col-12 col-lg-6 item features-image">
-                <div className="item-wrapper">
-                  <div className="blur-wrap"></div>
-                  <div className="item-img">
-                    <img src="assets/images/image13.jpg" alt="" />
-                    <div className="name-wrapper">
-                      <div className="name-wrap">
-                        <h3 className="mbr-name mbr-fonts-style display-5">
-                          Monica Palmer
-                        </h3>
-                        <p className="mbr-desc mbr-fonts-style display-4">
-                          Manager
-                        </p>
-                      </div>
-                      <a className="link-wrap" href="#">
-                        <span className="mbr-iconfont socicon socicon-facebook"></span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="item-content">
-                    <p className="mbr-text mbr-fonts-style display-4">
-                      Some popular cryptocurrencies include Bitcoin, Ethereum, and Litecoin, but there are many others in circulation.
-                      Cryptocurrencies can be used for a variety of purposes, such as making purchases online, investing, and even as a store of value like gold.
-                      <br />
-                      <br />
-                      However, they can also be volatile and subject to rapid price fluctuations, so it's important to do your own research and exercise caution when investing in them.
-                    </p>
-                  </div>
-                </div>
-              </div>
+      {/* ABOUT US section */}
+      <div className="sec">
+        <div className="tagrow">
+          <h2>ABOUT US</h2>
+        </div>
+        <hr />
+        <div className="box">
+          {/* Clinic Information */}
+          <div>
+            <h4>Business Hours</h4>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col" className='lead'><strong>Day</strong></th>
+                  <th scope="col" className='lead'><strong>Hour</strong></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" className='lead'>Monday - Friday</th>
+                  <td>9 a.m - 5 p.m</td>
+                </tr>
+                <tr>
+                  <th scope="row" className='lead'>Saturday</th>
+                  <td>9 a.m - 1 p.m</td>
+                </tr>
+                {/* Add more days if needed */}
+              </tbody>
+            </table>
+          </div>
+          {/* Services and Facilities */}
+          <div className="mainbox">
+            <div>
+              <h4>Services Offered</h4>
+              <ul>
+                <li>Physical Therapy</li>
+                <li>Sports Injury Rehabilitation</li>
+                <li>Orthopedic Care</li>
+                <li>Massage Therapy</li>
+                {/* Add more services */}
+              </ul>
+            </div>
+            <div>
+              <h4>Facilities</h4>
+              <ul>
+                <li>Private Treatment Rooms</li>
+                <li>Exercise Areas</li>
+                <li>Parking Available</li>
+                {/* Add more facilities */}
+              </ul>
             </div>
           </div>
-        </section>
-      </body>
-    </html>
+        </div>
+      </div>
+
+      {/* FIND US HERE section */}
+      <div className="sec">
+        <div className="tagrow">
+          <h2>LOCATE US</h2>
+        </div>
+        <div className="google-map">
+        <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9451852844486!2d79.8726168!3d6.897159900000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259ee2a2b0533%3A0xe2776ef7575a7845!2sThe%20Physio!5e0!3m2!1sen!2slk!4v1720498977765!5m2!1sen!2slk"
+        width="600"
+        height="450"
+        style={{ border: 0 }}
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Google Maps"
+      ></iframe>
+    </div>
+      </div>
+
+      {/* APPOINTMENT section */}
+      <div class="calander-container">
+        <center>
+            <h2 class="date">June 2024</h2>
+            <a class="btn btn-primary btn-xs" href="#" target="_self">Prev Month</a>
+            <a class="btn btn-primary btn-xs" href="#">Current Month</a>
+            <a class="btn btn-primary btn-xs" href="#">Next Month</a>
+        </center>
+        
+        <table class="calander">
+            <tr>
+                <th class="header">Sunday</th>
+                <th class="header">Monday</th>
+                <th class="header">Tuesday</th>
+                <th class="header">Wednesday</th>
+                <th class="header">Thursday</th>
+                <th class="header">Friday</th>
+                <th class="header">Saturday</th>
+            </tr>
+            <tr>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td><a class="btn btn-danger btn-xs"><h4>1</h4></a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-danger btn-xs"><h4>2</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>3</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>4</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>5</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>6</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>7</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>8</h4></a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-danger btn-xs"><h4>9</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>10</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>11</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>12</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>13</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>14</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>15</h4></a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-danger btn-xs"><h4>16</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>17</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>18</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>19</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>20</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>21</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>22</h4></a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-danger btn-xs"><h4>23</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>24</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>25</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>26</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>27</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>28</h4></a></td>
+                <td><a class="btn btn-danger btn-xs"><h4>29</h4></a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-danger btn-xs"><h4>30</h4></a></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+            </tr>
+        </table>
+    </div>
+
+
+      {/* PRICING section */}
+      <div className="sec">
+        <div className="tagrow">
+          <h2>PRICING</h2>
+        </div>
+        <div className="box4">
+          <h3>Physiotherapy Pricing</h3>
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Service</th>
+                <th scope="col">Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Initial Consultation</td>
+                <td>Rs. 2000</td>
+              </tr>
+              <tr>
+                <td>Follow-up Session</td>
+                <td>Rs. 1500</td>
+              </tr>
+              {/* Add more pricing rows */}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="content">
+          <div className="contentbox">
+            <i className='bx bxl-facebook'></i>
+            <a href="https://www.facebook.com/">Facebook</a>
+          </div>
+          <div className="contentbox">
+            <i className='bx bxl-instagram'></i>
+            <a href="https://www.instagram.com/">Instagram</a>
+          </div>
+          <div className="contentbox">
+            <i className='bx bxl-twitter'></i>
+            <a href="https://twitter.com/">Twitter</a>
+          </div>
+          <div className="contentbox">
+            <i className='bx bxl-linkedin'></i>
+            <a href="https://www.linkedin.com/">LinkedIn</a>
+          </div>
+          <div className="contentbox">
+            <i className='bx bxl-youtube'></i>
+            <a href="https://www.youtube.com/">YouTube</a>
+          </div>
+        </div>
+        <div className="address">
+          <p>123 Main Street, Colombo, Sri Lanka</p>
+          <p>Email: info@thephysio.com</p>
+          <p>Phone: +94 123 4567</p>
+        </div>
+      </footer>
+    </div>
   );
 };
 
