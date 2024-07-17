@@ -24,7 +24,7 @@ function App() {
 
         <Routes>
           <Route exact path="/" element={<NewHome />} />
-         <Route exact path="/adduser" element={<AddUser />} />
+          <Route exact path="/adduser" element={<AddUser />} />
           <Route exact path="/edituser" element={<EditUser />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/gym" element={<GYM />} />
@@ -35,6 +35,8 @@ function App() {
           <Route exact path="/viewemployee/:id" element={<ViewUser />} />
           <Route exact path="/editemployee/:id" element={<EditUser />} />
           <Route exact path="/register" element= { <Register/>} />
+          <Route exact path="/manager-dashboard" element= { <ManagerDashboard/>} />
+          <Route exact path="/trainer/:id" element={<TrainerProfile />} />
 
 
           
