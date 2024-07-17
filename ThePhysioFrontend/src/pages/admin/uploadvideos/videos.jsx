@@ -42,8 +42,8 @@ function VideoUpload() {
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-blue-900 p-4">
-      <h1 className="text-3xl font-extrabold mb-6 text-white font-sans">Upload a Video</h1>
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-md shadow-md w-full max-w-md">
+      <h1 className="text-3xl font-extrabold mb-6 text-white font-sans">Upload Videos</h1>
+      <form onSubmit={handleSubmit} className="bg-[#B5B2C3] p-6 rounded-md shadow-md w-full max-w-md">
         <input
           type="file"
           accept="video/*"
@@ -58,13 +58,13 @@ function VideoUpload() {
           className="mb-4 w-full py-2 px-3 border rounded-md shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-medium"
         />
         {video && (
-          <video controls className="mb-4 w-full">
+          <video controls className="mb-4 w-full bg-[#B5B2C3]">
             <source src={URL.createObjectURL(video)} type={video.type} />
           </video>
         )}
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 font-semibold"
+          className="bg-[#28108A] text-white px-4 py-2 rounded-md hover:bg-blue-600 font-semibold"
         >
           Upload
         </button>
@@ -74,8 +74,8 @@ function VideoUpload() {
         <h2 className="text-2xl font-bold mb-4 text-white font-sans">Uploaded Videos</h2>
         <div className="grid grid-cols-5 gap-4">
           {videos.map((video, index) => (
-            <div key={index} className="bg-white p-4 rounded-md shadow-md">
-              <video controls className="mb-4 w-full">
+            <div key={index} className="bg-[#B5B2C3] p-4 rounded-md shadow-md">
+              <video controls className="mb-4 w-full bg-[#B5B2C3]">
                 <source src={video.url} type={video.file.type} />
               </video>
               <input
@@ -87,13 +87,13 @@ function VideoUpload() {
               <div className="flex justify-between">
                 <button
                   onClick={() => handleUpdate(index)}
-                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 font-semibold"
+                  className="bg-[#28108A] text-white px-4 py-2 rounded-md hover:bg-blue-600 font-semibold"
                 >
                   Update
                 </button>
                 <button
                   onClick={() => handleDelete(index)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 font-semibold"
+                  className="bg-[#28108A] text-white px-4 py-2 rounded-md hover:bg-blue-600 font-semibold"
                 >
                   Delete
                 </button>

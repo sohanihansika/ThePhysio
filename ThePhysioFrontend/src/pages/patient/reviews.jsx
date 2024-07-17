@@ -4,19 +4,29 @@ function PatientProfile() {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState('');
   const [rating, setRating] = useState(0);
+  const [attendedSession, setAttendedSession] = useState('');
+
+  const sessions = [
+    { id: 1, name: 'Session A' },
+    { id: 2, name: 'Session B' },
+    { id: 3, name: 'Session C' },
+    { id: 4, name: 'Session D' },
+  ];
 
   const addReview = (e) => {
     e.preventDefault();
-    if (newReview.trim() !== '' && rating > 0) {
+    if (newReview.trim() !== '' && rating > 0 && attendedSession !== '') {
       const review = {
         id: reviews.length + 1,
         content: newReview,
         rating: rating,
+        session: attendedSession,
         date: new Date().toLocaleDateString(),
       };
       setReviews([...reviews, review]);
       setNewReview('');
       setRating(0);
+      setAttendedSession('');
     }
   };
 
@@ -29,11 +39,15 @@ function PatientProfile() {
     setRating(newRating);
   };
 
+  const handleSessionChange = (e) => {
+    setAttendedSession(e.target.value);
+  };
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-blue-900 p-4">
       <h1 className="text-3xl font-extrabold mb-6 text-white font-sans">Patient Profile</h1>
 
-      <form onSubmit={addReview} className="bg-white p-6 rounded-md shadow-md w-full max-w-md mb-4">
+      <form onSubmit={addReview} className="bg-[#B5B2C3] p-6 rounded-md shadow-md w-full max-w-md mb-4">
         <h2 className="text-xl font-bold mb-2 text-gray-800">Add a Review</h2>
         <textarea
           value={newReview}
@@ -59,9 +73,23 @@ function PatientProfile() {
           </div>
           <span className="text-gray-700">{rating} / 5</span>
         </div>
+        <div className="mb-4">
+          <label htmlFor="session" className="block text-sm font-medium text-gray-700 mb-1">Attended Session</label>
+          <select
+            id="session"
+            value={attendedSession}
+            onChange={handleSessionChange}
+            className="w-full py-2 px-3 border rounded-md shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="">Select a session...</option>
+            {sessions.map(session => (
+              <option key={session.id} value={session.name}>{session.name}</option>
+            ))}
+          </select>
+        </div>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 font-semibold"
+          className="bg-[#28108A] text-white px-4 py-2 rounded-md hover:bg-blue-600 font-semibold"
         >
           Submit Review
         </button>
@@ -70,12 +98,13 @@ function PatientProfile() {
       <div className="w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4 text-white font-sans">Reviews</h2>
         {reviews.length > 0 ? (
-          <ul className="bg-white p-4 rounded-md shadow-md">
+          <ul className="bg-[#B5B2C3] p-4 rounded-md shadow-md">
             {reviews.map((review) => (
               <li key={review.id} className="mb-2">
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="text-gray-800">{review.content}</p>
+                    <p className="text-sm text-gray-500">Session: {review.session}</p>
                     <div className="flex">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <svg
@@ -93,7 +122,7 @@ function PatientProfile() {
                   </div>
                   <button
                     onClick={() => deleteReview(review.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 font-semibold"
+                    className="bg-[#28108A] text-white px-3 py-1 rounded-md hover:bg-blue-600 font-semibold"
                   >
                     Delete
                   </button>
