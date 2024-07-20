@@ -1,48 +1,105 @@
-// pages/auth/login.jsx
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { useState } from 'react';
-
-export default function Login() {
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+
+    if (!validateEmail(email)) {
+      setError('Invalid email format');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      // Mock API call - replace with your actual API call
+      const response = await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (email === 'admin@example.com' && password === 'password') {
+            resolve({ token: 'fake-jwt-token', role: 'admin' });
+          } else {
+            reject(new Error('Invalid email or password'));
+          }
+        }, 1000);
+      });
+
+      console.log(response);
+      if (response.token) {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('role', response.role);
+        navigate('/profile');
+      } else {
+        setError(response.message);
+      }
+    } catch (error) {
+      console.log(error);
+      setError('Login failed. Please check your credentials and try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-secondary-100 dark:bg-dark">
-      <div className="bg-white dark:bg-gray-800 p-8 rounded shadow-md w-full max-w-sm">
-        <h1 className="text-2xl font-bold mb-6 text-primary dark:text-white">Login</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+    <div className="flex flex-col items-center min-h-screen bg-[#ffffff] py-12">
+      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold text-center mb-6 text-[#28108A]">Login</h2>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
             <input
-              type="email"
               id="email"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
               required
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#28108A] focus:border-[#28108A] sm:text-sm"
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
             <input
-              type="password"
               id="password"
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
               required
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#28108A] focus:border-[#28108A] sm:text-sm"
             />
           </div>
-          <button type="submit" className="w-full bg-primary text-white p-2 rounded dark:bg-secondary-200">Login</button>
+          <button
+            type="submit"
+            className={`w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-[#28108A] hover:bg-[#3b1a8a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#28108A] ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={loading}
+          >
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
         </form>
       </div>
     </div>
   );
-}
+};
+
+export default LoginPage;
