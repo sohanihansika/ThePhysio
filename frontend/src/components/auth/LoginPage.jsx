@@ -19,7 +19,7 @@ function LoginPage() {
                 localStorage.setItem('token', userData.token);
                 localStorage.setItem('role', userData.role);
                 // navigate('/profile');
-                window.location.href = '/profile';
+                location.href = '/dashboard';
             } else {
                 setError(userData.message);
             }
