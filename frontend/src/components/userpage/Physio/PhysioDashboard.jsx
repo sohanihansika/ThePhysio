@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function PhysioDashboard() {
+const PhysioDashboard = () => {
   return (
     <div>PhysioDashboard</div>
   )
 }
+
+export default PhysioDashboard

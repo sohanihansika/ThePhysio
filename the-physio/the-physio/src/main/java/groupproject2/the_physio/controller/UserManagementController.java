@@ -15,9 +15,14 @@ public class UserManagementController {
     @Autowired
     private UsersManagementService userManagementService;
 
-    @PostMapping("/auth/register")
-    public ResponseEntity<ReqRes> register(@RequestBody ReqRes req) {
-        return ResponseEntity.ok(userManagementService.register(req));
+    @PostMapping("/auth/customerRegister")
+    public ResponseEntity<ReqRes> customerRegister(@RequestBody ReqRes req) {
+        return ResponseEntity.ok(userManagementService.customerRegister(req));
+    }
+
+    @PostMapping("/owner/empRegister")
+    public ResponseEntity<ReqRes> empRegister(@RequestBody ReqRes req) {
+        return ResponseEntity.ok(userManagementService.empRegister(req));
     }
 
     @PostMapping("/auth/login")
@@ -45,7 +50,7 @@ public class UserManagementController {
         return ResponseEntity.ok(userManagementService.updateUser(userId, reqres));
     }
 
-    @GetMapping("/adminuser/get-profile")
+    @GetMapping("/anyuser/get-profile")
     public ResponseEntity<ReqRes> getMyProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();

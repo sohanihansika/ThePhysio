@@ -17,10 +17,23 @@ class UserService{
         }
     }
 
-    static async register(userData, token) {
-        try {
-            const response = await axios.post(`${this.BASE_URL}/auth/register`, userData, {
-                headers: { Authorization: `Bearer ${token}` }
+    static async customerRegister(userData){
+        try{
+
+            const response = await axios.post(`${UserService.BASE_URL}/auth/customerRegister`, userData);
+            return response.data;
+            
+        }catch(err){
+            throw err;
+        }
+    }
+
+    static async empRegister(userData, token){
+        try{
+
+            const response = await axios.post(`${UserService.BASE_URL}/owner/empRegister`, {
+                userData,
+                headers: {Authorization: `Bearer ${token}`}
             });
             return response.data;
         } catch (err) {
@@ -45,7 +58,7 @@ class UserService{
     static async getYourProfile(token){
         try{
 
-            const response = await axios.get(`${UserService.BASE_URL}/adminuser/get-profile`, {
+            const response = await axios.get(`${UserService.BASE_URL}/anyuser/get-profile`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
             return response.data;
@@ -100,7 +113,7 @@ class UserService{
         localStorage.removeItem('token');
         localStorage.removeItem('role');
         // Navigate(`/`);
-        window.location.href = '/';
+        // window.location.href = '/';
     }
 
     static isAuthenticated(){
@@ -111,6 +124,30 @@ class UserService{
     static isAdmin(){
         const role = localStorage.getItem('role');
         return role === 'ADMIN';
+    }
+    static isUser(){
+        const role = localStorage.getItem('role');
+        return role === 'USER';
+    }
+    static isOwner(){
+        const role = localStorage.getItem('role');
+        return role === 'OWNER';
+    }
+    static isPhysio(){
+        const role = localStorage.getItem('role');
+        return role === 'PHYSIO';
+    }
+    static isReceptionist(){
+        const role = localStorage.getItem('role');
+        return role === 'RECEPTIONIST';
+    }
+    static isManager(){
+        const role = localStorage.getItem('role');
+        return role === 'MANAGER';
+    }
+    static isCoach(){
+        const role = localStorage.getItem('role');
+        return role === 'COACH';
     }
 
 
@@ -134,10 +171,6 @@ class UserService{
         return role;
     }
 
-    static isUser(){
-        const role = localStorage.getItem('role');
-        return role === 'USER';
-    }
 
     static adminOnly(){
         return this.isAuthenticated() && this.isAdmin();

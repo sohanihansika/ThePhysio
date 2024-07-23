@@ -26,22 +26,48 @@ public class UsersManagementService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public ReqRes register(ReqRes registrationRequest){
+    public ReqRes customerRegister(ReqRes customerRegistrationRequest){
         ReqRes resp = new ReqRes();
 
         try {
             OurUsers ourUser = new OurUsers();
-            ourUser.setEmail(registrationRequest.getEmail());
-            ourUser.setContactNo(registrationRequest.getContactNo());
-            ourUser.setAddress(registrationRequest.getAddress());
-            ourUser.setAddedDate(registrationRequest.getAddedDate());
-            ourUser.setRole(registrationRequest.getRole());
-            ourUser.setName(registrationRequest.getName());
-            ourUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
+            ourUser.setEmail(customerRegistrationRequest.getEmail());
+            ourUser.setContact_no(customerRegistrationRequest.getContact_no());
+            ourUser.setAddress(customerRegistrationRequest.getAddress());
+            ourUser.setAddedDate(customerRegistrationRequest.getAddedDate());
+            ourUser.setRole("USER");
+            ourUser.setName(customerRegistrationRequest.getName());
+            ourUser.setPassword(passwordEncoder.encode(customerRegistrationRequest.getPassword()));
             OurUsers ourUsersResult = usersRepo.save(ourUser);
             if (ourUsersResult.getId()>0) {
                 resp.setOurUsers((ourUsersResult));
                 resp.setMessage("User Saved Successfully");
+                resp.setStatusCode(200);
+            }
+
+        }catch (Exception e){
+            resp.setStatusCode(500);
+            resp.setError(e.getMessage());
+        }
+        return resp;
+    }
+
+    public ReqRes empRegister(ReqRes empRegistrationRequest){
+        ReqRes resp = new ReqRes();
+
+        try {
+            OurUsers ourUser = new OurUsers();
+            ourUser.setEmail(empRegistrationRequest.getEmail());
+            ourUser.setContact_no(empRegistrationRequest.getContact_no());
+            ourUser.setAddress(empRegistrationRequest.getAddress());
+            ourUser.setAddedDate(empRegistrationRequest.getAddedDate());
+            ourUser.setRole(empRegistrationRequest.getRole());
+            ourUser.setName(empRegistrationRequest.getName());
+            ourUser.setPassword(passwordEncoder.encode(empRegistrationRequest.getPassword()));
+            OurUsers ourUsersResult = usersRepo.save(ourUser);
+            if (ourUsersResult.getId()>0) {
+                resp.setOurUsers((ourUsersResult));
+                resp.setMessage("Employee Saved Successfully");
                 resp.setStatusCode(200);
             }
 
@@ -164,7 +190,7 @@ public class UsersManagementService {
                 existingUser.setAddedDate(updatedUser.getAddedDate());
                 existingUser.setRole(updatedUser.getRole());
                 existingUser.setAddress(updatedUser.getAddress());
-                existingUser.setContactNo(updatedUser.getContactNo());
+                existingUser.setContact_no(updatedUser.getContact_no());
 
                 // Check if password is present in the request
                 if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
