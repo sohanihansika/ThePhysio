@@ -72,9 +72,23 @@ function Sidebar() {
                                             <a href="/profile" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                                 <p className="flex-1">Dashboard</p>
                                             </a>
-                                            <a href="#" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                                <p className="flex-1">Vehicle repair</p>
+                                            <a href="/appoinments" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Make Appoinments</p>
                                             </a>
+                                            <a href="/reservations" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Schedule</p>
+                                            </a>
+
+                                            <a href="/physiocard" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Physiotherapists</p>
+                                            </a>
+                                            <a href="/personalreportsview" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Reports</p>
+                                            </a>
+                                            <a href="/reviews" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Reviews</p>
+                                            </a>
+                                            
                                            
                                         </li>
                                     )}
