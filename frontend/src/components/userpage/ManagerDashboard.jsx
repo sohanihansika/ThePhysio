@@ -8,6 +8,13 @@ const ManagerDashboard = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedTrainer, setSelectedTrainer] = useState(null);
 
+    // Dummy data for the manager profile
+    const managerProfile = {
+        photo: 'https://via.placeholder.com/150', // Replace with the actual photo URL
+        name: 'John Doe',
+        email: 'john.doe@example.com'
+    };
+
     useEffect(() => {
         fetchTrainers();
     }, []);
@@ -36,6 +43,15 @@ const ManagerDashboard = () => {
 
     return (
         <div className='container mx-auto p-4'>
+            {/* Manager Profile Section */}
+            <div className='bg-white shadow-md rounded-lg p-4 mb-6 flex items-center'>
+                <img className='w-24 h-24 rounded-full mr-4' src={managerProfile.photo} alt='Manager' />
+                <div>
+                    <h2 className='text-xl font-bold'>{managerProfile.name}</h2>
+                    <p className='text-gray-600'>{managerProfile.email}</p>
+                </div>
+            </div>
+
             <h2 className='text-2xl font-bold mb-4'>Gym Trainers</h2>
             <button onClick={handleAdd} className='mb-3 px-4 py-2 bg-blue-500 text-white rounded'>Add Trainer</button>
             <table className='min-w-full bg-white border border-gray-200'>

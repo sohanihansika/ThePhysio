@@ -130,6 +130,8 @@ function App() {
               {UserService.isGymManager() && (
                 <>
                   <Route path="/ManagerDashboard" element={<Home/>}/>
+                  <Route path="/TrainerProfile" element={<Navigate to="/ManagerDashboard" />} />
+                  <Route path="/TrainerForm" element={<Navigate to="/ManagerDashboard" />} />
                 </>
               )}
             </Route>
