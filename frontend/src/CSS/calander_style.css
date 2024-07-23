@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "poppins", sans-serif;
+}
+
+/* body {
+  background-color: #f5f5f5;
+  font-family: "popins";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  justify-content: center;
+  align-items: center;
+} */
+/* .container {
+  height: 500px;
+} */
+
+/* .col-md-12 {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+} */
+
+/* .row {
+  margin-top: 20px;
+} */
+
+.date{
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+  color: #2c6b74;
+}
+
+
+/* Calendar styles */
+.calander {
+  width: 100%;
+  border-collapse: collapse;
+  /* padding: 0 50px; */
+  table-layout: fixed;
+  /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); */
+}
+
+.calander .header {
+  background-color: #2c6b74;
+  color: #fff;
+  border: 1px solid #999;
+  padding: 10px 0;
+  font-size: 10px;
+  
+}
+
+.calander td {
+  border: 1px solid #bababa;
+  height: 3.5em;
+  width: 3.5em;
+  /* padding: 5px; */
+  text-align: center;
+}
+
+/* td:hover {
+  background-color: #a7d8d7;
+  cursor: pointer;
+} */
+
+.today {
+  background-color: #1a605e;
+}
+
+.today > .btn-success{
+  background-color: #1a605e
+}
+
+
+/* .empty {
+  background-color: #ffffff;
+} */
+
+/* .empty:hover {
+  background-color: #ffffff;
+} */
+
+/* .today {
+      background: #a7d8d7 !important;
+
+  } */
+
+/* Button styles */
+/* month button */
+.btn-primary {
+  display: inline-block;
+  padding: 5px 8px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #4f9da9;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  margin: 0 5px;
+  font-size: 12px;
+}
+
+.btn-primary:hover {
+  background-color: #2e8a99;
+  text-decoration: none;
+}
+
+/* Book btn */
+.btn-success {
+  display: inline-block;
+/* padding: 10px 20px; */
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #4F9DA9;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  width: 40px; 
+  height: 40px;
+}
+
+/* Not-Available btn */
+/* .btn-danger {
+  display: inline-block;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #ff5b5b;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 2px rgba(150, 0, 0, 0.3);
+} */
+
+.btn-success:hover {
+  background-color: #2e8a99;
+  text-decoration: none;
+}
+
+
+
+/* Media queries ....................................................*/
+@media only screen and (max-width: 1200px) {
+  .btn-success{
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  /* Styles for tablets */
+
+  .calander td {
+    height: 3.5em;
+    width: 3.5em;
+    font-size: 13px;
+    width: 33%;
+  }
+
+  .calander .header {
+    font-size: 10px;
+  }  
+  .date{
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    color: #2c6b74;
+  }
+
+  .btn-primary {
+    padding: 3px 7px;
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  /* Styles for mobile devices */
+
+  /* .container {
+    padding: 10px;
+  }
+
+  table {
+    padding: 0 20px;
+  }
+
+  .col-md-12,
+  .row {
+    width: 100%;
+  } */
+
+  /* td {
+    height: 4em;
+    font-size: 12px;
+  } */
+
+  .date {
+    font-size: 20px;
+  }
+
+  .calander .header {
+    font-size: 0.4em;
+  }
+
+  .btn-primary {
+    padding: 5px 7px;
+    font-size: 12px;
+    margin: 0 5px;
+  }
+}
+
+@media screen and (max-device-width: 480px) {
+  /* Styles for mobile devices */
+  td {
+    height: 4em;
+    font-size: 12px;
+  }
+
+  .date {
+    font-size: 25px;
+  }
+
+  .header {
+    font-size: 8px;
+  }
+
+  .btn-primary {
+    padding: 5px 7px;
+    font-size: 10px;
+    margin: 0 5px;
+  }
+
+  .btn-success {
+    padding: 5px 8px;
+    font-size: 10px;
+    
+  } 
+}

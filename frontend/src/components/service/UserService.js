@@ -36,8 +36,7 @@ class UserService{
                 headers: {Authorization: `Bearer ${token}`}
             });
             return response.data;
-            
-        }catch(err){
+        } catch (err) {
             throw err;
         }
     }

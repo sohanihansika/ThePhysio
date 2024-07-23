@@ -13,6 +13,7 @@ import AboutUs from './components/userpage/aboutUs';
 import Service from './components/userpage/service';
 import Profile from './components/userpage/profile';
 
+import PateintDashboard from './components/userpage/User/PateintDashboard';
 
 
 
