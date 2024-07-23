@@ -13,18 +13,13 @@ import AboutUs from './components/userpage/aboutUs';
 import Service from './components/userpage/service';
 import Profile from './components/userpage/profile';
 
-import PateintDashboard from './components/userpage/Patient/PateintDashboard';
-import PhysioDashboard from './components/userpage/Physio/PhysioDashboard';
-import RecepDashboard from './components/userpage/Receptionist/RecepDashboard';
-import GymcoachDashboard from './components/userpage/GymCoach/GymcoachDashboard';
-import GymmanagerDashboard from './components/userpage/GymManager/GymmanagerDashboard';
-import AdminDashboard from './components/userpage/ADMIN/AdminDashboard';
-import CustomerDashboard from './components/userpage/Patient/PateintDashboard';
+
+
 
 
 import Navbar from "./components/common/Navbar";
 
-import AdminDashboard from './components/userpage/Admin/AdminDashboard';
+
 import CustomerAccounts from './components/userpage/Admin/CustomerAccounts';
 import StaffAccounts from './components/userpage/Admin/StaffAccounts';
 
@@ -40,6 +35,7 @@ import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
+import AdminDashboard from './components/userpage/Admin/AdminDashboard';
 
 
 
@@ -52,9 +48,9 @@ function App() {
           !UserService.isAuthenticated() ? "w-full" : "w-full"
         }`}
       >
-        <div>
+        {/* <div>
           <Navbar />
-        </div>
+        </div> */}
       </div>
       <div className="App flex">
         {UserService.isAuthenticated() && (

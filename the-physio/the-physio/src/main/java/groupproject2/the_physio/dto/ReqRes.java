@@ -24,9 +24,11 @@ public class ReqRes {
     private Date addedDate;
     private String role;
     private String email;
-    private String contactNo;
+    private String contact_no;
     private String address;
     private String password;
     private OurUsers ourUsers;
     private List<OurUsers> ourUsersList;
+
+
 }
