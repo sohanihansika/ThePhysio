@@ -22,25 +22,58 @@ import AdminDashboard from './components/userpage/ADMIN/AdminDashboard';
 import CustomerDashboard from './components/userpage/Patient/PateintDashboard';
 
 
+import Navbar from "./components/common/Navbar";
+
+import AdminDashboard from './components/userpage/Admin/AdminDashboard';
+import CustomerAccounts from './components/userpage/Admin/CustomerAccounts';
+import StaffAccounts from './components/userpage/Admin/StaffAccounts';
+
+import OwnerDashboard from './components/userpage/Owner/OwnerDashboard';
+import AddEditEmployee from './components/userpage/Owner/AddEditEmployee';
+
+import PhysioDashboard from './components/userpage/Physio/PhysioDashboard';
+
+import UserDashboard from './components/userpage/User/UserDashboard';
+
+import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
+
+import CoachDashboard from './components/userpage/Coach/CoachDashboard';
+
+import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
+
+
+
+
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex">
+      <div
+        className={`content ${
+          !UserService.isAuthenticated() ? "w-full" : "w-full"
+        }`}
+      >
+        <div>
+          <Navbar />
+        </div>
+      </div>
+      <div className="App flex">
         {UserService.isAuthenticated() && (
-          <div className="w-1/5">
+          <div className="w-72">
             <Sidebar />
           </div>
         )}
-        <div className={`content ${UserService.isAuthenticated() ? 'w-4/5' : 'w-full'}`}>
+        <div
+          className={`content ${
+            UserService.isAuthenticated() ? "w-3/4" : "w-full"
+          }`}
+        >
           <Routes>
             {!UserService.isAuthenticated() && (
               <>
                 <Route path="/" element={<Landingpage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegistrationPage />} />
-                <Route path='/gymlanding' element={<GymLanding />} />
-                <Route path='/AboutUs' element={<AboutUs />} />
-                <Route path='/service' element={<Service />} />
+                <Route path="*" element={<Navigate to="/" />} />
               </>
             )}
 
@@ -50,73 +83,92 @@ function App() {
 
               {!UserService.isAdmin() ? (
                 <>
-                  <Route path="/profile" element={<Home />} />
-                  <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
+                  <Route path="/staffaccounts" element={<Navigate to="/" />} />
+                  
                 </>
               ) : (
                 <>
-                  <Route path="/profile" element={<Home />} />
+                  <Route path="/dashboard" element={<AdminDashboard />} />
+                  <Route path="/staffaccounts" element={<StaffAccounts />} />
+                  <Route path="/customeraccounts" element={<CustomerAccounts />} />
 
-                  <Route path="/admindash" element={<AdminDashboard/>} />
-                  {/* <Route path="/admin/user-management" element={<Navigate to="/profile" />} />
-                  <Route path="/update-user/:userId" element={<Navigate to="/profile" />} /> */}
+                  <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
-              {!UserService.isCustomer() ? (
+              {!UserService.isOwner() ? (
                 <>
-                  <Route path="/profile" element={<Home />} />
-                  </>
+                  <Route path="/empRegister" element={<AddEditEmployee />} />
+                </>
               ) : (
                 <>
-                  <Route path="/dashboard" element={<CustomerDashboard />} />
-                  {/* <Route path="/admin/user-management" element={<Navigate to="/profile" />} />
-                  <Route path="/update-user/:userId" element={<Navigate to="/profile" />} /> */}
+                  <Route path="/dashboard" element={<OwnerDashboard />} />
+                  <Route path="/update-user/:userId" element={<AddEditEmployee />} />
+                  <Route path="*" element={<Navigate to="/dashboard" />} />
+                </>
+              )}
+              {!UserService.isUser() ? (
+                <>
+                  <Route path="/profile" element={<Navigate to="/" />} />
+                </>
+              ) : (
+                <>
+                  <Route path="/dashboard" element={<UserDashboard />} />
+                  <Route path="/admin/user-management" element={<Navigate to="/profile" />} />
+                  <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
+                  <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
               {!UserService.isPhysio() ? (
                 <>
-                  <Route path="/profile" element={<Home />} />
-                  </>
+                  
+                </>
               ) : (
                 <>
-                  <Route path="/physiodash" element={<PhysioDashboard />} />
-                  {/* <Route path="/admin/user-management" element={<Navigate to="/profile" />} />
+                  <Route path="/dashboard" element={<PhysioDashboard />} />
+                  <Route path="/admin/user-management" element={<Navigate to="/profile" />} />
                   <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
-                  <Route path="/repairvehicles" element={<RepairVehicles />} /> */}
+                  <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
               {!UserService.isReceptionist() ? (
                 <>
-                  <Route path="/recepdash" element={<RecepDashboard />} />
-                  <Route path="/profileView" element={<Profile />} />
-
-                  <Route path="/vehiclemanagement" element={<Navigate to="/dashboard" />} />
-                  <Route path="/bookingmanagement" element={<Navigate to="/dashboard" />} />
-                  <Route path="/billing" element={<Navigate to="/dashboard" />} />
-                  <Route path="/payments" element={<Navigate to="/dashboard" />} />
+                  
                 </>
               ) : (
                 <>
-                  <Route path="/recepdash" element={<RecepDashboard />}/>
-                  <Route path="/profileView" element={<Profile />} />
-
-                  {/* <Route path="/jobmanagement" element={<JobManagement />} />
-                  <Route path="/jobcreate" element={<JobCreate />} />
-                  <Route path="/jobdetails" element={<JobDetails />} />
-                  <Route path="/vehiclemanagement"  element={<VehicleManagement />} />
-                  <Route path="/editvehicle" element={<EditVehicle />} />
-                  <Route path="/bookingmanagement" element={<BookingManagement />} />
-                  <Route path="/billing" element={<Billing />} />
-                  <Route path="/payments" element={<Payments />} />
-                  <Route path="/addvehicle" element={<AddVehicle />} />
-                  <Route path="*" element={<Navigate to="/dashboard" />} /> */}
+                  <Route path="/dashboard" element={<ReceptionistDashboard />}/>
+                  <Route path="*" element={<Navigate to="/dashboard" />} />
+                </>
+              )}
+              {!UserService.isCoach() ? (
+                <>
+                  
+                </>
+              ) : (
+                <>
+                  <Route path="/dashboard" element={<CoachDashboard />}/>
+                  <Route path="*" element={<Navigate to="/dashboard" />} />
+                </>
+              )}
+              {!UserService.isManager() ? (
+                <>
+                  
+                </>
+              ) : (
+                <>
+                  <Route path="/dashboard" element={<ManagerDashboard />}/>
+                  <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
             </Route>
-
-            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>
+      </div>
+      <div
+        className={`content ${
+          !UserService.isAuthenticated() ? "w-full" : "w-full"
+        }`}
+      >
       </div>
     </BrowserRouter>
   );
