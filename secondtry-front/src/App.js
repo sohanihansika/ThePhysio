@@ -10,10 +10,12 @@ import ViewUser from './users/ViewUser';
 import Login from './users/Login';
 import GYM from './pages/gym';
 import NewHome from './pages/NewHome';
-import Register from './component/register';
+// import Register from './component/register';
 import GymRegister from './pages/gym-register';
 import GymProfile from './pages/gym-profile';
 import SchedulePage from './pages/SchedulePage';
+import ManagerDashboard from './pages/ManagerDashboard';
+import TrainerProfile from './pages/TrainerProfile';
 
 function App() {
   return (
@@ -34,7 +36,7 @@ function App() {
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/viewemployee/:id" element={<ViewUser />} />
           <Route exact path="/editemployee/:id" element={<EditUser />} />
-          <Route exact path="/register" element= { <Register/>} />
+          {/* <Route exact path="/register" element= { <Register/>} /> */}
           <Route exact path="/manager-dashboard" element= { <ManagerDashboard/>} />
           <Route exact path="/trainer/:id" element={<TrainerProfile />} />
 
