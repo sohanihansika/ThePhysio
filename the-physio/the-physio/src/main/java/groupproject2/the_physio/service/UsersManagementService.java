@@ -32,7 +32,7 @@ public class UsersManagementService {
         try {
             OurUsers ourUser = new OurUsers();
             ourUser.setEmail(customerRegistrationRequest.getEmail());
-            ourUser.setContactNo(customerRegistrationRequest.getContactNo());
+            ourUser.setContact_no(customerRegistrationRequest.getContact_no());
             ourUser.setAddress(customerRegistrationRequest.getAddress());
             ourUser.setAddedDate(customerRegistrationRequest.getAddedDate());
             ourUser.setRole("USER");
@@ -58,7 +58,7 @@ public class UsersManagementService {
         try {
             OurUsers ourUser = new OurUsers();
             ourUser.setEmail(empRegistrationRequest.getEmail());
-            ourUser.setContactNo(empRegistrationRequest.getContactNo());
+            ourUser.setContact_no(empRegistrationRequest.getContact_no());
             ourUser.setAddress(empRegistrationRequest.getAddress());
             ourUser.setAddedDate(empRegistrationRequest.getAddedDate());
             ourUser.setRole(empRegistrationRequest.getRole());
@@ -190,7 +190,7 @@ public class UsersManagementService {
                 existingUser.setAddedDate(updatedUser.getAddedDate());
                 existingUser.setRole(updatedUser.getRole());
                 existingUser.setAddress(updatedUser.getAddress());
-                existingUser.setContactNo(updatedUser.getContactNo());
+                existingUser.setContact_no(updatedUser.getContact_no());
 
                 // Check if password is present in the request
                 if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {

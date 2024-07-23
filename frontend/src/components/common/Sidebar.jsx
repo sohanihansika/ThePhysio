@@ -54,11 +54,11 @@ function Sidebar() {
     return (
         <>
             <nav
-                className="fixed top-0 left-0 w-full h-full border-r bg-deepblue space-y-8 sm:w-72 z-10">
+                className="fixed top-0 left-0 w-full h-full border-r bg-blue-950 space-y-8 sm:w-72 z-10">
                 <div className="flex flex-col h-full">
                     <div className='h-20 flex items-center px-8'>
                         <a href='/dashboard' className='flex-none'>
-                            <img src="./src/assets/driveazeheader3.svg" width={190} className="mx-auto mt-12" />
+                            <img src="./src/assets/logowithoutback.png" width={190} className="mx-auto mt-12" />
                         </a>
                     </div>
                     <div className="flex-1 flex flex-col h-full overflow-auto mt-10">
@@ -427,7 +427,7 @@ function Sidebar() {
                                             </div>
                                             <p className="flex-1">Settings</p>
                                         </a>
-                                        <a  onClick={handleLogout} className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-driveazered active:bg-gray-100 duration-150">
+                                        <a  onClick={handleLogout} className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-blue-400 hover:text-red-600 active:bg-gray-100 duration-150">
                                             <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                             <div className="flex-none">
                                                 <FaSignOutAlt />

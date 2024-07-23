@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AdminDashboard = () => {
+function AdminDashboard() {
   return (
     <div>AdminDashboard</div>
   )

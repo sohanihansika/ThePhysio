@@ -24,7 +24,7 @@ public class OurUsers implements UserDetails {
     private String password;
     private Date addedDate;
     private String role;
-    private String contactNo;
+    private String contact_no;
     private String address;
 
 
