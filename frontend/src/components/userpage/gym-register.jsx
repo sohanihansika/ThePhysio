@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { Tooltip } from 'bootstrap';
-import {useNavigate} from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import './GymRegister.css';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const GymRegister = () => {
   const [selectedTab, setSelectedTab] = useState('credit-card');
   const [cardOwner, setCardOwner] = useState('');
@@ -13,6 +11,7 @@ const GymRegister = () => {
   const [paypalType, setPaypalType] = useState('Domestic');
   const [selectedBank, setSelectedBank] = useState('');
   const navigate = useNavigate();
+
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
   };
@@ -32,223 +31,200 @@ const GymRegister = () => {
     navigate('/gym-profile');
   };
 
-  React.useEffect(() => {
-    const tooltips = document.querySelectorAll('[data-toggle="tooltip"]');
-    tooltips.forEach((tooltip) => new Tooltip(tooltip));
-  }, []);
-
   return (
-    <div className="container py-5">
-      <div className="row mb-4">
-        <div className="col-lg-8 mx-auto text-center">
-          <h1 className="display-6">Gym Membership</h1>
-        </div>
+    <div className="py-5">
+      <div className="mb-4 text-center">
+        <h1 className="text-3xl font-bold">Gym Membership</h1>
       </div>
-      <div className="row">
-        <div className="col-lg-6 mx-auto">
-          <div className="card">
-            <div className="card-header">
-              <div className="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
-                <ul role="tablist" className="nav bg-light nav-pills rounded nav-fill mb-3">
-                  <li className="nav-item">
-                    <a
-                      href="#"
-                      onClick={() => handleTabClick('credit-card')}
-                      className={`nav-link ${selectedTab === 'credit-card' ? 'active' : ''}`}
-                    >
-                      <i className="fas fa-credit-card mr-2"></i> Credit Card
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      href="#"
-                      onClick={() => handleTabClick('paypal')}
-                      className={`nav-link ${selectedTab === 'paypal' ? 'active' : ''}`}
-                    >
-                      <i className="fab fa-paypal mr-2"></i> Paypal
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      href="#"
-                      onClick={() => handleTabClick('net-banking')}
-                      className={`nav-link ${selectedTab === 'net-banking' ? 'active' : ''}`}
-                    >
-                      <i className="fas fa-mobile-alt mr-2"></i> Net Banking
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="tab-content">
-                {selectedTab === 'credit-card' && (
-                  <div id="credit-card" className="tab-pane fade show active pt-3">
-                    <form role="form" onSubmit={handlePayment}>
-                      <div className="form-group">
-                        <label htmlFor="username">
-                          <h6>Card Owner</h6>
-                        </label>
+      <div className="max-w-3xl mx-auto">
+        <div className="bg-white shadow-md rounded-lg">
+          <div className="bg-gray-100 p-4 rounded-t-lg">
+            <ul className="flex border-b">
+              <li className="flex-1">
+                <button
+                  onClick={() => handleTabClick('credit-card')}
+                  className={`py-2 px-4 text-center rounded-t-lg ${selectedTab === 'credit-card' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                >
+                  <i className="fas fa-credit-card mr-2"></i> Credit Card
+                </button>
+              </li>
+              <li className="flex-1">
+                <button
+                  onClick={() => handleTabClick('paypal')}
+                  className={`py-2 px-4 text-center rounded-t-lg ${selectedTab === 'paypal' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                >
+                  <i className="fab fa-paypal mr-2"></i> Paypal
+                </button>
+              </li>
+              <li className="flex-1">
+                <button
+                  onClick={() => handleTabClick('net-banking')}
+                  className={`py-2 px-4 text-center rounded-t-lg ${selectedTab === 'net-banking' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+                >
+                  <i className="fas fa-mobile-alt mr-2"></i> Net Banking
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div className="p-4">
+            {selectedTab === 'credit-card' && (
+              <div>
+                <form onSubmit={handlePayment}>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium mb-2" htmlFor="username">
+                      Card Owner
+                    </label>
+                    <input
+                      type="text"
+                      name="username"
+                      placeholder="Card Owner Name"
+                      required
+                      className="w-full border border-gray-300 rounded-lg py-2 px-3"
+                      value={cardOwner}
+                      onChange={(e) => setCardOwner(e.target.value)}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium mb-2" htmlFor="cardNumber">
+                      Card Number
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        name="cardNumber"
+                        placeholder="Valid card number"
+                        className="w-full border border-gray-300 rounded-lg py-2 px-3"
+                        required
+                        value={cardNumber}
+                        onChange={(e) => setCardNumber(e.target.value)}
+                      />
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
+                        <i className="fab fa-cc-visa mx-1"></i>
+                        <i className="fab fa-cc-mastercard mx-1"></i>
+                        <i className="fab fa-cc-amex mx-1"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex mb-4">
+                    <div className="flex-1 mr-2">
+                      <label className="block text-sm font-medium mb-2" htmlFor="expiryMonth">
+                        Expiration Date
+                      </label>
+                      <div className="flex">
                         <input
-                          type="text"
-                          name="username"
-                          placeholder="Card Owner Name"
+                          type="number"
+                          placeholder="MM"
+                          name="expiryMonth"
+                          className="w-full border border-gray-300 rounded-lg py-2 px-3 mr-2"
                           required
-                          className="form-control"
-                          value={cardOwner}
-                          onChange={(e) => setCardOwner(e.target.value)}
+                          value={expiryMonth}
+                          onChange={(e) => setExpiryMonth(e.target.value)}
                         />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="cardNumber">
-                          <h6>Card number</h6>
-                        </label>
-                        <div className="input-group">
-                          <input
-                            type="text"
-                            name="cardNumber"
-                            placeholder="Valid card number"
-                            className="form-control"
-                            required
-                            value={cardNumber}
-                            onChange={(e) => setCardNumber(e.target.value)}
-                          />
-                          <div className="input-group-append">
-                            <span className="input-group-text text-muted">
-                              <i className="fab fa-cc-visa mx-1"></i>
-                              <i className="fab fa-cc-mastercard mx-1"></i>
-                              <i className="fab fa-cc-amex mx-1"></i>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-sm-8">
-                          <div className="form-group">
-                            <label>
-                              <h6>Expiration Date</h6>
-                            </label>
-                            <div className="input-group">
-                              <input
-                                type="number"
-                                placeholder="MM"
-                                name="expiryMonth"
-                                className="form-control"
-                                required
-                                value={expiryMonth}
-                                onChange={(e) => setExpiryMonth(e.target.value)}
-                              />
-                              <input
-                                type="number"
-                                placeholder="YY"
-                                name="expiryYear"
-                                className="form-control"
-                                required
-                                value={expiryYear}
-                                onChange={(e) => setExpiryYear(e.target.value)}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-sm-4">
-                          <div className="form-group mb-4">
-                            <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
-                              <h6>
-                                CVV <i className="fa fa-question-circle d-inline"></i>
-                              </h6>
-                            </label>
-                            <input
-                              type="text"
-                              required
-                              className="form-control"
-                              value={cvv}
-                              onChange={(e) => setCvv(e.target.value)}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="card-footer">
-                        <button type="submit" className="subscribe btn btn-primary btn-block shadow-sm">
-                          Confirm Payment
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                )}
-                {selectedTab === 'paypal' && (
-                  <div id="paypal" className="tab-pane fade pt-3">
-                    <h6 className="pb-2">Select your PayPal account type</h6>
-                    <div className="form-group">
-                      <label className="radio-inline">
                         <input
-                          type="radio"
-                          name="optradio"
-                          checked={paypalType === 'Domestic'}
-                          onChange={() => setPaypalType('Domestic')}
+                          type="number"
+                          placeholder="YY"
+                          name="expiryYear"
+                          className="w-full border border-gray-300 rounded-lg py-2 px-3"
+                          required
+                          value={expiryYear}
+                          onChange={(e) => setExpiryYear(e.target.value)}
                         />
-                        Domestic
-                      </label>
-                      <label className="radio-inline ml-5">
-                        <input
-                          type="radio"
-                          name="optradio"
-                          checked={paypalType === 'International'}
-                          onChange={() => setPaypalType('International')}
-                        />
-                        International
-                      </label>
+                      </div>
                     </div>
-                    <p>
-                      <button type="button" className="btn btn-primary">
-                        <i className="fab fa-paypal mr-2"></i> Log into my PayPal
-                      </button>
-                    </p>
-                    <p className="text-muted">
-                    Note: After clicking on the button, you will be directed to a secure gateway for payment. After
-                    completing the payment process, you will be redirected back to your gym profile.
-                    </p>
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium mb-2" htmlFor="cvv">
+                        CVV
+                      </label>
+                      <input
+                        type="text"
+                        name="cvv"
+                        required
+                        className="w-full border border-gray-300 rounded-lg py-2 px-3"
+                        value={cvv}
+                        onChange={(e) => setCvv(e.target.value)}
+                      />
+                    </div>
                   </div>
-                )}
-                {selectedTab === 'net-banking' && (
-                  <div id="net-banking" className="tab-pane fade pt-3">
-                    <div className="form-group">
-                      <label htmlFor="SelectYourBank">
-                        <h6>Select your Bank</h6>
-                      </label>
-                      <select
-                        className="form-control"
-                        id="ccmonth"
-                        value={selectedBank}
-                        onChange={(e) => setSelectedBank(e.target.value)}
-                      >
-                        <option value="" selected disabled>
-                          --Please select your Bank--
-                        </option>
-                        <option>Bank 1</option>
-                        <option>Bank 2</option>
-                        <option>Bank 3</option>
-                        <option>Bank 4</option>
-                        <option>Bank 5</option>
-                        <option>Bank 6</option>
-                        <option>Bank 7</option>
-                        <option>Bank 8</option>
-                        <option>Bank 9</option>
-                        <option>Bank 10</option>
-                      </select>
-                    </div>
-                    <div className="form-group">
-                      <p>
-                        <button type="button" className="btn btn-primary">
-                          <i className="fas fa-mobile-alt mr-2"></i> Proceed Payment
-                        </button>
-                      </p>
-                    </div>
-                    <p className="text-muted">
-                      Note: After clicking on the button, you will be directed to a secure gateway for payment. After
-                      completing the payment process, you will be redirected back to your gym profile.
-                    </p>
+                  <div>
+                    <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md">
+                      Confirm Payment
+                    </button>
                   </div>
-                )}
+                </form>
               </div>
-            </div>
+            )}
+            {selectedTab === 'paypal' && (
+              <div>
+                <h6 className="text-lg font-semibold mb-2">Select your PayPal account type</h6>
+                <div className="mb-4">
+                  <label className="inline-flex items-center mr-4">
+                    <input
+                      type="radio"
+                      name="paypalType"
+                      checked={paypalType === 'Domestic'}
+                      onChange={() => setPaypalType('Domestic')}
+                      className="form-radio"
+                    />
+                    <span className="ml-2">Domestic</span>
+                  </label>
+                  <label className="inline-flex items-center">
+                    <input
+                      type="radio"
+                      name="paypalType"
+                      checked={paypalType === 'International'}
+                      onChange={() => setPaypalType('International')}
+                      className="form-radio"
+                    />
+                    <span className="ml-2">International</span>
+                  </label>
+                </div>
+                <p>
+                  <button type="button" className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md">
+                    <i className="fab fa-paypal mr-2"></i> Log into my PayPal
+                  </button>
+                </p>
+                <p className="text-gray-600 mt-2">
+                  Note: After clicking on the button, you will be directed to a secure gateway for payment. After
+                  completing the payment process, you will be redirected back to your gym profile.
+                </p>
+              </div>
+            )}
+            {selectedTab === 'net-banking' && (
+              <div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium mb-2" htmlFor="bankSelect">
+                    Select your Bank
+                  </label>
+                  <select
+                    id="bankSelect"
+                    className="w-full border border-gray-300 rounded-lg py-2 px-3"
+                    value={selectedBank}
+                    onChange={(e) => setSelectedBank(e.target.value)}
+                  >
+                    <option value="" disabled>--Please select your Bank--</option>
+                    <option>Bank 1</option>
+                    <option>Bank 2</option>
+                    <option>Bank 3</option>
+                    <option>Bank 4</option>
+                    <option>Bank 5</option>
+                    <option>Bank 6</option>
+                    <option>Bank 7</option>
+                    <option>Bank 8</option>
+                    <option>Bank 9</option>
+                    <option>Bank 10</option>
+                  </select>
+                </div>
+                <div>
+                  <button type="button" className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md">
+                    <i className="fas fa-mobile-alt mr-2"></i> Proceed Payment
+                  </button>
+                </div>
+                <p className="text-gray-600 mt-2">
+                  Note: After clicking on the button, you will be directed to a secure gateway for payment. After
+                  completing the payment process, you will be redirected back to your gym profile.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,82 +1,79 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Table, Card, Button } from 'react-bootstrap';
 
 const GymProfile = () => {
     const [user, setUser] = useState({});
     const [trainingSlots, setTrainingSlots] = useState([]);
     const [trainers, setTrainers] = useState([]);
-    
+
     useEffect(() => {
         axios.get('/api/user')
-            .then(response => {
-                setUser(response.data);
-            })
+            .then(response => setUser(response.data))
             .catch(error => console.error('Error fetching user data:', error));
-        
+
         axios.get('/api/training-slots')
-            .then(response => {
-                setTrainingSlots(Array.isArray(response.data) ? response.data : []);
-            })
+            .then(response => setTrainingSlots(Array.isArray(response.data) ? response.data : []))
             .catch(error => console.error('Error fetching training slots data:', error));
-        
+
         axios.get('/api/trainers')
-            .then(response => {
-                setTrainers(Array.isArray(response.data) ? response.data : []);
-            })
+            .then(response => setTrainers(Array.isArray(response.data) ? response.data : []))
             .catch(error => console.error('Error fetching trainers data:', error));
     }, []);
 
     return (
-        <div className='container'>
-            <Card className='text-center'>
-                <div style={{ width: '150px', height: '150px', margin: '0 auto', backgroundColor: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    {user.profilePhoto ? <Card.Img variant='top' src={user.profilePhoto} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <div>No Photo</div>}
+        <div className='container mx-auto p-4'>
+            <div className='bg-white shadow-md rounded-lg p-4 text-center'>
+                <div className='w-36 h-36 mx-auto bg-gray-200 flex items-center justify-center rounded-full'>
+                    {user.profilePhoto ? (
+                        <img src={user.profilePhoto} alt='Profile' className='w-full h-full object-cover rounded-full' />
+                    ) : (
+                        <div>No Photo</div>
+                    )}
                 </div>
-                <Card.Body>
-                    <Card.Title>
-                        <div>User Name: {user.name}</div>
-                    </Card.Title>
-                    <Card.Text>
-                        <div>Email: {user.email}</div>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+                <div className='mt-4'>
+                    <div className='text-lg font-semibold'>User Name: {user.name}</div>
+                    <div className='text-gray-600'>Email: {user.email}</div>
+                </div>
+            </div>
 
-            <h2 className='mt-4'>Reserved Training Slots</h2>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Trainer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {trainingSlots.map(slot => (
-                        <tr key={slot.id}>
-                            <td>{slot.date}</td>
-                            <td>{slot.time}</td>
-                            <td>{slot.trainer}</td>
+            <h2 className='mt-8 text-xl font-semibold'>Reserved Training Slots</h2>
+            <div className='overflow-x-auto'>
+                <table className='min-w-full bg-white shadow-md rounded-lg'>
+                    <thead className='bg-gray-200 border-b'>
+                        <tr>
+                            <th className='py-2 px-4 text-left'>Date</th>
+                            <th className='py-2 px-4 text-left'>Time</th>
+                            <th className='py-2 px-4 text-left'>Trainer</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody>
+                        {trainingSlots.map(slot => (
+                            <tr key={slot.id} className='border-b'>
+                                <td className='py-2 px-4'>{slot.date}</td>
+                                <td className='py-2 px-4'>{slot.time}</td>
+                                <td className='py-2 px-4'>{slot.trainer}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
 
-            <h2 className='mt-4'>Trainer Details</h2>
-            <div className='d-flex flex-wrap'>
+            <h2 className='mt-8 text-xl font-semibold'>Trainer Details</h2>
+            <div className='flex flex-wrap gap-4'>
                 {trainers.map(trainer => (
-                    <Card className='m-2' style={{ width: '18rem' }} key={trainer.id}>
-                        <Card.Img variant='top' src={trainer.photo} />
-                        <Card.Body>
-                            <Card.Title>{trainer.name}</Card.Title>
-                            <Card.Text>{trainer.bio}</Card.Text>
+                    <div className='bg-white shadow-md rounded-lg overflow-hidden w-72' key={trainer.id}>
+                        <img src={trainer.photo} alt={trainer.name} className='w-full h-40 object-cover' />
+                        <div className='p-4'>
+                            <div className='text-lg font-semibold'>{trainer.name}</div>
+                            <div className='text-gray-600'>{trainer.bio}</div>
                             <Link to={`/schedule/${trainer.id}`}>
-                                <Button variant='primary'>Schedule</Button>
+                                <button className='mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600'>
+                                    Schedule
+                                </button>
                             </Link>
-                        </Card.Body>
-                    </Card>
+                        </div>
+                    </div>
                 ))}
             </div>
         </div>

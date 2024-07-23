@@ -116,6 +116,16 @@ class UserService{
         return role === 'ADMIN';
     }
 
+    static isGymManager(){
+        const role = localStorage.getItem('role');
+        return role === 'GYM_MANAGER';
+    }
+
+    static isTrainer(){
+        const role = localStorage.getItem('role');
+        return role === 'TRAINER';
+    }
+
     static userType(){
         const role = localStorage.getItem('role');
         return role;

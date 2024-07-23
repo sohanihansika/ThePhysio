@@ -17,6 +17,7 @@ import UserDetails from './components/userpage/UserDetails';
 import Sidebar from './components/common/Sidebar';
 import tableart from './components/userpage/tableart';
 import Tableart from './components/userpage/tableart';
+import ManagerDashboard from './components/userpage/ManagerDashboard';
 
 // function App() {
   
@@ -123,6 +124,12 @@ function App() {
                   <Route path="/profile" element={<Home />} />
                   <Route path="/admin/user-management" element={<Navigate to="/profile" />} />
                   <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
+                </>
+              )}
+
+              {UserService.isGymManager() && (
+                <>
+                  <Route path="/ManagerDashboard" element={<Home/>}/>
                 </>
               )}
             </Route>
