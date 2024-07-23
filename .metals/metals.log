@@ -1,0 +1,115 @@
+2024.07.23 10:24:25 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at s:\3grject\ThePhysio\.metals\lsp.trace.json
+Exception in thread "main" java.lang.RuntimeException: Couldn't find pwsh.exe or powershell.exe on path or in default system locations
+	at dev.dirs.Util.windowsFallback(Util.java:284)
+	at dev.dirs.Util.getWinDirs(Util.java:166)
+	at dev.dirs.ProjectDirectories.fromPath(ProjectDirectories.java:255)
+	at scala.meta.internal.bsp.BspServers$.globalInstallDirectories(BspServers.scala:206)
+	at scala.meta.internal.metals.MetalsServerInputs$.productionConfiguration(MetalsServerInputs.scala:72)
+	at scala.meta.metals.MetalsLanguageServer$.$lessinit$greater$default$3(MetalsLanguageServer.scala:48)
+	at scala.meta.metals.Main$.main(Main.scala:45)
+	at scala.meta.metals.Main.main(Main.scala)
+Caused by: java.io.IOException: Cannot run program "C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe": CreateProcess error=225, Operation did not complete successfully because the file contains a virus or potentially unwanted software
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at dev.dirs.Util.runCommands(Util.java:197)
+	at dev.dirs.Util.runWinCommands(Util.java:233)
+	at dev.dirs.Util.windowsFallback(Util.java:282)
+	... 7 more
+Caused by: java.io.IOException: CreateProcess error=225, Operation did not complete successfully because the file contains a virus or potentially unwanted software
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:500)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:159)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	... 11 more
+2024.07.23 10:24:28 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at s:\3grject\ThePhysio\.metals\lsp.trace.json
+Exception in thread "main" java.lang.RuntimeException: Couldn't find pwsh.exe or powershell.exe on path or in default system locations
+	at dev.dirs.Util.windowsFallback(Util.java:284)
+	at dev.dirs.Util.getWinDirs(Util.java:166)
+	at dev.dirs.ProjectDirectories.fromPath(ProjectDirectories.java:255)
+	at scala.meta.internal.bsp.BspServers$.globalInstallDirectories(BspServers.scala:206)
+	at scala.meta.internal.metals.MetalsServerInputs$.productionConfiguration(MetalsServerInputs.scala:72)
+	at scala.meta.metals.MetalsLanguageServer$.$lessinit$greater$default$3(MetalsLanguageServer.scala:48)
+	at scala.meta.metals.Main$.main(Main.scala:45)
+	at scala.meta.metals.Main.main(Main.scala)
+Caused by: java.io.IOException: Cannot run program "C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe": CreateProcess error=225, Operation did not complete successfully because the file contains a virus or potentially unwanted software
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at dev.dirs.Util.runCommands(Util.java:197)
+	at dev.dirs.Util.runWinCommands(Util.java:233)
+	at dev.dirs.Util.windowsFallback(Util.java:282)
+	... 7 more
+Caused by: java.io.IOException: CreateProcess error=225, Operation did not complete successfully because the file contains a virus or potentially unwanted software
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:500)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:159)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	... 11 more
+2024.07.23 10:24:31 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at s:\3grject\ThePhysio\.metals\lsp.trace.json
+Exception in thread "main" java.lang.RuntimeException: Couldn't find pwsh.exe or powershell.exe on path or in default system locations
+	at dev.dirs.Util.windowsFallback(Util.java:284)
+	at dev.dirs.Util.getWinDirs(Util.java:166)
+	at dev.dirs.ProjectDirectories.fromPath(ProjectDirectories.java:255)
+	at scala.meta.internal.bsp.BspServers$.globalInstallDirectories(BspServers.scala:206)
+	at scala.meta.internal.metals.MetalsServerInputs$.productionConfiguration(MetalsServerInputs.scala:72)
+	at scala.meta.metals.MetalsLanguageServer$.$lessinit$greater$default$3(MetalsLanguageServer.scala:48)
+	at scala.meta.metals.Main$.main(Main.scala:45)
+	at scala.meta.metals.Main.main(Main.scala)
+Caused by: java.io.IOException: Cannot run program "C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe": CreateProcess error=225, Operation did not complete successfully because the file contains a virus or potentially unwanted software
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at dev.dirs.Util.runCommands(Util.java:197)
+	at dev.dirs.Util.runWinCommands(Util.java:233)
+	at dev.dirs.Util.windowsFallback(Util.java:282)
+	... 7 more
+Caused by: java.io.IOException: CreateProcess error=225, Operation did not complete successfully because the file contains a virus or potentially unwanted software
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:500)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:159)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	... 11 more
+2024.07.23 10:24:35 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at s:\3grject\ThePhysio\.metals\lsp.trace.json
+Exception in thread "main" java.lang.RuntimeException: Couldn't find pwsh.exe or powershell.exe on path or in default system locations
+	at dev.dirs.Util.windowsFallback(Util.java:284)
+	at dev.dirs.Util.getWinDirs(Util.java:166)
+	at dev.dirs.ProjectDirectories.fromPath(ProjectDirectories.java:255)
+	at scala.meta.internal.bsp.BspServers$.globalInstallDirectories(BspServers.scala:206)
+	at scala.meta.internal.metals.MetalsServerInputs$.productionConfiguration(MetalsServerInputs.scala:72)
+	at scala.meta.metals.MetalsLanguageServer$.$lessinit$greater$default$3(MetalsLanguageServer.scala:48)
+	at scala.meta.metals.Main$.main(Main.scala:45)
+	at scala.meta.metals.Main.main(Main.scala)
+Caused by: java.io.IOException: Cannot run program "C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe": CreateProcess error=225, Operation did not complete successfully because the file contains a virus or potentially unwanted software
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at dev.dirs.Util.runCommands(Util.java:197)
+	at dev.dirs.Util.runWinCommands(Util.java:233)
+	at dev.dirs.Util.windowsFallback(Util.java:282)
+	... 7 more
+Caused by: java.io.IOException: CreateProcess error=225, Operation did not complete successfully because the file contains a virus or potentially unwanted software
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:500)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:159)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	... 11 more
+2024.07.23 10:24:38 INFO  tracing is disabled for protocol LSP, to enable tracing of incoming and outgoing JSON messages create an empty file at s:\3grject\ThePhysio\.metals\lsp.trace.json
+Exception in thread "main" java.lang.RuntimeException: Couldn't find pwsh.exe or powershell.exe on path or in default system locations
+	at dev.dirs.Util.windowsFallback(Util.java:284)
+	at dev.dirs.Util.getWinDirs(Util.java:166)
+	at dev.dirs.ProjectDirectories.fromPath(ProjectDirectories.java:255)
+	at scala.meta.internal.bsp.BspServers$.globalInstallDirectories(BspServers.scala:206)
+	at scala.meta.internal.metals.MetalsServerInputs$.productionConfiguration(MetalsServerInputs.scala:72)
+	at scala.meta.metals.MetalsLanguageServer$.$lessinit$greater$default$3(MetalsLanguageServer.scala:48)
+	at scala.meta.metals.Main$.main(Main.scala:45)
+	at scala.meta.metals.Main.main(Main.scala)
+Caused by: java.io.IOException: Cannot run program "C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe": CreateProcess error=225, Operation did not complete successfully because the file contains a virus or potentially unwanted software
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1170)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1089)
+	at dev.dirs.Util.runCommands(Util.java:197)
+	at dev.dirs.Util.runWinCommands(Util.java:233)
+	at dev.dirs.Util.windowsFallback(Util.java:282)
+	... 7 more
+Caused by: java.io.IOException: CreateProcess error=225, Operation did not complete successfully because the file contains a virus or potentially unwanted software
+	at java.base/java.lang.ProcessImpl.create(Native Method)
+	at java.base/java.lang.ProcessImpl.<init>(ProcessImpl.java:500)
+	at java.base/java.lang.ProcessImpl.start(ProcessImpl.java:159)
+	at java.base/java.lang.ProcessBuilder.start(ProcessBuilder.java:1126)
+	... 11 more
