@@ -11,9 +11,11 @@ export default function EditPhysio() {
     firstName: "",
     lastName: "",
     email: "",
+    speciality:"",
+    contactNumber:"",
   });
 
-  const { firstName, lastName, email } = employee;
+  const { firstName, lastName, email,speciality,contactNumber } = employee;
 
   const onInputChange = (e) => {
     setEmployee({ ...employee, [e.target.name]: e.target.value });
@@ -35,7 +37,7 @@ export default function EditPhysio() {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:8080/api/physios/${id}`, employee);
-      navigate("/");
+      navigate("/physiohome");
     } catch (error) {
       console.error("Error updating employee:", error);
     }
@@ -90,6 +92,35 @@ export default function EditPhysio() {
                 required
               />
             </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Speciality
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter email address"
+                name="speciality"
+                value={speciality}
+                onChange={onInputChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+              Contact Number
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Enter email address"
+                name="contactNumber"
+                value={contactNumber}
+                onChange={onInputChange}
+                required
+              />
+            </div>
+          
             <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>
