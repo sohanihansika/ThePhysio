@@ -1,3 +1,6 @@
+import userImage from '../../../assets/user.png';
+
+
 const reviews = [
     {
         avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
@@ -44,8 +47,11 @@ export default () => (
                 reviews.map((item, idx) => (
                     <li key={idx} className="py-5 flex items-start justify-between">
                         <div className="flex gap-3">
-                            <img src={item.avatar} alt={`Avatar of ${item.name}`} className="flex-none w-12 h-12 rounded-full" />
-                            <div>
+                        <img
+        src={userImage} // Use the imported image
+        alt={item.name}
+        className="w-10 h-10 rounded-full"
+      />                            <div>
                                 <span className="block text-sm text-gray-700 font-semibold">{item.name}</span>
                                 <span className="block text-sm text-gray-500">{item.date}</span>
                                 <p className="mt-1 text-sm text-gray-600">{item.review}</p>
