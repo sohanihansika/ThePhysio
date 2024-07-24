@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserService from '../../service/UserService';
 
-function CustomerAccounts() {
+function UserAccounts() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function CustomerAccounts() {
           <div className="items-start justify-between md:flex">
               <div className="max-w-lg">
                   <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
-                      Customer Accounts
+                      User Accounts
                   </h3>
                   <p className="text-gray-600 mt-2">
                       Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -102,4 +102,4 @@ function CustomerAccounts() {
 }
 
 
-export default CustomerAccounts
+export default UserAccounts

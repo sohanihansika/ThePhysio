@@ -13,21 +13,29 @@ import AboutUs from './components/userpage/aboutUs';
 import Service from './components/userpage/service';
 import Profile from './components/userpage/profile';
 
-// import PatientDashboard from './components/userpage/User/PatientDashboard';
+
 
 
 
 
 import Navbar from "./components/common/Navbar";
 
-
-// import CustomerAccounts from './components/userpage/Admin/CustomerAccounts';
-// import StaffAccounts from './components/userpage/Admin/StaffAccounts';
+import AdminDashboard from './components/userpage/Admin/AdminDashboard';
+import UserAccounts from './components/userpage/Admin/UserAccounts';
+import StaffAccounts from './components/userpage/Admin/StaffAccounts';
 
 import OwnerDashboard from './components/userpage/Owner/OwnerDashboard';
 import AddEditEmployee from './components/userpage/Owner/AddEditEmployee';
+import CreateAccount from './components/userpage/Owner/CreateAccount';
 
 import PhysioDashboard from './components/userpage/Physio/PhysioDashboard';
+import GenerateReports from './components/userpage/Physio/GenerateReports';
+import Leaves from './components/userpage/Physio/Leaves';
+import MakeAppoinmemt from './components/userpage/Physio/MakeAppoinmemt';
+import PatientReports from './components/userpage/Physio/PatientReports';
+import ReservationSchedule from './components/userpage/Physio/ReservationSchudule';
+import Reviews from './components/userpage/Physio/Reviews';
+import UploadVideos from './components/userpage/Physio/UploadVideos';
 
 import UserDashboard from './components/userpage/User/UserDashboard';
 
@@ -36,13 +44,6 @@ import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
-
-import AdminDashboard from './components/userpage/Admin/AdminDashboard';
-import StaffManagement from './components/userpage/Admin/StaffManagement';
-import UserManagement from './components/userpage/Admin/UserManagement';
-
-
-
 
 
 
@@ -90,16 +91,14 @@ function App() {
 
               {!UserService.isAdmin() ? (
                 <>
-                  <Route path="/staffaccounts" element={<Navigate to="/" />} />
+                  <Route path="/staffaccounts" element={<StaffAccounts />} />
                   
                 </>
               ) : (
                 <>
-                  <Route path="/admindashboard" element={<AdminDashboard />} />
-                  <Route path="/staff" element={<StaffManagement />} />
-                  <Route path="/userd" element={<UserManagement />} />
-                  
-
+                  <Route path="/dashboard" element={<AdminDashboard />} />
+                  <Route path="/staffaccounts" element={<StaffAccounts />} />
+                  <Route path="/useraccounts" element={<UserAccounts />} />
 
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
@@ -107,11 +106,13 @@ function App() {
               {!UserService.isOwner() ? (
                 <>
                   <Route path="/empRegister" element={<AddEditEmployee />} />
+                  <Route path="/createAccount" element={<CreateAccount />} />
                 </>
               ) : (
                 <>
                   <Route path="/dashboard" element={<OwnerDashboard />} />
                   <Route path="/update-user/:userId" element={<AddEditEmployee />} />
+                  <Route path="/createAccount" element={<CreateAccount />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
@@ -129,6 +130,11 @@ function App() {
               )}
               {!UserService.isPhysio() ? (
                 <>
+                  <Route path='/generateReports' element={<GenerateReports/>} />
+                  <Route path='/leaves' element={<Leaves/>} />
+                  <Route path='/makeAppoinment' element={<MakeAppoinmemt/>} />
+                  <Route path='/patientReports' element={<PatientReports/>} />
+                  <Route path='/reservationSchedule' element={<ReservationSchedule/>} />
                   
                 </>
               ) : (
@@ -136,6 +142,13 @@ function App() {
                   <Route path="/dashboard" element={<PhysioDashboard />} />
                   <Route path="/admin/user-management" element={<Navigate to="/profile" />} />
                   <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
+                  <Route path='/generateReports' element={<GenerateReports/>} />
+                  <Route path='/leaves' element={<Leaves/>} />
+                  <Route path='/makeAppoinment' element={<MakeAppoinmemt/>} />
+                  <Route path='/patientReports' element={<PatientReports/>} />
+                  <Route path='/reservationSchedule' element={<ReservationSchedule/>} />
+                  <Route path='/reviews' element={<Reviews/>} />
+                  <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

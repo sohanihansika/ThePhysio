@@ -15,9 +15,9 @@ public class UserManagementController {
     @Autowired
     private UsersManagementService userManagementService;
 
-    @PostMapping("/auth/customerRegister")
-    public ResponseEntity<ReqRes> customerRegister(@RequestBody ReqRes req) {
-        return ResponseEntity.ok(userManagementService.customerRegister(req));
+    @PostMapping("/auth/userRegister")
+    public ResponseEntity<ReqRes> userRegister(@RequestBody ReqRes req) {
+        return ResponseEntity.ok(userManagementService.userRegister(req));
     }
 
     @PostMapping("/owner/empRegister")

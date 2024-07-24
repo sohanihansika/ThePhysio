@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -26,18 +27,18 @@ public class UsersManagementService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public ReqRes customerRegister(ReqRes customerRegistrationRequest){
+    public ReqRes userRegister(ReqRes userRegistrationRequest){
         ReqRes resp = new ReqRes();
 
         try {
             OurUsers ourUser = new OurUsers();
-            ourUser.setEmail(customerRegistrationRequest.getEmail());
-            ourUser.setContact_no(customerRegistrationRequest.getContact_no());
-            ourUser.setAddress(customerRegistrationRequest.getAddress());
-            ourUser.setAddedDate(customerRegistrationRequest.getAddedDate());
+            ourUser.setEmail(userRegistrationRequest.getEmail());
+            ourUser.setContact_no(userRegistrationRequest.getContact_no());
+            ourUser.setAddress(userRegistrationRequest.getAddress());
+            ourUser.setAdded_date(LocalDateTime.now());
             ourUser.setRole("USER");
-            ourUser.setName(customerRegistrationRequest.getName());
-            ourUser.setPassword(passwordEncoder.encode(customerRegistrationRequest.getPassword()));
+            ourUser.setName(userRegistrationRequest.getName());
+            ourUser.setPassword(passwordEncoder.encode(userRegistrationRequest.getPassword()));
             OurUsers ourUsersResult = usersRepo.save(ourUser);
             if (ourUsersResult.getId()>0) {
                 resp.setOurUsers((ourUsersResult));
@@ -60,9 +61,9 @@ public class UsersManagementService {
             ourUser.setEmail(empRegistrationRequest.getEmail());
             ourUser.setContact_no(empRegistrationRequest.getContact_no());
             ourUser.setAddress(empRegistrationRequest.getAddress());
-            ourUser.setAddedDate(empRegistrationRequest.getAddedDate());
-            ourUser.setRole(empRegistrationRequest.getRole());
             ourUser.setName(empRegistrationRequest.getName());
+            ourUser.setRole(empRegistrationRequest.getRole());
+            ourUser.setAdded_date(LocalDateTime.now());
             ourUser.setPassword(passwordEncoder.encode(empRegistrationRequest.getPassword()));
             OurUsers ourUsersResult = usersRepo.save(ourUser);
             if (ourUsersResult.getId()>0) {
@@ -187,7 +188,7 @@ public class UsersManagementService {
                 OurUsers existingUser = userOptional.get();
                 existingUser.setEmail(updatedUser.getEmail());
                 existingUser.setName(updatedUser.getName());
-                existingUser.setAddedDate(updatedUser.getAddedDate());
+                existingUser.setAdded_date(updatedUser.getAdded_date());
                 existingUser.setRole(updatedUser.getRole());
                 existingUser.setAddress(updatedUser.getAddress());
                 existingUser.setContact_no(updatedUser.getContact_no());

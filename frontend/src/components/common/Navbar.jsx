@@ -10,7 +10,7 @@ const Navbar = () => {
     const navigation = [
         { title: "Features", path: "#" },
         { title: "Integrations", path: "#" },
-        { title: "Customers", path: "#" },
+        { title: "Users", path: "#" },
         { title: "Pricing", path: "#" }
     ]
 
