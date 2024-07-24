@@ -132,34 +132,22 @@ function Sidebar() {
                                         </div>
                                         <p className="flex-1">Dashboard</p>
                                     </a>
-                                    <a href="/myvehicles" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
-                                        <div className="flex-none">
-                                            <FaCar />
-                                        </div>
-                                        <p className="flex-1">My Vehicles</p>
-                                    </a>
-                                    <a href="/ongoingservices" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
-                                        <div className="flex-none">
-                                            <FaWrench />
-                                        </div>
-                                        <p className="flex-1">Onging Services</p>
-                                    </a>
-                                    <a href="/upcomingservices" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
-                                        <div className="flex-none">
-                                            <FaCalendarAlt />
-                                        </div>
-                                        <p className="flex-1">Upcoming Services</p>
-                                    </a>
-                                    <a href="/billings" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
-                                        <div className="flex-none">
-                                            <FaMoneyCheckAlt />
-                                        </div>
-                                        <p className="flex-1">Payments & Billing</p>
-                                    </a>
+                                    <a href="/appoinments" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Make Appoinments</p>
+                                            </a>
+                                            <a href="/reservations" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Schedule</p>
+                                            </a>
+
+                                            <a href="/physiocard" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Physiotherapists</p>
+                                            </a>
+                                            <a href="/personalreportsview" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Reports</p>
+                                            </a>
+                                            <a href="/reviews" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Reviews</p>
+                                            </a>
                                 </li>
                             )}
                             {isOwner && (

@@ -46,6 +46,21 @@ import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
 
 
+import Appoinments from './components/userpage/User/appoinments';
+import PhysioCards from './components/userpage/User/physioCards';
+import Reviewss from './components/userpage/User/reviews';
+import Reservations from './components/userpage/User/reservations';
+import Makeappoinment from './components/userpage/User/makeappoinment';
+import Reportview from './components/userpage/User/reportview';
+import Success from './components/userpage/User/success';
+import UserReviews from './components/userpage/User/userReviews';
+import Calendar from './components/userpage/User/calender';
+import TimeSlots from './components/userpage/User/timeSlots';
+import AddAppoinmet from './components/userpage/User/AddAppoinment';
+import SelectPayment from './components/userpage/User/SelectPayment';
+import paymentpopup from './components/userpage/User/paymentpopup';
+
+
 
 
 
@@ -125,7 +140,19 @@ function App() {
                   <Route path="/dashboard" element={<UserDashboard />} />
                   <Route path="/admin/user-management" element={<Navigate to="/profile" />} />
                   <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
-                  <Route path="*" element={<Navigate to="/dashboard" />} />
+                  <Route path="/appoinments" element={<Appoinments />} />
+                  <Route path="/physiocard" element={<PhysioCards />} />
+                  <Route path="/reviews" element={<Reviewss />} />
+                  <Route path="/reservations" element={<Reservations />} />
+                  <Route path="/makeappoinment" element={<Makeappoinment />} />
+                  <Route path="/personalreportsview" element={<Reportview />} />
+                  <Route path="/success" element={<Success />} />
+                  <Route path="/userreviews" element={<UserReviews />} />
+                  <Route path="/calendar" element={<Calendar />} />
+                  <Route path="/timeslots" element={<TimeSlots />} />
+                  <Route path="/addappoinment" element={<AddAppoinmet />} />
+                  <Route path="/selectpayment" element={<SelectPayment />} />
+                  <Route path="/paymentpopup" element={<paymentpopup />} />                  
                 </>
               )}
               {!UserService.isPhysio() ? (
