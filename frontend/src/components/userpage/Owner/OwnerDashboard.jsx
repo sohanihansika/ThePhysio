@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function OwnerDashboard() {
+const OwnerDashboard = () => {
   return (
     <div>OwnerDashboard</div>
   )
 }
+
+export default OwnerDashboard

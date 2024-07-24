@@ -110,7 +110,7 @@ function LoginPage() {
                 localStorage.setItem('token', userData.token);
                 localStorage.setItem('role', userData.role);
                 // navigate('/profile');
-                window.location.href = '/profile';
+                location.href = '/dashboard';
             } else {
                 setError(userData.message);
             }
@@ -130,7 +130,7 @@ function LoginPage() {
                 <img src="./src/assets/logowithoutback.png" width={150} className="mx-auto" />
                 <div className="mt-5 space-y-2">
                         <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Log in to your account</h3>
-                        <p className="">Don't have an account? <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a></p>
+                        <p className="">Don't have an account? <a href="/register" className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</a></p>
                     </div>
                 </div>
                 <form
