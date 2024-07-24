@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UserService from '../service/UserService';
+import UserService from '../../service/UserService';
 import { FaArrowLeft } from "react-icons/fa";
 
-function RegistrationPage() {
+function CreateAccount() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
         contact_no: '',
-        address:'',
+        address: '',
+        role: ''
     });
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [contactError, setContactError] = useState('');
     const [emailError, setEmailError] = useState('');
-    //const roles = ['USER','PHYSIO','RESIPTIONIST','COUCH','MANAGER'];
+    const roles = ['PHYSIO', 'RECEPTIONIST', 'COACH', 'MANAGER'];
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,13 +29,11 @@ function RegistrationPage() {
         if (name === 'contact_no') {
             const phonePattern = /^\d{10}$/;
             setContactError(!phonePattern.test(value) ? 'Invalid contact number' : '');
-        }else if (name === 'email') {
+        } else if (name === 'email') {
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             setEmailError(!emailPattern.test(value) ? 'Invalid email address' : '');
         }
     };
-
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,11 +47,11 @@ function RegistrationPage() {
         }
 
         try {
-            const res = await UserService.userRegister(formData);
+            const token = localStorage.getItem('token');
+            const res = await UserService.empRegister(formData, token);
             console.log(res);
-            alert('User registered successfully');
-            window.location.href = '/login';
-            
+            alert('Employee registered successfully');
+            window.location.href = '/dashboard';
         } catch (error) {
             setError(error.response?.data?.message || error.message);
             setTimeout(() => {
@@ -60,8 +59,6 @@ function RegistrationPage() {
             }, 5000);
         }
     }
-
-    
 
     return (
         <main className="w-full h-screen flex flex-col items-center justify-center bg-gray-100 sm:px-4">
@@ -75,8 +72,8 @@ function RegistrationPage() {
                     <div className="text-center">
                         <img src="./src/assets/logowithoutback.png" width={150} className="mx-auto" />
                         <div className="mt-5 space-y-2">
-                            <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Create an account</h3>
-                            <p className="">Already have an account?<a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500"> Login</a></p>
+                            <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Create a staff account</h3>
+                            
                         </div>
                     </div>
                     <form onSubmit={handleSubmit} className="mt-8 space-y-5">
@@ -102,7 +99,6 @@ function RegistrationPage() {
                                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                             />
                              {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
-
                         </div>
                         <div>
                             <label className="font-medium">Contact Number</label>
@@ -127,7 +123,21 @@ function RegistrationPage() {
                                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                             />
                         </div>
-                        
+                        <div>
+                            <label className="font-medium">Role</label>
+                            <select
+                                name="role"
+                                value={formData.role}
+                                onChange={handleChange}
+                                required
+                                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                            >
+                                <option value="">Select Role</option>
+                                {roles.map(role => (
+                                    <option key={role} value={role}>{role}</option>
+                                ))}
+                            </select>
+                        </div>
                         <div>
                             <label className="font-medium">Password</label>
                             <input
@@ -154,4 +164,4 @@ function RegistrationPage() {
     );
 }
 
-export default RegistrationPage;
+export default CreateAccount;
