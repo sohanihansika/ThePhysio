@@ -96,14 +96,23 @@ function Sidebar() {
                                             <a href="/recepdash" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                                 <p className="flex-1">Dashboard</p>
                                             </a>
-                                            <a href="#" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                                <p className="flex-1">Job Management</p>
+                                            <a href="/doctors" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Reservations</p>
                                             </a>
-                                            <a href="#" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                                <p className="flex-1">Vehicle Management</p>
+                                            {/* <a href="/payments" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Manual Payment</p>
                                             </a>
-                                            <a href="#" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                                <p className="flex-1">Sales Management</p>
+                                            <a href="/reports" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Reports</p>
+                                            </a>
+                                            <a href="/videos" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Videos</p>
+                                            </a> */}
+                                             <a href="/ongoingschedule" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Schedule</p>
+                                            </a>
+                                            <a href="/payments" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                                <p className="flex-1">Manual Payment</p>
                                             </a>
                                         </li>
                                     )}

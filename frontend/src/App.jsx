@@ -21,6 +21,17 @@ import GymmanagerDashboard from './components/userpage/GymManager/GymmanagerDash
 import AdminDashboard from './components/userpage/ADMIN/AdminDashboard';
 import CustomerDashboard from './components/userpage/Patient/PateintDashboard';
 
+import Doctors from './components/userpage/Receptionist/Reservations/Doctors'
+import Schedule from './components/userpage/Receptionist/Reservations/Schedule';
+import Calender from './components/userpage/Receptionist/Reservations/Calender';
+import OngoingSchedule from './components/userpage/Receptionist/ScheduleTable';
+
+ import ManualPayment from './components/userpage/Receptionist/ManualPayment';
+ import SubmitPay from './components/userpage/Receptionist/SubmitPay';
+ import Calender1 from './components/userpage/Receptionist/Calender1';
+// import Reports from './components/userpage/Receptionist/Reports';
+// import Videos from './components/userpage/Receptionist/Videos';
+
 
 function App() {
   return (
@@ -90,14 +101,24 @@ function App() {
                   <Route path="/recepdash" element={<RecepDashboard />} />
                   <Route path="/profileView" element={<Profile />} />
 
-                  <Route path="/vehiclemanagement" element={<Navigate to="/dashboard" />} />
-                  <Route path="/bookingmanagement" element={<Navigate to="/dashboard" />} />
-                  <Route path="/billing" element={<Navigate to="/dashboard" />} />
-                  <Route path="/payments" element={<Navigate to="/dashboard" />} />
+                 
+                  {/* <Route path="/payments" element={<ManualPayment />} />
+                  <Route path="/reports" element={<Reports />} />
+                  <Route path="/videos" element={<Videos />} /> */}
                 </>
               ) : (
                 <>
                   <Route path="/recepdash" element={<RecepDashboard />}/>
+                  <Route path="/doctors" element={<Doctors />} />
+                  <Route path="/calender" element={<Calender/>} />
+                  <Route path="/schedule" element={<Schedule />} />
+                  <Route path="/ongoingschedule" element={<OngoingSchedule/>} />
+                  <Route path="/payments" element={<ManualPayment/>} />
+                  <Route path="/submitpayments" element={<SubmitPay/>} />
+                  <Route path="/calender1" element={<Calender1/>} />
+
+
+
                   <Route path="/profileView" element={<Profile />} />
 
                   {/* <Route path="/jobmanagement" element={<JobManagement />} />
