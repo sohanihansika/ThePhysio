@@ -43,7 +43,14 @@ import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 
-import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
+import RecepDashboard from './components/userpage/Receptionist/RecepDashboard';
+import Doctors from './components/userpage/Receptionist/Reservations/Doctors'
+import Schedule from './components/userpage/Receptionist/Reservations/Schedule';
+import Calender from './components/userpage/Receptionist/Reservations/Calender';
+import OngoingSchedule from './components/userpage/Receptionist/ScheduleTable';
+import ManualPayment from './components/userpage/Receptionist/ManualPayment';
+import SubmitPay from './components/userpage/Receptionist/SubmitPay';
+import Calender1 from './components/userpage/Receptionist/Calender1';
 
 
 import Appoinments from './components/userpage/User/appoinments';
@@ -181,11 +188,21 @@ function App() {
               )}
               {!UserService.isReceptionist() ? (
                 <>
-                  
+                  <Route path="/recepdash" element={<RecepDashboard />} />
+                  <Route path="/profileView" element={<Profile />} />
                 </>
               ) : (
                 <>
-                  <Route path="/dashboard" element={<ReceptionistDashboard />}/>
+                  <Route path="/recepdash" element={<RecepDashboard />}/>
+                  <Route path="/doctors" element={<Doctors />} />
+                  <Route path="/calender" element={<Calender/>} />
+                  <Route path="/schedule" element={<Schedule />} />
+                  <Route path="/ongoingschedule" element={<OngoingSchedule/>} />
+                  <Route path="/payments" element={<ManualPayment/>} />
+                  <Route path="/submitpayments" element={<SubmitPay/>} />
+                  <Route path="/calender1" element={<Calender1/>} />
+
+
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
