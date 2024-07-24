@@ -1,80 +1,128 @@
-export default () => {
+import React from 'react';
+import Slider from "react-slick";
+import profileImage from '../../../assets/profile.png';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
-    const posts = [
+const PhysiotherapistProfiles = () => {
+    const profiles = [
         {
-            title: "What is SaaS? Software as a Service Explained",
-            desc: "Going into this journey, I had a standard therapy regimen, based on looking at the research literature. After I saw the movie, I started to ask other people what they did for their anxiety, and some",
-            img: "https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            authorLogo: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
-            authorName: "Sidi dev",
-            date: "Jan 4 2022",
-            href: "javascript:void(0)"
+            name: "Dr. Jane Doe",
+            title: "Senior Physiotherapist",
+            desc: "With over 10 years of experience, Dr. Jane specializes in sports injuries and rehabilitation.",
+            img: profileImage,
+            contact: "janedoe@example.com",
+            date: "Joined Jan 2015"
         },
         {
-            title: "A Quick Guide to WordPress Hosting",
-            desc: "According to him, â€œI'm still surprised that this has happened. But we are surprised because we are so surprised.â€More revelations about Whittington will be featured in the film",
-            img: "https://images.unsplash.com/photo-1620287341056-49a2f1ab2fdc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            authorLogo: "https://api.uifaces.co/our-content/donated/FJkauyEa.jpg",
-            authorName: "Micheal",
-            date: "Jan 4 2022",
-            href: "javascript:void(0)"
+            name: "Dr. John Smith",
+            title: "Physiotherapist",
+            desc: "Dr. John focuses on pediatric physiotherapy and has helped numerous children regain mobility.",
+            img: profileImage,
+            contact: "johnsmith@example.com",
+            date: "Joined Mar 2018"
         },
         {
-            title: "7 Promising VS Code Extensions Introduced in 2022",
-            desc: "I hope I remembered all the stuff that they needed to know. They're like, 'okay,' and write it in their little reading notebooks. I realized today that I have all this stuff that",
-            img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            authorLogo: "https://randomuser.me/api/portraits/men/46.jpg",
-            authorName: "Luis",
-            date: "Jan 4 2022",
-            href: "javascript:void(0)"
+            name: "Dr. Emily Turner",
+            title: "Junior Physiotherapist",
+            desc: "Emily is passionate about helping patients with chronic pain through personalized treatment plans.",
+            img: profileImage,
+            contact: "emilyturner@example.com",
+            date: "Joined Sep 2020"
         },
         {
-            title: "How to Use Root C++ Interpreter Shell to Write C++ Programs",
-            desc: "The powerful gravity waves resulting from the impact of the planets' moons â€” four in total â€” were finally resolved in 2015 when gravitational microlensing was used to observe the",
-            img: "https://images.unsplash.com/photo-1617529497471-9218633199c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-            authorLogo: "https://api.uifaces.co/our-content/donated/KtCFjlD4.jpg",
-            authorName: "Lourin",
-            date: "Jan 4 2022",
-            href: "javascript:void(0)"
+            name: "Dr. Alex Brown",
+            title: "Physiotherapist",
+            desc: "Specializing in neurological physiotherapy, Alex has extensive experience with stroke recovery.",
+            img: profileImage,
+            contact: "alexbrown@example.com",
+            date: "Joined Dec 2017"
+        },
+        {
+            name: "Dr. Shanta",
+            title: "Neurologist",
+            desc: "Dr. Shanta has a wealth of experience in neurology, focusing on brain and spinal disorders.",
+            img: profileImage,
+            contact: "shantha@gmail.com",
+            date: "Experience: 15 years"
         }
-    ]
-    
+    ];
+
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />
+    };
+
     return (
         <section className="mt-12 mx-auto px-4 max-w-screen-xl md:px-8">
             <div className="text-center">
                 <h1 className="text-3xl text-gray-800 font-semibold">
-                    Blog
+                    Our Physiotherapists
                 </h1>
                 <p className="mt-3 text-gray-500">
-                    Blogs that are loved by the community. Updated every hour.
+                    Meet our team of highly qualified and experienced physiotherapists.
                 </p>
             </div>
-            <div className="mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            <Slider {...settings} className="mt-12">
                 {
-                    posts.map((items, key) => (
-                        <article className="max-w-md mx-auto mt-4 shadow-lg border rounded-md duration-300 hover:shadow-sm" key={key}>
-                            <a href={items.href}>
-                                <img src={items.img} loading="lazy" alt={items.title}  className="w-full h-48 rounded-t-md" />
+                    profiles.map((profile, key) => (
+                        <div key={key} className="p-2">
+                            <article className="shadow-lg border rounded-md duration-300 hover:shadow-sm" style={{ width: '300px', height: '460px', margin: 'auto' }}>
+                                <img src={profile.img} loading="lazy" alt={profile.name} className="w-full h-58 rounded-t-md object-cover" style={{ width: '100%', height: '160px' }} />
                                 <div className="flex items-center mt-2 pt-3 ml-4 mr-2">
-                                    <div className="flex-none w-10 h-10 rounded-full">
-                                        <img src={items.authorLogo} className="w-full h-full rounded-full" alt={items.authorName} />
-                                    </div>
+                                    {/* <div className="flex-none w-10 h-10 rounded-full">
+                                        <img src={profile.img} className="w-full h-full rounded-full" alt={profile.name} />
+                                    </div> */}
                                     <div className="ml-3">
-                                        <span className="block text-gray-900">{items.authorName}</span>
-                                        <span className="block text-gray-400 text-sm">{items.date}</span>
+                                        <span className="block text-gray-900">{profile.name}</span>
+                                        <span className="block text-gray-400 text-sm">{profile.date}</span>
                                     </div>
                                 </div>
                                 <div className="pt-3 ml-4 mr-2 mb-3">
                                     <h3 className="text-xl text-gray-900">
-                                        {items.title}
+                                        {profile.title}
                                     </h3>
-                                    <p className="text-gray-400 text-sm mt-1">{items.desc}</p>
+                                    <p className="text-gray-400 text-sm mt-1">{profile.desc}</p>
+                                    <p className="text-gray-400 text-sm mt-1">Contact: {profile.contact}</p>
                                 </div>
-                            </a>
-                        </article>
+                            </article>
+                        </div>
                     ))
                 }
-            </div>
+            </Slider>
         </section>
-    )
+    );
 }
+
+const SampleNextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", background: "#172b59", right: '-25px', zIndex: 10 }}
+            onClick={onClick}
+        >
+            ➔
+        </div>
+    );
+}
+
+const SamplePrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", background: "#172b59", left: '-25px', zIndex: 10 }}
+            onClick={onClick}
+        >
+            ←
+        </div>
+    );
+}
+
+export default PhysiotherapistProfiles;

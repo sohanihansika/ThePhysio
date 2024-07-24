@@ -11,40 +11,35 @@ const appoinments = () => {
             name: "Liam James",
             email: "liamjames@example.com",
             phone_number: "+1 (555) 000-000",
-            specialty: "Sports Injuries",
-            experience: "5 years"
+            specialty: "Sports Injuries"
         },
         {
             avatar: "https://randomuser.me/api/portraits/men/86.jpg",
             name: "Olivia Emma",
             email: "oliviaemma@example.com",
             phone_number: "+1 (555) 000-000",
-            specialty: "Orthopedic",
-            experience: "3 years"
+            specialty: "Orthopedic"
         },
         {
             avatar: "https://randomuser.me/api/portraits/women/79.jpg",
             name: "William Benjamin",
             email: "william.benjamin@example.com",
             phone_number: "+1 (555) 000-000",
-            specialty: "Neurological",
-            experience: "7 years"
+            specialty: "Neurological"
         },
         {
             avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
             name: "Henry Theodore",
             email: "henrytheodore@example.com",
             phone_number: "+1 (555) 000-000",
-            specialty: "Pediatric",
-            experience: "4 years"
+            specialty: "Pediatric"
         },
         {
             avatar: "https://images.unsplash.com/photo-1439911767590-c724b615299d?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
             name: "Amelia Elijah",
             email: "amelia.elijah@example.com",
             phone_number: "+1 (555) 000-000",
-            specialty: "Geriatric",
-            experience: "6 years"
+            specialty: "Geriatric"
         },
     ];
 
@@ -68,8 +63,6 @@ const appoinments = () => {
                             <th className="py-3 px-6">Email</th>
                             <th className="py-3 px-6">Phone Number</th>
                             <th className="py-3 px-6">Specialty</th>
-                            <th className="py-3 px-6">Experience</th>
-                            <th className="py-3 px-6 text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="text-gray-600 divide-y">
