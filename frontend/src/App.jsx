@@ -13,7 +13,7 @@ import AboutUs from './components/userpage/aboutUs';
 import Service from './components/userpage/service';
 import Profile from './components/userpage/profile';
 
-import PateintDashboard from './components/userpage/User/PateintDashboard';
+// import PatientDashboard from './components/userpage/User/PatientDashboard';
 
 
 
@@ -21,8 +21,8 @@ import PateintDashboard from './components/userpage/User/PateintDashboard';
 import Navbar from "./components/common/Navbar";
 
 
-import CustomerAccounts from './components/userpage/Admin/CustomerAccounts';
-import StaffAccounts from './components/userpage/Admin/StaffAccounts';
+// import CustomerAccounts from './components/userpage/Admin/CustomerAccounts';
+// import StaffAccounts from './components/userpage/Admin/StaffAccounts';
 
 import OwnerDashboard from './components/userpage/Owner/OwnerDashboard';
 import AddEditEmployee from './components/userpage/Owner/AddEditEmployee';
@@ -36,7 +36,17 @@ import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
+
 import AdminDashboard from './components/userpage/Admin/AdminDashboard';
+import StaffManagement from './components/userpage/Admin/StaffManagement';
+import UserManagement from './components/userpage/Admin/UserManagement';
+
+
+
+
+
+
+
 
 
 
@@ -85,9 +95,11 @@ function App() {
                 </>
               ) : (
                 <>
-                  <Route path="/dashboard" element={<AdminDashboard />} />
-                  <Route path="/staffaccounts" element={<StaffAccounts />} />
-                  <Route path="/customeraccounts" element={<CustomerAccounts />} />
+                  <Route path="/admindashboard" element={<AdminDashboard />} />
+                  <Route path="/staff" element={<StaffManagement />} />
+                  <Route path="/userd" element={<UserManagement />} />
+                  
+
 
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
