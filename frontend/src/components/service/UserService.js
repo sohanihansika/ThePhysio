@@ -28,12 +28,12 @@ class UserService{
         }
     }
 
-    static async empRegister(userData, token){
-        try{
-
-            const response = await axios.post(`${UserService.BASE_URL}/owner/empRegister`, {
-                userData,
-                headers: {Authorization: `Bearer ${token}`}
+    static async empRegister(userData, token) {
+        try {
+            const response = await axios.post(`${UserService.BASE_URL}/owner/empRegister`, userData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
             return response.data;
         } catch (err) {

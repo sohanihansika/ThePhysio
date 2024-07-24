@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import groupproject2.the_physio.entity.OurUsers;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class ReqRes {
     private String refreshToken;
     private String expirationTime;
     private String name;
-    private Date addedDate;
+    private LocalDateTime added_date;
     private String role;
     private String email;
     private String contact_no;
