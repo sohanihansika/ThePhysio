@@ -17,10 +17,10 @@ class UserService{
         }
     }
 
-    static async customerRegister(userData){
+    static async userRegister(userData){
         try{
 
-            const response = await axios.post(`${UserService.BASE_URL}/auth/customerRegister`, userData);
+            const response = await axios.post(`${UserService.BASE_URL}/auth/userRegister`, userData);
             return response.data;
             
         }catch(err){
@@ -150,21 +150,6 @@ class UserService{
         return role === 'COACH';
     }
 
-
-    static isCustomer(){
-        const role = localStorage.getItem('role');
-        return role === 'CUSTOMER';
-    }
-
-    static isPhysio(){
-        const role = localStorage.getItem('role');
-        return role === 'PHYSIO';
-    }
-
-    static isReceptionist(){
-        const role = localStorage.getItem('role');
-        return role === 'RECEPTIONIST';
-    }
 
     static userType(){
         const role = localStorage.getItem('role');
