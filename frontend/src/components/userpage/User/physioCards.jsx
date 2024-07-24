@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from "react-slick";
-import profileImage from 'C:/Users/Hasini/OneDrive/Desktop/group2/ThePhysio/frontend/src/assets/profile.png';
+import profileImage from '../../../assets/profile.png';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
