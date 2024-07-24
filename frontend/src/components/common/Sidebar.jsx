@@ -172,12 +172,12 @@ function Sidebar() {
                                         <p className="flex-1">Dashboard</p>
                                     </a>
 
-                                    <a href="/repairvehicles" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <a href="createAccount" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
                                             <FaClipboardList />
                                         </div>
-                                        <p className="flex-1">Assigned Jobs</p>
+                                        <p className="flex-1">Create Account</p>
                                     </a>
 
                                     <a href="/completedjobs" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
@@ -375,43 +375,57 @@ function Sidebar() {
                                         <p className="flex-1">Dashboard</p>
                                     </a>
 
-                                    <a href="/repairvehicles" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <a href="/generateReports" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
                                             <FaClipboardList />
                                         </div>
-                                        <p className="flex-1">Assigned Jobs</p>
+                                        <p className="flex-1">Generate Reports</p>
                                     </a>
 
-                                    <a href="/completedjobs" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <a href="/leaves" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
                                             <FaClipboardCheck />
                                         </div>
-                                        <p className="flex-1">Completed Jobs</p>
+                                        <p className="flex-1">Leaves</p>
                                     </a>
 
-                                    <a href="/vehiclehistory" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <a href="/makeAppoinment" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
                                             <FaCar />
                                         </div>
-                                        <p className="flex-1">Vehicle History</p>
+                                        <p className="flex-1">Make Appoinment</p>
                                     </a>
 
-                                    <a href="/dashboard" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <a href="/patientReports" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
                                             <FaWarehouse />
                                         </div>
-                                        <p className="flex-1">Inventory Management</p>
+                                        <p className="flex-1">Patient Reports</p>
                                     </a>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <a href="/reservationSchedule" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
                                             <FaUserPlus />
                                         </div>
-                                        <p className="flex-1">Add Technicians</p>
+                                        <p className="flex-1">Reservation Schedule</p>
+                                    </a>
+                                    <a href="/reviews" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
+                                        <div className="flex-none">
+                                            <FaUserPlus />
+                                        </div>
+                                        <p className="flex-1">Reviews</p>
+                                    </a>
+                                    <a href="/uploadVideos" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
+                                        <div className="flex-none">
+                                            <FaUserPlus />
+                                        </div>
+                                        <p className="flex-1">Upload Videos</p>
                                     </a>
                                 </li>
                             )}

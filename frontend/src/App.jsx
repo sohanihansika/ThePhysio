@@ -26,8 +26,16 @@ import StaffAccounts from './components/userpage/Admin/StaffAccounts';
 
 import OwnerDashboard from './components/userpage/Owner/OwnerDashboard';
 import AddEditEmployee from './components/userpage/Owner/AddEditEmployee';
+import CreateAccount from './components/userpage/Owner/CreateAccount';
 
 import PhysioDashboard from './components/userpage/Physio/PhysioDashboard';
+import GenerateReports from './components/userpage/Physio/GenerateReports';
+import Leaves from './components/userpage/Physio/Leaves';
+import MakeAppoinmemt from './components/userpage/Physio/MakeAppoinmemt';
+import PatientReports from './components/userpage/Physio/PatientReports';
+import ReservationSchedule from './components/userpage/Physio/ReservationSchudule';
+import Reviews from './components/userpage/Physio/Reviews';
+import UploadVideos from './components/userpage/Physio/UploadVideos';
 
 import UserDashboard from './components/userpage/User/UserDashboard';
 
@@ -36,6 +44,9 @@ import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
+
+
+
 
 
 
@@ -95,11 +106,13 @@ function App() {
               {!UserService.isOwner() ? (
                 <>
                   <Route path="/empRegister" element={<AddEditEmployee />} />
+                  <Route path="/createAccount" element={<CreateAccount />} />
                 </>
               ) : (
                 <>
                   <Route path="/dashboard" element={<OwnerDashboard />} />
                   <Route path="/update-user/:userId" element={<AddEditEmployee />} />
+                  <Route path="/createAccount" element={<CreateAccount />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
@@ -117,6 +130,11 @@ function App() {
               )}
               {!UserService.isPhysio() ? (
                 <>
+                  <Route path='/generateReports' element={<GenerateReports/>} />
+                  <Route path='/leaves' element={<Leaves/>} />
+                  <Route path='/makeAppoinment' element={<MakeAppoinmemt/>} />
+                  <Route path='/patientReports' element={<PatientReports/>} />
+                  <Route path='/reservationSchedule' element={<ReservationSchedule/>} />
                   
                 </>
               ) : (
@@ -124,6 +142,13 @@ function App() {
                   <Route path="/dashboard" element={<PhysioDashboard />} />
                   <Route path="/admin/user-management" element={<Navigate to="/profile" />} />
                   <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
+                  <Route path='/generateReports' element={<GenerateReports/>} />
+                  <Route path='/leaves' element={<Leaves/>} />
+                  <Route path='/makeAppoinment' element={<MakeAppoinmemt/>} />
+                  <Route path='/patientReports' element={<PatientReports/>} />
+                  <Route path='/reservationSchedule' element={<ReservationSchedule/>} />
+                  <Route path='/reviews' element={<Reviews/>} />
+                  <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
