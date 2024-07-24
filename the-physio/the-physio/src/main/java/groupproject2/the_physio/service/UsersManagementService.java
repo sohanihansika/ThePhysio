@@ -26,18 +26,18 @@ public class UsersManagementService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public ReqRes customerRegister(ReqRes customerRegistrationRequest){
+    public ReqRes userRegister(ReqRes userRegistrationRequest){
         ReqRes resp = new ReqRes();
 
         try {
             OurUsers ourUser = new OurUsers();
-            ourUser.setEmail(customerRegistrationRequest.getEmail());
-            ourUser.setContact_no(customerRegistrationRequest.getContact_no());
-            ourUser.setAddress(customerRegistrationRequest.getAddress());
-            ourUser.setAddedDate(customerRegistrationRequest.getAddedDate());
+            ourUser.setEmail(userRegistrationRequest.getEmail());
+            ourUser.setContact_no(userRegistrationRequest.getContact_no());
+            ourUser.setAddress(userRegistrationRequest.getAddress());
+            ourUser.setAddedDate(userRegistrationRequest.getAddedDate());
             ourUser.setRole("USER");
-            ourUser.setName(customerRegistrationRequest.getName());
-            ourUser.setPassword(passwordEncoder.encode(customerRegistrationRequest.getPassword()));
+            ourUser.setName(userRegistrationRequest.getName());
+            ourUser.setPassword(passwordEncoder.encode(userRegistrationRequest.getPassword()));
             OurUsers ourUsersResult = usersRepo.save(ourUser);
             if (ourUsersResult.getId()>0) {
                 resp.setOurUsers((ourUsersResult));

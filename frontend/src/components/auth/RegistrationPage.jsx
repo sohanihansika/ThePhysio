@@ -36,7 +36,7 @@ function RegistrationPage() {
         e.preventDefault();
 
         try {
-            const res = await UserService.customerRegister(formData);
+            const res = await UserService.userRegister(formData);
             console.log(res);
             alert('User registered successfully');
             window.location.href = '/login';

@@ -19,8 +19,8 @@ import Profile from './components/userpage/profile';
 
 import Navbar from "./components/common/Navbar";
 
-
-import CustomerAccounts from './components/userpage/Admin/CustomerAccounts';
+import AdminDashboard from './components/userpage/Admin/AdminDashboard';
+import UserAccounts from './components/userpage/Admin/UserAccounts';
 import StaffAccounts from './components/userpage/Admin/StaffAccounts';
 
 import OwnerDashboard from './components/userpage/Owner/OwnerDashboard';
@@ -35,7 +35,7 @@ import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
-import AdminDashboard from './components/userpage/Admin/AdminDashboard';
+
 
 
 
@@ -86,7 +86,7 @@ function App() {
                 <>
                   <Route path="/dashboard" element={<AdminDashboard />} />
                   <Route path="/staffaccounts" element={<StaffAccounts />} />
-                  <Route path="/customeraccounts" element={<CustomerAccounts />} />
+                  <Route path="/useraccounts" element={<UserAccounts />} />
 
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
