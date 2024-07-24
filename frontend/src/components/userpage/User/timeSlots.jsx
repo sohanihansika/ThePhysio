@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const timeSlots = () => {
+const TimeSlots = () => {
+  const navigate = useNavigate();
+
   // Generate time slots
   const slots = [];
   const timeRanges = [
@@ -28,45 +31,64 @@ const timeSlots = () => {
     }
   });
 
+  const handleSlotClick = () => {
+    navigate('/addappoinment');
+  };
+
   return (
     <div className="container">
       <h2>Time Slots for Today</h2>
       <div className="slots">
         {slots.map(slot => (
-          <div className="slot" key={slot.key}>
+          <div
+            className="slot"
+            key={slot.key}
+            onClick={handleSlotClick}
+            role="button"
+            tabIndex="0"
+            onKeyDown={(e) => { if (e.key === 'Enter') handleSlotClick(); }}
+          >
             {slot.time}
           </div>
         ))}
       </div>
       <style jsx>{`
         .container {
-          max-width: 800px; /* Increased width for the container */
+          max-width: 800px;
           margin: 0 auto;
           padding: 20px;
           text-align: center;
         }
         .slots {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Adjust width as needed */
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
           gap: 10px;
+          padding: 20px;
         }
         .slot {
-          background-color: #e0e0e0;
-          padding: 15px; /* Increased padding for more width */
-          border-radius: 4px;
+          background-color: #f0f4f8;
+          padding: 15px;
+          border-radius: 8px;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           text-align: center;
           font-size: 16px;
           font-weight: 500;
-          transition: background-color 0.3s ease;
+          transition: transform 0.3s ease, background-color 0.3s ease;
+          cursor: pointer;
         }
         .slot:hover {
           background-color: #172b59;
           color: #ffffff;
+          transform: translateY(-5px);
+        }
+        h2 {
+          font-size: 24px;
+          margin-bottom: 20px;
+          color: #172b59;
         }
       `}</style>
     </div>
   );
 };
 
-export default timeSlots;
+export default TimeSlots;
