@@ -133,6 +133,9 @@ function Sidebar() {
                                         <p className="flex-1">Dashboard</p>
                                     </a>
                                     <a href="/appoinments" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <div className="flex-none">
+                                            <FaHome />
+                                        </div>
                                                 <p className="flex-1">Make Appoinments</p>
                                             </a>
                                             <a href="/reservations" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
