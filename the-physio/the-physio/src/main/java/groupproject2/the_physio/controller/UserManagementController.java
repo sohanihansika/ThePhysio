@@ -40,6 +40,12 @@ public class UserManagementController {
         return ResponseEntity.ok(userManagementService.getAllUsers());
     }
 
+    @GetMapping("/auth/get-physios")
+    public ResponseEntity<ReqRes> getPhysios() {
+        return ResponseEntity.ok(userManagementService.findAllPhysios());
+    }
+
+
     @GetMapping("/admin/get-users/{userId}")
     public ResponseEntity<ReqRes> getUserById(@PathVariable Integer userId) {
         return ResponseEntity.ok(userManagementService.getUsersById(userId));

@@ -234,4 +234,26 @@ public class UsersManagementService {
         return reqRes;
 
     }
+
+        public ReqRes findAllPhysios() {
+            ReqRes reqRes = new ReqRes();
+
+            try {
+                List<OurUsers> result = usersRepo.findAllByRole("PHYSIO");
+                if (!result.isEmpty()){
+                    reqRes.setOurUsersList(result);
+                    reqRes.setStatusCode(200);
+                    reqRes.setMessage("Successful");
+                } else {
+                    reqRes.setStatusCode(404);
+                    reqRes.setMessage("No Physiotherapists Found");
+                }
+                return reqRes;
+            } catch (Exception e) {
+                reqRes.setStatusCode(500);
+                reqRes.setMessage("Error occurred: " + e.getMessage());
+                return reqRes;
+            }
+        }
+
 }
