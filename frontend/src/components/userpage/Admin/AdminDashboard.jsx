@@ -1,34 +1,32 @@
 import React from 'react'
-
+import { FaUsers,FaReceipt,FaCalendarCheck  } from "react-icons/fa6";
 
 export default () => {
-const integrations = [
-  {
-      title: "Customers",
-      desc: "A Patient who is using the system as patient or gym member",
-      path:"/userd"
+    const integrations = [
+        {
+            title: "Users",
+            desc: "100",
+            path:"/users",
+            icon: <FaUsers />
+            
+        }, {
+            title: "Reservation",
+            desc: "70 Daily",
+            path:"/userd",
+            icon: <FaCalendarCheck  />
+  
       
-  }, {
-      title: "Physiotherapists",
-      desc: "A Physiotherapist who is working in clinic",
-      path:"/staff"
-
-  }, 
-  {
-    title: "Company Users",
-    desc: "Company Users who are using the system as Receiptionist,Gym Manager or Gym Coach",
-    path:"/staff"
-    
-},
-  {
-      title: "Daily Backups",
-      desc: "Ut enim ad minim veniam",
-      path:"/staff"
-
-  },
-]
-
-
+        }, 
+        {
+          title: "Reports",
+          desc: "0",
+          path:"/userd",
+          icon: <FaReceipt  />
+  
+          
+      },
+        
+      ]
 const tableItems = [
     {
         avatar: "https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
@@ -75,35 +73,40 @@ const tableItems = [
 
 return (
     
-  <section className="py-16">
-      <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-          <div className="max-w-md">
-              <h1 className="text-gray-800 text-xl font-extrabold sm:text-2xl">Dashboard</h1>
-              <p className="text-gray-600 mt-2">This is the Admin Dashboard</p>
-          </div>
+    <section className="py-2">
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+        
 
-          <ul className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {
-                  integrations.map((item, idx) => (
-                      <li key={idx} className="border rounded-lg bg-blue-100">
-                          <div className="flex items-start justify-between p-4">
-                              <div className="space-y-2">
-                                  {item.href}
-                                  <h4 className="text-gray-800 font-semibold">{item.title}</h4>
-                                  <p className="text-gray-600 text-sm mb-3">{item.desc}</p>
-                                  <a href ={item.path} className="text-gray-700 text-sm hover:text-gray-100 border rounded-md px-3 py-2 duration-150 hover:bg-blue-600 " >View More</a>
+        <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+            {
+                integrations.map((item, idx) => (
+                    <li key={idx} className="border rounded-2xl bg-blue-100">
+                        <div className="flex items-start justify-center p-4">
+                            <div className="space-y-2">
+                                <a href={item.path}>
+                                    <div className="flex-shrink-0 items-center">
+
+                                     <div className="flex items-center text-5xl" >{item.icon}</div>
 
 
-                              </div>
-                          </div>
-                          
-                      </li>
-                  ))
-              }
-          </ul>
+                                       <h4 className="text-gray-800 font-semibold text-center">{item.title}</h4>
+                                       <p className="text-gray-600 text-3xl mb-3 text-center">{item.desc}</p>
+                                    </div>
+                                </a>
 
-          
-      </div>
+
+
+                            </div>
+                        </div>
+                        
+                    </li>
+                ))
+            }
+        </ul>
+
+        
+    </div>
+
 
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
       <div className="items-start justify-between md:flex">
@@ -111,9 +114,9 @@ return (
         <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-3">
             Activity Logs
         </h3>
-        <p className="text-gray-600 mt-3">
+        {/* <p className="text-gray-600 mt-3">
         To provide you with a detailed list of all users of "The Physio" system and their primary activities or roles within the system, I would need specific data from the system's user management or activity logs.
-        </p>
+        </p> */}
     </div>
     {/* <div className="mt-3 md:mt-0">
         <a

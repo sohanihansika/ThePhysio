@@ -59,6 +59,7 @@ import TimeSlots from './components/userpage/User/timeSlots';
 import AddAppoinmet from './components/userpage/User/AddAppoinment';
 import SelectPayment from './components/userpage/User/SelectPayment';
 import paymentpopup from './components/userpage/User/paymentpopup';
+import UserDashboardLink from './components/userpage/Admin/UserDashboardLink';
 
 
 
@@ -114,6 +115,9 @@ function App() {
                   <Route path="/dashboard" element={<AdminDashboard />} />
                   <Route path="/staffaccounts" element={<StaffAccounts />} />
                   <Route path="/useraccounts" element={<UserAccounts />} />
+                  <Route path="/users" element={<UserDashboardLink />} />
+
+
 
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
