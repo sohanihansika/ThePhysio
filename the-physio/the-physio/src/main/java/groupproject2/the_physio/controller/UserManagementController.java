@@ -35,17 +35,23 @@ public class UserManagementController {
         return ResponseEntity.ok(userManagementService.refreshToken(req));
     }
 
-    @GetMapping("/admin/get-all-users")
+    @GetMapping("/adminowner/get-all-users")
     public ResponseEntity<ReqRes> getAllUsers() {
         return ResponseEntity.ok(userManagementService.getAllUsers());
     }
 
-    @GetMapping("/admin/get-users/{userId}")
+    @GetMapping("/auth/get-physios")
+    public ResponseEntity<ReqRes> getPhysios() {
+        return ResponseEntity.ok(userManagementService.findAllPhysios());
+    }
+
+
+    @GetMapping("/adminowner/get-users/{userId}")
     public ResponseEntity<ReqRes> getUserById(@PathVariable Integer userId) {
         return ResponseEntity.ok(userManagementService.getUsersById(userId));
     }
 
-    @PutMapping("/admin/update/{userId}")
+    @PutMapping("/adminowner/update/{userId}")
     public ResponseEntity<ReqRes> updateUser(@PathVariable Integer userId, @RequestBody OurUsers reqres) {
         return ResponseEntity.ok(userManagementService.updateUser(userId, reqres));
     }

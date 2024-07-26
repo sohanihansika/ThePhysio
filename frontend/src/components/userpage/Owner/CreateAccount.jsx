@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserService from '../../service/UserService';
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -51,7 +51,8 @@ function CreateAccount() {
             const res = await UserService.empRegister(formData, token);
             console.log(res);
             alert('Employee registered successfully');
-            window.location.href = '/dashboard';
+            // window.location.href = '/dashboard';
+            navigate('/staff');
         } catch (error) {
             setError(error.response?.data?.message || error.message);
             setTimeout(() => {
@@ -154,8 +155,15 @@ function CreateAccount() {
                         </div>
 
                         <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150" type='submit'>
-                            Sign Up
+                            
+                            Register
                         </button>
+                        {/* <Link 
+                                to={'/staff'}
+                                className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150" type='submit'>
+                              
+                                Register
+                        </Link> */}
                         {error && <p className="text-red-500 text-center mt-2">{error}</p>}
                     </form>
                 </div>

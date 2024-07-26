@@ -44,7 +44,20 @@ class UserService{
     static async getAllUsers(token){
         try{
 
-            const response = await axios.get(`${UserService.BASE_URL}/admin/get-all-users`, {
+            const response = await axios.get(`${UserService.BASE_URL}/adminowner/get-all-users`, {
+                headers: {Authorization: `Bearer ${token}`}
+            });
+            return response.data;
+            
+        }catch(err){
+            throw err;
+        }
+    }
+
+    static async getAllPhysios(token){
+        try{
+
+            const response = await axios.get(`${UserService.BASE_URL}/auth/get-physios`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
             return response.data;
@@ -71,7 +84,7 @@ class UserService{
     static async getUserById(userId, token){
         try{
 
-            const response = await axios.get(`${UserService.BASE_URL}/admin/get-user/${userId}`, {
+            const response = await axios.get(`${UserService.BASE_URL}/adminowner/get-user/${userId}`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
             return response.data;
@@ -97,7 +110,7 @@ class UserService{
     static async updateUser(userId, userData, token){
         try{
 
-            const response = await axios.put(`${UserService.BASE_URL}/admin/update/${userId}`, userData,
+            const response = await axios.put(`${UserService.BASE_URL}/adminowner/update/${userId}`, userData,
             {
                 headers: {Authorization: `Bearer ${token}`}
             });

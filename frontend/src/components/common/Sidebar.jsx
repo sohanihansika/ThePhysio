@@ -86,26 +86,13 @@ function Sidebar() {
                                         </div>
                                         <p className="flex-1">User Accounts</p>
                                     </a>
-                                    <a href="/complaints" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
-                                        <div className="flex-none">
-                                            <FaBusinessTime />
-                                        </div>
-                                        <p className="flex-1">Ongoing Jobs</p>
-                                    </a>
-                                    <a href="/complaints" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
-                                        <div className="flex-none">
-                                            <FaCarAlt />
-                                        </div>
-                                        <p className="flex-1">Registered Vehicales</p>
-                                    </a>
+                                    
                                     <a href="/complaints" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
                                             <FaRegFrown />
                                         </div>
-                                        <p className="flex-1">User Complaints</p>
+                                        <p className="flex-1">Reviews</p>
                                     </a>
                                     <a href="/reports" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
@@ -133,6 +120,9 @@ function Sidebar() {
                                         <p className="flex-1">Dashboard</p>
                                     </a>
                                     <a href="/appoinments" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <div className="flex-none">
+                                            <FaHome />
+                                        </div>
                                                 <p className="flex-1">Make Appoinments</p>
                                             </a>
                                             <a href="/reservations" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
@@ -160,12 +150,12 @@ function Sidebar() {
                                         <p className="flex-1">Dashboard</p>
                                     </a>
 
-                                    <a href="createAccount" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <a href="/staff" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
                                             <FaClipboardList />
                                         </div>
-                                        <p className="flex-1">Create Account</p>
+                                        <p className="flex-1">Staff</p>
                                     </a>
 
                                     <a href="/completedjobs" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
@@ -201,29 +191,37 @@ function Sidebar() {
                                 </li>
                             )}
                             {isReceptionist && (
-                                        <li>
-                                        <a href="/recepdash" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                            <p className="flex-1">Dashboard</p>
-                                        </a>
-                                        <a href="/doctors" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                            <p className="flex-1">Reservations</p>
-                                        </a>
-                                        {/* <a href="/payments" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                            <p className="flex-1">Manual Payment</p>
-                                        </a>
-                                        <a href="/reports" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                            <p className="flex-1">Reports</p>
-                                        </a>
-                                        <a href="/videos" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                            <p className="flex-1">Videos</p>
-                                        </a> */}
-                                         <a href="/ongoingschedule" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                            <p className="flex-1">Schedule</p>
-                                        </a>
-                                        <a href="/payments" className="flex items-center gap-x-2 text-white p-2 rounded-lg hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
-                                            <p className="flex-1">Manual Payment</p>
-                                        </a>
-                                    </li>
+                                <li>
+                                    <a href="/dashboard" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
+                                        <div className="flex-none">
+                                            <FaHome />
+                                        </div>
+                                        <p className="flex-1">Dashboard</p>
+                                    </a>
+                                    <a href="/doctors" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
+                                        <div className="flex-none">
+                                            <FaCalendarCheck />
+                                        </div>
+                                        <p className="flex-1"> Add Appointments</p>
+                                    </a>
+                                    <a href="/schedule" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
+                                        <div className="flex-none">
+                                            <FaRegClipboard />
+                                        </div>
+                                        <p className="flex-1">Schedule</p>
+                                    </a>
+                                    <a href="/payments" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                        <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
+                                        <div className="flex-none">
+                                            <FaMoneyCheckAlt />
+                                        </div>
+                                        <p className="flex-1">Payments</p>
+                                    </a>
+                                    
+                                </li>
                             )}
                             {isCoach && (
                                 <li>

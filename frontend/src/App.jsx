@@ -27,6 +27,7 @@ import StaffAccounts from './components/userpage/Admin/StaffAccounts';
 import OwnerDashboard from './components/userpage/Owner/OwnerDashboard';
 import AddEditEmployee from './components/userpage/Owner/AddEditEmployee';
 import CreateAccount from './components/userpage/Owner/CreateAccount';
+import Staff from './components/userpage/Owner/Staff';
 
 import PhysioDashboard from './components/userpage/Physio/PhysioDashboard';
 import GenerateReports from './components/userpage/Physio/GenerateReports';
@@ -43,14 +44,7 @@ import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 
-import RecepDashboard from './components/userpage/Receptionist/RecepDashboard';
-import Doctors from './components/userpage/Receptionist/Reservations/Doctors'
-import Schedule from './components/userpage/Receptionist/Reservations/Schedule';
-import Calender from './components/userpage/Receptionist/Reservations/Calender';
-import OngoingSchedule from './components/userpage/Receptionist/ScheduleTable';
-import ManualPayment from './components/userpage/Receptionist/ManualPayment';
-import SubmitPay from './components/userpage/Receptionist/SubmitPay';
-import Calender1 from './components/userpage/Receptionist/Calender1';
+import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
 
 
 import Appoinments from './components/userpage/User/appoinments';
@@ -66,12 +60,19 @@ import TimeSlots from './components/userpage/User/timeSlots';
 import AddAppoinmet from './components/userpage/User/AddAppoinment';
 import SelectPayment from './components/userpage/User/SelectPayment';
 import paymentpopup from './components/userpage/User/paymentpopup';
+import UserDashboardLink from './components/userpage/Admin/UserDashboardLink';
 
 
-
-
-
-
+import Doctors from './components/userpage/Receptionist/Doctors';
+import Calender from './components/userpage/Receptionist/Calender';
+import Schedule from './components/userpage/Receptionist/Schedule';
+import PastSchedule from './components/userpage/Receptionist/PastSchedule';
+import FutureSchedule from './components/userpage/Receptionist/FutureSchedule';
+import Calender1 from './components/userpage/Receptionist/Calender1';
+import Payments from './components/userpage/Receptionist/Payments';
+import Doctors1 from './components/userpage/Receptionist/Doctors1';
+import AddAppointment from './components/userpage/Receptionist/AddAppointment';
+import Payments1 from './components/userpage/Receptionist/Payments1';
 
 
 function App() {
@@ -113,7 +114,7 @@ function App() {
 
               {!UserService.isAdmin() ? (
                 <>
-                  <Route path="/staffaccounts" element={<Navigate to="/" />} />
+                  <Route path="/staffaccounts" element={<StaffAccounts />} />
                   
                 </>
               ) : (
@@ -121,6 +122,9 @@ function App() {
                   <Route path="/dashboard" element={<AdminDashboard />} />
                   <Route path="/staffaccounts" element={<StaffAccounts />} />
                   <Route path="/useraccounts" element={<UserAccounts />} />
+                  <Route path="/users" element={<UserDashboardLink />} />
+
+
 
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
@@ -129,12 +133,15 @@ function App() {
                 <>
                   <Route path="/empRegister" element={<AddEditEmployee />} />
                   <Route path="/createAccount" element={<CreateAccount />} />
+                  <Route path="/staff" element={<Staff />} />
+
                 </>
               ) : (
                 <>
                   <Route path="/dashboard" element={<OwnerDashboard />} />
                   <Route path="/update-user/:userId" element={<AddEditEmployee />} />
                   <Route path="/createAccount" element={<CreateAccount />} />
+                  <Route path="/staff" element={<Staff />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
@@ -188,21 +195,21 @@ function App() {
               )}
               {!UserService.isReceptionist() ? (
                 <>
-                  <Route path="/recepdash" element={<RecepDashboard />} />
-                  <Route path="/profileView" element={<Profile />} />
+                  
                 </>
               ) : (
                 <>
-                  <Route path="/recepdash" element={<RecepDashboard />}/>
-                  <Route path="/doctors" element={<Doctors />} />
-                  <Route path="/calender" element={<Calender/>} />
-                  <Route path="/schedule" element={<Schedule />} />
-                  <Route path="/ongoingschedule" element={<OngoingSchedule/>} />
-                  <Route path="/payments" element={<ManualPayment/>} />
-                  <Route path="/submitpayments" element={<SubmitPay/>} />
-                  <Route path="/calender1" element={<Calender1/>} />
-
-
+                  <Route path="/dashboard" element={<ReceptionistDashboard />}/>
+                  <Route path="/doctors" element={<Doctors />}/>
+                  <Route path="/calender" element={<Calender />}/>
+                  <Route path="/schedule" element={<Schedule />}/>
+                  <Route path="/pastSchedule" element={<PastSchedule />}/>
+                  <Route path="/futureSchedule" element={<FutureSchedule />}/>
+                  <Route path="/calender1" element={<Calender1 />}/>
+                  <Route path="/payments" element={<Payments />}/>
+                  <Route path="/doctors1" element={<Doctors1 />}/>
+                  <Route path="/appointment" element={<AddAppointment />}/>
+                  <Route path="/payments1" element={<Payments1 />}/>
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
