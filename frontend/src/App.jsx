@@ -27,6 +27,7 @@ import StaffAccounts from './components/userpage/Admin/StaffAccounts';
 import OwnerDashboard from './components/userpage/Owner/OwnerDashboard';
 import AddEditEmployee from './components/userpage/Owner/AddEditEmployee';
 import CreateAccount from './components/userpage/Owner/CreateAccount';
+import OwnerReviews from './components/userpage/Owner/OwnerReviews';
 
 import PhysioDashboard from './components/userpage/Physio/PhysioDashboard';
 import GenerateReports from './components/userpage/Physio/GenerateReports';
@@ -122,12 +123,14 @@ function App() {
                 <>
                   <Route path="/empRegister" element={<AddEditEmployee />} />
                   <Route path="/createAccount" element={<CreateAccount />} />
+                  <Route path="/ownerReviews" element={<OwnerReviews />} />
                 </>
               ) : (
                 <>
                   <Route path="/dashboard" element={<OwnerDashboard />} />
                   <Route path="/update-user/:userId" element={<AddEditEmployee />} />
                   <Route path="/createAccount" element={<CreateAccount />} />
+                  <Route path="/ownerReviews" element={<OwnerReviews />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
