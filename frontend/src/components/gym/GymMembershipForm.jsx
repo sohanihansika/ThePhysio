@@ -9,7 +9,7 @@ const GymMembershipForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your payment gateway redirection logic here
-    navigate('/payment-gateway'); // Replace with actual payment gateway URL or routing logic
+    navigate('/Payment'); // Replace with actual payment gateway URL or routing logic
   };
 
   return (
