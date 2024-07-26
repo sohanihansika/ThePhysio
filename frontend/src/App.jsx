@@ -27,6 +27,7 @@ import StaffAccounts from './components/userpage/Admin/StaffAccounts';
 import OwnerDashboard from './components/userpage/Owner/OwnerDashboard';
 import AddEditEmployee from './components/userpage/Owner/AddEditEmployee';
 import CreateAccount from './components/userpage/Owner/CreateAccount';
+import Staff from './components/userpage/Owner/Staff';
 
 import PhysioDashboard from './components/userpage/Physio/PhysioDashboard';
 import GenerateReports from './components/userpage/Physio/GenerateReports';
@@ -72,6 +73,7 @@ import Payments from './components/userpage/Receptionist/Payments';
 import Doctors1 from './components/userpage/Receptionist/Doctors1';
 import AddAppointment from './components/userpage/Receptionist/AddAppointment';
 import Payments1 from './components/userpage/Receptionist/Payments1';
+
 
 function App() {
   return (
@@ -131,12 +133,15 @@ function App() {
                 <>
                   <Route path="/empRegister" element={<AddEditEmployee />} />
                   <Route path="/createAccount" element={<CreateAccount />} />
+                  <Route path="/staff" element={<Staff />} />
+
                 </>
               ) : (
                 <>
                   <Route path="/dashboard" element={<OwnerDashboard />} />
                   <Route path="/update-user/:userId" element={<AddEditEmployee />} />
                   <Route path="/createAccount" element={<CreateAccount />} />
+                  <Route path="/staff" element={<Staff />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
