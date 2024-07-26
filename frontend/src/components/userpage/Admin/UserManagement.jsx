@@ -48,7 +48,7 @@ export default () => {
             <div className="items-start justify-between md:flex">
                 <div className="max-w-lg">
                     <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
-                        Customers
+                        User Tables
                     </h3>
                     <p className="text-gray-600 mt-2">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.

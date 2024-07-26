@@ -54,6 +54,19 @@ class UserService{
         }
     }
 
+    static async getAllPhysios(token){
+        try{
+
+            const response = await axios.get(`${UserService.BASE_URL}/auth/get-physios`, {
+                headers: {Authorization: `Bearer ${token}`}
+            });
+            return response.data;
+            
+        }catch(err){
+            throw err;
+        }
+    }
+
     
     static async getYourProfile(token){
         try{
