@@ -62,11 +62,16 @@ import paymentpopup from './components/userpage/User/paymentpopup';
 import UserDashboardLink from './components/userpage/Admin/UserDashboardLink';
 
 
-
-
-
-
-
+import Doctors from './components/userpage/Receptionist/Doctors';
+import Calender from './components/userpage/Receptionist/Calender';
+import Schedule from './components/userpage/Receptionist/Schedule';
+import PastSchedule from './components/userpage/Receptionist/PastSchedule';
+import FutureSchedule from './components/userpage/Receptionist/FutureSchedule';
+import Calender1 from './components/userpage/Receptionist/Calender1';
+import Payments from './components/userpage/Receptionist/Payments';
+import Doctors1 from './components/userpage/Receptionist/Doctors1';
+import AddAppointment from './components/userpage/Receptionist/AddAppointment';
+import Payments1 from './components/userpage/Receptionist/Payments1';
 
 function App() {
   return (
@@ -190,6 +195,16 @@ function App() {
               ) : (
                 <>
                   <Route path="/dashboard" element={<ReceptionistDashboard />}/>
+                  <Route path="/doctors" element={<Doctors />}/>
+                  <Route path="/calender" element={<Calender />}/>
+                  <Route path="/schedule" element={<Schedule />}/>
+                  <Route path="/pastSchedule" element={<PastSchedule />}/>
+                  <Route path="/futureSchedule" element={<FutureSchedule />}/>
+                  <Route path="/calender1" element={<Calender1 />}/>
+                  <Route path="/payments" element={<Payments />}/>
+                  <Route path="/doctors1" element={<Doctors1 />}/>
+                  <Route path="/appointment" element={<AddAppointment />}/>
+                  <Route path="/payments1" element={<Payments1 />}/>
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
