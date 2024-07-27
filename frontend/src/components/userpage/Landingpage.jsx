@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import UserService from '../service/UserService';
 import AboutUs from './aboutUs';
 import Service from './service';
+import Contactus from './contactus';
+import OurTeam from './OurTeam';
+import Footer from './footer';
+import PricingPage from './pricingPage';
 
 const Landingpage = () => {
     const [state, setState] = useState(false);
@@ -122,6 +126,11 @@ const Landingpage = () => {
         </div>
                     <Service />
                     <AboutUs />
+                    <PricingPage/>
+                    <OurTeam/>
+                    <Contactus />
+                    <Footer />
+                    
 
         </div>
 
