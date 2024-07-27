@@ -60,12 +60,13 @@ return(
                         <div className="flex items-start justify-center p-4">
                             <div className="space-y-2">
                                 <a href={item.path}>
-                                <div className="flex-shrink-0 mr-4">
-                                <div className="flex text-center text-6xl" >{item.icon}</div>
+                                <div className="flex items-center justify-center ">
+                                <span className="mr-2 text-6xl">{item.icon}</span>
+                                   <h4 className="text-gray-800 font-semibold text-xl">{item.title}</h4>
                                 </div>
 
 
-                                    <h4 className="text-gray-800 font-semibold">{item.title}</h4>
+                                    {/* <h4 className="text-gray-800 font-semibold">{item.title}</h4> */}
                                     
                                     </a>
 
