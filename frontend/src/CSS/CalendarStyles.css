@@ -1,0 +1,96 @@
+/* Calendar.module.css */
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ddd;
+}
+
+.previous, .next {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.current {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.currentMonth, .currentYear {
+  margin: 0;
+  font-size: 24px;
+}
+
+.viewToggle {
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #007BFF;
+}
+
+.icon {
+  margin-left: 5px;
+}
+
+.month, .yearView {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: auto;
+  gap: 10px;
+  padding: 20px;
+}
+
+.day, .empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.day.selected {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+.patternContainer {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.redPattern, .yellowPattern, .bluePattern {
+  width: 20px;
+  height: 5px;
+  border-radius: 2px;
+}
+
+.redPattern {
+  background-color: #ff6347;
+}
+
+.yellowPattern {
+  background-color: #ffd700;
+}
+
+.bluePattern {
+  background-color: #4682b4;
+}
