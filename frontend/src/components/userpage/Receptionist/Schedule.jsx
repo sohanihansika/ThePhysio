@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Appointments = () => {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
   // Sample data for appointments
@@ -33,26 +34,37 @@ const Appointments = () => {
   const handleButtonClick = () => {
     if (selectedDate) {
       const currentDate = new Date();
-      // Remove the time part for accurate date comparison
       currentDate.setHours(0, 0, 0, 0);
       const selectedDateWithoutTime = new Date(selectedDate);
       selectedDateWithoutTime.setHours(0, 0, 0, 0);
-  
+
       if (selectedDateWithoutTime < currentDate) {
-        // Navigate to the past schedule page
         navigate('/pastSchedule');
       } else if (selectedDateWithoutTime > currentDate) {
-        // Navigate to the future schedule page
         navigate('/futureSchedule');
       } else {
-        // Reload the current page
         window.location.reload();
       }
     } else {
       alert("Please select a date first.");
     }
   };
-  
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredTableItemsOngoing = tableItemsOngoing.filter(item =>
+    item.status.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredTableItemsUpcoming = tableItemsUpcoming.filter(item =>
+    item.status.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredTableItemsPast = tableItemsPast.filter(item =>
+    item.status.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
@@ -74,6 +86,16 @@ const Appointments = () => {
         </div>
       </div>
 
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search by payment status..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="px-4 py-2 border rounded-md w-full"
+        />
+      </div>
+
       <div className="items-start justify-between md:flex">
         <div className="max-w-lg">
           <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">Ongoing Appointments</h3>
@@ -91,7 +113,7 @@ const Appointments = () => {
             </tr>
           </thead>
           <tbody className="text-black divide-y">
-            {tableItemsOngoing.map((item, idx) => (
+            {filteredTableItemsOngoing.map((item, idx) => (
               <tr key={idx}>
                 <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
@@ -131,7 +153,7 @@ const Appointments = () => {
             </tr>
           </thead>
           <tbody className="text-black divide-y">
-            {tableItemsUpcoming.map((item, idx) => (
+            {filteredTableItemsUpcoming.map((item, idx) => (
               <tr key={idx}>
                 <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
@@ -171,7 +193,7 @@ const Appointments = () => {
             </tr>
           </thead>
           <tbody className="text-black divide-y">
-            {tableItemsPast.map((item, idx) => (
+            {filteredTableItemsPast.map((item, idx) => (
               <tr key={idx}>
                 <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
@@ -194,14 +216,11 @@ const Appointments = () => {
         </table>
       </div>
 
-<div className="mt-7 flex justify-end">
-        <a href = "/dashboard"
-        className="py-2 px-4 bg-[#051B40] text-white rounded-md"
-        >      
-         Back
+      <div className="mt-7 flex justify-end">
+        <a href="/dashboard" className="py-2 px-4 bg-[#051B40] text-white rounded-md">
+          Back
         </a>
       </div>
-
     </div>
   );
 };
