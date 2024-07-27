@@ -1,6 +1,10 @@
 import React from 'react'
 import { FaUsers,FaReceipt,FaCalendarCheck  } from "react-icons/fa6";
 
+import { Bar, Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 export default () => {
     const integrations = [
         {
@@ -70,27 +74,62 @@ const tableItems = [
     },
 ]
 
+const weeklyReservationsData = {
+    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    datasets: [
+        {
+            label: 'Reservations',
+            data: [12, 19, 3, 5, 2, 3, 7],
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+        },
+    ],
+};
+
+const paymentsData = {
+    labels: ['Full Payment', 'Advanced Payment', 'Manual Payments'],
+    datasets: [
+        {
+            label: 'Payments',
+            data: [300, 150, 50],
+            backgroundColor: [
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'rgba(75, 192, 192, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 1,
+        },
+    ],
+};
+
 
 return (
     
     <section className="py-2">
-    <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-8">
         
 
-        <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+           <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
             {
                 integrations.map((item, idx) => (
                     <li key={idx} className="border rounded-2xl bg-blue-100">
                         <div className="flex items-start justify-center p-4">
                             <div className="space-y-2">
                                 <a href={item.path}>
+                                    
+
                                     <div className="flex-shrink-0 items-center">
-
-                                     <div className="flex items-center text-5xl" >{item.icon}</div>
-
-
-                                       <h4 className="text-gray-800 font-semibold text-center">{item.title}</h4>
-                                       <p className="text-gray-600 text-3xl mb-3 text-center">{item.desc}</p>
+                                        <div className="flex items-center justify-center ">
+                                        <span className="mr-2 text-6xl">{item.icon}</span>
+                                           <h4 className="text-gray-800 font-semibold text-xl">{item.title}</h4>
+                                    </div>
+                                        <p className="text-gray-600 text-3xl mb-3 text-center">{item.desc}</p>
                                     </div>
                                 </a>
 
@@ -102,31 +141,48 @@ return (
                     </li>
                 ))
             }
-        </ul>
+            </ul>
 
         
-    </div>
+        </div>
 
+        {/* Charts */}
 
-      <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-      <div className="items-start justify-between md:flex">
-    <div className="max-w-lg">
-        <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-3">
-            Activity Logs
-        </h3>
-        {/* <p className="text-gray-600 mt-3">
-        To provide you with a detailed list of all users of "The Physio" system and their primary activities or roles within the system, I would need specific data from the system's user management or activity logs.
-        </p> */}
-    </div>
-    {/* <div className="mt-3 md:mt-0">
-        <a
-            href="javascript:void(0)"
-            className="inline-block px-4 py-2 text-white duration-150 font-medium bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700 md:text-sm"
-        >
-            Add member
-        </a>
-    </div> */}
-</div>
+        {/* Weekly Reservations Bar Chart */}
+        <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-12">
+            <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-3">Dashboard Charts</h3>
+            <div className="mt-6 flex flex-row gap-4">
+                <div className="w-full md:w-1/2 p-4 border rounded-lg">
+                    {/* <div className="max-w-screen-sm mx-auto px-2 md:px-4 mt-12"> */}
+                       <h4 className="text-gray-800 text-sm font-bold mt-3">Weekly Reservations</h4>
+                       <div className="mt-3">
+                           <Bar data={weeklyReservationsData} options={{ maintainAspectRatio: false }} height={200} />
+                       </div>
+                </div>
+
+                          {/* Payments Pie Chart */}
+                <div className="w-full md:w-1/2 p-4 border rounded-lg">
+                   <h4 className="text-gray-800 text-sm font-bold  mt-3">Payments Distribution</h4>
+                   <div className="mt-3">
+                       <Pie data={paymentsData} options={{ maintainAspectRatio: false }} height={200} />
+                   </div>
+                </div>
+            </div>
+
+        </div>
+
+            
+
+        <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+            <div className="items-start justify-between md:flex">
+               <div className="max-w-lg">
+               <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-3">
+                Activity Logs
+               </h3>
+        
+            </div>
+    
+        </div>
 <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
     <table className="w-full table-auto text-sm text-left">
         <thead className="bg-gray-50 text-gray-600 font-medium border-b">
