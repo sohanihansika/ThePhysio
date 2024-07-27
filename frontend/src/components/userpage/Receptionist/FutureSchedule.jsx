@@ -5,6 +5,7 @@ const Appointments = () => {
   const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
   const [actionType, setActionType] = useState(""); // "reschedule" or "cancel"
+  const [searchQuery, setSearchQuery] = useState(""); // For the search bar
 
   const tableItems = [
     { time: "9.00 - 9.30", name: "Bob", doc: "Steven", room: "1", status: "Done" },
@@ -44,6 +45,14 @@ const Appointments = () => {
     setActionType("");
   };
 
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredTableItems = tableItems.filter(item =>
+    item.status.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
       <div className="items-start justify-between md:flex">
@@ -51,6 +60,18 @@ const Appointments = () => {
           <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">Upcoming Appointments</h3>
         </div>
       </div>
+
+      {/* Search Bar */}
+      <div className="mt-8">
+        <input
+          type="text"
+          placeholder="Search by payment status..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="px-4 py-2 border rounded-md w-full"
+        />
+      </div>
+
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
         <table className="w-full table-auto text-sm text-left">
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
@@ -64,7 +85,7 @@ const Appointments = () => {
             </tr>
           </thead>
           <tbody className="text-black divide-y">
-            {tableItems.map((item, idx) => (
+            {filteredTableItems.map((item, idx) => (
               <tr key={idx}>
                 <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
@@ -107,7 +128,7 @@ const Appointments = () => {
               <strong>Room No:</strong> {selectedItem.room}
             </p>
             <div className="flex justify-between">
-              <a href ="/calender1" className="py-2 px-4 bg-green-500 text-white rounded-md">Confirm</a>
+              <a href="/calender1" className="py-2 px-4 bg-green-500 text-white rounded-md">Confirm</a>
               <button onClick={handleCloseModal} className="py-2 px-4 bg-gray-500 text-white rounded-md">Cancel</button>
             </div>
           </div>
@@ -133,14 +154,10 @@ const Appointments = () => {
         </div>
       )}
 
-<div className="mt-7 flex justify-end">
-        <a href = "/schedule"
-        className="py-2 px-4 bg-[#051B40] text-white rounded-md"
-        >
-         Back
-        </a>
+      <div className="mt-7 flex justify-end">
+        <a href="/schedule" className="py-2 px-4 bg-[#051B40] text-white rounded-md">Back</a>
       </div>
-    </div>   
+    </div>
   );
 };
 

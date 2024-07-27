@@ -61,7 +61,12 @@ import AddAppoinmet from './components/userpage/User/AddAppoinment';
 import SelectPayment from './components/userpage/User/SelectPayment';
 import paymentpopup from './components/userpage/User/paymentpopup';
 import UserDashboardLink from './components/userpage/Admin/UserDashboardLink';
-
+import NaviBar from './components/userpage/User/GymMember/NaviBar';
+import Membership from './components/userpage/User/GymMember/Membership';
+import Halfyear from './components/userpage/User/GymMember/HalfYear';
+import FullYear from './components/userpage/User/GymMember/FullYear';
+import Subscription from './components/userpage/User/GymMember/Subscrpition';
+import PlanPayments from './components/userpage/User/GymMember/PlanPayments';
 
 import Doctors from './components/userpage/Receptionist/Doctors';
 import Calender from './components/userpage/Receptionist/Calender';
@@ -73,6 +78,7 @@ import Payments from './components/userpage/Receptionist/Payments';
 import Doctors1 from './components/userpage/Receptionist/Doctors1';
 import AddAppointment from './components/userpage/Receptionist/AddAppointment';
 import Payments1 from './components/userpage/Receptionist/Payments1';
+import UnPaid from './components/userpage/Receptionist/UnPaid';
 
 
 function App() {
@@ -166,7 +172,14 @@ function App() {
                   <Route path="/timeslots" element={<TimeSlots />} />
                   <Route path="/addappoinment" element={<AddAppoinmet />} />
                   <Route path="/selectpayment" element={<SelectPayment />} />
-                  <Route path="/paymentpopup" element={<paymentpopup />} />                  
+                  <Route path="/paymentpopup" element={<paymentpopup />} />
+                  <Route path="/gymNavibar" element={<NaviBar />} />
+                  <Route path="/gymMembership" element={<Membership />} /> 
+                  <Route path="/halfyear" element={<Halfyear />} />
+                  <Route path="/fullyear" element={<FullYear />} />
+                  <Route path="/subscription" element={<Subscription />} />
+                  <Route path="/planPayments" element={<PlanPayments />} />
+                                    
                 </>
               )}
               {!UserService.isPhysio() ? (
@@ -210,6 +223,7 @@ function App() {
                   <Route path="/doctors1" element={<Doctors1 />}/>
                   <Route path="/appointment" element={<AddAppointment />}/>
                   <Route path="/payments1" element={<Payments1 />}/>
+                  <Route path="/unpaid" element={<UnPaid />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

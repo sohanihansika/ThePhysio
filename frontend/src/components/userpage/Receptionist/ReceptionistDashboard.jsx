@@ -85,7 +85,7 @@ const AppointmentPage = () => {
           <h3 className="text-white text-xl font-bold sm:text-2xl mb-4">Schedule</h3>
         </Link>
 
-        <Link to="/payments" className="w-1/2 p-10 bg-[#051B40] border rounded-lg shadow-sm ml-4 hover:bg-[#051B40]">
+        <Link to="/unpaid" className="w-1/2 p-10 bg-[#051B40] border rounded-lg shadow-sm ml-4 hover:bg-[#051B40]">
         <div className="flex-none">
         <FaMoneyCheckAlt />
         </div>
