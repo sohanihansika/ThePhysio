@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 import Landingpage from './components/userpage/Landingpage';
 import LoginPage from './components/auth/LoginPage';
@@ -12,11 +14,6 @@ import GymLanding from './components/gym/gymlanding';
 import AboutUs from './components/userpage/aboutUs';
 import Service from './components/userpage/service';
 import Profile from './components/userpage/profile';
-
-
-
-
-
 
 import Navbar from "./components/common/Navbar";
 
@@ -45,7 +42,6 @@ import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
-
 
 import Appoinments from './components/userpage/User/appoinments';
 import PhysioCards from './components/userpage/User/physioCards';
@@ -79,6 +75,15 @@ import Doctors1 from './components/userpage/Receptionist/Doctors1';
 import AddAppointment from './components/userpage/Receptionist/AddAppointment';
 import Payments1 from './components/userpage/Receptionist/Payments1';
 import UnPaid from './components/userpage/Receptionist/UnPaid';
+
+import Schedules from './components/userpage/Owner/schedules';
+import Advertisements from './components/userpage/Owner/videoAdvertisements';
+import OwnerReviews from './components/userpage/Owner/viewReviews';
+import FinancialReport from './components/userpage/Owner/reports/financialReport';
+import MembershipReport from './components/userpage/Owner/reports/membershipReoprt';
+import CustomerFeedbackReport from './components/userpage/Owner/reports/customerFeedbackReport';
+import OwnerReports from './components/userpage/Owner/ownerReports';
+
 
 
 function App() {
@@ -140,7 +145,8 @@ function App() {
                   <Route path="/empRegister" element={<AddEditEmployee />} />
                   <Route path="/createAccount" element={<CreateAccount />} />
                   <Route path="/staff" element={<Staff />} />
-
+                  <Route path="/schedules" element={<Schedules />} />
+                  
                 </>
               ) : (
                 <>
@@ -149,6 +155,15 @@ function App() {
                   <Route path="/createAccount" element={<CreateAccount />} />
                   <Route path="/staff" element={<Staff />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
+                  <Route path="/schedules" element={<Schedules />} />
+                  <Route path="/video-advertisements" element={<Advertisements />} />
+                  <Route path="/ViewReviews" element={<OwnerReviews />} />
+                  <Route path="/customerFeedbackReport" element={<CustomerFeedbackReport />} />
+                  <Route path="/financialReport" element={<FinancialReport />} />
+                  <Route path="/membershipReport" element={<MembershipReport />} />
+                  <Route path="/ownerReports" element={<OwnerReports />} />
+                  
+
                 </>
               )}
               {!UserService.isUser() ? (

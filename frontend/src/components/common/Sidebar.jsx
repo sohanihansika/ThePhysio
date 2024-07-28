@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import UserService from '../service/UserService';
 import { FaAccessibleIcon, FaCog, FaSignOutAlt, FaHome, FaChartLine, FaUserTie, FaUsers, FaRegFrown, FaBullhorn, FaBusinessTime, FaCarAlt, FaCalendarCheck, FaMoneyCheckAlt, FaRegClipboard, FaWarehouse, FaUserPlus, FaClipboardList, FaClipboardCheck, FaCar, FaMoneyCheck, FaWrench, FaCalendarAlt } from "react-icons/fa";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 function Sidebar() {
     const [isAuthenticated, setIsAuthenticated] = useState(UserService.isAuthenticated());
@@ -158,39 +160,42 @@ function Sidebar() {
                                         <div className="flex-none">
                                             <FaClipboardList />
                                         </div>
-                                        <p className="flex-1">Staff</p>
+                                        <p className="flex-1">Staff Registration</p>
                                     </a>
 
-                                    <a href="/completedjobs" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <a href="/schedules" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
                                             <FaClipboardCheck />
                                         </div>
-                                        <p className="flex-1">Completed Jobs</p>
+                                        <p className="flex-1">Schedules</p>
                                     </a>
 
-                                    <a href="/vehiclehistory" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <a href="/video-advertisements" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
-                                            <FaCar />
+                                            <FaClipboardCheck />
                                         </div>
-                                        <p className="flex-1">Vehicle History</p>
+                                        <p className="flex-1">Advertisements</p>
                                     </a>
 
-                                    <a href="/dashboard" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+                                    <a href="/ViewReviews" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
-                                            <FaWarehouse />
+                                        <FaClipboardCheck />
                                         </div>
-                                        <p className="flex-1">Inventory Management</p>
+                                        <p className="flex-1">Reviews</p>
                                     </a>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
+
+                                    <a href="/ownerReports" className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-black active:bg-gray-100 duration-150">
                                         <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
                                         <div className="flex-none">
-                                            <FaUserPlus />
+                                        <FaClipboardCheck />
                                         </div>
-                                        <p className="flex-1">Add Technicians</p>
+                                        <p className="flex-1">Reports</p>
                                     </a>
+
+                                    
                                 </li>
                             )}
                             {isReceptionist && (
