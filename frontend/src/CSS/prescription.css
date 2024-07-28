@@ -1,0 +1,115 @@
+/* PrescriptionForm.css */
+.wrapper {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #28385d; /* Light blue background */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .prescription_form {
+    padding: 20px;
+  }
+  
+  .prescription {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .prescription th,
+  .prescription td {
+    padding: 20px;
+    text-align: left;
+    vertical-align: top;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .logo img {
+    max-height: 70px;
+  }
+  
+  .credentials {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .credentials label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .input {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1.1em;
+  }
+  
+  .desease_details h5,
+  .condition h5,
+  .invest h5,
+  .medi h5,
+  .pmh h5,
+  .goals h5,
+  .serverity h5,
+  .factor h5,
+  .bodychart h5,
+  .previous_rx h5,
+  .easing_factors h5,
+  .red_flags h5 {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    color: #00796b; /* Dark teal color */
+  }
+  
+  .symp {
+    list-style: none;
+    padding: 15px;
+    margin: 0;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    min-height: 50px;
+    background-color: #ffffff;
+  }
+  
+  .symp:hover {
+    background-color: #f1f1f1;
+    cursor: text;
+  }
+  
+  .button_group {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .button_group .btn {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-success {
+    background-color: #0F4D92; /* Blue color */
+    color: white;
+  }
+  
+  .btn-success:hover {
+    background-color: #0277bd; /* Darker blue on hover */
+  }
+  
