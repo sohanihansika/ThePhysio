@@ -14,6 +14,11 @@ import GymLanding from './components/gym/gymlanding';
 import AboutUs from './components/userpage/aboutUs';
 import Service from './components/userpage/service';
 import Profile from './components/userpage/profile';
+import OurTeam from './components/userpage/OurTeam';
+import PricingPage from './components/userpage/pricingPage';
+import Contactus from './components/userpage/contactus'; 
+import Footer from './components/userpage/footer';
+
 
 import Navbar from "./components/common/Navbar";
 
@@ -63,6 +68,10 @@ import Halfyear from './components/userpage/User/GymMember/HalfYear';
 import FullYear from './components/userpage/User/GymMember/FullYear';
 import Subscription from './components/userpage/User/GymMember/Subscrpition';
 import PlanPayments from './components/userpage/User/GymMember/PlanPayments';
+import PrescriptionForm from './components/userpage/User/PrescriptionForm';
+import Popup from './components/userpage/User/Popup';
+import PhysioProfile from './components/userpage/User/PhysioProfile';
+
 
 import Doctors from './components/userpage/Receptionist/Doctors';
 import Calender from './components/userpage/Receptionist/Calender';
@@ -194,6 +203,11 @@ function App() {
                   <Route path="/fullyear" element={<FullYear />} />
                   <Route path="/subscription" element={<Subscription />} />
                   <Route path="/planPayments" element={<PlanPayments />} />
+                  <Route path="/prescriptionForm" element={<PrescriptionForm />} />
+                  <Route path="/schedule" element={<Schedule />}/>
+                  <Route path="/popup" element={<Popup />}/>
+                  <Route path="/physioprofile" element={<PhysioProfile />}/>
+
                                     
                 </>
               )}
