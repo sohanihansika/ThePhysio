@@ -79,6 +79,10 @@ import Doctors1 from './components/userpage/Receptionist/Doctors1';
 import AddAppointment from './components/userpage/Receptionist/AddAppointment';
 import Payments1 from './components/userpage/Receptionist/Payments1';
 import UnPaid from './components/userpage/Receptionist/UnPaid';
+import TimeSlot from './components/userpage/Receptionist/TimeSlots';
+import TimeSlot1 from './components/userpage/Receptionist/TimeSlots1';
+import Appointment1 from './components/userpage/Receptionist/Appointment1';
+
 
 
 function App() {
@@ -224,6 +228,9 @@ function App() {
                   <Route path="/appointment" element={<AddAppointment />}/>
                   <Route path="/payments1" element={<Payments1 />}/>
                   <Route path="/unpaid" element={<UnPaid />} />
+                  <Route path="/timeSlots" element={<TimeSlot />} />
+                  <Route path="/timeSlots1" element={<TimeSlot1 />} />
+                  <Route path="/appointment1" element={<Appointment1 />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
