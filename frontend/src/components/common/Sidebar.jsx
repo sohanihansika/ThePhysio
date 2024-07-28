@@ -203,15 +203,27 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/completedjobs" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/schedules" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaRegClipboard />
-                                       {!isCollapsed && <p>Completed Jobs</p>}
+                                       {!isCollapsed && <p>Schedules</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/vehiclehistory" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       <FaBullhorn />
+                                       {!isCollapsed && <p>Advertisements</p>}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/ownerReports" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <MdOutlinePayments />
-                                       {!isCollapsed && <p>Vehicle History</p>}
+                                       {!isCollapsed && <p>Reports</p>}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       <MdOutlinePayments />
+                                       {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                             </>
