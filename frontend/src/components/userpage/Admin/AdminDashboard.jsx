@@ -16,7 +16,7 @@ export default () => {
         }, {
             title: "Reservation",
             desc: "70 Daily",
-            path:"/userd",
+            path:"",
             icon: <FaCalendarCheck  />
   
       
@@ -24,7 +24,7 @@ export default () => {
         {
           title: "Reports",
           desc: "0",
-          path:"/userd",
+          path:"/ownerReports",
           icon: <FaReceipt  />
   
           
@@ -36,41 +36,41 @@ const tableItems = [
         avatar: "https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
         name: "Liam James",
         email: "liamjames@example.com",
-        phone_nimber: "+1 (555) 000-000",
-        position: "Software engineer",
-        salary: "$100K"
+        last_login: "2024.04.04",
+        last_logout: "2024.06.04",
+        createdDate: "2022.04.08",
     },
     {
         avatar: "https://randomuser.me/api/portraits/men/86.jpg",
         name: "Olivia Emma",
         email: "oliviaemma@example.com",
-        phone_nimber: "+1 (555) 000-000",
-        position: "Product designer",
-        salary: "$90K"
+        last_login: "2024.06.10",
+        last_logout: "2024.07.04",
+        createdDate: "2022.06.08",
     },
     {
         avatar: "https://randomuser.me/api/portraits/women/79.jpg",
         name: "William Benjamin",
         email: "william.benjamin@example.com",
-        phone_nimber: "+1 (555) 000-000",
-        position: "Front-end developer",
-        salary: "$80K"
+        last_login: "2024.07.04",
+        last_logout: "2024.07.19",
+        createdDate: "2023.04.15",
     },
     {
         avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
         name: "Henry Theodore",
         email: "henrytheodore@example.com",
-        phone_nimber: "+1 (555) 000-000",
-        position: "Laravel engineer",
-        salary: "$120K"
+        last_login: "2024.07.24",
+        last_logout: "2024.07.28",
+        createdDate: "2022.09.02",
     },
     {
         avatar: "https://images.unsplash.com/photo-1439911767590-c724b615299d?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
         name: "Amelia Elijah",
         email: "amelia.elijah@example.com",
-        phone_nimber: "+1 (555) 000-000",
-        position: "Open source manager",
-        salary: "$75K"
+        last_login: "2024.04.04",
+        last_logout: "2024.05.14",
+        createdDate: "2021.03.08",
     },
 ]
 
@@ -80,8 +80,8 @@ const weeklyReservationsData = {
         {
             label: 'Reservations',
             data: [12, 19, 3, 5, 2, 3, 7],
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(173, 216, 230, 1)',
+            borderColor: 'rgba(64, 162, 235, 4)',
             borderWidth: 1,
         },
     ],
@@ -94,14 +94,14 @@ const paymentsData = {
             label: 'Payments',
             data: [300, 150, 50],
             backgroundColor: [
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
+                'rgba(173, 216, 230, 1)',
+                'rgba(64, 162, 235, 4)',
+                'rgba(23, 43, 89, 1)',
             ],
             borderColor: [
                 'rgba(75, 192, 192, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(255, 99, 132, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(75, 192, 192, 1)',
             ],
             borderWidth: 1,
         },
@@ -188,7 +188,7 @@ return (
         <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
                 <th className="py-3 px-6">Username</th>
-                <th className="py-3 px-6">Email</th>
+                {/* <th className="py-3 px-6">Email</th> */}
                 <th className="py-3 px-6">Last Login </th>
                 <th className="py-3 px-6">Last Logout</th>
                 <th className="py-3 px-6">Created Date</th>
@@ -207,22 +207,11 @@ return (
                                 <span className="block text-gray-700 text-xs">{item.email}</span>
                             </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">{item.phone_nimber}</td>
-                        {/* <td className="px-6 py-4 whitespace-nowrap">{item.position}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">{item.salary}</td> */}
+                        <td className="px-6 py-4 whitespace-nowrap">{item.last_login}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{item.last_logout}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">{item.createdDate}</td>
                         <td className="text-right px-6 whitespace-nowrap">
-                            {/* <button href="javascript:void()" className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg">
-                                View
-                            </button>
-                            <a href="javascript:void()" className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg">
-                                Edit
-                            </a>
-                            <button href="javascript:void()" className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg">
-                                Delete
-                            </button>
-                            <button href="javascript:void()" className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg">
-                                Blacklist
-                            </button> */}
+                            
                         </td>
                     </tr>
                 ))

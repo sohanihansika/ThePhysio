@@ -84,6 +84,10 @@ import Doctors1 from './components/userpage/Receptionist/Doctors1';
 import AddAppointment from './components/userpage/Receptionist/AddAppointment';
 import Payments1 from './components/userpage/Receptionist/Payments1';
 import UnPaid from './components/userpage/Receptionist/UnPaid';
+import TimeSlot from './components/userpage/Receptionist/TimeSlots';
+import TimeSlot1 from './components/userpage/Receptionist/TimeSlots1';
+import Appointment1 from './components/userpage/Receptionist/Appointment1';
+
 
 import Schedules from './components/userpage/Owner/schedules';
 import Advertisements from './components/userpage/Owner/videoAdvertisements';
@@ -144,6 +148,14 @@ function App() {
                   <Route path="/staffaccounts" element={<StaffAccounts />} />
                   <Route path="/useraccounts" element={<UserAccounts />} />
                   <Route path="/users" element={<UserDashboardLink />} />
+                  <Route path="/ViewReviews" element={<OwnerReviews />} />
+                  <Route path="/customerFeedbackReport" element={<CustomerFeedbackReport />} />
+                  <Route path="/financialReport" element={<FinancialReport />} />
+                  <Route path="/membershipReport" element={<MembershipReport />} />
+                  <Route path="/ownerReports" element={<OwnerReports />} />
+                  <Route path="/video-advertisements" element={<Advertisements />} />
+
+
 
 
 
@@ -234,6 +246,10 @@ function App() {
                   <Route path='/reviews' element={<Reviews/>} />
                   <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
+                  <Route path="/appoinments" element={<Appoinments />} />
+                  <Route path="/schedule" element={<Schedule />}/>
+
+
                 </>
               )}
               {!UserService.isReceptionist() ? (
@@ -254,6 +270,9 @@ function App() {
                   <Route path="/appointment" element={<AddAppointment />}/>
                   <Route path="/payments1" element={<Payments1 />}/>
                   <Route path="/unpaid" element={<UnPaid />} />
+                  <Route path="/timeSlots" element={<TimeSlot />} />
+                  <Route path="/timeSlots1" element={<TimeSlot1 />} />
+                  <Route path="/appointment1" element={<Appointment1 />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

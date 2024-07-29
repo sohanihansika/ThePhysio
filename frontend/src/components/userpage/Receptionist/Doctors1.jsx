@@ -66,7 +66,7 @@ export default () => {
                   <span className="block text-sm text-gray-600">{item.email}</span>
                 </div>
               </div>
-              <a href="/appointment" className="text-white text-sm border rounded-lg px-3 py-2 duration-150 bg-[#051B40] ">View</a>
+              <a href="/timeSlots" className="text-white text-sm border rounded-lg px-3 py-2 duration-150 bg-[#051B40] ">View</a>
             </li>
           ))
         }

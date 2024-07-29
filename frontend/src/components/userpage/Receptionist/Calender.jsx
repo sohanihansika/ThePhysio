@@ -27,12 +27,11 @@ const CalendarComponent = () => {
       <Calendar onChange={handleDateChange} value={date} />
       <div className="mt-4">
         
-        <button
-          onClick={handleAddEvent}
+        <a href ="/timeSlots"
           className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
         >
           View Schedule
-        </button>
+        </a>
       </div>
       <ul className="mt-4">
         {events.map((event, idx) => (
