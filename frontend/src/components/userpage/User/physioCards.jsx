@@ -1,6 +1,8 @@
 import React from 'react';
 import Slider from "react-slick";
 import profileImage from '../../../assets/profile.png';
+<img src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg" alt="Dr. Jane Doe" className="w-24 h-24 rounded-full object-cover" />
+
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
@@ -90,6 +92,11 @@ const PhysiotherapistProfiles = () => {
                                     <p className="text-gray-400 text-sm mt-1">{profile.desc}</p>
                                     <p className="text-gray-400 text-sm mt-1">Contact: {profile.contact}</p>
                                 </div>
+                                <a href="/physioprofile" className="flex items-center gap-x-2 p-1 rounded-lg hover:bg-gray-700 text-white duration-150" style={{ backgroundColor: '#172b59', width: '80px' }}>
+                                    <p className="text-sm text-center w-full">View</p>
+                                </a>
+
+
                             </article>
                         </div>
                     ))

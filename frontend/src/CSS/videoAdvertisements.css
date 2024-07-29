@@ -1,0 +1,71 @@
+/* Internal CSS for Advertisements Component */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .sidebar {
+    position: relative;
+  }
+  
+  .report-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1a202c; /* Dark background color */
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+  }
+  
+  .report-links a {
+    display: block;
+    padding: 0.5rem;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .report-links a:hover {
+    color: #000;
+    background-color: #edf2f7; /* Light background on hover */
+    border-radius: 0.375rem;
+  }
+  
+  /* Other styles */
+  .text-white {
+    color: white;
+  }
+  
+  .p-2 {
+    padding: 0.5rem;
+  }
+  
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  
+  .hover\:bg-lightblue:hover {
+    background-color: #63b3ed; /* Light blue background on hover */
+  }
+  
+  .hover\:text-black:hover {
+    color: black;
+  }
+  
+  .active\:bg-gray-100:active {
+    background-color: #f7fafc; /* Light gray background on active */
+  }
+  
+  .duration-150 {
+    transition-duration: 150ms;
+  }
+  
+  .bg-gray-600 {
+    background-color: #718096; /* Gray background */
+  }
+  
+  .bg-gray-800 {
+    background-color: #2d3748; /* Dark gray background */
+  }
+  

@@ -35,18 +35,7 @@ const calender = () => {
     <div className="max-w-md mx-auto mt-10">
       <Calendar onChange={handleDateChange} value={date} />
       <div className="mt-4">
-        <button
-          onClick={handleAddEvent}
-          className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
-        >
-          View Schedule
-        </button>
-        <a
-          href={`/timeslots?physioId=${physioId}`}
-          className="mt-2 bg-blue-500 text-white py-2 px-4 rounded flex items-center gap-x-2 hover:bg-blue-600 hover:text-white active:bg-blue-700 duration-150 w-32 text-center"
-        >
-          <p className="flex-1">View Schedule</p>
-        </a>
+      
       </div>
       <ul className="mt-4">
         {events.map((event, idx) => (
