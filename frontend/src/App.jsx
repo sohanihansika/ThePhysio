@@ -119,8 +119,9 @@ function App() {
         )}
         <div
           className={`content ${
-            UserService.isAuthenticated() ? "w-3/4" : "w-full"
+            UserService.isAuthenticated() ? "custom-width" : "w-full"
           }`}
+          style={{ width: UserService.isAuthenticated() ? 'calc(100vw - 16rem)' : '100vw' }}
         >
           <Routes>
             {!UserService.isAuthenticated() && (

@@ -4,8 +4,32 @@ import React from 'react';
 import '../../../CSS/prescription.css';
 
 const PrescriptionForm = () => {
+  // Dummy data
+  const patientData = {
+    indexNo: '12345',
+    patientId: '67890',
+    name: 'John Doe',
+    age: '45',
+    referredBy: 'Dr. Smith',
+    presentingCondition: 'Back pain, Difficulty in movement',
+    bodyChartPart: 'Back',
+    painSeverity: '7',
+    aggravatingFactors: 'Long sitting, Heavy lifting',
+    easingFactors: 'Rest, Pain relievers',
+    hxPresentingCondition: 'Chronic back pain for 2 years',
+    investigations: 'MRI Scan, X-ray',
+    medication: 'Painkillers, Muscle relaxants',
+    previousRx: 'Physiotherapy sessions',
+    pmh: 'Hypertension, Diabetes',
+    redFlags: 'CVD',
+    patientGoals: 'Improve mobility, Reduce pain'
+  };
+
   return (
-    <div className="wrapper">
+    <div
+      className="wrapper"
+      style={{ backgroundColor: 'rgba(243, 244, 246, 1)' }} // Adjust opacity if needed
+    >
       <div className="prescription_form">
         <table className="prescription" border="1">
           <tbody>
@@ -20,16 +44,11 @@ const PrescriptionForm = () => {
                     />
                   </div>
                   <div className="credentials">
-                    <label htmlFor="index">Index No</label>
-                    <br />
-                    <label htmlFor="patientid">Patient ID</label>
-                    <input type="text" required className="input" />
-                    <br />
-                    <label htmlFor="name">Patient Name</label>
-                    <br />
-                    <label htmlFor="age">Age</label>
-                    <br />
-                    <label htmlFor="doctor">Referred By</label>
+                    <p><strong>Index No:</strong> {patientData.indexNo}</p>
+                    <p><strong>Patient ID:</strong> {patientData.patientId}</p>
+                    <p><strong>Patient Name:</strong> {patientData.name}</p>
+                    <p><strong>Age:</strong> {patientData.age}</p>
+                    <p><strong>Referred By:</strong> {patientData.referredBy}</p>
                   </div>
                 </div>
               </td>
@@ -39,13 +58,7 @@ const PrescriptionForm = () => {
                 <div className="desease_details">
                   <div className="present">
                     <h5>Presenting Condition</h5>
-                    <ul
-                      className="symp"
-                      data-toggle="tooltip"
-                      data-placement="bottom"
-                      title="Click to edit."
-                      contentEditable="true"
-                    ></ul>
+                    <p>{patientData.presentingCondition}</p>
                   </div>
                   <hr />
                   <div className="bodychart">
@@ -56,124 +69,53 @@ const PrescriptionForm = () => {
                       style={{ maxHeight: '50px' }}
                       alt="Body Chart"
                     />
-                    <select id="parts" name="parts" required className="input">
-                      <option value="hand">Hand</option>
-                      <option value="leg">Leg</option>
-                      <option value="back">Back</option>
-                      <option value="neck">Neck</option>
-                    </select>
+                    <p><strong>Part Affected:</strong> {patientData.bodyChartPart}</p>
                   </div>
                   <hr />
                   <div className="serverity">
                     <h5>Pain Severity</h5>
-                    <select id="serverity" name="serverity" required className="input">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
+                    <p>{patientData.painSeverity}</p>
                   </div>
                   <hr />
                   <div className="factor">
                     <h5>Aggravating Factors</h5>
-                    <ul
-                      className="symp"
-                      data-toggle="tooltip"
-                      data-placement="bottom"
-                      title="Click to edit."
-                      contentEditable="true"
-                    ></ul>
+                    <p>{patientData.aggravatingFactors}</p>
                   </div>
                 </div>
               </td>
               <td width="60%" valign="top">
                 <h5>Easing factors</h5>
-                <ul
-                  className="symp"
-                  data-toggle="tooltip"
-                  data-placement="bottom"
-                  title="Click to edit."
-                  contentEditable="true"
-                ></ul>
+                <p>{patientData.easingFactors}</p>
                 <hr />
                 <div className="condition">
                   <h5>Hx of Presenting Condition</h5>
-                  <ul
-                    className="symp"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Click to edit."
-                    contentEditable="true"
-                  ></ul>
+                  <p>{patientData.hxPresentingCondition}</p>
                 </div>
                 <hr />
                 <div className="invest">
                   <h5>Investigations</h5>
-                  <ul
-                    className="symp"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Click to edit."
-                    contentEditable="true"
-                  ></ul>
+                  <p>{patientData.investigations}</p>
                 </div>
                 <hr />
                 <div className="medi">
                   <h5>Medication</h5>
-                  <ul
-                    className="symp"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Click to edit."
-                    contentEditable="true"
-                  ></ul>
+                  <p>{patientData.medication}</p>
                 </div>
               </td>
               <td width="60%" valign="top">
                 <h5>Previous Rx</h5>
-                <ul
-                  className="symp"
-                  data-toggle="tooltip"
-                  data-placement="bottom"
-                  title="Click to edit."
-                  contentEditable="true"
-                ></ul>
+                <p>{patientData.previousRx}</p>
                 <hr />
                 <div className="pmh">
                   <h5>PMH</h5>
-                  <ul
-                    className="symp"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Click to edit."
-                    contentEditable="true"
-                  ></ul>
+                  <p>{patientData.pmh}</p>
                   <h5>Red flags</h5>
-                  <select id="redflags" name="redflags" required className="input">
-                    <option value="cvd">CVD</option>
-                    <option value="va">VA</option>
-                    <option value="ce">CE</option>
-                    <option value="wl">WL</option>
-                    <option value="ca">CA</option>
-                    <option value="tx">TX Pain</option>
-                  </select>
+                  <p>{patientData.redFlags}</p>
                 </div>
                 <hr />
                 <div className="goals">
                   <h5>Patient Goals</h5>
-                  <ul
-                    className="symp"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Click to edit."
-                    contentEditable="true"
-                  ></ul>
+                  <p>{patientData.patientGoals}</p>
                 </div>
               </td>
             </tr>
