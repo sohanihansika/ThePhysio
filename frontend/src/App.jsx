@@ -98,6 +98,14 @@ import CustomerFeedbackReport from './components/userpage/Owner/reports/customer
 import OwnerReports from './components/userpage/Owner/ownerReports';
 
 
+import ViewAppointment from './components/userpage/Manager/ViewAppointment';
+import PastList from './components/userpage/Manager/PastList';
+import FutureList from './components/userpage/Manager/FutureList';
+import Calender2 from './components/userpage/Manager/Calender2';
+import TimeSlots2 from './components/userpage/Manager/TimeSlots2';
+import Appointment2 from './components/userpage/Manager/Appointment2';
+
+
 
 function App() {
   return (
@@ -219,6 +227,7 @@ function App() {
                   <Route path="/schedule" element={<Schedule />}/>
                   <Route path="/popup" element={<Popup />}/>
                   <Route path="/physioprofile" element={<PhysioProfile />}/>
+                  
 
                                     
                 </>
@@ -292,6 +301,12 @@ function App() {
               ) : (
                 <>
                   <Route path="/dashboard" element={<ManagerDashboard />}/>
+                  <Route path="/viewAppointment" element={<ViewAppointment />}/>
+                  <Route path="/pastList" element={<PastList />}/>
+                  <Route path="/futureList" element={<FutureList />}/>
+                  <Route path="/calender2" element={<Calender2 />}/>
+                  <Route path="/timeSlots2" element={<TimeSlots2 />}/>
+                  <Route path="/appointment2" element={<Appointment2 />}/>
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

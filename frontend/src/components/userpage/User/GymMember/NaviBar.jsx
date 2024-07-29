@@ -1,81 +1,39 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
+import Card1 from './Card1';
+import AbtUs from './AbtUs';
+import Footer1 from './Footer1';
 
-export default () => {
-    const [state, setState] = useState(false);
+const GymHero = () => {
+  return (
+    <div className="relative bg-white text-black max-w-full">
+      {/* Navigation Bar */}
+      <nav className="flex justify-between items-center py-6 px-4 md:px-8 max-w-8xl mx-auto w-full bg-[#d24e01] text-white ">
+        <div className="text-2xl font-bold">GymName</div>
+        <ul className="flex space-x-4">
+          <li><a href="#home" className="hover:text-gray-400">Home</a></li>
+          <li><a href="#about" className="hover:text-gray-400">About</a></li>
+          <li><a href="/gymMembership" className="hover:text-gray-400">Membership</a></li>
+          <li><a href="/subscription" className="hover:text-gray-400">Subscription</a></li>
+        </ul>
+      </nav>
+      
+      {/* Hero Section */}
+      <div className="relative h-screen bg-cover bg-center max-w-8xl mx-auto w-full" style={{ backgroundImage: "url('./src/assets/GymPlans/gym1.jpg')" }}>
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="relative flex flex-col items-center justify-center h-full text-center px-4 md:px-8 text-white">
+          <h1 className="text-4xl md:text-6xl font-bold">Welcome to Our Gym</h1>
+          <p className="mt-4 text-xl md:text-2xl">Your journey to a better you starts here</p>
+          <a href="#services" className="mt-6 px-6 py-3 bg-[#d24e01] text-white rounded-lg text-lg">Get Started</a>
+        </div>
+      </div>
+      
+        <Card1/>
+        <AbtUs/>
+        <Footer1 />
+        
+    </div>
+    
+  );
+}
 
-    const navigation = [
-        { title: "Membership", path: "/gymMembership" },
-        { title: "Subscription", path: "/subscription" },
-    ];
-
-    useEffect(() => {
-        document.onclick = (e) => {
-            const target = e.target;
-            if (!target.closest(".menu-btn")) setState(false);
-        };
-    }, []);
-
-    return (
-        <nav className={`bg-white pb-5 md:text-sm ${state ? "shadow-lg rounded-xl border mx-2 mt-2 md:shadow-none md:border-none md:mx-2 md:mt-0" : ""}`}>
-            <div className="gap-x-14 items-center max-w-screen-xl mx-auto px-4 md:flex md:px-8">
-                <div className="flex items-center justify-between py-5 md:block">
-                    <a href="javascript:void(0)">
-                        <img
-                            src="./src/assets/LOGO.jpg"
-                            width={120}
-                            height={50}
-                            alt="Logo"
-                        />
-                    </a>
-                    <div className="md:hidden">
-                        <button className="menu-btn text-gray-500 hover:text-gray-800"
-                            onClick={() => setState(!state)}
-                        >
-                            {
-                                state ? (
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                                    </svg>
-                                ) : (
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                                    </svg>
-                                )
-                            }
-                        </button>
-                    </div>
-                </div>
-                <div className={`flex-1 items-center mt-8 md:mt-0 md:flex ${state ? 'block' : 'hidden'} `}>
-                    <ul className="justify-center items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
-                        {navigation.map((item, idx) => (
-                            <li key={idx} className="text-gray-700 hover:text-gray-900">
-                                <a href={item.path} className="block">
-                                    {item.title}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
-                        <a href="javascript:void(0)" className="block text-gray-700 hover:text-gray-900">
-                            Log in
-                        </a>
-                        <a href="javascript:void(0)" className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex">
-                            Sign in
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                                <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
-                {navigation.map((item, idx) => (
-                    <a key={idx} href={item.path} className="block max-w-l p-8 bg-[#051B40] rounded-lg shadow-md hover:bg-[#051B40]">
-                        <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                        <p className="mt-2 text-gray-200">Navigate to the {item.title.toLowerCase()} page.</p>
-                    </a>
-                ))}
-            </div>
-        </nav>
-    );
-};
+export default GymHero;

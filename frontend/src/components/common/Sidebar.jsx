@@ -317,9 +317,9 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/viewAppointment" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaCalendarCheck />
-                                       {!isCollapsed && <p>Staff</p>}
+                                       {!isCollapsed && <p>Appointment</p>}
                                     </a>
                                 </li>
                                 <li>
