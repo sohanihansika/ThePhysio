@@ -67,7 +67,7 @@ const SchedulePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-6 text-[#000099]">Schedules</h1>
+      <h1 className="text-3xl font-bold mb-6 text-[#000000]">Schedules</h1>
       <div className="mb-6 w-full max-w-md">
         <input
           type="date"
