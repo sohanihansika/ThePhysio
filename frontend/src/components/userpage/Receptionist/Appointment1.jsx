@@ -8,6 +8,7 @@ export default function AddAppointment() {
     physiotherapist: '',
     code: ''
   });
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,12 +18,14 @@ export default function AddAppointment() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted", formData);
+    setShowSuccessMessage(true);
+    setTimeout(() => setShowSuccessMessage(false), 3000); // Hide message after 3 seconds
     // Add logic for form submission and payment
   };
 
   return (
     <div className="appointment-container">
-      <h2>Book an Appointment</h2>
+      <h2>Reschedule Appointment</h2>
       <form className="appointment-form" onSubmit={handleFormSubmit}>
         <div className="input-field">
           <label htmlFor="name">Name</label>
@@ -79,13 +82,18 @@ export default function AddAppointment() {
             required
           />
         </div>
-        <a
-          href="/payments1"
+        <button
           className="submitBtn"
         >
-          Proceed to Payment
-        </a>
+          Reschedule
+        </button>
       </form>
+
+      {showSuccessMessage && (
+        <div className="success-message">
+          Reschedule successfully
+        </div>
+      )}
 
       <style jsx>{`
         .appointment-container {
@@ -143,6 +151,14 @@ export default function AddAppointment() {
         }
         .submitBtn:hover {
           background-color: #0d1a3a;
+        }
+        .success-message {
+          margin-top: 20px;
+          padding: 10px 20px;
+          background-color: #d4edda;
+          color: #155724;
+          border: 1px solid #c3e6cb;
+          border-radius: 4px;
         }
       `}</style>
     </div>
