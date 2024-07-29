@@ -90,21 +90,21 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/complaints" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                         <FaRegFrown />
                                         {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/reports" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/ownerReports" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                         <FaChartLine />
                                         {!isCollapsed && <p>Reports & Analytics</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                         <FaBullhorn />
-                                        {!isCollapsed && <p>Site Announcements</p>}
+                                        {!isCollapsed && <p>Upload Video</p>}
                                     </a>
                                 </li>
                             </>
@@ -274,7 +274,7 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/makeAppoinment" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/appoinments" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaCalendarCheck />
                                        {!isCollapsed && <p>Make Appoinment</p>}
                                     </a>
@@ -286,7 +286,7 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/reservationSchedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaRegClipboard />
                                        {!isCollapsed && <p>Reservation Schedule</p>}
                                     </a>
