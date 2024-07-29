@@ -147,6 +147,14 @@ function App() {
                   <Route path="/staffaccounts" element={<StaffAccounts />} />
                   <Route path="/useraccounts" element={<UserAccounts />} />
                   <Route path="/users" element={<UserDashboardLink />} />
+                  <Route path="/ViewReviews" element={<OwnerReviews />} />
+                  <Route path="/customerFeedbackReport" element={<CustomerFeedbackReport />} />
+                  <Route path="/financialReport" element={<FinancialReport />} />
+                  <Route path="/membershipReport" element={<MembershipReport />} />
+                  <Route path="/ownerReports" element={<OwnerReports />} />
+                  <Route path="/video-advertisements" element={<Advertisements />} />
+
+
 
 
 
@@ -237,6 +245,10 @@ function App() {
                   <Route path='/reviews' element={<Reviews/>} />
                   <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
+                  <Route path="/appoinments" element={<Appoinments />} />
+                  <Route path="/schedule" element={<Schedule />}/>
+
+
                 </>
               )}
               {!UserService.isReceptionist() ? (
