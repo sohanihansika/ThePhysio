@@ -1,76 +1,100 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import UserService from '../../service/UserService';
 
-const members = [
-  {
-      avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
-      name: "John lorin",
-      email: "john@example.com"
-  }, {
-      avatar: "https://randomuser.me/api/portraits/men/86.jpg",
-      name: "Chris bondi",
-      email: "chridbondi@example.com"
-  }, {
-      avatar: "https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",
-      name: "yasmine",
-      email: "yasmine@example.com"
-  }, {
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=a72ca28288878f8404a795f39642a46f",
-      name: "Joseph",
-      email: "joseph@example.com"
-  },
-];
+function Appoinments() {
+    const [users, setUsers] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
-export default () => {
-  const [searchQuery, setSearchQuery] = useState('');
+    useEffect(() => {
+        // Fetch users data when the component mounts
+        fetchUsers();
+    }, []);
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const filteredMembers = members.filter(member => 
-    member.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  return (
-    <div className="max-w-2xl mx-auto px-4">
-      <div className="items-start justify-between sm:flex">
-        <form
-          onSubmit={(e) => e.preventDefault()} 
-          className="max-w-md px-4 ml-0 mt-12">
-          <div className="flex items-center space-x-4">
-            <label htmlFor="doctor-name" className="text-sm font-medium text-gray-700">Doctor Name</label>
-            <div className="relative flex-grow">
-              <svg xmlns="http://www.w3.org/2000/svg" className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              <input
-                type="text"
-                id="doctor-name"
-                placeholder="Search"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
-              />
-            </div>
-          </div>
-        </form>   
-      </div>
-      <ul className="mt-12 divide-y">
-        {
-          filteredMembers.map((item, idx) => (
-            <li key={idx} className="py-5 flex items-start justify-between ">
-              <div className="flex gap-3">
-                <img src={item.avatar} className="flex-none w-12 h-12 rounded-full" alt={item.name} />
-                <div>
-                  <span className="block text-sm text-gray-700 font-semibold">{item.name}</span>
-                  <span className="block text-sm text-gray-600">{item.email}</span>
-                </div>
-              </div>
-              <a href="/calender" className="text-white text-sm border rounded-lg px-3 py-2 duration-150 bg-[#051B40] ">View</a>
-            </li>
-          ))
+    useEffect(() => {
+        // Filter users based on the search term
+        if (searchTerm === '') {
+            setFilteredUsers(users);
+        } else {
+            setFilteredUsers(users.filter(user =>
+                user.name.toLowerCase().includes(searchTerm.toLowerCase())
+            ));
         }
-      </ul>
-    </div>
-  );
-};
+    }, [searchTerm, users]);
+
+    const fetchUsers = async () => {
+        try {
+            const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+            const response = await UserService.getAllPhysios(token);
+            setUsers(response.ourUsersList); // Assuming the list of users is under the key 'ourUsersList'
+            setFilteredUsers(response.ourUsersList); // Initialize filteredUsers with the fetched users
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    };
+
+    return (
+        <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-10">
+            <div className="items-start justify-between md:flex">
+                <div className="max-w-lg">
+                    <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
+                        Physio Accounts
+                    </h3>
+                    <p className="text-gray-600 mt-2">
+                        Search for a physiotherapist and make an appointment.
+                    </p>
+                </div>
+            </div>
+            <div className="mt-4 mb-8">
+                <input
+                    type="text"
+                    placeholder="Search by name"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="p-2 border border-gray-300 rounded-lg w-full"
+                />
+            </div>
+            <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
+                <table className="w-full table-auto text-sm text-left">
+                    <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+                        <tr>
+                            <th className="py-3 px-6">Name</th>
+                            <th className="py-3 px-6">Email</th>
+                            <th className="py-3 px-6">Specialty</th>
+                            <th className="py-3 px-6"></th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-gray-600 divide-y">
+                        {filteredUsers.map(user => (
+                            <tr key={user.id}>
+                                <td className="flex items-center gap-x-3 py-3 px-6 whitespace-nowrap">
+                                    <img
+                                        src="https://e7.pngegg.com/pngimages/81/570/png-clipart-profile-logo-computer-icons-user-user-blue-heroes-thumbnail.png"
+                                        className="w-10 h-10 rounded-full"
+                                        alt="User"
+                                    />
+                                    <div>
+                                        <span className="block text-gray-700 text-sm font-medium">{user.name}</span>
+                                        <span className="block text-gray-700 text-xs">{user.email}</span>
+                                    </div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">Specialty Info</td> {/* Placeholder for specialty info */}
+                                <td className="text-right px-6 whitespace-nowrap">
+                                    <button
+                                        onClick={() => window.location.href = `/calender?physioId=${user.id}`}
+                                        className="flex items-center gap-x-2 text-blue-600 p-2 rounded-lg hover:bg-blue-100 hover:text-blue-500 active:bg-blue-200 duration-150 leading-none px-3 font-medium"
+                                    >
+                                        Add Appointment
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+}
+
+export default Appoinments;
