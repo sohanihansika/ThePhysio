@@ -5,7 +5,10 @@ import Service from './service';
 import Contactus from './contactus';
 import OurTeam from './OurTeam';
 import Footer from './footer';
+import GymLanding from './User/dashComponent/GymLanding';
 import PricingPage from './pricingPage';
+import Location from './User/dashComponent/location'
+
 
 const Landingpage = () => {
     const [state, setState] = useState(false);
@@ -119,17 +122,20 @@ const Landingpage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="absolute inset-0 w-full h-full bg-gray-800 opacity-25"></div>
+                <div className="absolute inset-0 w-full h-full bg-gray-900 opacity-25"></div>
             </section>
             
             {/* Include the About Us section here */}
         </div>
-                    <Service />
                     <AboutUs />
+                    <Service />                        
+                    <GymLanding />
                     <PricingPage/>
                     <OurTeam/>
                     <Contactus />
                     <Footer />
+                 
+
                     
 
         </div>

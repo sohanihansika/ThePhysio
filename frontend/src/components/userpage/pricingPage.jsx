@@ -1,97 +1,79 @@
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
+
+// Example data for physiotherapists
+const physiotherapists = [
+  {
+    name: "Dr. Alex Johnson",
+    specialization: "Sports Therapy",
+    hourlyRate: 50,
+  },
+  {
+    name: "Dr. Sarah Lee",
+    specialization: "Orthopedic",
+    hourlyRate: 60,
+  },
+  {
+    name: "Dr. James Smith",
+    specialization: "Pediatric",
+    hourlyRate: 55,
+  },
+];
+
 export default () => {
-
-    const plans = [
-        {
-            name: "Enterprise",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            price: 32,
-            isMostPop: true,
-            features: [
-                "Curabitur faucibus",
-                "massa ut pretium maximus",
-                "Sed posuere nisi",
-                "Pellentesque eu nibh et neque",
-                "Suspendisse a leo",
-                "Praesent quis venenatis ipsum",
-                "Duis non diam vel tortor",
-            ],
-        },
-        {
-            name: "Startup",
-            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            price: 12,
-            isMostPop: false,
-            features: [
-                "Curabitur faucibus",
-                "massa ut pretium maximus",
-                "Sed posuere nisi",
-                "Pellentesque eu nibh et neque",
-                "Suspendisse a leo",
-                "Praesent quis venenatis ipsum",
-                "Duis non diam vel tortor",
-            ],
-        },
-    ];
-
-    return (
-        <section className='relative py-14 bg-gray-900'>
-            <div className='absolute inset-0 blur-[118px] max-w-lg h-[800px] mx-auto sm:max-w-3xl sm:h-[400px]' style={{ background: "linear-gradient(106.89deg, rgba(192, 132, 252, 0.11) 15.73%, rgba(14, 165, 233, 0.41) 15.74%, rgba(232, 121, 249, 0.26) 56.49%, rgba(79, 70, 229, 0.4) 115.91%)" }}></div>
-            <div className="relative max-w-screen-xl mx-auto text-gray-300 sm:px-4 md:px-8">
-                <div className='max-w-xl mx-auto space-y-3 px-4 sm:text-center sm:px-0'>
-                    <h3 className="text-cyan-400 font-semibold">
-                        Pricing
-                    </h3>
-                    <p className='text-white text-3xl font-semibold sm:text-4xl'>
-                        Pay as you grow
-                    </p>
-                    <div className='max-w-xl'>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam efficitur consequat nunc.
-                        </p>
+  return (
+    <section className='py-14'>
+      <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
+        <div className='relative max-w-xl mx-auto sm:text-center'>
+          <h3 className='text-gray-800 text-3xl font-semibold sm:text-4xl'>
+            Our Pricing Plans
+          </h3>
+          <div className='mt-3 max-w-xl'>
+            <p>
+              Choose the right plan based on the expertise of our physiotherapists.
+            </p>
+          </div>
+        </div>
+        <div className='mt-16'>
+          <Swiper
+            spaceBetween={30}
+            slidesPerView={1}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+            className='swiper-container'
+          >
+            {physiotherapists.map((physio, idx) => (
+              <SwiperSlide key={idx}>
+                <div className={`flex flex-col items-stretch h-full rounded-xl border-2 bg-white hover:bg-gray-900 transition duration-300 ease-in-out transform hover:-translate-y-2`}>
+                  <div className="p-8 space-y-4 border-b h-full">
+                    <span className='text-indigo-600 font-medium'>
+                      {physio.specialization}
+                    </span>
+                    <div className='text-gray-800 text-3xl font-semibold'>
+                      ${physio.hourlyRate} <span className="text-xl text-gray-600 font-normal">/hour</span>
                     </div>
+                    <p className="text-gray-800">
+                      Sessions with {physio.name}
+                    </p>
+                    <div className="mt-auto">
+                      <button className='px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-[#172b59] hover:bg-indigo-500 active:bg-indigo-700'>
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className='mt-16 justify-center sm:flex'>
-                    {
-                        plans.map((item, idx) => (
-                            <div key={idx} className={`relative flex-1 flex items-stretch flex-col mt-6 border-2 sm:mt-0 sm:rounded-xl sm:max-w-md ${item.isMostPop ? "bg-gray-900 border-cyan-400 border-x-0 sm:border-x-2" : "border-transparent"}`}>
-                                <div className="p-4 py-8 space-y-4 border-b border-gray-700 md:p-8">
-                                    <span className='text-gray-200 font-medium'>
-                                        {item.name}
-                                    </span>
-                                    <div className='text-cyan-400 text-3xl font-semibold'>
-                                        ${item.price} <span className="text-xl font-normal">/mo</span>
-                                    </div>
-                                    <p className="text-gray-400">
-                                        {item.desc}
-                                    </p>
-                                    <button className='px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-white bg-cyan-500 hover:bg-cyan-600 active:bg-cyan-700'>
-                                        Get Started
-                                    </button>
-                                </div>
-                                <ul className='p-4 py-8 space-y-3 md:p-8'>
-                                    {
-                                        item.features.map((featureItem, idx) => (
-                                            <li key={idx} className='flex items-center gap-5'>
-                                                <svg
-                                                    xmlns='http://www.w3.org/2000/svg'
-                                                    className={`h-5 w-5 ${item.isMostPop ? "text-cyan-600" : ""}`}
-                                                    viewBox='0 0 20 20'
-                                                    fill='currentColor'>
-                                                    <path
-                                                        fill-rule='evenodd'
-                                                        d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-                                                        clip-rule='evenodd'></path>
-                                                </svg>
-                                                {featureItem}
-                                            </li>
-                                        ))
-                                    }
-                                </ul>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-        </section>
-    );
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+    </section>
+  );
 };

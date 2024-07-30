@@ -30,7 +30,7 @@ function Sidebar() {
     const fetchProfileInfo = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await UserService.getYourProfile(token);
+            const response = await UserService.getMyProfile(token);
             setProfileInfo(response.ourUsers);
         } catch (error) {
             console.error('Error fetching profile information:', error);
@@ -38,10 +38,9 @@ function Sidebar() {
     };
 
     const handleLogout = () => {
-        const confirmDelete = window.confirm('Are you sure you want to logout this user?');
+        const confirmDelete = window.confirm('Are you sure you want to logout?');
         if (confirmDelete) {
-            location.href = '/';
-            UserService.logout();
+            UserService.logout(); // Ensure the user is logged out before redirecting
             setIsAuthenticated(false);
             setIsAdmin(false);
             setIsUser(false);
@@ -50,6 +49,7 @@ function Sidebar() {
             setIsPhysio(false);
             setIsManager(false);
             setIsCoach(false);
+            location.href = '/';
         }
     };
 
@@ -65,9 +65,9 @@ function Sidebar() {
                     <a href='/dashboard' className={`flex-none ${isCollapsed ? 'hidden' : ''}`}>
                         <img src="./src/assets/logowithoutback.png" width={isCollapsed ? 50 : 140} className="mx-auto mt-12" />
                     </a>
-                    <button onClick={() => setIsCollapsed(!isCollapsed)} className="text-white focus:outline-none">
+                    {/* <button onClick={() => setIsCollapsed(!isCollapsed)} className="text-white focus:outline-none">
                         <FaBars size={24} color="#ffffff" />
-                    </button>
+                    </button> */}
                 </div>
                 <div className="flex-1 flex flex-col h-full overflow-auto mt-12">
                     <ul className="px-4 text-sm font-medium flex-1">
@@ -319,9 +319,9 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/viewAppointment" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaCalendarCheck />
-                                       {!isCollapsed && <p>Staff</p>}
+                                       {!isCollapsed && <p>Appointment</p>}
                                     </a>
                                 </li>
                                 <li>
@@ -338,13 +338,11 @@ function Sidebar() {
                                 </li>
                             </>
                         )}
-
-
                     </ul>
                     <div>
                         <ul className="px-4 pb-4 text-sm font-medium">
-                        <li>
-                                <a href="/" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                            <li>
+                                <a href="/profile" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                     <CgProfile />
                                     {!isCollapsed && <p>Profile</p>}
                                 </a>

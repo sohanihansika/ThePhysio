@@ -22,16 +22,24 @@ const CalendarComponent = () => {
     setEventTitle(e.target.value);
   };
 
+  const isFutureOrToday = (selectedDate) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return selectedDate >= today;
+  };
+
   return (
     <div className="max-w-md mx-auto mt-10">
       <Calendar onChange={handleDateChange} value={date} />
       <div className="mt-4">
-        
-        <a href ="/timeSlots"
-          className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
-        >
-          View Schedule
-        </a>
+        {isFutureOrToday(date) && (
+          <a
+            href="/timeSlots"
+            className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
+          >
+            View Schedule
+          </a>
+        )}
       </div>
       <ul className="mt-4">
         {events.map((event, idx) => (

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import masterCardIcon from '../../../assets/master.png';
+import visaCardIcon from '../../../assets/visapng.png';
 
 const AddAppointment = () => {
   const navigate = useNavigate();
@@ -7,9 +9,31 @@ const AddAppointment = () => {
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
   const [cardholderName, setCardholderName] = useState('');
+  const [cardType, setCardType] = useState('');
 
   const handlePayment = () => {
     navigate("/popup");
+  };
+
+  const detectCardType = (number) => {
+    const firstDigit = number.charAt(0);
+    if (firstDigit === '4') {
+      setCardType('visa');
+    } else if (firstDigit === '5') {
+      setCardType('master');
+    } else {
+      setCardType('');
+    }
+  };
+
+  const handleCardNumberChange = (e) => {
+    const number = e.target.value;
+    setCardNumber(number);
+    detectCardType(number);
+  };
+
+  const handleCardTypeSelect = (type) => {
+    setCardType(type);
   };
 
   return (
@@ -19,14 +43,40 @@ const AddAppointment = () => {
       <form className="payment-form">
         <div className="form-group">
           <label htmlFor="cardNumber">Card Number</label>
-          <input
-            type="text"
-            id="cardNumber"
-            placeholder="Enter your card number"
-            value={cardNumber}
-            onChange={(e) => setCardNumber(e.target.value)}
-            required
-          />
+          <div className="card-input-wrapper">
+            <input
+              type="text"
+              id="cardNumber"
+              placeholder="Enter your card number"
+              value={cardNumber}
+              onChange={handleCardNumberChange}
+              required
+            />
+            {cardType && (
+              <img
+                src={cardType === 'visa' ? visaCardIcon : masterCardIcon}
+                alt={`${cardType} card`}
+                className="card-icon"
+              />
+            )}
+          </div>
+        </div>
+        <div className="form-group">
+          <label>Card Type</label>
+          <div className="card-type-selector">
+            <img
+              src={visaCardIcon}
+              alt="Visa"
+              className={`card-type-icon ${cardType === 'visa' ? 'selected' : ''}`}
+              onClick={() => handleCardTypeSelect('visa')}
+            />
+            <img
+              src={masterCardIcon}
+              alt="MasterCard"
+              className={`card-type-icon ${cardType === 'master' ? 'selected' : ''}`}
+              onClick={() => handleCardTypeSelect('master')}
+            />
+          </div>
         </div>
         <div className="form-group">
           <label htmlFor="expiryDate">Expiry Date</label>
@@ -98,6 +148,10 @@ const AddAppointment = () => {
           font-weight: bold;
           color: #172b59;
         }
+        .card-input-wrapper {
+          display: flex;
+          align-items: center;
+        }
         input {
           width: 100%;
           padding: 10px;
@@ -109,6 +163,25 @@ const AddAppointment = () => {
         input:focus {
           border-color: #172b59;
           outline: none;
+        }
+        .card-icon {
+          width: 40px;
+          margin-left: 10px;
+        }
+        .card-type-selector {
+          display: flex;
+          justify-content: space-around;
+          margin-top: 10px;
+        }
+        .card-type-icon {
+          width: 50px;
+          cursor: pointer;
+          border: 2px solid transparent;
+          border-radius: 5px;
+          transition: border-color 0.3s;
+        }
+        .card-type-icon.selected {
+          border-color: #172b59;
         }
         .confirm-button {
           padding: 15px;

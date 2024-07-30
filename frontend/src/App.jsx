@@ -14,6 +14,7 @@ import GymLanding from './components/gym/gymlanding';
 import AboutUs from './components/userpage/aboutUs';
 import Service from './components/userpage/service';
 import Profile from './components/userpage/profile';
+import EditProfile from './components/userpage/EditProfile';
 import OurTeam from './components/userpage/OurTeam';
 import PricingPage from './components/userpage/pricingPage';
 import Contactus from './components/userpage/contactus'; 
@@ -25,9 +26,10 @@ import Navbar from "./components/common/Navbar";
 import AdminDashboard from './components/userpage/Admin/AdminDashboard';
 import UserAccounts from './components/userpage/Admin/UserAccounts';
 import StaffAccounts from './components/userpage/Admin/StaffAccounts';
+import StaffUpdate from './components/userpage/Admin/StaffUpdate';
 
 import OwnerDashboard from './components/userpage/Owner/OwnerDashboard';
-import AddEditEmployee from './components/userpage/Owner/AddEditEmployee';
+import EmpUpdate from './components/userpage/Owner/EmpUpdate';
 import CreateAccount from './components/userpage/Owner/CreateAccount';
 import Staff from './components/userpage/Owner/Staff';
 
@@ -73,6 +75,9 @@ import PrescriptionForm from './components/userpage/User/PrescriptionForm';
 import Popup from './components/userpage/User/Popup';
 import PhysioProfile from './components/userpage/User/PhysioProfile';
 
+import Calender3 from './components/userpage/Physio/Calender3';
+
+
 
 import Doctors from './components/userpage/Receptionist/Doctors';
 import Calender from './components/userpage/Receptionist/Calender';
@@ -99,6 +104,18 @@ import CustomerFeedbackReport from './components/userpage/Owner/reports/customer
 import OwnerReports from './components/userpage/Owner/ownerReports';
 
 
+import ViewAppointment from './components/userpage/Manager/ViewAppointment';
+import PastList from './components/userpage/Manager/PastList';
+import FutureList from './components/userpage/Manager/FutureList';
+import Calender2 from './components/userpage/Manager/Calender2';
+import TimeSlots2 from './components/userpage/Manager/TimeSlots2';
+import Appointment2 from './components/userpage/Manager/Appointment2';
+
+
+
+
+
+
 
 function App() {
   return (
@@ -120,8 +137,9 @@ function App() {
         )}
         <div
           className={`content ${
-            UserService.isAuthenticated() ? "w-3/4" : "w-full"
+            UserService.isAuthenticated() ? "custom-width" : "w-full"
           }`}
+          style={{ width: UserService.isAuthenticated() ? 'calc(100vw - 16rem)' : '100vw' }}
         >
           <Routes>
             {!UserService.isAuthenticated() && (
@@ -129,6 +147,8 @@ function App() {
                 <Route path="/" element={<Landingpage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegistrationPage />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/editProfile/:userId" element={<EditProfile />} />
                 <Route path="*" element={<Navigate to="/" />} />
               </>
             )}
@@ -136,10 +156,13 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="/login" element={<Navigate to="/" />} />
               <Route path="/register" element={<Navigate to="/" />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/editProfile/:userId" element={<EditProfile />} />
 
               {!UserService.isAdmin() ? (
                 <>
                   <Route path="/staffaccounts" element={<StaffAccounts />} />
+                  <Route path="/staffUpdate/:userId" element={<StaffUpdate />} />
                   
                 </>
               ) : (
@@ -156,6 +179,8 @@ function App() {
                   <Route path="/video-advertisements" element={<Advertisements />} />
 
 
+                  <Route path="/staffUpdate/:userId" element={<StaffUpdate />} />
+
 
 
 
@@ -164,8 +189,9 @@ function App() {
               )}
               {!UserService.isOwner() ? (
                 <>
-                  <Route path="/empRegister" element={<AddEditEmployee />} />
+                  {/* <Route path="/empRegister" element={<AddEditEmployee />} /> */}
                   <Route path="/createAccount" element={<CreateAccount />} />
+                  <Route path="/empUpdate/:userId" element={<EmpUpdate />} />
                   <Route path="/staff" element={<Staff />} />
                   <Route path="/schedules" element={<Schedules />} />
                   
@@ -173,7 +199,7 @@ function App() {
               ) : (
                 <>
                   <Route path="/dashboard" element={<OwnerDashboard />} />
-                  <Route path="/update-user/:userId" element={<AddEditEmployee />} />
+                  <Route path="/empUpdate/:userId" element={<EmpUpdate />} />
                   <Route path="/createAccount" element={<CreateAccount />} />
                   <Route path="/staff" element={<Staff />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
@@ -220,6 +246,8 @@ function App() {
                   <Route path="/schedule" element={<Schedule />}/>
                   <Route path="/popup" element={<Popup />}/>
                   <Route path="/physioprofile" element={<PhysioProfile />}/>
+                  <Route path="/calendar" element={<Calendar />} />
+
 
                                     
                 </>
@@ -296,6 +324,12 @@ function App() {
               ) : (
                 <>
                   <Route path="/dashboard" element={<ManagerDashboard />}/>
+                  <Route path="/viewAppointment" element={<ViewAppointment />}/>
+                  <Route path="/pastList" element={<PastList />}/>
+                  <Route path="/futureList" element={<FutureList />}/>
+                  <Route path="/calender2" element={<Calender2 />}/>
+                  <Route path="/timeSlots2" element={<TimeSlots2 />}/>
+                  <Route path="/appointment2" element={<Appointment2 />}/>
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
