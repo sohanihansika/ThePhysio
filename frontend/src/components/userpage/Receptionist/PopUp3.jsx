@@ -8,7 +8,7 @@ export default () => {
 
   const handleOkClick = () => {
     setIsOpen(false);
-    navigate("/schedule");
+    navigate("/unpaid");
   };
 
   return (
@@ -32,13 +32,13 @@ export default () => {
               </svg>
             </div>
             <Dialog.Title className="text-lg font-medium text-gray-800 text-center mt-3">
-              Reschedule Successfully Done!
+              Payment Successfully Completed!
             </Dialog.Title>
-            <Dialog.Description className="mt-1 text-sm leading-relaxed text-center text-black">
+            <Dialog.Description className="mt-1 text-sm leading-relaxed text-center text-gray-500">
               Patient name  : Peter <br/>
+              Paid Amount   : 1000Rs <br/>
               Doctor        : Steve <br/>
-              New date      : Steve <br/>
-              New Time      : 10.00-10.30 <br/>
+              Time          : 10.00-10.30 <br/>
             </Dialog.Description>
             <div className="items-center gap-2 mt-3 text-sm sm:flex">
               <Dialog.Close asChild>
