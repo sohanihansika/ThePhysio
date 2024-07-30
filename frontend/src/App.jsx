@@ -83,7 +83,8 @@ import ReadMore1 from './components/userpage/User/GymMember/Readmore1';
 import ReadMore2 from './components/userpage/User/GymMember/ReadMore2';
 import ReadMore3 from './components/userpage/User/GymMember/ReadMore3';
 import ReadMore4 from './components/userpage/User/GymMember/ReadMore4';
-import ReadMore5 from './components/userpage/User/GymMember/ReadMore5';
+import ReadMore5 from './components/userpage/User/GymMember/ReadMore5';import IssuePrescription from './components/userpage/Physio/IssuePrescription';
+
 
 
 import Doctors from './components/userpage/Receptionist/Doctors';
@@ -287,11 +288,16 @@ function App() {
                   <Route path='/makeAppoinment' element={<MakeAppoinmemt/>} />
                   <Route path='/patientReports' element={<PatientReports/>} />
                   <Route path='/reservationSchedule' element={<ReservationSchedule/>} />
-                  <Route path='/reviews' element={<Reviews/>} />
+                  {/* <Route path='/reviews' element={<Reviews/>} /> */}
                   <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                   <Route path="/appoinments" element={<Appoinments />} />
                   <Route path="/schedule" element={<Schedule />}/>
+                  <Route path="/ViewReviews" element={<OwnerReviews />} />
+                  <Route path="/issuePrescription" element={<IssuePrescription />} />
+
+
+
 
 
                 </>
