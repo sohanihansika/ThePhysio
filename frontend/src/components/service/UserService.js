@@ -57,7 +57,7 @@ class UserService{
     static async getAllPhysios(token){
         try{
 
-            const response = await axios.get(`${UserService.BASE_URL}/auth/get-physios`, {
+            const response = await axios.get(`${UserService.BASE_URL}/anyuser/get-physios`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
             return response.data;
@@ -68,10 +68,10 @@ class UserService{
     }
 
     
-    static async getYourProfile(token){
+    static async getMyProfile(token){
         try{
 
-            const response = await axios.get(`${UserService.BASE_URL}/anyuser/get-profile`, {
+            const response = await axios.get(`${UserService.BASE_URL}/anyuser/getMyProfile`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
             return response.data;
@@ -84,7 +84,7 @@ class UserService{
     static async getUserById(userId, token){
         try{
 
-            const response = await axios.get(`${UserService.BASE_URL}/adminowner/get-user/${userId}`, {
+            const response = await axios.get(`${UserService.BASE_URL}/anyuser/get-user/${userId}`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
             return response.data;
@@ -97,7 +97,7 @@ class UserService{
     static async deleteUser(userId, token){
         try{
 
-            const response = await axios.delete(`${UserService.BASE_URL}/admin/delete/${userId}`, {
+            const response = await axios.delete(`${UserService.BASE_URL}/adminowner/delete/${userId}`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
             return response.data;
@@ -110,7 +110,21 @@ class UserService{
     static async updateUser(userId, userData, token){
         try{
 
-            const response = await axios.put(`${UserService.BASE_URL}/adminowner/update/${userId}`, userData,
+            const response = await axios.put(`${UserService.BASE_URL}/anyuser/update/${userId}`, userData,
+            {
+                headers: {Authorization: `Bearer ${token}`}
+            });
+            return response.data;
+            
+        }catch(err){
+            throw err;
+        }
+    }
+
+    static async empUpdate(userId, userData, token){
+        try{
+
+            const response = await axios.put(`${UserService.BASE_URL}/adminowner/empUpdate/${userId}`, userData,
             {
                 headers: {Authorization: `Bearer ${token}`}
             });

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import UserService from '../service/UserService';
-import { FaBars, FaHome,FaPhotoVideo, FaUserTie, FaUsers, FaRegFrown, FaChartLine, FaBullhorn, FaCalendarCheck, FaRegClipboard, FaSignOutAlt } from "react-icons/fa";
+import { FaBars, FaHome,FaPhotoVideo, FaUserTie, FaUsers, FaFileAlt, FaRegFrown, FaChartLine, FaBullhorn, FaCalendarCheck, FaRegClipboard, FaSignOutAlt } from "react-icons/fa";
 import { HiDocumentReport } from "react-icons/hi";
 import { VscPreview } from "react-icons/vsc";
 import { CgGym } from "react-icons/cg";
-import { MdOutlinePayments } from "react-icons/md";
+import { MdOutlinePayments, MdOutlineReviews } from "react-icons/md";
+import { FiStar } from 'react-icons/fi';
+import { FiUpload } from 'react-icons/fi';
 import { CgProfile } from "react-icons/cg";
 
 
@@ -28,7 +30,7 @@ function Sidebar() {
     const fetchProfileInfo = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await UserService.getYourProfile(token);
+            const response = await UserService.getMyProfile(token);
             setProfileInfo(response.ourUsers);
         } catch (error) {
             console.error('Error fetching profile information:', error);
@@ -36,10 +38,9 @@ function Sidebar() {
     };
 
     const handleLogout = () => {
-        const confirmDelete = window.confirm('Are you sure you want to logout this user?');
+        const confirmDelete = window.confirm('Are you sure you want to logout?');
         if (confirmDelete) {
-            location.href = '/';
-            UserService.logout();
+            UserService.logout(); // Ensure the user is logged out before redirecting
             setIsAuthenticated(false);
             setIsAdmin(false);
             setIsUser(false);
@@ -48,6 +49,7 @@ function Sidebar() {
             setIsPhysio(false);
             setIsManager(false);
             setIsCoach(false);
+            location.href = '/';
         }
     };
 
@@ -216,13 +218,13 @@ function Sidebar() {
                                 </li>
                                 <li>
                                     <a href="/ownerReports" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <MdOutlinePayments />
+                                       <FaFileAlt />
                                        {!isCollapsed && <p>Reports</p>}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <MdOutlinePayments />
+                                       <MdOutlineReviews />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
@@ -238,21 +240,21 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/repairvehicles" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/coachAppointment" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaCalendarCheck />
-                                       {!isCollapsed && <p>Assigned Jobs</p>}
+                                       {!isCollapsed && <p>Appointments</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/completedjobs" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <FaRegClipboard />
-                                       {!isCollapsed && <p>Completed Jobs</p>}
+                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       <FiStar />
+                                       {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/vehiclehistory" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <MdOutlinePayments />
-                                       {!isCollapsed && <p>Vehicle History</p>}
+                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       < FiUpload />
+                                       {!isCollapsed && <p>Advertiesments</p>}
                                     </a>
                                 </li>
                             </>
@@ -336,13 +338,11 @@ function Sidebar() {
                                 </li>
                             </>
                         )}
-
-
                     </ul>
                     <div>
                         <ul className="px-4 pb-4 text-sm font-medium">
-                        <li>
-                                <a href="/" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                            <li>
+                                <a href="/profile" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                     <CgProfile />
                                     {!isCollapsed && <p>Profile</p>}
                                 </a>

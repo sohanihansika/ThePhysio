@@ -14,6 +14,7 @@ import GymLanding from './components/gym/gymlanding';
 import AboutUs from './components/userpage/aboutUs';
 import Service from './components/userpage/service';
 import Profile from './components/userpage/profile';
+import EditProfile from './components/userpage/EditProfile';
 import OurTeam from './components/userpage/OurTeam';
 import PricingPage from './components/userpage/pricingPage';
 import Contactus from './components/userpage/contactus'; 
@@ -25,9 +26,10 @@ import Navbar from "./components/common/Navbar";
 import AdminDashboard from './components/userpage/Admin/AdminDashboard';
 import UserAccounts from './components/userpage/Admin/UserAccounts';
 import StaffAccounts from './components/userpage/Admin/StaffAccounts';
+import StaffUpdate from './components/userpage/Admin/StaffUpdate';
 
 import OwnerDashboard from './components/userpage/Owner/OwnerDashboard';
-import AddEditEmployee from './components/userpage/Owner/AddEditEmployee';
+import EmpUpdate from './components/userpage/Owner/EmpUpdate';
 import CreateAccount from './components/userpage/Owner/CreateAccount';
 import Staff from './components/userpage/Owner/Staff';
 
@@ -45,6 +47,7 @@ import UserDashboard from './components/userpage/User/UserDashboard';
 import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
+import GymCoachAppointment from './components/userpage/Coach/GymCoachAppointment';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
 
@@ -119,6 +122,10 @@ import Appointment2 from './components/userpage/Manager/Appointment2';
 
 
 
+
+
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -149,6 +156,8 @@ function App() {
                 <Route path="/" element={<Landingpage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegistrationPage />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/editProfile/:userId" element={<EditProfile />} />
                 <Route path="*" element={<Navigate to="/" />} />
               </>
             )}
@@ -156,10 +165,13 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="/login" element={<Navigate to="/" />} />
               <Route path="/register" element={<Navigate to="/" />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/editProfile/:userId" element={<EditProfile />} />
 
               {!UserService.isAdmin() ? (
                 <>
                   <Route path="/staffaccounts" element={<StaffAccounts />} />
+                  <Route path="/staffUpdate/:userId" element={<StaffUpdate />} />
                   
                 </>
               ) : (
@@ -176,6 +188,8 @@ function App() {
                   <Route path="/video-advertisements" element={<Advertisements />} />
 
 
+                  <Route path="/staffUpdate/:userId" element={<StaffUpdate />} />
+
 
 
 
@@ -184,8 +198,9 @@ function App() {
               )}
               {!UserService.isOwner() ? (
                 <>
-                  <Route path="/empRegister" element={<AddEditEmployee />} />
+                  {/* <Route path="/empRegister" element={<AddEditEmployee />} /> */}
                   <Route path="/createAccount" element={<CreateAccount />} />
+                  <Route path="/empUpdate/:userId" element={<EmpUpdate />} />
                   <Route path="/staff" element={<Staff />} />
                   <Route path="/schedules" element={<Schedules />} />
                   
@@ -193,7 +208,7 @@ function App() {
               ) : (
                 <>
                   <Route path="/dashboard" element={<OwnerDashboard />} />
-                  <Route path="/update-user/:userId" element={<AddEditEmployee />} />
+                  <Route path="/empUpdate/:userId" element={<EmpUpdate />} />
                   <Route path="/createAccount" element={<CreateAccount />} />
                   <Route path="/staff" element={<Staff />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
@@ -314,6 +329,9 @@ function App() {
               ) : (
                 <>
                   <Route path="/dashboard" element={<CoachDashboard />}/>
+                  <Route path="/coachAppointment" element={<GymCoachAppointment />} />
+                  <Route path="/video-advertisements" element={<Advertisements />} />
+                  <Route path="/ViewReviews" element={<OwnerReviews />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
