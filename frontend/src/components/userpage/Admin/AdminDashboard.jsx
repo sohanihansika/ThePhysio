@@ -118,7 +118,7 @@ return (
            <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
             {
                 integrations.map((item, idx) => (
-                    <li key={idx} className="border rounded-2xl bg-blue-100">
+                    <li key={idx} className="border rounded-2xl bg-blue-100 p-3">
                         <div className="flex items-start justify-center p-4">
                             <div className="space-y-2">
                                 <a href={item.path}>
