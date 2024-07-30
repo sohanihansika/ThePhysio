@@ -3,20 +3,11 @@ import React, { useState } from 'react';
 export default function AddAppointment() {
   const [formData, setFormData] = useState({
     name: '',
+    appointmentDate: '',
     appointmentTime: '',
-    age: ''
+    physiotherapist: '',
+    code: ''
   });
-
-  const availableTimeSlots = [
-    "09:00 AM - 09:30 AM",
-    "09:30 AM - 10:00 AM",
-    "10:30 AM - 11:00 AM",
-    "11:00 AM - 11:30 AM",
-    "01:00 PM - 01:30 PM",
-    "01:30 PM - 02:00 PM",
-    "02:30 PM - 03:00 PM",
-    "03:30 PM - 04:00 PM",
-  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,40 +25,56 @@ export default function AddAppointment() {
       <h2>Book an Appointment</h2>
       <form className="appointment-form" onSubmit={handleFormSubmit}>
         <div className="input-field">
-          <label htmlFor="name">Patient Name</label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
             name="name"
             value={formData.name}
-            readOnly
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="input-field">
+          <label htmlFor="appointmentDate">Appointment Date</label>
+          <input
+            type="date"
+            id="appointmentDate"
+            name="appointmentDate"
+            value={formData.appointmentDate}
+            onChange={handleInputChange}
             required
           />
         </div>
         <div className="input-field">
           <label htmlFor="appointmentTime">Appointment Time</label>
-          <select
+          <input
+            type="text"
             id="appointmentTime"
             name="appointmentTime"
             value={formData.appointmentTime}
-            onChange={handleInputChange}
+            readOnly
             required
-          >
-            <option value="">Select a time slot</option>
-            {availableTimeSlots.map((slot) => (
-              <option key={slot} value={slot}>
-                {slot}
-              </option>
-            ))}
-          </select>
+          />
         </div>
         <div className="input-field">
-          <label htmlFor="age">Age</label>
+          <label htmlFor="physiotherapist">Physiotherapist</label>
           <input
             type="text"
-            id="age"
-            name="age"
-            value={formData.age}
+            id="physiotherapist"
+            name="physiotherapist"
+            value={formData.physiotherapist}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="input-field">
+          <label htmlFor="code">Code</label>
+          <input
+            type="text"
+            id="code"
+            name="code"
+            value={formData.code}
             onChange={handleInputChange}
             required
           />
@@ -115,8 +122,7 @@ export default function AddAppointment() {
           margin-bottom: 5px;
           font-weight: bold;
         }
-        .input-field input,
-        .input-field select {
+        .input-field input {
           width: 100%;
           padding: 8px;
           border: 1px solid #ccc;

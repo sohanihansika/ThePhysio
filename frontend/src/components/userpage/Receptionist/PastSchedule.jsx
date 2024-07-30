@@ -33,7 +33,7 @@ const Appointments = () => {
           placeholder="Search by payment status..."
           value={searchQuery}
           onChange={handleSearchChange}
-          className="px-4 py-2 border rounded-md w-full"
+          className="px-4 py-2 border rounded-md"
         />
       </div>
 

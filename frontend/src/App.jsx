@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 import Landingpage from './components/userpage/Landingpage';
 import LoginPage from './components/auth/LoginPage';
@@ -13,10 +15,10 @@ import AboutUs from './components/userpage/aboutUs';
 import Service from './components/userpage/service';
 import Profile from './components/userpage/profile';
 import EditProfile from './components/userpage/EditProfile';
-
-
-
-
+import OurTeam from './components/userpage/OurTeam';
+import PricingPage from './components/userpage/pricingPage';
+import Contactus from './components/userpage/contactus'; 
+import Footer from './components/userpage/footer';
 
 
 import Navbar from "./components/common/Navbar";
@@ -48,7 +50,6 @@ import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
 
-
 import Appoinments from './components/userpage/User/appoinments';
 import PhysioCards from './components/userpage/User/physioCards';
 import Reviewss from './components/userpage/User/reviews';
@@ -69,6 +70,10 @@ import Halfyear from './components/userpage/User/GymMember/HalfYear';
 import FullYear from './components/userpage/User/GymMember/FullYear';
 import Subscription from './components/userpage/User/GymMember/Subscrpition';
 import PlanPayments from './components/userpage/User/GymMember/PlanPayments';
+import PrescriptionForm from './components/userpage/User/PrescriptionForm';
+import Popup from './components/userpage/User/Popup';
+import PhysioProfile from './components/userpage/User/PhysioProfile';
+
 
 import Doctors from './components/userpage/Receptionist/Doctors';
 import Calender from './components/userpage/Receptionist/Calender';
@@ -81,6 +86,27 @@ import Doctors1 from './components/userpage/Receptionist/Doctors1';
 import AddAppointment from './components/userpage/Receptionist/AddAppointment';
 import Payments1 from './components/userpage/Receptionist/Payments1';
 import UnPaid from './components/userpage/Receptionist/UnPaid';
+import TimeSlot from './components/userpage/Receptionist/TimeSlots';
+import TimeSlot1 from './components/userpage/Receptionist/TimeSlots1';
+import Appointment1 from './components/userpage/Receptionist/Appointment1';
+
+
+import Schedules from './components/userpage/Owner/schedules';
+import Advertisements from './components/userpage/Owner/videoAdvertisements';
+import OwnerReviews from './components/userpage/Owner/viewReviews';
+import FinancialReport from './components/userpage/Owner/reports/financialReport';
+import MembershipReport from './components/userpage/Owner/reports/membershipReoprt';
+import CustomerFeedbackReport from './components/userpage/Owner/reports/customerFeedbackReport';
+import OwnerReports from './components/userpage/Owner/ownerReports';
+
+
+import ViewAppointment from './components/userpage/Manager/ViewAppointment';
+import PastList from './components/userpage/Manager/PastList';
+import FutureList from './components/userpage/Manager/FutureList';
+import Calender2 from './components/userpage/Manager/Calender2';
+import TimeSlots2 from './components/userpage/Manager/TimeSlots2';
+import Appointment2 from './components/userpage/Manager/Appointment2';
+
 
 
 
@@ -107,8 +133,9 @@ function App() {
         )}
         <div
           className={`content ${
-            UserService.isAuthenticated() ? "w-3/4" : "w-full"
+            UserService.isAuthenticated() ? "custom-width" : "w-full"
           }`}
+          style={{ width: UserService.isAuthenticated() ? 'calc(100vw - 16rem)' : '100vw' }}
         >
           <Routes>
             {!UserService.isAuthenticated() && (
@@ -140,6 +167,14 @@ function App() {
                   <Route path="/staffaccounts" element={<StaffAccounts />} />
                   <Route path="/useraccounts" element={<UserAccounts />} />
                   <Route path="/users" element={<UserDashboardLink />} />
+                  <Route path="/ViewReviews" element={<OwnerReviews />} />
+                  <Route path="/customerFeedbackReport" element={<CustomerFeedbackReport />} />
+                  <Route path="/financialReport" element={<FinancialReport />} />
+                  <Route path="/membershipReport" element={<MembershipReport />} />
+                  <Route path="/ownerReports" element={<OwnerReports />} />
+                  <Route path="/video-advertisements" element={<Advertisements />} />
+
+
                   <Route path="/staffUpdate/:userId" element={<StaffUpdate />} />
 
 
@@ -154,7 +189,8 @@ function App() {
                   <Route path="/createAccount" element={<CreateAccount />} />
                   <Route path="/empUpdate/:userId" element={<EmpUpdate />} />
                   <Route path="/staff" element={<Staff />} />
-
+                  <Route path="/schedules" element={<Schedules />} />
+                  
                 </>
               ) : (
                 <>
@@ -163,6 +199,15 @@ function App() {
                   <Route path="/createAccount" element={<CreateAccount />} />
                   <Route path="/staff" element={<Staff />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
+                  <Route path="/schedules" element={<Schedules />} />
+                  <Route path="/video-advertisements" element={<Advertisements />} />
+                  <Route path="/ViewReviews" element={<OwnerReviews />} />
+                  <Route path="/customerFeedbackReport" element={<CustomerFeedbackReport />} />
+                  <Route path="/financialReport" element={<FinancialReport />} />
+                  <Route path="/membershipReport" element={<MembershipReport />} />
+                  <Route path="/ownerReports" element={<OwnerReports />} />
+                  
+
                 </>
               )}
               {!UserService.isUser() ? (
@@ -193,6 +238,12 @@ function App() {
                   <Route path="/fullyear" element={<FullYear />} />
                   <Route path="/subscription" element={<Subscription />} />
                   <Route path="/planPayments" element={<PlanPayments />} />
+                  <Route path="/prescriptionForm" element={<PrescriptionForm />} />
+                  <Route path="/schedule" element={<Schedule />}/>
+                  <Route path="/popup" element={<Popup />}/>
+                  <Route path="/physioprofile" element={<PhysioProfile />}/>
+                  
+
                                     
                 </>
               )}
@@ -218,6 +269,10 @@ function App() {
                   <Route path='/reviews' element={<Reviews/>} />
                   <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
+                  <Route path="/appoinments" element={<Appoinments />} />
+                  <Route path="/schedule" element={<Schedule />}/>
+
+
                 </>
               )}
               {!UserService.isReceptionist() ? (
@@ -238,6 +293,9 @@ function App() {
                   <Route path="/appointment" element={<AddAppointment />}/>
                   <Route path="/payments1" element={<Payments1 />}/>
                   <Route path="/unpaid" element={<UnPaid />} />
+                  <Route path="/timeSlots" element={<TimeSlot />} />
+                  <Route path="/timeSlots1" element={<TimeSlot1 />} />
+                  <Route path="/appointment1" element={<Appointment1 />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
@@ -258,6 +316,12 @@ function App() {
               ) : (
                 <>
                   <Route path="/dashboard" element={<ManagerDashboard />}/>
+                  <Route path="/viewAppointment" element={<ViewAppointment />}/>
+                  <Route path="/pastList" element={<PastList />}/>
+                  <Route path="/futureList" element={<FutureList />}/>
+                  <Route path="/calender2" element={<Calender2 />}/>
+                  <Route path="/timeSlots2" element={<TimeSlots2 />}/>
+                  <Route path="/appointment2" element={<Appointment2 />}/>
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

@@ -5,9 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8ddf262-e948-48b0-853d-7b540bcac4b7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/ThePhysioApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/ThePhysioApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/CorsConfig$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/CorsConfig$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/CorsConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/CorsConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/JWTAuthFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/JWTAuthFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/controller/VideoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/controller/VideoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/dto/VideoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/dto/VideoDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/entity/Video.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/entity/Video.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/exception/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/exception/ResourceNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/repository/VideoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/repository/VideoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/JWTUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/JWTUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/OurUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/OurUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/VideoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/VideoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/impl/VideoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/impl/VideoServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +61,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/HP/Desktop/virajith/New folder/Backend/driveaze"
+    "last_opened_file_path": "D:/ThePhysio"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

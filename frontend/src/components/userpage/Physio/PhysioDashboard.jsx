@@ -1,9 +1,48 @@
 import React from 'react'
 
-const PhysioDashboard = () => {
-  return (
-    <div>PhysioDashboard</div>
-  )
+import DashboardCards from './DashboardCards';
+// import Calender1 from '../userpage/Receptionist/Calender1';
+
+
+
+
+const FeaturesSection = () => {
+    return (
+        <section className="py-28" style={{ background: "linear-gradient(152.92deg, rgba(192, 132, 252, 0.2) 4.54%, rgba(232, 121, 249, 0.17) 34.2%, rgba(192, 132, 252, 0.1) 77.55%)" }}>
+            <div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
+                <div className="max-w-xl space-y-3 md:mx-auto">
+                    <h3 className="text-indigo-600 font-semibold">
+                        Other feature have us
+                    </h3>
+                    {/* <p className="text-gray-800 text-3xl font-semibold sm:text-4xl">
+                        Exercise is the key to a <span className= "text-blue-800 font-semibold">Healthy</span> LifeStyle
+                    </p> */}
+                    <p className="text-gray-800 text-3xl font-semibold sm:text-4xl">
+                        The Physio<span className= "text-blue-800 font-semibold"> Gym</span> 
+                    </p>
+                    <p className="text-gray-600">
+                    Exercise is the key to a Healthy LifeStyle</p>
+                </div>
+                <div className="mt-4">
+                    <a href="javascript:void(0)" className="inline-block py-2 px-4 text-white font-medium bg-gray-800 duration-150 hover:bg-gray-700 active:bg-gray-900 rounded-lg shadow-md hover:shadow-none">
+                        Join Us
+                    </a>
+                </div>
+            </div>
+        </section>
+    )
 }
 
-export default PhysioDashboard
+const MainComponent = () => {
+    return (
+      <div>
+        
+    
+        <DashboardCards/> 
+        <FeaturesSection />
+      </div>
+    );
+  };
+  
+  export default MainComponent;
+  
