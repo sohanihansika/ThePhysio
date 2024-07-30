@@ -292,7 +292,7 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/reviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/ viewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <VscPreview />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
@@ -300,7 +300,7 @@ function Sidebar() {
                                 <li>
                                     <a href="/uploadVideos" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaPhotoVideo />
-                                       {!isCollapsed && <p>Upload Videos</p>}
+                                       {!isCollapsed && <p>Advertisement</p>}
                                     </a>
                                 </li>
                                 

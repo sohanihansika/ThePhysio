@@ -75,6 +75,7 @@ import Popup from './components/userpage/User/Popup';
 import PhysioProfile from './components/userpage/User/PhysioProfile';
 
 import Calender3 from './components/userpage/Physio/Calender3';
+import IssuePrescription from './components/userpage/Physio/IssuePrescription';
 
 
 
@@ -270,11 +271,16 @@ function App() {
                   <Route path='/makeAppoinment' element={<MakeAppoinmemt/>} />
                   <Route path='/patientReports' element={<PatientReports/>} />
                   <Route path='/reservationSchedule' element={<ReservationSchedule/>} />
-                  <Route path='/reviews' element={<Reviews/>} />
+                  {/* <Route path='/reviews' element={<Reviews/>} /> */}
                   <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                   <Route path="/appoinments" element={<Appoinments />} />
                   <Route path="/schedule" element={<Schedule />}/>
+                  <Route path="/ViewReviews" element={<OwnerReviews />} />
+                  <Route path="/issuePrescription" element={<IssuePrescription />} />
+
+
+
 
 
                 </>
