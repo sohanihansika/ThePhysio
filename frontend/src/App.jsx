@@ -71,6 +71,16 @@ import PlanPayments from './components/userpage/User/GymMember/PlanPayments';
 import PrescriptionForm from './components/userpage/User/PrescriptionForm';
 import Popup from './components/userpage/User/Popup';
 import PhysioProfile from './components/userpage/User/PhysioProfile';
+import ReadMore from './components/userpage/User/GymMember/ReadMore';
+import SubscriptionForm from './components/userpage/User/GymMember/SubscriptionForm';
+import Payment2 from './components/userpage/User/GymMember/Payment2';
+import PopUp1 from './components/userpage/User/GymMember/PopUp1';
+
+import ReadMore1 from './components/userpage/User/GymMember/Readmore1';
+import ReadMore2 from './components/userpage/User/GymMember/ReadMore2';
+import ReadMore3 from './components/userpage/User/GymMember/ReadMore3';
+import ReadMore4 from './components/userpage/User/GymMember/ReadMore4';
+import ReadMore5 from './components/userpage/User/GymMember/ReadMore5';
 
 
 import Doctors from './components/userpage/Receptionist/Doctors';
@@ -87,6 +97,8 @@ import UnPaid from './components/userpage/Receptionist/UnPaid';
 import TimeSlot from './components/userpage/Receptionist/TimeSlots';
 import TimeSlot1 from './components/userpage/Receptionist/TimeSlots1';
 import Appointment1 from './components/userpage/Receptionist/Appointment1';
+import PopUp2 from './components/userpage/Receptionist/PopUp2';
+import PopUp3 from './components/userpage/Receptionist/PopUp3';
 
 
 import Schedules from './components/userpage/Owner/schedules';
@@ -228,7 +240,15 @@ function App() {
                   <Route path="/schedule" element={<Schedule />}/>
                   <Route path="/popup" element={<Popup />}/>
                   <Route path="/physioprofile" element={<PhysioProfile />}/>
-                  
+                  <Route path="/readmore" element={<ReadMore />}/>
+                  <Route path="/subscriptionForm" element={<SubscriptionForm />}/>
+                  <Route path="/payment2" element={<Payment2 />}/>
+                  <Route path="/popup1" element={<PopUp1 />}/>
+                  <Route path="/readmore1" element={<ReadMore1 />}/>
+                  <Route path="/readmore2" element={<ReadMore2 />}/>
+                  <Route path="/readmore3" element={<ReadMore3 />}/>
+                  <Route path="/readmore4" element={<ReadMore4 />}/>
+                  <Route path="/readmore5" element={<ReadMore5 />}/>
 
                                     
                 </>
@@ -282,6 +302,8 @@ function App() {
                   <Route path="/timeSlots" element={<TimeSlot />} />
                   <Route path="/timeSlots1" element={<TimeSlot1 />} />
                   <Route path="/appointment1" element={<Appointment1 />} />
+                  <Route path="/popup2" element={<PopUp2 />} />
+                  <Route path="/popup3" element={<PopUp3 />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

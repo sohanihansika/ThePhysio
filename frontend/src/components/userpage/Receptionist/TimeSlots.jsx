@@ -22,7 +22,7 @@ const TimeSlots = () => {
 
   const handleSlotClick = (slot) => {
     if (!redSlots.includes(slot)) {
-      navigate('/appointment');
+      navigate('/payments');
     }
   };
 
@@ -46,7 +46,7 @@ const TimeSlots = () => {
       <div className="legend">
         <div className="legend-item">
           <div className="color-box red"></div>
-          <span>Not available</span>
+          <span>Reserved</span>
         </div>
         <div className="legend-item">
           <div className="color-box blue"></div>
