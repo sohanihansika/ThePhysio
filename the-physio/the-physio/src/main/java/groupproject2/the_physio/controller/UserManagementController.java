@@ -40,32 +40,37 @@ public class UserManagementController {
         return ResponseEntity.ok(userManagementService.getAllUsers());
     }
 
-    @GetMapping("/auth/get-physios")
+    @GetMapping("/anyuser/get-physios")
     public ResponseEntity<ReqRes> getPhysios() {
         return ResponseEntity.ok(userManagementService.findAllPhysios());
     }
 
 
-    @GetMapping("/adminowner/get-users/{userId}")
+    @GetMapping("/anyuser/get-user/{userId}")
     public ResponseEntity<ReqRes> getUserById(@PathVariable Integer userId) {
         return ResponseEntity.ok(userManagementService.getUsersById(userId));
     }
 
-    @PutMapping("/adminowner/update/{userId}")
+    @PutMapping("/anyuser/update/{userId}")
     public ResponseEntity<ReqRes> updateUser(@PathVariable Integer userId, @RequestBody OurUsers reqres) {
         return ResponseEntity.ok(userManagementService.updateUser(userId, reqres));
     }
 
-    @GetMapping("/anyuser/get-profile")
+    @GetMapping("/anyuser/getMyProfile")
     public ResponseEntity<ReqRes> getMyProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
-        ReqRes response = userManagementService.getMyInfo(email);
+        ReqRes response = userManagementService.getMyProfile(email);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
-    @DeleteMapping("/admin/delete/{userId}")
+    @DeleteMapping("/adminowner/delete/{userId}")
     public ResponseEntity<ReqRes> deleteUser(@PathVariable Integer userId) {
         return ResponseEntity.ok(userManagementService.deleteUser(userId));
+    }
+
+    @PutMapping("/adminowner/empUpdate/{userId}")
+    public ResponseEntity<ReqRes> empUpdate(@PathVariable Integer userId, @RequestBody OurUsers reqres) {
+        return ResponseEntity.ok(userManagementService.empUpdate(userId, reqres));
     }
 }
