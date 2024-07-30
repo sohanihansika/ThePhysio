@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
+import { FaFilePdf, FaCalendarAlt, FaChartBar, FaFileAlt, FaUsers, FaComments } from 'react-icons/fa';
 
 const dummyData = {
   customerFeedback: [
@@ -127,29 +128,39 @@ const ReportSelector = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start bg-white pt-12">
-      <div className="w-full relative">
-        <h1 className="text-3xl font-bold mb-4 text-black ml-[4%]">Generate Reports</h1> {/* Adjusted margin-left */}
+    
+    <div className="relative min-h-screen flex flex-col items-center justify-start pt-12 bg-fixed bg-cover bg-center "
+      style={{ 
+        backgroundImage: "url('./src/assets/GymPlans/physiotherapist.jpg')" 
+      }}
+    >
+
+      <div className="w-full relative mb-8">
+        <h1 className="text-3xl font-bold mb-4 text-black">
+          Generate Reports
+        </h1>
       </div>
-      <div className="container p-12 bg-gray-100 shadow-lg rounded-lg w-full md:w-3/4 lg:w-1/2">
-        <div className="flex flex-col items-center mb-4">
+
+      <div className="container p-12 border-gray-100 shadow-lg rounded-lg w-full md:w-3/4 lg:w-1/2 bg-white bg-opacity-70">
+        <div className="flex flex-col items-start mb-4">
+          <label className="text-gray-700 mb-1"><FaFileAlt className="inline-block mr-2" /> Report Type:</label>
           <select
             value={selectedReport}
             onChange={handleReportChange}
             className="border border-gray-300 p-3 rounded-md mb-4 w-full"
           >
-            <option value="customerFeedback">Customer Feedback Reports</option>
-            <option value="membership">Membership Reports</option>
-            <option value="financial">Financial Reports</option>
+            <option value="customerFeedback"><FaComments className="inline-block mr-2" /> Customer Feedback Reports</option>
+            <option value="membership"><FaUsers className="inline-block mr-2" /> Membership Reports</option>
+            <option value="financial"><FaChartBar className="inline-block mr-2" /> Financial Reports</option>
           </select>
-          <label className="text-gray-700 mb-1">Start Date:</label>
+          <label className="text-gray-700 mb-1"><FaCalendarAlt className="inline-block mr-2" /> Start Date:</label>
           <input
             type="date"
             value={startDate}
             onChange={handleStartDateChange}
             className="border border-gray-300 p-3 rounded-md mb-4 w-full"
           />
-          <label className="text-gray-700 mb-1">End Date:</label>
+          <label className="text-gray-700 mb-1"><FaCalendarAlt className="inline-block mr-2" /> End Date:</label>
           <input
             type="date"
             value={endDate}
@@ -159,10 +170,10 @@ const ReportSelector = () => {
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <button
             onClick={handleGenerateReport}
-            className="bg-[#000099] text-white p-3 rounded-md hover:bg-[#00007f] w-full"
+            className="bg-[#000099] text-white p-3 rounded-md hover:bg-[#00007f] w-full flex items-center justify-center"
             disabled={!!error}
           >
-            Generate Report
+            <FaFilePdf className="mr-2" /> Generate Report
           </button>
         </div>
       </div>
@@ -173,6 +184,7 @@ const ReportSelector = () => {
             src={pdfPreview}
             style={{ width: '100%', height: '600px' }}
             title="PDF Preview"
+            className="border border-white rounded-md shadow-md"
           />
         </div>
       )}

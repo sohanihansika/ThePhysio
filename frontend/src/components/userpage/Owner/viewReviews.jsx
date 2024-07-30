@@ -145,31 +145,33 @@ const Reviews = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 mt-8"> {/* Added mt-8 for margin-top */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4 text-[#000000]">Customer Reviews</h1>
-        <div className="flex mb-4">
-          <select
-            value={reviewType}
-            onChange={(e) => setReviewType(e.target.value)}
-            className="border border-gray-300 p-2 rounded-l-md mr-0"
-            style={{ width: '200px' }} // Adjust the width as needed
-          >
-            <option value="all">All Reviews</option>
-            <option value="physiotherapist">Physiotherapist</option>
-            <option value="gymCoach">Gym Coach</option>
-            <option value="company">Company</option>
-          </select>
-          <input
-            type="text"
-            placeholder="Type name here..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="border border-gray-300 p-2 rounded-r-md mr-2"
-          />
-          <button onClick={handleShowAll} className="bg-[#000099] text-white p-2 rounded-md hover:bg-[#00007f]">
-            Show All
-          </button>
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-[#000000]">Customer Reviews</h1>
+          <div className="flex items-center">
+            <select
+              value={reviewType}
+              onChange={(e) => setReviewType(e.target.value)}
+              className="border border-gray-300 p-2 rounded-l-md mr-0"
+              style={{ width: '200px' }} // Adjust the width as needed
+            >
+              <option value="all">All Reviews</option>
+              <option value="physiotherapist">Physiotherapist</option>
+              <option value="gymCoach">Gym Coach</option>
+              <option value="company">Company</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Type name here..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="border border-gray-300 p-2 rounded-r-md ml-2"
+            />
+            {/* <button onClick={handleShowAll} className="bg-[#000099] text-white p-2 rounded-md hover:bg-[#00007f]">
+              Show All
+            </button> */}
+          </div>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-4">

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { FaUpload, FaFileVideo } from 'react-icons/fa';
 
 // Dummy video URLs
 const dummyVideos = [
-  'https://www.w3schools.com/html/mov_bbb.mp4',
-  'https://www.w3schools.com/html/movie.mp4',
-  'https://www.sample-videos.com/video123/mp4/480/asdasdas.mp4'
+  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid3.mp4',
+  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid2.mp4',
+  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid1.mp4'
 ];
 
 const initialAdvertisements = [
@@ -38,36 +39,7 @@ const initialAdvertisements = [
     url: dummyVideos[1],
     description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
   },
-  {
-    id: 6,
-    title: 'Product Demo 1',
-    url: dummyVideos[2],
-    description: 'Watch this demo of our latest product features and functionalities.'
-  },
-  {
-    id: 7,
-    title: 'Holiday Special',
-    url: dummyVideos[0],
-    description: 'Celebrate the holidays with our special offers and festive events.'
-  },
-  {
-    id: 8,
-    title: 'Client Feedback',
-    url: dummyVideos[1],
-    description: 'See what our clients have to say about their experience with us.'
-  },
-  {
-    id: 9,
-    title: 'Summer Event',
-    url: dummyVideos[2],
-    description: 'Check out the highlights from our exciting summer event.'
-  },
-  {
-    id: 10,
-    title: 'Product Launch',
-    url: dummyVideos[0],
-    description: 'Get an overview of our latest product launch and its key features.'
-  },
+
 ];
 
 const truncateTitle = (title) => {
@@ -131,19 +103,19 @@ const Advertisements = () => {
         onChange={handleFileChange}
         className="hidden"
         id="uploadButton"
-        
       />
       <label
-        htmlFor="uploadButton"
-        className="absolute top-4 right-4 bg-[#000099] text-white p-2 rounded-md cursor-pointer"
-      >
-        Upload a Video
-      </label>
+      htmlFor="uploadButton"
+      className="absolute top-4 right-4 bg-[#000099] text-white p-2 rounded-md cursor-pointer flex items-center"
+    >
+      <FaFileVideo className="mr-2" />
+      New
+    </label>
 
       <div className="absolute top-0 left-0 p-4">
-          <h1 className="text-3xl font-bold">Advertisements</h1>
-        </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-16">
+        <h1 className="text-3xl font-bold">Advertisements</h1>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-16">
         {ads.map((ad) => (
           <div key={ad.id} className="bg-gray-100 shadow-md rounded-md p-4 flex flex-col">
             {editingAdId === ad.id ? (
