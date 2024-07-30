@@ -74,6 +74,9 @@ import PrescriptionForm from './components/userpage/User/PrescriptionForm';
 import Popup from './components/userpage/User/Popup';
 import PhysioProfile from './components/userpage/User/PhysioProfile';
 
+import Calender3 from './components/userpage/Physio/Calender3';
+
+
 
 import Doctors from './components/userpage/Receptionist/Doctors';
 import Calender from './components/userpage/Receptionist/Calender';
@@ -242,7 +245,8 @@ function App() {
                   <Route path="/schedule" element={<Schedule />}/>
                   <Route path="/popup" element={<Popup />}/>
                   <Route path="/physioprofile" element={<PhysioProfile />}/>
-                  
+                  <Route path="/calendar" element={<Calendar />} />
+
 
                                     
                 </>
