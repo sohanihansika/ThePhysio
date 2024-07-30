@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import UserService from '../service/UserService';
-import { FaBars, FaHome,FaPhotoVideo, FaUserTie, FaUsers, FaRegFrown, FaChartLine, FaBullhorn, FaCalendarCheck, FaRegClipboard, FaSignOutAlt } from "react-icons/fa";
+import { FaBars, FaHome,FaPhotoVideo, FaUserTie, FaUsers, FaFileAlt, FaRegFrown, FaChartLine, FaBullhorn, FaCalendarCheck, FaRegClipboard, FaSignOutAlt } from "react-icons/fa";
 import { HiDocumentReport } from "react-icons/hi";
 import { VscPreview } from "react-icons/vsc";
 import { CgGym } from "react-icons/cg";
-import { MdOutlinePayments } from "react-icons/md";
+import { MdOutlinePayments, MdOutlineReviews } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 
 
@@ -216,13 +216,13 @@ function Sidebar() {
                                 </li>
                                 <li>
                                     <a href="/ownerReports" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <MdOutlinePayments />
+                                       <FaFileAlt />
                                        {!isCollapsed && <p>Reports</p>}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <MdOutlinePayments />
+                                       <MdOutlineReviews />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
