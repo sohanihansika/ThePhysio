@@ -47,6 +47,7 @@ import UserDashboard from './components/userpage/User/UserDashboard';
 import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
+import GymCoachAppointment from './components/userpage/Coach/GymCoachAppointment';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
 
@@ -310,6 +311,9 @@ function App() {
               ) : (
                 <>
                   <Route path="/dashboard" element={<CoachDashboard />}/>
+                  <Route path="/coachAppointment" element={<GymCoachAppointment />} />
+                  <Route path="/video-advertisements" element={<Advertisements />} />
+                  <Route path="/ViewReviews" element={<OwnerReviews />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
