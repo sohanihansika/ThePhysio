@@ -1,166 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { useNavigate } from "react-router-dom";
 
-export default function AddAppointment() {
-  const [formData, setFormData] = useState({
-    name: '',
-    appointmentDate: '',
-    appointmentTime: '',
-    physiotherapist: '',
-    code: ''
-  });
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+export default () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted", formData);
-    setShowSuccessMessage(true);
-    setTimeout(() => setShowSuccessMessage(false), 3000); // Hide message after 3 seconds
-    // Add logic for form submission and payment
+  const handleOkClick = () => {
+    setIsOpen(false);
+    navigate("/schedule");
   };
 
   return (
-    <div className="appointment-container">
-      <h2>Reschedule Appointment</h2>
-      <form className="appointment-form" onSubmit={handleFormSubmit}>
-        <div className="input-field">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="appointmentDate">Appointment Date</label>
-          <input
-            type="date"
-            id="appointmentDate"
-            name="appointmentDate"
-            value={formData.appointmentDate}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="appointmentTime">Appointment Time</label>
-          <input
-            type="text"
-            id="appointmentTime"
-            name="appointmentTime"
-            value={formData.appointmentTime}
-            readOnly
-            required
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="physiotherapist">Physiotherapist</label>
-          <input
-            type="text"
-            id="physiotherapist"
-            name="physiotherapist"
-            value={formData.physiotherapist}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="code">Code</label>
-          <input
-            type="text"
-            id="code"
-            name="code"
-            value={formData.code}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <button
-          className="submitBtn"
-        >
-          Reschedule
-        </button>
-      </form>
-
-      {showSuccessMessage && (
-        <div className="success-message">
-          Reschedule successfully
-        </div>
-      )}
-
-      <style jsx>{`
-        .appointment-container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          min-height: 100vh;
-          background-color: #f4f4f4;
-          padding: 20px;
-        }
-        .appointment-form {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 100%;
-          max-width: 500px;
-          background-color: #fff;
-          padding: 20px;
-          border-radius: 8px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-          font-size: 2em;
-          color: #172b59;
-          margin-bottom: 20px;
-        }
-        .input-field {
-          margin-bottom: 15px;
-          width: 100%;
-        }
-        .input-field label {
-          display: block;
-          margin-bottom: 5px;
-          font-weight: bold;
-        }
-        .input-field input {
-          width: 100%;
-          padding: 8px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-        }
-        .submitBtn {
-          margin-top: 20px;
-          padding: 10px 20px;
-          border: none;
-          border-radius: 4px;
-          background-color: #172b59;
-          color: white;
-          cursor: pointer;
-          font-size: 16px;
-          transition: background-color 0.3s ease;
-          text-decoration: none;
-          text-align: center;
-        }
-        .submitBtn:hover {
-          background-color: #0d1a3a;
-        }
-        .success-message {
-          margin-top: 20px;
-          padding: 10px 20px;
-          background-color: #d4edda;
-          color: #155724;
-          border: 1px solid #c3e6cb;
-          border-radius: 4px;
-        }
-      `}</style>
-    </div>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 w-full h-full bg-black opacity-40" />
+        <Dialog.Content className="fixed top-[50%] left-[60%] translate-x-[-60%] translate-y-[-50%] w-full max-w-lg mx-auto px-4">
+          <div className="bg-white rounded-md shadow-lg px-4 py-6">
+            <div className="flex items-center justify-center w-12 h-12 mx-auto bg-green-100 rounded-full">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5 text-green-600"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <Dialog.Title className="text-lg font-medium text-gray-800 text-center mt-3">
+              Reschedule Successfully Done!
+            </Dialog.Title>
+            <Dialog.Description className="mt-1 text-sm leading-relaxed text-center text-black">
+              Patient name  : Peter <br/>
+              Doctor        : Steve <br/>
+              New date      : Steve <br/>
+              New Time      : 10.00-10.30 <br/>
+            </Dialog.Description>
+            <div className="items-center gap-2 mt-3 text-sm sm:flex">
+              <Dialog.Close asChild>
+                <button
+                  onClick={handleOkClick}
+                  className="w-full mt-2 p-2.5 flex-1 text-white bg-[#172b59] rounded-md outline-none ring-offset-2 ring-[#172b59] focus:ring-2"
+                >
+                  OK
+                </button>
+              </Dialog.Close>
+            </div>
+          </div>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
-}
+};

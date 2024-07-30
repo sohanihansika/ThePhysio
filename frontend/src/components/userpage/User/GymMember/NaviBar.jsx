@@ -7,7 +7,7 @@ const GymHero = () => {
   return (
     <div className="relative bg-white text-black max-w-full">
       {/* Navigation Bar */}
-      <nav className="flex justify-between items-center py-6 px-4 md:px-8 max-w-8xl mx-auto w-full bg-[#d24e01] text-white ">
+      <nav className="flex justify-between items-center py-6 px-4 md:px-8 max-w-8xl mx-auto w-full bg-[#051B40] text-white ">
         <div className="text-2xl font-bold">GymName</div>
         <ul className="flex space-x-4">
           <li><a href="#home" className="hover:text-gray-400">Home</a></li>
@@ -23,7 +23,7 @@ const GymHero = () => {
         <div className="relative flex flex-col items-center justify-center h-full text-center px-4 md:px-8 text-white">
           <h1 className="text-4xl md:text-6xl font-bold">Welcome to Our Gym</h1>
           <p className="mt-4 text-xl md:text-2xl">Your journey to a better you starts here</p>
-          <a href="#services" className="mt-6 px-6 py-3 bg-[#d24e01] text-white rounded-lg text-lg">Get Started</a>
+          <a href="#services" className="mt-6 px-6 py-3 bg-[#051B40] text-white rounded-lg text-lg">Get Started</a>
         </div>
       </div>
       

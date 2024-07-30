@@ -1,7 +1,45 @@
 import React, { useState } from 'react';
+import { FaUpload, FaFileVideo } from 'react-icons/fa';
+
+// Dummy video URLs
+const dummyVideos = [
+  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid3.mp4',
+  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid2.mp4',
+  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid1.mp4'
+];
 
 const initialAdvertisements = [
-  // Your initial data here
+  {
+    id: 1,
+    title: 'New Product',
+    url: dummyVideos[0],
+    description: 'Check out our exciting new product launch video. Don’t miss out on the latest updates!'
+  },
+  {
+    id: 2,
+    title: 'Summer Sale',
+    url: dummyVideos[1],
+    description: 'Get ready for our summer sale with huge discounts on all items. Watch the video to know more.'
+  },
+  {
+    id: 3,
+    title: 'Customer Special',
+    url: dummyVideos[2],
+    description: 'Hear what our customers have to say about their experience with our services. Their satisfaction is our priority.'
+  },
+  {
+    id: 4,
+    title: 'New Celebration',
+    url: dummyVideos[0],
+    description: 'Join us in celebrating the new year with amazing offers and events. Watch the video to find out more!'
+  },
+  {
+    id: 5,
+    title: 'Behind the Scenes',
+    url: dummyVideos[1],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+  },
+
 ];
 
 const truncateTitle = (title) => {
@@ -28,7 +66,10 @@ const Advertisements = () => {
   };
 
   const handleDeleteAd = (id) => {
-    setAds(ads.filter((ad) => ad.id !== id));
+    const confirmDelete = window.confirm('Are you sure you want to delete this advertisement?');
+    if (confirmDelete) {
+      setAds(ads.filter((ad) => ad.id !== id));
+    }
   };
 
   const handleFileChange = (e) => {
@@ -41,33 +82,44 @@ const Advertisements = () => {
         url: newVideoUrl,
         description: 'Description pending...'
       };
-      setAds([newAd, ...ads]); // Prepend the new video to the top
+      setAds([newAd, ...ads]);
+      // Set the new ad as editable
+      setEditingAdId(newAd.id);
+      setUpdatedTitle(newAd.title);
+      setUpdatedDescription(newAd.description);
     }
   };
 
+  const handleSubmit = (e, id) => {
+    e.preventDefault();
+    handleUpdateAd(id);
+  };
+
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex flex-col items-center mb-4">
-        <h1 className="text-3xl font-bold mb-4">Video Advertisements</h1>
-        <input
-          type="file"
-          accept="video/*"
-          onChange={handleFileChange}
-          className="hidden"
-          id="uploadButton"
-        />
-        <label
-          htmlFor="uploadButton"
-          className="bg-[#000099] text-white p-2 rounded-md cursor-pointer"
-        >
-          Upload Video
-        </label>
+    <div className="container mx-auto p-4 relative mt-5">
+      <input
+        type="file"
+        accept="video/*"
+        onChange={handleFileChange}
+        className="hidden"
+        id="uploadButton"
+      />
+      <label
+      htmlFor="uploadButton"
+      className="absolute top-4 right-4 bg-[#000099] text-white p-2 rounded-md cursor-pointer flex items-center"
+    >
+      <FaFileVideo className="mr-2" />
+      New
+    </label>
+
+      <div className="absolute top-0 left-0 p-4">
+        <h1 className="text-3xl font-bold">Advertisements</h1>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-16">
         {ads.map((ad) => (
-          <div key={ad.id} className="bg-white shadow-md rounded-md p-4 flex flex-col">
+          <div key={ad.id} className="bg-gray-100 shadow-md rounded-md p-4 flex flex-col">
             {editingAdId === ad.id ? (
-              <>
+              <form onSubmit={(e) => handleSubmit(e, ad.id)} className="flex flex-col h-full">
                 <input
                   type="text"
                   value={updatedTitle}
@@ -93,12 +145,13 @@ const Advertisements = () => {
                 />
                 <div className="flex space-x-2 mt-auto">
                   <button
-                    onClick={() => handleUpdateAd(ad.id)}
+                    type="submit"
                     className="bg-[#000099] text-white p-2 rounded-md flex-1"
                   >
                     Save
                   </button>
                   <button
+                    type="button"
                     onClick={() => {
                       setEditingAdId(null);
                       setUpdatedTitle('');
@@ -109,7 +162,7 @@ const Advertisements = () => {
                     Cancel
                   </button>
                 </div>
-              </>
+              </form>
             ) : (
               <>
                 <h2
@@ -118,10 +171,10 @@ const Advertisements = () => {
                   style={{
                     overflow: 'hidden',
                     display: '-webkit-box',
-                    WebkitLineClamp: 2, // Limit to 2 lines
+                    WebkitLineClamp: 2,
                     WebkitBoxOrient: 'vertical',
                     textOverflow: 'ellipsis',
-                    marginBottom: '10px' // Adjust spacing between title and video
+                    marginBottom: '10px'
                   }}
                 >
                   {truncateTitle(ad.title)}
@@ -137,7 +190,7 @@ const Advertisements = () => {
                   style={{
                     overflow: 'hidden',
                     display: '-webkit-box',
-                    WebkitLineClamp: 3, // Limit to 3 lines
+                    WebkitLineClamp: 3,
                     WebkitBoxOrient: 'vertical',
                     textOverflow: 'ellipsis'
                   }}
