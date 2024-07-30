@@ -68,9 +68,9 @@ const Appointments = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
-      <div className="mb-4">
-        <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">Select Date</h3>
-        <div className="flex items-center mt-2">
+      <div className="mb-4 flex justify-between items-center">
+        <div className="flex items-center">
+          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mr-4">Select Date</h3>
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
@@ -84,16 +84,15 @@ const Appointments = () => {
             View Schedule
           </button>
         </div>
-      </div>
-
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Search by payment status..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className="px-4 py-2 border rounded-md w-full"
-        />
+        <div>
+          <input
+            type="text"
+            placeholder="Search by payment status..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="px-4 py-2 border rounded-md"
+          />
+        </div>
       </div>
 
       <div className="items-start justify-between md:flex">

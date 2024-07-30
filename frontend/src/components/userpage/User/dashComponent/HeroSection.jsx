@@ -1,11 +1,11 @@
 import React from 'react';
-import backgroundImage from '../../../../assets/landing.jpg'; // Adjust the import path accordingly
+import backgroundImage from '../../../../assets/1.jpg'; // Adjust the import path accordingly
 
 export default function HeroSection() {
   const heroStyle = {
     backgroundImage: `url(${backgroundImage})`,
     height: '100vh',
-    width: '75vw',
+    width: '81.5vw',
 
     backgroundSize: 'cover',
     backgroundPosition: 'center',

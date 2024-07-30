@@ -63,9 +63,9 @@ function Sidebar() {
                     <a href='/dashboard' className={`flex-none ${isCollapsed ? 'hidden' : ''}`}>
                         <img src="./src/assets/logowithoutback.png" width={isCollapsed ? 50 : 140} className="mx-auto mt-12" />
                     </a>
-                    <button onClick={() => setIsCollapsed(!isCollapsed)} className="text-white focus:outline-none">
+                    {/* <button onClick={() => setIsCollapsed(!isCollapsed)} className="text-white focus:outline-none">
                         <FaBars size={24} color="#ffffff" />
-                    </button>
+                    </button> */}
                 </div>
                 <div className="flex-1 flex flex-col h-full overflow-auto mt-12">
                     <ul className="px-4 text-sm font-medium flex-1">
@@ -317,9 +317,9 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/viewAppointment" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaCalendarCheck />
-                                       {!isCollapsed && <p>Staff</p>}
+                                       {!isCollapsed && <p>Appointment</p>}
                                     </a>
                                 </li>
                                 <li>

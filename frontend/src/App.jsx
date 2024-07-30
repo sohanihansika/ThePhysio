@@ -84,6 +84,10 @@ import Doctors1 from './components/userpage/Receptionist/Doctors1';
 import AddAppointment from './components/userpage/Receptionist/AddAppointment';
 import Payments1 from './components/userpage/Receptionist/Payments1';
 import UnPaid from './components/userpage/Receptionist/UnPaid';
+import TimeSlot from './components/userpage/Receptionist/TimeSlots';
+import TimeSlot1 from './components/userpage/Receptionist/TimeSlots1';
+import Appointment1 from './components/userpage/Receptionist/Appointment1';
+
 
 import Schedules from './components/userpage/Owner/schedules';
 import Advertisements from './components/userpage/Owner/videoAdvertisements';
@@ -92,6 +96,14 @@ import FinancialReport from './components/userpage/Owner/reports/financialReport
 import MembershipReport from './components/userpage/Owner/reports/membershipReoprt';
 import CustomerFeedbackReport from './components/userpage/Owner/reports/customerFeedbackReport';
 import OwnerReports from './components/userpage/Owner/ownerReports';
+
+
+import ViewAppointment from './components/userpage/Manager/ViewAppointment';
+import PastList from './components/userpage/Manager/PastList';
+import FutureList from './components/userpage/Manager/FutureList';
+import Calender2 from './components/userpage/Manager/Calender2';
+import TimeSlots2 from './components/userpage/Manager/TimeSlots2';
+import Appointment2 from './components/userpage/Manager/Appointment2';
 
 
 
@@ -115,8 +127,9 @@ function App() {
         )}
         <div
           className={`content ${
-            UserService.isAuthenticated() ? "w-3/4" : "w-full"
+            UserService.isAuthenticated() ? "custom-width" : "w-full"
           }`}
+          style={{ width: UserService.isAuthenticated() ? 'calc(100vw - 16rem)' : '100vw' }}
         >
           <Routes>
             {!UserService.isAuthenticated() && (
@@ -215,6 +228,7 @@ function App() {
                   <Route path="/schedule" element={<Schedule />}/>
                   <Route path="/popup" element={<Popup />}/>
                   <Route path="/physioprofile" element={<PhysioProfile />}/>
+                  
 
                                     
                 </>
@@ -265,6 +279,9 @@ function App() {
                   <Route path="/appointment" element={<AddAppointment />}/>
                   <Route path="/payments1" element={<Payments1 />}/>
                   <Route path="/unpaid" element={<UnPaid />} />
+                  <Route path="/timeSlots" element={<TimeSlot />} />
+                  <Route path="/timeSlots1" element={<TimeSlot1 />} />
+                  <Route path="/appointment1" element={<Appointment1 />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
@@ -285,6 +302,12 @@ function App() {
               ) : (
                 <>
                   <Route path="/dashboard" element={<ManagerDashboard />}/>
+                  <Route path="/viewAppointment" element={<ViewAppointment />}/>
+                  <Route path="/pastList" element={<PastList />}/>
+                  <Route path="/futureList" element={<FutureList />}/>
+                  <Route path="/calender2" element={<Calender2 />}/>
+                  <Route path="/timeSlots2" element={<TimeSlots2 />}/>
+                  <Route path="/appointment2" element={<Appointment2 />}/>
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
