@@ -16,6 +16,7 @@ function RegistrationPage() {
     const [error, setError] = useState('');
     const [contactError, setContactError] = useState('');
     const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
     //const roles = ['USER','PHYSIO','RESIPTIONIST','COUCH','MANAGER'];
 
     const handleChange = (e) => {
@@ -31,7 +32,10 @@ function RegistrationPage() {
         }else if (name === 'email') {
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             setEmailError(!emailPattern.test(value) ? 'Invalid email address' : '');
-        }
+        }else if (name === 'password') {
+            const passwordPattern = /^.{5,}$/;
+            setPasswordError(!passwordPattern.test(value) ? 'Password must be at least 5 characters' : '');
+          }
     };
 
     
@@ -39,7 +43,7 @@ function RegistrationPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (contactError || emailError) {
+        if (contactError || emailError || passwordError) {
             setError('');
             setTimeout(() => {
                 setError('');
@@ -50,8 +54,13 @@ function RegistrationPage() {
         try {
             const res = await UserService.userRegister(formData);
             console.log(res);
-            alert('User registered successfully');
-            window.location.href = '/login';
+            
+            if (res.statusCode === 200) {
+                alert('User registered successfully');
+                window.location.href = '/login';
+            } else {
+                setError(res.message);
+            }
             
         } catch (error) {
             setError(error.response?.data?.message || error.message);
@@ -141,6 +150,7 @@ function RegistrationPage() {
                             <button type="button" onClick={() => setShowPassword(!showPassword)}>
                                 {showPassword ? 'Hide' : ''} 
                             </button>
+                            {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
                         </div>
 
                         <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150" type='submit'>

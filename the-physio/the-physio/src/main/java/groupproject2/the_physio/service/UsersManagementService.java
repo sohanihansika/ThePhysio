@@ -30,7 +30,19 @@ public class UsersManagementService {
     public ReqRes userRegister(ReqRes userRegistrationRequest){
         ReqRes resp = new ReqRes();
 
+
         try {
+            if (userRegistrationRequest.getPassword() == null || userRegistrationRequest.getPassword().isEmpty()) {
+                resp.setStatusCode(400);
+                resp.setMessage("Password cannot be null or empty");
+                return resp;
+            }
+            Optional<OurUsers> existingUserByEmail = usersRepo.findByEmail(userRegistrationRequest.getEmail());
+            if (existingUserByEmail.isPresent()) {
+                resp.setStatusCode(400);
+                resp.setMessage("Email is already Exist!");
+                return resp;}
+
             OurUsers ourUser = new OurUsers();
             ourUser.setEmail(userRegistrationRequest.getEmail());
             ourUser.setContact_no(userRegistrationRequest.getContact_no());
@@ -40,6 +52,7 @@ public class UsersManagementService {
             ourUser.setName(userRegistrationRequest.getName());
             ourUser.setPassword(passwordEncoder.encode(userRegistrationRequest.getPassword()));
             OurUsers ourUsersResult = usersRepo.save(ourUser);
+
             if (ourUsersResult.getId()>0) {
                 resp.setOurUsers((ourUsersResult));
                 resp.setMessage("User Saved Successfully");
@@ -57,6 +70,17 @@ public class UsersManagementService {
         ReqRes resp = new ReqRes();
 
         try {
+            if (empRegistrationRequest.getPassword() == null || empRegistrationRequest.getPassword().isEmpty()) {
+                resp.setStatusCode(400);
+                resp.setMessage("Password cannot be null or empty");
+                return resp;
+            }
+            Optional<OurUsers> existingUserByEmail = usersRepo.findByEmail(empRegistrationRequest.getEmail());
+            if (existingUserByEmail.isPresent()) {
+                resp.setStatusCode(400);
+                resp.setMessage("Email is already Exist!");
+                return resp;}
+
             OurUsers ourUser = new OurUsers();
             ourUser.setEmail(empRegistrationRequest.getEmail());
             ourUser.setContact_no(empRegistrationRequest.getContact_no());
@@ -186,18 +210,25 @@ public class UsersManagementService {
             Optional<OurUsers> userOptional = usersRepo.findById(userId);
             if (userOptional.isPresent()) {
                 OurUsers existingUser = userOptional.get();
+
+                // Check if the email has changed
+                boolean emailChanged = !existingUser.getEmail().equals(updatedUser.getEmail());
+
+                // If email has changed, check if the new email is already taken by another user
+                if (emailChanged) {
+                    Optional<OurUsers> userWithSameEmail = usersRepo.findByEmail(updatedUser.getEmail());
+                    if (userWithSameEmail.isPresent() && !userWithSameEmail.get().getId().equals(userId)) {
+                        reqRes.setStatusCode(400);
+                        reqRes.setMessage("Email already in use by another user");
+                        return reqRes;
+                    }
+                }
+
                 existingUser.setEmail(updatedUser.getEmail());
                 existingUser.setName(updatedUser.getName());
-                existingUser.setAdded_date(updatedUser.getAdded_date());
-                existingUser.setRole(updatedUser.getRole());
                 existingUser.setAddress(updatedUser.getAddress());
                 existingUser.setContact_no(updatedUser.getContact_no());
 
-                // Check if password is present in the request
-                if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
-                    // Encode the password and update it
-                    existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
-                }
 
                 OurUsers savedUser = usersRepo.save(existingUser);
                 reqRes.setOurUsers(savedUser);
@@ -214,7 +245,8 @@ public class UsersManagementService {
         return reqRes;
     }
 
-    public ReqRes getMyInfo(String email){
+
+    public ReqRes getMyProfile(String email){
         ReqRes reqRes = new ReqRes();
         try {
             Optional<OurUsers> userOptional = usersRepo.findByEmail(email);
@@ -235,25 +267,68 @@ public class UsersManagementService {
 
     }
 
-        public ReqRes findAllPhysios() {
-            ReqRes reqRes = new ReqRes();
+    public ReqRes findAllPhysios() {
+        ReqRes reqRes = new ReqRes();
 
-            try {
-                List<OurUsers> result = usersRepo.findAllByRole("PHYSIO");
-                if (!result.isEmpty()){
-                    reqRes.setOurUsersList(result);
-                    reqRes.setStatusCode(200);
-                    reqRes.setMessage("Successful");
-                } else {
-                    reqRes.setStatusCode(404);
-                    reqRes.setMessage("No Physiotherapists Found");
-                }
-                return reqRes;
-            } catch (Exception e) {
-                reqRes.setStatusCode(500);
-                reqRes.setMessage("Error occurred: " + e.getMessage());
-                return reqRes;
+        try {
+            List<OurUsers> result = usersRepo.findAllByRole("PHYSIO");
+            if (!result.isEmpty()){
+                reqRes.setOurUsersList(result);
+                reqRes.setStatusCode(200);
+                reqRes.setMessage("Successful");
+            } else {
+                reqRes.setStatusCode(404);
+                reqRes.setMessage("No Physiotherapists Found");
             }
+            return reqRes;
+        } catch (Exception e) {
+            reqRes.setStatusCode(500);
+            reqRes.setMessage("Error occurred: " + e.getMessage());
+            return reqRes;
         }
+    }
+
+    public ReqRes empUpdate(Integer userId, OurUsers updatedEmp) {
+        ReqRes reqRes = new ReqRes();
+        try {
+            Optional<OurUsers> userOptional = usersRepo.findById(userId);
+            if (userOptional.isPresent()) {
+                OurUsers existingUser = userOptional.get();
+
+                // Check if the email has changed
+                boolean emailChanged = !existingUser.getEmail().equals(updatedEmp.getEmail());
+
+                // If email has changed, check if the new email is already taken by another user
+                if (emailChanged) {
+                    Optional<OurUsers> userWithSameEmail = usersRepo.findByEmail(updatedEmp.getEmail());
+                    if (userWithSameEmail.isPresent() && !userWithSameEmail.get().getId().equals(userId)) {
+                        reqRes.setStatusCode(400);
+                        reqRes.setMessage("Email already in use by another user");
+                        return reqRes;
+                    }
+                }
+
+                // Update the fields
+                existingUser.setEmail(updatedEmp.getEmail());
+                existingUser.setName(updatedEmp.getName());
+                existingUser.setRole(updatedEmp.getRole());
+                existingUser.setAddress(updatedEmp.getAddress());
+                existingUser.setContact_no(updatedEmp.getContact_no());
+
+                OurUsers savedUser = usersRepo.save(existingUser);
+                reqRes.setOurUsers(savedUser);
+                reqRes.setStatusCode(200);
+                reqRes.setMessage("Employee updated successfully");
+            } else {
+                reqRes.setStatusCode(404);
+                reqRes.setMessage("Employee not found for update");
+            }
+        } catch (Exception e) {
+            reqRes.setStatusCode(500);
+            reqRes.setMessage("Error occurred while updating employee: " + e.getMessage());
+        }
+        return reqRes;
+    }
+
 
 }

@@ -1,0 +1,17 @@
+/* styles.css or your existing CSS file */
+
+/* Slider button styles */
+.slick-prev, .slick-next {
+    color: #172b59; /* Change arrow color */
+    z-index: 1;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    color: #000; /* Optional: Change color on hover */
+}
+
+/* Optional: Adjust the size and position of the buttons */
+.slick-prev:before, .slick-next:before {
+    font-size: 30px; /* Adjust size if needed */
+    color: #172b59; /* Apply color */
+}
