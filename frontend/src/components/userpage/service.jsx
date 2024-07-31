@@ -57,15 +57,22 @@ export default function Service() {
         className={className}
         style={{ 
           ...style, 
-          display: 'block', 
-          background: '#172b59', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
           width: '50px', 
           height: '50px', 
+          border: '2px solid #172b59', 
           borderRadius: '50%', 
-          right: '-25px' // Move button more aside
+          right: '-25px', // Move button more aside
+          background: '#172b59', // Blue background color
+          color: '#fff', // White arrow color
+          fontSize: '24px' // Increase arrow size
         }}
         onClick={onClick}
-      />
+      >
+        <i className="fas fa-chevron-right"></i>
+      </div>
     );
   }
 
@@ -76,15 +83,22 @@ export default function Service() {
         className={className}
         style={{ 
           ...style, 
-          display: 'block', 
-          background: '#172b59', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
           width: '50px', 
           height: '50px', 
+          border: '2px solid #172b59', 
           borderRadius: '50%', 
-          left: '-25px' // Move button more aside
+          left: '-25px', // Move button more aside
+          background: '#172b59', // Blue background color
+          color: '#fff', // White arrow color
+          fontSize: '24px' // Increase arrow size
         }}
         onClick={onClick}
-      />
+      >
+        <i className="fas fa-chevron-left"></i>
+      </div>
     );
   }
 
