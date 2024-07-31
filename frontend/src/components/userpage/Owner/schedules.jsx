@@ -31,11 +31,7 @@ const Schedules = () => {
   return (
     <div
       className="min-h-screen p-4"
-      style={{
-        backgroundImage: `url('./src/assets/GymPlans/physiotherapist.jpg')`, // Replace with your image URL
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      
     >
       <div className="mb-8">
         <div className="flex items-center justify-between">
