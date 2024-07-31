@@ -288,7 +288,7 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/reservationSchedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaRegClipboard />
                                        {!isCollapsed && <p>Reservation Schedule</p>}
                                     </a>
@@ -304,6 +304,14 @@ function Sidebar() {
                                        <FaPhotoVideo />
                                        {!isCollapsed && <p>Upload Videos</p>}
                                     </a>
+                                </li>
+                                <li>
+                                    <a href="/gymNavibar" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                        <CgGym />
+                                        {!isCollapsed && <p>Gym</p>}
+                                    </a>
+
+                                    
                                 </li>
                                 
                                

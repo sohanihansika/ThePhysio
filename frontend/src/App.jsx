@@ -42,6 +42,22 @@ import ReservationSchedule from './components/userpage/Physio/ReservationSchudul
 import Reviews from './components/userpage/Physio/Reviews';
 import UploadVideos from './components/userpage/Physio/UploadVideos';
 
+import ReadMore_P from './components/userpage/Physio/GymMember/ReadMore_P';
+import NaviBar_P from './components/userpage/Physio/GymMember/NaviBar';
+import Membership_P from './components/userpage/Physio/GymMember/Membership';
+import Halfyear_P from './components/userpage/Physio/GymMember/HalfYear';
+import FullYear_P from './components/userpage/Physio/GymMember/FullYear';
+import Subscription_P from './components/userpage/Physio/GymMember/Subscrpition';
+import PlanPayments_P from './components/userpage/Physio/GymMember/PlanPayments';
+import SubscriptionForm_P from './components/userpage/Physio/GymMember/SubscriptionForm';
+import Payment2_P from './components/userpage/Physio/GymMember/Payment2';
+import PopUp1_P from './components/userpage/Physio/GymMember/PopUp1';
+import ReadMore1_P from './components/userpage/Physio/GymMember/Readmore1';
+import ReadMore2_P from './components/userpage/Physio/GymMember/ReadMore2';
+import ReadMore3_P from './components/userpage/Physio/GymMember/ReadMore3';
+import ReadMore4_P from './components/userpage/Physio/GymMember/ReadMore4';
+import ReadMore5_P from './components/userpage/Physio/GymMember/ReadMore5';
+
 import UserDashboard from './components/userpage/User/UserDashboard';
 
 import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
@@ -65,20 +81,20 @@ import AddAppoinmet from './components/userpage/User/AddAppoinment';
 import SelectPayment from './components/userpage/User/SelectPayment';
 import paymentpopup from './components/userpage/User/paymentpopup';
 import UserDashboardLink from './components/userpage/Admin/UserDashboardLink';
+import PrescriptionForm from './components/userpage/User/PrescriptionForm';
+import Popup from './components/userpage/User/Popup';
+import PhysioProfile from './components/userpage/User/PhysioProfile';
+
+import ReadMore from './components/userpage/User/GymMember/ReadMore';
 import NaviBar from './components/userpage/User/GymMember/NaviBar';
 import Membership from './components/userpage/User/GymMember/Membership';
 import Halfyear from './components/userpage/User/GymMember/HalfYear';
 import FullYear from './components/userpage/User/GymMember/FullYear';
 import Subscription from './components/userpage/User/GymMember/Subscrpition';
 import PlanPayments from './components/userpage/User/GymMember/PlanPayments';
-import PrescriptionForm from './components/userpage/User/PrescriptionForm';
-import Popup from './components/userpage/User/Popup';
-import PhysioProfile from './components/userpage/User/PhysioProfile';
-import ReadMore from './components/userpage/User/GymMember/ReadMore';
 import SubscriptionForm from './components/userpage/User/GymMember/SubscriptionForm';
 import Payment2 from './components/userpage/User/GymMember/Payment2';
 import PopUp1 from './components/userpage/User/GymMember/PopUp1';
-
 import ReadMore1 from './components/userpage/User/GymMember/Readmore1';
 import ReadMore2 from './components/userpage/User/GymMember/ReadMore2';
 import ReadMore3 from './components/userpage/User/GymMember/ReadMore3';
@@ -291,7 +307,22 @@ function App() {
                   <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                   <Route path="/appoinments" element={<Appoinments />} />
-                  <Route path="/schedule" element={<Schedule />}/>
+                  <Route path="/reservationSchedule" element={<ReservationSchedule />}/>
+                  <Route path="/gymNavibar" element={<NaviBar_P />} />
+                  <Route path="/gymMembership" element={<Membership_P />} /> 
+                  <Route path="/halfyear" element={<Halfyear_P />} />
+                  <Route path="/fullyear" element={<FullYear_P />} />
+                  <Route path="/subscription" element={<Subscription_P />} />
+                  <Route path="/planPayments" element={<PlanPayments_P />} />
+                  <Route path="/readmore" element={<ReadMore_P />}/>
+                  <Route path="/subscriptionForm" element={<SubscriptionForm_P />}/>
+                  <Route path="/payment2" element={<Payment2_P />}/>
+                  <Route path="/popup1" element={<PopUp1_P />}/>
+                  <Route path="/readmore1" element={<ReadMore1_P />}/>
+                  <Route path="/readmore2" element={<ReadMore2_P />}/>
+                  <Route path="/readmore3" element={<ReadMore3_P />}/>
+                  <Route path="/readmore4" element={<ReadMore4_P />}/>
+                  <Route path="/readmore5" element={<ReadMore5_P />}/>
 
 
                 </>
