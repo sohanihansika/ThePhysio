@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import { FaFilePdf, FaCalendarAlt, FaChartBar, FaFileAlt, FaUsers, FaComments } from 'react-icons/fa';
-import logo from '/ThePhysio/frontend/src/assets/LOGO.jpg'; // Ensure the path is correct
+import logo from '../../../assets/LOGO.jpg'; // Ensure the path is correct
 
 const dummyData = {
   customerFeedback: [
