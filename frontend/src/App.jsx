@@ -139,6 +139,10 @@ import FutureList from './components/userpage/Manager/FutureList';
 import Calender2 from './components/userpage/Manager/Calender2';
 import TimeSlots2 from './components/userpage/Manager/TimeSlots2';
 import Appointment2 from './components/userpage/Manager/Appointment2';
+import CreatePackage from './components/userpage/Manager/CreatePackage';
+import Packages from './components/userpage/Manager/Packages';
+import EditPackage from './components/userpage/Manager/EditPackage';
+import Subscribers from './components/userpage/Manager/Subscribers';
 
 
 
@@ -391,6 +395,12 @@ function App() {
                   <Route path="/calender2" element={<Calender2 />}/>
                   <Route path="/timeSlots2" element={<TimeSlots2 />}/>
                   <Route path="/appointment2" element={<Appointment2 />}/>
+                  <Route path="/createPackage" element={<CreatePackage />}/>
+                  <Route path="/packages" element={<Packages />}/>
+                  <Route path="/editPackage" element={<EditPackage />}/>
+                  <Route path="/subscribers" element={<Subscribers />}/>
+                  
+                  
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

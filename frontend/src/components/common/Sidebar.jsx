@@ -29,7 +29,7 @@ function Sidebar({ onCollapse }) {
     const fetchProfileInfo = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await UserService.getYourProfile(token);
+            const response = await UserService.getMyProfile(token);
             setProfileInfo(response.ourUsers);
         } catch (error) {
             console.error('Error fetching profile information:', error);
@@ -369,6 +369,12 @@ function Sidebar({ onCollapse }) {
                                     <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <MdOutlinePayments />
                                        {!isCollapsed && <p>Vehicle History</p>}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/packages" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       <MdOutlinePayments />
+                                       {!isCollapsed && <p>Packages</p>}
                                     </a>
                                 </li>
                             </>
