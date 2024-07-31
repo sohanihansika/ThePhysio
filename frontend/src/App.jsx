@@ -108,6 +108,7 @@ import TimeSlot1 from './components/userpage/Receptionist/TimeSlots1';
 import Appointment1 from './components/userpage/Receptionist/Appointment1';
 import PopUp2 from './components/userpage/Receptionist/PopUp2';
 import PopUp3 from './components/userpage/Receptionist/PopUp3';
+import AdVideo from './components/userpage/Receptionist/AdVideo';
 
 
 import Schedules from './components/userpage/Owner/schedules';
@@ -337,7 +338,7 @@ function App() {
                   <Route path="/appointment1" element={<Appointment1 />} />
                   <Route path="/popup2" element={<PopUp2 />} />
                   <Route path="/popup3" element={<PopUp3 />} />
-                  <Route path="/video-advertisements" element={<Advertisements />} />
+                  <Route path="/adVideo" element={<AdVideo />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

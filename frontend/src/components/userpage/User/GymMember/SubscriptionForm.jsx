@@ -168,7 +168,7 @@ const FormComponent = () => {
       )}
 
       <button type="submit" className="w-full bg-[#051B40] text-white py-2 px-4 rounded-md">
-        Submit
+        Pay
       </button>
     </form>
   );
