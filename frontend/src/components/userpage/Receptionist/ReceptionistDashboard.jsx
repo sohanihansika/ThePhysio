@@ -33,12 +33,12 @@ const AppointmentPage = () => {
   ];
 
   // Data for charts
-  const patientsData = {
+  const sessionsData = {
     labels: ['Morning', 'Afternoon', 'Evening'],
     datasets: [
       {
-        label: 'Total Patients Came Today',
-        data: [30, 45, 20], // Example data
+        label: 'Total Sessions',
+        data: [30, 45, 20], // Example data for total sessions
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
@@ -100,7 +100,7 @@ const AppointmentPage = () => {
         {/* Left Side: Calendar */}
         <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
           <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mb-4">
-            Calendar
+            Add Appointment
           </h3>
           <Calendar
             onChange={handleDateChange}
@@ -149,10 +149,10 @@ const AppointmentPage = () => {
       <div className="flex flex-col lg:flex-row mt-8">
         <div className="w-full lg:w-1/2 p-4 lg:pl-0 lg:pr-4 mb-8">
           <h3 className="text-gray-800 text-xl font-bold mb-4">
-            Total Patients Came Today
+            Total Sessions
           </h3>
           <div className="w-full h-[200px]"> {/* Increased height */}
-            <Bar data={patientsData} options={{ responsive: true, maintainAspectRatio: false }} />
+            <Bar data={sessionsData} options={{ responsive: true, maintainAspectRatio: false }} />
           </div>
         </div>
         <div className="w-full lg:w-1/2 p-4 lg:pl-4 lg:pr-0">

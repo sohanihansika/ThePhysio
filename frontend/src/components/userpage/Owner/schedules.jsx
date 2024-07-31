@@ -1,152 +1,141 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const SchedulePage = () => {
+// Sample data for schedules
+const physiotherapySchedules = [
+  { patientName: 'John Doe', physiotherapist: 'Smith', date: '2024-07-20', timeSlot: '10:00 AM - 11:00 AM' },
+  { patientName: 'Jane Roe', physiotherapist: 'Brown', date: '2024-07-21', timeSlot: '02:00 PM - 03:00 PM' },
+  { patientName: 'Emily Davis', physiotherapist: 'Lee', date: '2024-07-22', timeSlot: '11:00 AM - 12:00 PM' },
+  { patientName: 'Michael Wilson', physiotherapist: 'Green', date: '2024-07-23', timeSlot: '03:00 PM - 04:00 PM' },
+];
+
+const gymSchedules = [
+  { gymMember: 'Alice Johnson', gymCoach: 'Williams', date: '2024-07-20', timeSlot: '09:00 AM - 10:00 AM' },
+  { gymMember: 'Bob Smith', gymCoach: 'Taylor', date: '2024-07-21', timeSlot: '04:00 PM - 05:00 PM' },
+  { gymMember: 'Sarah Brown', gymCoach: 'Davis', date: '2024-07-22', timeSlot: '06:00 PM - 07:00 PM' },
+  { gymMember: 'James White', gymCoach: 'Clark', date: '2024-07-23', timeSlot: '07:00 AM - 08:00 AM' },
+];
+
+const Schedules = () => {
   const [searchDate, setSearchDate] = useState('');
+  const [searchTime, setSearchTime] = useState('');
+  const [scheduleType, setScheduleType] = useState('both');
 
-  const physioSchedules = [
-    {
-      patientName: 'John Doe',
-      physiotherapist: 'Dr. Smith',
-      date: '2024-07-20',
-      timeSlot: '10:00 AM - 11:00 AM',
-    },
-    {
-      patientName: 'Jane Roe',
-      physiotherapist: 'Dr. Brown',
-      date: '2024-07-21',
-      timeSlot: '02:00 PM - 03:00 PM',
-    },
-    {
-      patientName: 'Emily Davis',
-      physiotherapist: 'Dr. Lee',
-      date: '2024-07-22',
-      timeSlot: '11:00 AM - 12:00 PM',
-    },
-    {
-      patientName: 'Michael Wilson',
-      physiotherapist: 'Dr. Green',
-      date: '2024-07-23',
-      timeSlot: '03:00 PM - 04:00 PM',
-    },
-    // Add more physiotherapy schedules here
-  ];
-
-  const gymSchedules = [
-    {
-      gymMember: 'Alice Johnson',
-      gymCoach: 'Coach Williams',
-      date: '2024-07-20',
-      timeSlot: '09:00 AM - 10:00 AM',
-    },
-    {
-      gymMember: 'Bob Smith',
-      gymCoach: 'Coach Taylor',
-      date: '2024-07-21',
-      timeSlot: '04:00 PM - 05:00 PM',
-    },
-    {
-      gymMember: 'Sarah Brown',
-      gymCoach: 'Coach Davis',
-      date: '2024-07-22',
-      timeSlot: '06:00 PM - 07:00 PM',
-    },
-    {
-      gymMember: 'James White',
-      gymCoach: 'Coach Clark',
-      date: '2024-07-23',
-      timeSlot: '07:00 AM - 08:00 AM',
-    },
-    // Add more gym schedules here
-  ];
-
-  const filterSchedulesByDate = (schedules) => {
+  // Filter schedules based on the selected date and time
+  const filterSchedules = (schedules) => {
     return schedules.filter(schedule =>
-      schedule.date.includes(searchDate)
+      (schedule.date.includes(searchDate) &&
+      (searchTime === '' || schedule.timeSlot.replace(/[^0-9]/g, '').includes(searchTime)))
     );
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white p-7">
-      <div className="w-full mb-16 flex items-center">
-        <div className="relative flex-grow">
-          <h1 className="text-3xl font-bold mb-4 text-black" style={{ marginLeft: '-1rem' }}>
-            Schedules
-          </h1>
-        </div>
-        <div className="w-full max-w-md">
-          <input
-            type="date"
-            value={searchDate}
-            onChange={(e) => setSearchDate(e.target.value)}
-            className="w-full border border-gray-300 p-2 rounded-md"
-            placeholder="Search by date"
-          />
+    <div
+      className="min-h-screen p-4"
+      
+    >
+      <div className="mb-8">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-[#000000]">Schedules</h1>
+          <div className="flex items-center">
+            <input
+              type="date"
+              value={searchDate}
+              onChange={(e) => setSearchDate(e.target.value)}
+              className="border border-gray-300 p-2 rounded-md mr-2"
+              style={{ width: '200px' }}
+            />
+            <input
+              type="text"
+              placeholder="Search by time..."
+              value={searchTime}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^\d*$/.test(value)) {
+                  setSearchTime(value);
+                }
+              }}
+              className="border border-gray-300 p-2 rounded-md ml-2"
+              style={{ width: '200px' }}
+            />
+            <select
+              value={scheduleType}
+              onChange={(e) => setScheduleType(e.target.value)}
+              className="border border-gray-300 p-2 rounded-md ml-2"
+              style={{ width: '200px' }}
+            >
+              <option value="both">All Schedules</option>
+              <option value="clinic">Physiotherapy Clinic</option>
+              <option value="gym">Gym</option>
+            </select>
+          </div>
         </div>
       </div>
-
-      <div className="w-full max-w-4xl mb-8">
-        <h2 className="text-2xl font-semibold mb-4 text-[#000000]">Physiotherapy Sessions</h2>
-        <table className="min-w-full bg-gray-100 border border-[#150A7D] shadow-md rounded-lg">
-          <thead className="bg-[#150A7D] text-white">
-            <tr>
-              <th className="py-3 px-4 border-b">Patient Name</th>
-              <th className="py-3 px-4 border-b">Physiotherapist</th>
-              <th className="py-3 px-4 border-b">Date</th>
-              <th className="py-3 px-4 border-b">Time Slot</th>
-            </tr>
-          </thead>
-          <tbody className="bg-gray-50">
-            {filterSchedulesByDate(physioSchedules).length > 0 ? (
-              filterSchedulesByDate(physioSchedules).map((schedule, index) => (
-                <tr key={index} className="text-center">
-                  <td className="py-3 px-4 border-b">{schedule.patientName}</td>
-                  <td className="py-3 px-4 border-b">{schedule.physiotherapist}</td>
-                  <td className="py-3 px-4 border-b">{schedule.date}</td>
-                  <td className="py-3 px-4 border-b">{schedule.timeSlot}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4" className="py-3 px-4 text-center text-gray-700">No schedules found for the selected date.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="w-full max-w-4xl">
-        <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-[#000000]">Gym Sessions</h2>
-          <table className="min-w-full bg-gray-100 border border-[#150A7D] shadow-md rounded-lg">
-            <thead className="bg-[#150A7D] text-white">
-              <tr>
-                <th className="py-3 px-4 border-b">Gym Member</th>
-                <th className="py-3 px-4 border-b">Gym Coach</th>
-                <th className="py-3 px-4 border-b">Date</th>
-                <th className="py-3 px-4 border-b">Time Slot</th>
-              </tr>
-            </thead>
-            <tbody className="bg-gray-50">
-              {filterSchedulesByDate(gymSchedules).length > 0 ? (
-                filterSchedulesByDate(gymSchedules).map((schedule, index) => (
-                  <tr key={index} className="text-center">
-                    <td className="py-3 px-4 border-b">{schedule.gymMember}</td>
-                    <td className="py-3 px-4 border-b">{schedule.gymCoach}</td>
-                    <td className="py-3 px-4 border-b">{schedule.date}</td>
-                    <td className="py-3 px-4 border-b">{schedule.timeSlot}</td>
-                  </tr>
-                ))
-              ) : (
+      <div className="grid grid-cols-1 gap-6">
+        {(scheduleType === 'both' || scheduleType === 'clinic') && (
+          <div>
+            <h2 className="text-2xl font-bold mb-4 text-[#000099]">Physiotherapy Schedules</h2>
+            <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-md">
+              <thead className="bg-[#000099] text-white">
                 <tr>
-                  <td colSpan="4" className="py-3 px-4 text-center text-gray-700">No schedules found for the selected date.</td>
+                  <th className="py-3 px-4 border-b">Patient Name</th>
+                  <th className="py-3 px-4 border-b">Physiotherapist</th>
+                  <th className="py-3 px-4 border-b">Date</th>
+                  <th className="py-3 px-4 border-b">Time Slot</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="bg-gray-50">
+                {filterSchedules(physiotherapySchedules).length > 0 ? (
+                  filterSchedules(physiotherapySchedules).map((schedule, index) => (
+                    <tr key={index} className="text-center">
+                      <td className="py-3 px-4 border-b">{schedule.patientName}</td>
+                      <td className="py-3 px-4 border-b">{schedule.physiotherapist}</td>
+                      <td className="py-3 px-4 border-b">{schedule.date}</td>
+                      <td className="py-3 px-4 border-b">{schedule.timeSlot}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" className="py-3 px-4 text-center text-gray-700">No schedules found for the selected filters.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {(scheduleType === 'both' || scheduleType === 'gym') && (
+          <div>
+            <h2 className="text-2xl font-bold mb-4 text-[#000099]">Gym Schedules</h2>
+            <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-md">
+              <thead className="bg-[#000099] text-white">
+                <tr>
+                  <th className="py-3 px-4 border-b">Gym Member</th>
+                  <th className="py-3 px-4 border-b">Gym Coach</th>
+                  <th className="py-3 px-4 border-b">Date</th>
+                  <th className="py-3 px-4 border-b">Time Slot</th>
+                </tr>
+              </thead>
+              <tbody className="bg-gray-50">
+                {filterSchedules(gymSchedules).length > 0 ? (
+                  filterSchedules(gymSchedules).map((schedule, index) => (
+                    <tr key={index} className="text-center">
+                      <td className="py-3 px-4 border-b">{schedule.gymMember}</td>
+                      <td className="py-3 px-4 border-b">{schedule.gymCoach}</td>
+                      <td className="py-3 px-4 border-b">{schedule.date}</td>
+                      <td className="py-3 px-4 border-b">{schedule.timeSlot}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" className="py-3 px-4 text-center text-gray-700">No schedules found for the selected filters.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default SchedulePage;
+export default Schedules;
