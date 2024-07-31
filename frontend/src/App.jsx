@@ -123,6 +123,10 @@ import FutureList from './components/userpage/Manager/FutureList';
 import Calender2 from './components/userpage/Manager/Calender2';
 import TimeSlots2 from './components/userpage/Manager/TimeSlots2';
 import Appointment2 from './components/userpage/Manager/Appointment2';
+import ManagerSchedules from './components/userpage/Manager/schedules';
+import Attendance from './components/userpage/Manager/attendance';
+import AdvertisementView from './components/userpage/Manager/viewAdvertisements';
+import ViewReview from './components/userpage/Manager/viewReview';
 
 
 
@@ -362,7 +366,12 @@ function App() {
                   <Route path="/calender2" element={<Calender2 />}/>
                   <Route path="/timeSlots2" element={<TimeSlots2 />}/>
                   <Route path="/appointment2" element={<Appointment2 />}/>
+                  <Route path="/schedule" element={<ManagerSchedules />}/>
+                  <Route path="/attendance" element={<Attendance />}/>
+                  <Route path="/advertisement-view" element={<AdvertisementView />}/>
+                  <Route path="/view-review" element={<ViewReview />}/>
                   <Route path="*" element={<Navigate to="/dashboard" />} />
+                  
                 </>
               )}
             </Route>

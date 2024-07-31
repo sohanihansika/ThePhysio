@@ -58,15 +58,11 @@ const Reviews = () => {
   return (
     <div
       className="container mx-auto p-4"
-      style={{
-        backgroundImage: `url('./src/assets/GymPlans/physiotherapist.jpg')`, // Replace with your image URL
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      
     >
       <div className="mb-8">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-[#000000]">Customer Reviews</h1>
+          <h3 className="text-3xl font-bold text-[#000000]">Customer Reviews</h3>
           <div className="flex items-center">
             <select
               value={reviewType}

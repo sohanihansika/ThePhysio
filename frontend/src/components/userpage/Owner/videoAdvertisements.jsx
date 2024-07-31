@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { FaUpload, FaFileVideo } from 'react-icons/fa';
+import video1 from '../../../assets/1.mp4';
+import video2 from '../../../assets/2.mp4';
+import video3 from '../../../assets/3.mp4';
+import video4 from '../../../assets/4.mp4';
+import video5 from '../../../assets/5.mp4';
 
-// Dummy video URLs
 const dummyVideos = [
-  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid3.mp4',
-  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid2.mp4',
-  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid1.mp4'
+  video1,
+  video2,
+  video3,
+  video4,
+  video5,
 ];
 
 const initialAdvertisements = [
@@ -14,35 +20,35 @@ const initialAdvertisements = [
     title: 'New Product',
     url: dummyVideos[0],
     description: 'Check out our exciting new product launch video. Don’t miss out on the latest updates!',
-    category: 'clinic'
+    category: 'clinic',
   },
   {
     id: 2,
     title: 'Summer Sale',
     url: dummyVideos[1],
     description: 'Get ready for our summer sale with huge discounts on all items. Watch the video to know more.',
-    category: 'gym'
+    category: 'gym',
   },
   {
     id: 3,
     title: 'Customer Special',
     url: dummyVideos[2],
     description: 'Hear what our customers have to say about their experience with our services. Their satisfaction is our priority.',
-    category: 'clinic'
+    category: 'clinic',
   },
   {
     id: 4,
     title: 'New Celebration',
-    url: dummyVideos[0],
+    url: dummyVideos[3],
     description: 'Join us in celebrating the new year with amazing offers and events. Watch the video to find out more!',
-    category: 'gym'
+    category: 'gym',
   },
   {
     id: 5,
     title: 'Behind the Scenes',
-    url: dummyVideos[1],
+    url: dummyVideos[4],
     description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.',
-    category: 'clinic'
+    category: 'clinic',
   },
 ];
 
@@ -86,10 +92,9 @@ const Advertisements = () => {
         title: `New Video ${ads.length + 1}`,
         url: newVideoUrl,
         description: 'Description pending...',
-        category: selectedCategory // Use the selected category for new videos
+        category: selectedCategory,
       };
       setAds([newAd, ...ads]);
-      // Set the new ad as editable
       setEditingAdId(newAd.id);
       setUpdatedTitle(newAd.title);
       setUpdatedDescription(newAd.description);
@@ -101,21 +106,15 @@ const Advertisements = () => {
     handleUpdateAd(id);
   };
 
-  // Filter ads based on the selected category
-  const filteredAds = ads.filter(ad =>
-    selectedCategory === 'both' || ad.category === selectedCategory
+  const filteredAds = ads.filter(
+    (ad) => selectedCategory === 'both' || ad.category === selectedCategory
   );
 
   return (
     <div
       className="container mx-auto p-4"
-      style={{
-        backgroundImage: `url('./src/assets/GymPlans/physiotherapist.jpg')`, // Replace with your image URL
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+      
     >
-    
       <input
         type="file"
         accept="video/*"
@@ -205,7 +204,7 @@ const Advertisements = () => {
                     WebkitLineClamp: 2,
                     WebkitBoxOrient: 'vertical',
                     textOverflow: 'ellipsis',
-                    marginBottom: '10px'
+                    marginBottom: '10px',
                   }}
                 >
                   {truncateTitle(ad.title)}
@@ -223,7 +222,7 @@ const Advertisements = () => {
                     display: '-webkit-box',
                     WebkitLineClamp: 3,
                     WebkitBoxOrient: 'vertical',
-                    textOverflow: 'ellipsis'
+                    textOverflow: 'ellipsis',
                   }}
                 >
                   {ad.description}

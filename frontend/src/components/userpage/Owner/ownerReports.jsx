@@ -146,9 +146,7 @@ const ReportSelector = () => {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-start pt-12 bg-fixed bg-cover bg-center"
-      style={{ 
-        backgroundImage: "url('./src/assets/GymPlans/physiotherapist.jpg')" 
-      }}
+      
     >
       <div className="w-full relative mb-10">
   <div className="flex items-center justify-between">
