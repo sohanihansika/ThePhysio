@@ -29,7 +29,7 @@ function Sidebar({ onCollapse }) {
     const fetchProfileInfo = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await UserService.getYourProfile(token);
+            const response = await UserService.getMyProfile(token);
             setProfileInfo(response.ourUsers);
         } catch (error) {
             console.error('Error fetching profile information:', error);
@@ -321,13 +321,13 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/reservationSchedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaRegClipboard />
                                        {!isCollapsed && <p>Reservation Schedule</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/ viewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/reviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <VscPreview />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
@@ -337,6 +337,14 @@ function Sidebar({ onCollapse }) {
                                        <FaPhotoVideo />
                                        {!isCollapsed && <p>Advertisement</p>}
                                     </a>
+                                </li>
+                                <li>
+                                    <a href="/gymNavibar" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                        <CgGym />
+                                        {!isCollapsed && <p>Gym</p>}
+                                    </a>
+
+                                    
                                 </li>
                                 
                                
@@ -373,6 +381,12 @@ function Sidebar({ onCollapse }) {
                                     <a href="/view-review" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                     <FaRegStar />
                                        {!isCollapsed && <p>Reviews</p>}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/packages" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       <MdOutlinePayments />
+                                       {!isCollapsed && <p>Packages</p>}
                                     </a>
                                 </li>
                             </>
