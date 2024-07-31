@@ -16,7 +16,7 @@ export default () => {
         }, {
             title: "Reservation",
             desc: "70",
-            path:"",
+            path:"/Schedule",
             icon: <FaCalendarCheck  />
   
       

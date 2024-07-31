@@ -222,6 +222,8 @@ function App() {
                   <Route path="/membershipReport" element={<MembershipReport />} />
                   <Route path="/ownerReports" element={<OwnerReports />} />
                   <Route path="/video-advertisements" element={<Advertisements />} />
+                  <Route path="/schedule" element={<Schedule />}/>
+
 
 
                   <Route path="/staffUpdate/:userId" element={<StaffUpdate />} />
