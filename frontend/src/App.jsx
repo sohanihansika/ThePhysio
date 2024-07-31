@@ -36,6 +36,7 @@ import Staff from './components/userpage/Owner/Staff';
 import PhysioDashboard from './components/userpage/Physio/PhysioDashboard';
 import GenerateReports from './components/userpage/Physio/GenerateReports';
 import Leaves from './components/userpage/Physio/Leaves';
+import ApplyLeave  from './components/userpage/Physio/aaplyLeave';
 import MakeAppoinmemt from './components/userpage/Physio/MakeAppoinmemt';
 import PatientReports from './components/userpage/Physio/PatientReports';
 import ReservationSchedule from './components/userpage/Physio/ReservationSchudule';
@@ -64,6 +65,9 @@ import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 import GymCoachAppointment from './components/userpage/Coach/GymCoachAppointment';
+import SubscriptionPlans from './components/userpage/Coach/SubscriptionPlans';
+import GymPastList from './components/userpage/Coach/GymPastList';
+import GymFutureList from './components/userpage/Coach/GymFutureList';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
 
@@ -97,6 +101,8 @@ import PlanPayments from './components/userpage/User/GymMember/PlanPayments';
 import SubscriptionForm from './components/userpage/User/GymMember/SubscriptionForm';
 import Payment2 from './components/userpage/User/GymMember/Payment2';
 import PopUp1 from './components/userpage/User/GymMember/PopUp1';
+import MemberPop from './components/userpage/User/GymMember/MemberPop';
+import ViewCoach from './components/userpage/User/GymMember/ViewCoach';
 import ReadMore1 from './components/userpage/User/GymMember/Readmore1';
 import ReadMore2 from './components/userpage/User/GymMember/ReadMore2';
 import ReadMore3 from './components/userpage/User/GymMember/ReadMore3';
@@ -122,6 +128,7 @@ import TimeSlot1 from './components/userpage/Receptionist/TimeSlots1';
 import Appointment1 from './components/userpage/Receptionist/Appointment1';
 import PopUp2 from './components/userpage/Receptionist/PopUp2';
 import PopUp3 from './components/userpage/Receptionist/PopUp3';
+import AdVideo from './components/userpage/Receptionist/AdVideo';
 
 
 import Schedules from './components/userpage/Owner/schedules';
@@ -139,6 +146,10 @@ import FutureList from './components/userpage/Manager/FutureList';
 import Calender2 from './components/userpage/Manager/Calender2';
 import TimeSlots2 from './components/userpage/Manager/TimeSlots2';
 import Appointment2 from './components/userpage/Manager/Appointment2';
+import ManagerSchedules from './components/userpage/Manager/schedules';
+import Attendance from './components/userpage/Manager/attendance';
+import AdvertisementView from './components/userpage/Manager/viewAdvertisements';
+import ViewReview from './components/userpage/Manager/viewReview';
 import CreatePackage from './components/userpage/Manager/CreatePackage';
 import Packages from './components/userpage/Manager/Packages';
 import EditPackage from './components/userpage/Manager/EditPackage';
@@ -286,6 +297,8 @@ function App() {
                   <Route path="/readmore3" element={<ReadMore3 />}/>
                   <Route path="/readmore4" element={<ReadMore4 />}/>
                   <Route path="/readmore5" element={<ReadMore5 />}/>              
+                  <Route path="/memberpop" element={<MemberPop />}/>
+                  <Route path="/viewCoach" element={<ViewCoach />}/>
                   <Route path="/notavilPopup" element={<NotAvilavle />} />
                   <Route path="/reserved" element={<ReservedPopup />} />
 
@@ -311,6 +324,7 @@ function App() {
                   <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
                   <Route path='/generateReports' element={<GenerateReports/>} />
                   <Route path='/leaves' element={<Leaves/>} />
+                  <Route path='/applyLeave' element={<ApplyLeave/>} />
                   <Route path='/makeAppoinment' element={<MakeAppoinmemt/>} />
                   <Route path='/patientReports' element={<PatientReports/>} />
                   <Route path='/reservationSchedule' element={<ReservationSchedule/>} />
@@ -321,6 +335,7 @@ function App() {
                   <Route path="/reservationSchedule" element={<ReservationSchedule />}/>
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
                   <Route path="/issuePrescription" element={<IssuePrescription />} />
+                  <Route path="/video-Advertisements" element={<Advertisements />} />
 
 
 
@@ -366,6 +381,7 @@ function App() {
                   <Route path="/appointment1" element={<Appointment1 />} />
                   <Route path="/popup2" element={<PopUp2 />} />
                   <Route path="/popup3" element={<PopUp3 />} />
+                  <Route path="/adVideo" element={<AdVideo />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
@@ -379,6 +395,9 @@ function App() {
                   <Route path="/coachAppointment" element={<GymCoachAppointment />} />
                   <Route path="/video-advertisements" element={<Advertisements />} />
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
+                  <Route path="/subscriptionPlans" element={<SubscriptionPlans />} />
+                  <Route path="/pastListC" element={<GymPastList />} />
+                  <Route path="/futureListC" element={<GymFutureList />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}
@@ -395,6 +414,10 @@ function App() {
                   <Route path="/calender2" element={<Calender2 />}/>
                   <Route path="/timeSlots2" element={<TimeSlots2 />}/>
                   <Route path="/appointment2" element={<Appointment2 />}/>
+                  <Route path="/schedule" element={<ManagerSchedules />}/>
+                  <Route path="/attendance" element={<Attendance />}/>
+                  <Route path="/advertisement-view" element={<AdvertisementView />}/>
+                  <Route path="/view-review" element={<ViewReview />}/>
                   <Route path="/createPackage" element={<CreatePackage />}/>
                   <Route path="/packages" element={<Packages />}/>
                   <Route path="/editPackage" element={<EditPackage />}/>
@@ -402,6 +425,7 @@ function App() {
                   
                   
                   <Route path="*" element={<Navigate to="/dashboard" />} />
+                  
                 </>
               )}
             </Route>

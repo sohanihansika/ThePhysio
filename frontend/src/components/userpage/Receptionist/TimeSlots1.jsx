@@ -135,8 +135,8 @@ const TimeSlots = () => {
           cursor: pointer;
         }
         .slot:hover {
-          background-color: #2a3b73;
-          color: #ffffff;
+          background-color: #fff394;
+          color: #000000;
           transform: translateY(-5px);
         }
         .red-slot {

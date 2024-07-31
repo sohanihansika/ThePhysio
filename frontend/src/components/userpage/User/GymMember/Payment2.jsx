@@ -15,16 +15,26 @@ const PaymentForm = () => {
     setCardType(e.target.value);
   };
 
+  const maskCardNumber = (cardNumber) => {
+    if (cardNumber.length <= 4) return cardNumber;
+    return "************" + cardNumber.slice(-4);
+  };
+
+  const handleCardNumberChange = (e) => {
+    const inputNumber = e.target.value.replace(/\D/g, ""); // Remove any non-digit characters
+    setCardNumber(maskCardNumber(inputNumber));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
 
-    // Navigate to /popup2 page
+    // Navigate to /popup1 page
     navigate('/popup1');
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-8 shadow-md rounded-md bg-gray-200">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-gray-300 p-8 shadow-md rounded-md ">
       <h2 className="text-2xl font-bold mb-6">Payment Information</h2>
       
       <div className="mb-4">
@@ -60,7 +70,7 @@ const PaymentForm = () => {
         <input
           type="text"
           value={cardNumber}
-          onChange={(e) => setCardNumber(e.target.value)}
+          onChange={handleCardNumberChange}
           className="w-full px-3 py-2 border rounded-md"
           placeholder="Card Number"
           required
@@ -114,7 +124,7 @@ const PaymentForm = () => {
       <div className="mb-4">
         <label className="block text-gray-700 font-bold mb-2">CVN</label>
         <input
-          type="text"
+          type="password"
           value={cvn}
           onChange={(e) => setCvn(e.target.value)}
           className="w-full px-3 py-2 border rounded-md"

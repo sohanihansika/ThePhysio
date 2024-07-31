@@ -1,7 +1,7 @@
 // Sidebar.jsx
 import React, { useState, useEffect } from 'react';
 import UserService from '../service/UserService';
-import { FaBars, FaHome,FaPhotoVideo, FaUserTie, FaUsers, FaFileAlt, FaRegFrown, FaChartLine, FaBullhorn, FaCalendarCheck, FaRegClipboard, FaSignOutAlt } from "react-icons/fa";
+import { FaBars, FaHome,FaPhotoVideo, FaUserTie, FaRegClock, FaPen, FaRegStar, FaUsers, FaFileAlt, FaRegFrown, FaChartLine, FaBullhorn, FaCalendarCheck, FaRegClipboard, FaSignOutAlt } from "react-icons/fa";
 import { HiDocumentReport } from "react-icons/hi";
 import { VscPreview } from "react-icons/vsc";
 import { CgGym } from "react-icons/cg";
@@ -213,6 +213,12 @@ function Sidebar({ onCollapse }) {
                                        {!isCollapsed && <p>Payments</p>}
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="/adVideo" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       <FaBullhorn />
+                                       {!isCollapsed && <p>Advertisements</p>}
+                                    </a>
+                                </li>
                             </>
                         )}
 
@@ -227,13 +233,13 @@ function Sidebar({ onCollapse }) {
                                 </li>
                                 <li>
                                     <a href="/staff" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <FaCalendarCheck />
-                                       {!isCollapsed && <p>Staff</p>}
+                                       <FaUserTie />
+                                       {!isCollapsed && <p>Staff Accounts</p>}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/schedules" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <FaRegClipboard />
+                                       <FaRegClock />
                                        {!isCollapsed && <p>Schedules</p>}
                                     </a>
                                 </li>
@@ -251,7 +257,7 @@ function Sidebar({ onCollapse }) {
                                 </li>
                                 <li>
                                     <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <MdOutlineReviews />
+                                       <FaRegStar />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
@@ -327,7 +333,7 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/uploadVideos" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/video-advertisement" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaPhotoVideo />
                                        {!isCollapsed && <p>Advertisement</p>}
                                     </a>
@@ -354,21 +360,27 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/viewAppointment" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <FaCalendarCheck />
-                                       {!isCollapsed && <p>Appointment</p>}
+                                    <a href="/advertisement-view" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       <FaBullhorn />
+                                       {!isCollapsed && <p>Advertisements</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <FaRegClipboard />
-                                       {!isCollapsed && <p>Completed Jobs</p>}
+                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       <FaRegClock />
+                                       {!isCollapsed && <p>Schedules</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <MdOutlinePayments />
-                                       {!isCollapsed && <p>Vehicle History</p>}
+                                    <a href="/attendance" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <FaPen />
+                                       {!isCollapsed && <p>Attendance</p>}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/view-review" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <FaRegStar />
+                                       {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
