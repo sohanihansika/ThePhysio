@@ -152,7 +152,7 @@ return (
         <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-12">
             <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-3">Dashboard Charts</h3>
             <div className="mt-6 flex flex-row gap-4">
-                <div className="w-full md:w-1/2 p-4 border rounded-lg">
+                <div className="w-full md:w-1/2 p-10 border rounded-lg shadow-lg">
                     {/* <div className="max-w-screen-sm mx-auto px-2 md:px-4 mt-12"> */}
                        <h4 className="text-gray-800 text-sm font-bold mt-3">Weekly Reservations</h4>
                        <div className="mt-3">
@@ -161,7 +161,7 @@ return (
                 </div>
 
                           {/* Payments Pie Chart */}
-                <div className="w-full md:w-1/2 p-4 border rounded-lg">
+                <div className="w-full md:w-1/2 p-10 border rounded-lg shadow-lg">
                    <h4 className="text-gray-800 text-sm font-bold  mt-3">Payments Distribution</h4>
                    <div className="mt-3">
                        <Pie data={paymentsData} options={{ maintainAspectRatio: false }} height={200} />

@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { FaCalendarCheck, FaVideo, FaComment, FaUsers } from 'react-icons/fa';
+import React, { useRef } from 'react';
+import { FaCalendarCheck, FaUsers } from 'react-icons/fa';
 import { startOfWeek, endOfWeek, startOfMonth, endOfMonth } from 'date-fns';
 import { Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
@@ -41,7 +41,7 @@ const CoachDashboard = () => {
         data: Array(7).fill(0).map((_, idx) => weeklyAppointments.filter(appointment => new Date(appointment.date).getDay() === (idx + 1) % 7).length),
         backgroundColor: 'rgba(66, 133, 244, 0.6)', // Light blue
         borderColor: 'rgba(66, 133, 244, 1)', // Darker blue
-        borderWidth: 1
+        borderWidth: 2 // Set border width for individual bars
       }
     ]
   };
@@ -54,7 +54,7 @@ const CoachDashboard = () => {
         data: Array(endOfCurrentMonth.getDate()).fill(0).map((_, idx) => monthlyAppointments.filter(appointment => new Date(appointment.date).getDate() === idx + 1).length),
         backgroundColor: 'rgba(54, 162, 235, 0.6)', // Light blue
         borderColor: 'rgba(54, 162, 235, 1)', // Darker blue
-        borderWidth: 1
+        borderWidth: 2 // Set border width for individual bars
       }
     ]
   };
@@ -82,7 +82,7 @@ const CoachDashboard = () => {
           'rgba(0, 77, 255, 1)', // Even darker blue
           'rgba(0, 51, 204, 1)'  // Deep blue
         ],
-        borderWidth: 1
+        borderWidth: 2 // Set border width for individual segments
       }
     ]
   };
@@ -158,19 +158,19 @@ const CoachDashboard = () => {
         <div className='mt-16 flex flex-wrap gap-20'> {/* Increased gap */}
           <div className='flex-1 max-w-xs'>
             <h3 className="text-xl font-bold text-gray-800">Weekly Appointments</h3>
-            <div className="chart-container mb-8"> {/* Added margin-bottom */}
+            <div className="chart-container mb-8 border-2 border-gray-300 p-4 rounded-lg"> {/* Added border, padding, and rounded corners */}
               <Bar data={weeklyData} options={{ responsive: true, plugins: { legend: { display: false }, title: { display: true, text: 'Weekly Appointments' } } }} />
             </div>
           </div>
-          <div className='flex-1 max-w-xs'>
+          {/* <div className='flex-1 max-w-xs'>
             <h3 className="text-xl font-bold text-gray-800">Monthly Appointments</h3>
-            <div className="chart-container mb-8"> {/* Added margin-bottom */}
+            <div className="chart-container mb-8 border-2 border-gray-300 p-4 rounded-lg"> 
               <Bar data={monthlyData} options={{ responsive: true, plugins: { legend: { display: false }, title: { display: true, text: 'Monthly Appointments' } } }} />
             </div>
-          </div>
+          </div> */}
           <div className='flex-1 max-w-xs'>
             <h3 className="text-xl font-bold text-gray-800">Subscriber Distribution</h3>
-            <div className="chart-container mb-8"> {/* Added margin-bottom */}
+            <div className="chart-container mb-8 border-2 border-gray-300 p-4 rounded-lg shadow-lg"> {/* Added border, padding, and rounded corners */}
               <Pie 
                 data={pieData} 
                 options={{
