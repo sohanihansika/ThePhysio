@@ -39,9 +39,9 @@ const Landingpage = () => {
     };
 
     const images = [
-        "./src/assets/1.jpg",
-        "./src/assets/clinic.jpg",
-        "./src/assets/clinic1.jpg",
+        "./src/assets/actual2.jpg",
+        "./src/assets/actual.jpg",
+        "./src/assets/actual1.jpg",
     ];
     
     const imageStyle = {
@@ -57,7 +57,7 @@ const Landingpage = () => {
     const Brand = () => (
         <div className="flex items-center justify-between py-5 md:block">
             <a href="javascript:void(0)">
-                <img src="./src/assets/logowithoutback.png" width={70} height={100} className="imageStyle" />
+                <img src="./src/assets/logowithoutback.png" width={100} height={100} className="imageStyle" />
             </a>
             <div className="md:hidden">
                 <button className="menu-btn text-gray-400 hover:text-gray-300"
@@ -78,7 +78,7 @@ const Landingpage = () => {
     )
 
     return (
-        <div className="relative flex flex-col items-left  justify-center min-h-screen w-screen bg-gray-100 overflow-x-hidden">
+        <div className="relative flex flex-col items-left  justify-center min-h-screen w-99vw bg-gray-100 overflow-x-hidden">
             <div className="bg-gray-100 min-h-screen flex flex-col overflow-x-hidden">
                 <header className="h-[100px] overflow-hidden bg-gray-900">
                     <div className={`md:hidden ${state ? "mx-2 pb-0" : "hidden"}`}>
@@ -90,18 +90,22 @@ const Landingpage = () => {
                             <div className={`flex-1 items-center mt-2 md:mt-0 md:flex ${state ? 'block' : 'hidden'} `}>
                                 <ul className="flex-1 justify-end items-center space-y-0 md:flex md:space-x-4 md:space-y-0">
                                     {navigation.map((item, idx) => (
-                                        <li key={idx} className="text-gray-300 hover:text-gray-400">
-                                            <a href={item.path} className="block">
-                                                {item.title}
-                                            </a>
-                                        </li>
+                                        <li key={idx} className="text-gray-300 hover:text-gray-400 text-lg"> {/* text-lg sets the font size */}
+                                        <a href={item.path} className="block font-medium">
+  {item.title}
+</a>
+
+
+                                      </li>
+                                      
                                     ))}
                                 </ul>
                                 <div className="flex-1 gap-x-4 items-center justify-end mt-2 space-y-0 md:flex md:space-y-0 md:mt-0">
-                                    <a href="/login" className="block text-gray-300 hover:text-gray-400">
-                                        Log in
-                                    </a>
-                                    <a href="/register" className="flex items-center justify-center gap-x-1 py-1 px-2 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex">
+                                <a href="/login" className="block text-gray-300 hover:text-gray-400 text-lg py-2 px-3">
+  Log in
+</a>
+
+                                    <a href="/register" className="flex items-center justify-center gap-x-1 text-lg py-1 px-2 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex">
                                         Sign up
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
                                             <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />

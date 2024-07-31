@@ -60,7 +60,42 @@ const AppointmentPage = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
+    <div className="container">
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+        
+
+    <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+     
+    <li className="border rounded-lg bg-blue-100 p-2 shadow-md w-84 h-32">
+      <Link to="/schedule" className="w-full h-full">
+        <div className="flex items-center justify-between p-2 h-full">
+          <div className="flex items-center space-x-2">
+            <span className="text-4xl"><FaRegClipboard/></span>
+            <h4 className="text-gray-800 font-semibold text-lg">Schedule</h4>
+          </div>
+        </div>
+      </Link>
+    </li>
+    <li className="border rounded-lg bg-blue-100 p-2 shadow-md w-84 h-32">
+      <Link to="/unpaid" className="w-full h-full">
+        <div className="flex items-center justify-between p-2 h-full">
+          <div className="flex items-center space-x-2">
+            <span className="text-4xl"><FaMoneyCheckAlt/></span>
+            <h4 className="text-gray-800 font-semibold text-lg">Payments</h4>
+          </div>
+        </div>
+      </Link>
+    </li>
+        
+         
+     </ul>
+
+ 
+ </div>
+ <div style={{ marginTop: '50px' }}>
+        {/* Content for the second section */}
+      </div>    <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6 style={{ marginTop: '100px' }}">
+      
       <div className="flex flex-col lg:flex-row">
         {/* Left Side: Calendar */}
         <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
@@ -130,22 +165,12 @@ const AppointmentPage = () => {
         </div>
       </div>
 
-      {/* Cards for Schedule and Payment pages */}
-      <div className="mt-8 flex justify-between">
-        <Link to="/schedule" className="w-1/2 p-10 bg-[#051B40] border rounded-lg shadow-sm mr-4 hover:bg-[#051B40]">
-          <div className="flex-none mb-4">
-            <FaRegClipboard size={24} color="white" />
-          </div>
-          <h3 className="text-white text-xl font-bold sm:text-2xl">Schedule</h3>
-        </Link>
-        <Link to="/unpaid" className="w-1/2 p-10 bg-[#051B40] border rounded-lg shadow-sm ml-4 hover:bg-[#051B40]">
-          <div className="flex-none mb-4">
-            <FaMoneyCheckAlt size={24} color="white" />
-          </div>
-          <h3 className="text-white text-xl font-bold sm:text-2xl">Payments</h3>
-        </Link>
-      </div>
+      
+      
+
     </div>
+    </div>
+
   );
 };
 

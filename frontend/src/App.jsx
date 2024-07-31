@@ -147,8 +147,8 @@ function App() {
   style={{ 
     ...(UserService.isAuthenticated() 
       ? isSidebarCollapsed 
-        ? { width: '95%', marginLeft: '5%' }
-        : { width: '83.5%', marginLeft: '16.5%' }
+        ? { width: '97%', marginLeft: '3%' }
+        : { width: '83.7%', marginLeft: '16.3%' }
       : { width: '100%', marginLeft: '0%' })
   }}
 >
@@ -295,14 +295,13 @@ function App() {
                   <Route path='/makeAppoinment' element={<MakeAppoinmemt/>} />
                   <Route path='/patientReports' element={<PatientReports/>} />
                   <Route path='/reservationSchedule' element={<ReservationSchedule/>} />
-                  {/* <Route path='/reviews' element={<Reviews/>} /> */}
                   <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                   <Route path="/appoinments" element={<Appoinments />} />
                   <Route path="/schedule" element={<Schedule />}/>
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
                   <Route path="/issuePrescription" element={<IssuePrescription />} />
-                  <Route path="/video-Advertisements" element={<Advertisements />} />
+                  <Route path="/video-Advertisements" element={<Advertisements />} />                  
 
 
 
