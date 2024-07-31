@@ -26,7 +26,7 @@ function Profile() {
 
     return (
       <div className="profile-page-container">
-        <h2 className="w-full mt-4 text-3xl font-bold leading-tight text-start">Profile</h2>
+        <h2 className="w-full mt-4 ml-6 text-3xl font-bold leading-tight text-start">Profile</h2>
         <section className="p-6 mt-1 dark:text-gray-800">
           <div className="grid grid-cols-1 md:grid-cols-3">
               <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
