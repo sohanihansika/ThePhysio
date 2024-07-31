@@ -16,12 +16,25 @@ const ManualPayment = () => {
   const [formData, setFormData] = useState(initialFormData);
   const navigate = useNavigate(); // Hook for navigation
 
+  const maskCardNumber = (cardNumber) => {
+    if (cardNumber.length <= 4) return cardNumber;
+    return "************" + cardNumber.slice(-4);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (name === "cardNumber") {
+      const inputNumber = value.replace(/\D/g, ""); // Remove any non-digit characters
+      setFormData({
+        ...formData,
+        [name]: maskCardNumber(inputNumber),
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -74,7 +87,6 @@ const ManualPayment = () => {
           >
             <option value="credit_card">Credit Card</option>
             <option value="paypal">Cash</option>
-            
           </select>
         </div>
 
@@ -172,7 +184,7 @@ const ManualPayment = () => {
               <input
                 type="text"
                 id="cvn"
-                name="cvn"
+                name="cvv"
                 value={formData.cvv}
                 onChange={handleChange}
                 placeholder="3 digits behind the card"
