@@ -10,7 +10,8 @@ export default () => {
             backgroundBlendMode: 'overlay',
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
             borderRadius: '20px',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            marginLeft:'10px'
         }}>
             <div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
                 <div className="max-w-xl space-y-3 md:mx-auto text-white">

@@ -71,7 +71,7 @@ function Sidebar({ onCollapse }) {
 
   const getLinkClass = (path) => {
     return `flex items-center gap-x-2 p-2 rounded-lg duration-150 ${
-      activeLink === path ? 'bg-white text-[#172b59]' : 'text-white hover:bg-gray-700'
+      activeLink === path ? 'bg-white text-[#172b59]' : 'text-white hover:bg-gray-100'
     }`;
   };
 
@@ -89,37 +89,37 @@ function Sidebar({ onCollapse }) {
                         {isAdmin && (
                             <>
                                 <li>
-                                    <a href="/admindashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/admindashboard" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaHome />
                                         {!isCollapsed && <p>Dashboard</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/staffaccounts" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/staffaccounts" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaUserTie />
                                         {!isCollapsed && <p>Staff Accounts</p>}
                                     </a>
                                 </li>                     
                                 <li>
-                                    <a href="/useraccounts" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/useraccounts" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaUsers />
                                         {!isCollapsed && <p>User Accounts</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaRegFrown />
                                         {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/ownerReports" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/ownerReports" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaChartLine />
                                         {!isCollapsed && <p>Reports & Analytics</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaBullhorn />
                                         {!isCollapsed && <p>Upload Video</p>}
                                     </a>
@@ -129,55 +129,44 @@ function Sidebar({ onCollapse }) {
                         {isUser && (
                             <>
                                 <li>
-                                <a
-                href="/dashboard"
-                className={getLinkClass('/dashboard')}
-                onClick={() => handleLinkClick('/dashboard')}
-              >
-                                {/* <a href="/dashboard" className={getLinkClass('/dashboard')} onClick={() => handleLinkClick('/dashboard')}> */}
-
-                                    {/* <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150"> */}
-                                        <FaHome />
-                                        {!isCollapsed && <p>Dashboard</p>}
+                                <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                    <FaHome />
+                                    {!isCollapsed && <p>Dashboard</p>}
                                     </a>
                                 </li>
                                 <li>
-                                <a
-                href="/appoinments"
-                className={getLinkClass('/appoinments')}
-                onClick={() => handleLinkClick('/appoinments')}
-              >
-                                    {/* <a href="/appoinments" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150"> */}
-                                        <FaCalendarCheck />
+                                
+                                <a href="/appoinments" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                <FaCalendarCheck />
                                         {!isCollapsed && <p>Make Appointments</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaRegClipboard />
                                         {!isCollapsed && <p>Schedule</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/physiocard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/physiocard" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaUsers />
                                         {!isCollapsed && <p>Physiotherapists</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/personalreportsview" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/personalreportsview" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <HiDocumentReport />
                                         {!isCollapsed && <p>Reports</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/reviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/reviews" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <VscPreview />
                                         {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/gymNavibar" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/gymNavibar" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <CgGym />
                                         {!isCollapsed && <p>Gym</p>}
                                     </a>
@@ -190,25 +179,25 @@ function Sidebar({ onCollapse }) {
                                 <>
         
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaHome />
                                         {!isCollapsed && <p>Dashboard</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/doctors" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/doctors" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaCalendarCheck />
                                        {!isCollapsed && <p>Add Appointments</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaRegClipboard />
                                        {!isCollapsed && <p>Schedule</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/unpaid" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/unpaid" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <MdOutlinePayments />
                                        {!isCollapsed && <p>Payments</p>}
                                     </a>
@@ -226,37 +215,37 @@ function Sidebar({ onCollapse }) {
                                 <>
         
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaHome />
                                         {!isCollapsed && <p>Dashboard</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/staff" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/staff" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaUserTie />
                                        {!isCollapsed && <p>Staff Accounts</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/schedules" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/schedules" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaRegClock />
                                        {!isCollapsed && <p>Schedules</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaBullhorn />
                                        {!isCollapsed && <p>Advertisements</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/ownerReports" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/ownerReports" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaFileAlt />
                                        {!isCollapsed && <p>Reports</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaRegStar />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
@@ -267,25 +256,25 @@ function Sidebar({ onCollapse }) {
                                 <>
         
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaHome />
                                         {!isCollapsed && <p>Dashboard</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/coachAppointment" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/coachAppointment" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaCalendarCheck />
                                        {!isCollapsed && <p>Appointments</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FiStar />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        < FiUpload />
                                        {!isCollapsed && <p>Advertiesments</p>}
                                     </a>
@@ -296,44 +285,46 @@ function Sidebar({ onCollapse }) {
                                 <>
         
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                <a href="/dashboard" className={getLinkClass('/dashboard')} onClick={() => handleLinkClick('/dashboard')}
+              >
+                                    {/* <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150"> */}
                                         <FaHome />
                                         {!isCollapsed && <p>Dashboard</p>}
                                     </a>
                                 </li>
                                 
                                 <li>
-                                    <a href="/leaves" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/leaves" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaRegClipboard />
                                        {!isCollapsed && <p>Leave</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/appoinments" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/appoinments" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaCalendarCheck />
                                        {!isCollapsed && <p>Make Appoinment</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/patientReports" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/patientReports" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <HiDocumentReport />
                                        {!isCollapsed && <p>Patient Reports</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/reservationSchedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/reservationSchedule" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaRegClipboard />
                                        {!isCollapsed && <p>Reservation Schedule</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/reviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/reviews" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <VscPreview />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/video-advertisement" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/video-advertisement" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaPhotoVideo />
                                        {!isCollapsed && <p>Advertisement</p>}
                                     </a>
@@ -354,7 +345,7 @@ function Sidebar({ onCollapse }) {
                                 <>
         
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaHome />
                                         {!isCollapsed && <p>Dashboard</p>}
                                     </a>
@@ -366,7 +357,7 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaRegClock />
                                        {!isCollapsed && <p>Schedules</p>}
                                     </a>
@@ -378,13 +369,13 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/view-review" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/view-review" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                     <FaRegStar />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/packages" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/packages" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <MdOutlinePayments />
                                        {!isCollapsed && <p>Packages</p>}
                                     </a>
@@ -392,24 +383,48 @@ function Sidebar({ onCollapse }) {
                             </>
                         )}
                     </ul>
-                    <hr className="my-2 border-white" />
-
                     <div>
                         <ul className="px-4 pb-4 text-sm font-medium">
-                        <li>
-                                <a href="/profile" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                    <CgProfile />
-                                    {!isCollapsed && <p>Profile</p>}
-                                </a>
-                            </li>
+                       
                             <li>
-                                <a href="/" onClick={handleLogout} className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                <a href="/" onClick={handleLogout} className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                     <FaSignOutAlt />
                                     {!isCollapsed && <p>Sign Out</p>}
                                 </a>
                             </li>
                         </ul>      
-                </div>
+                    </div>
+                    <hr className="my-2 border-white/50" />
+
+                    <div>
+                        <ul className="px-4 pb-4 text-sm font-medium">
+                        <li>
+                          <a href="/profile" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                             <CgProfile size={48} className='mr-10' />
+                             <div>
+  <div className="mt-1 ml-4 text-xl">
+    {isUser && <p>USER</p>}
+    {isAdmin && <p>ADMIN</p>}
+    {isPhysio && <p>PHYSIO</p>}
+    {isOwner && <p>OWNER</p>}
+    {isReceptionist && <p>RECEPTIONIST</p>}
+    {isManager && <p>MANGER</p>}
+    {isCoach && <p>COACH</p>}
+  </div>
+  {!isCollapsed && <p className="text-l">View Profile</p>}
+
+</div>
+
+
+                            
+                          </a>
+                        </li>
+                        
+
+
+                            
+                        </ul>      
+                    </div>
            </div>
         </nav>
     );

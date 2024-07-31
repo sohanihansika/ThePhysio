@@ -1,12 +1,40 @@
 import React, { useState } from 'react';
-import UserReviews from '../Owner/viewReviews';
- // Ensure to import the UserReviews component if it's in another file
+import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import UserReviews from '../Owner/viewReviews'; // Ensure to import the UserReviews component if it's in another file
+import { Navigate } from 'react-router-dom';
 
 export default function Reviews() {
   const [rating, setRating] = useState(0);
-
+  const [comment, setComment] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate(); // Initialize navigate
+1
   const handleRatingChange = (event) => {
     setRating(Number(event.target.value));
+  };
+
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (rating === 0 || comment.trim() === '') {
+      setError('Please fill out both the rating and comment fields.');
+
+      return;
+    }
+    else{
+      navigate('/success');
+    }
+    
+    // Handle submission logic here
+    console.log('Rating:', rating);
+    console.log('Comment:', comment);
+
+    // Clear the fields after submission
+    setRating(0);
+    setComment('');
+    setError('');
   };
 
   const starStyle = {
@@ -35,6 +63,11 @@ export default function Reviews() {
         <p className="text-center text-gray-600 mb-6">
           We value your feedback. Please share your thoughts with us!
         </p>
+
+        {/* Error Message */}
+        {error && (
+          <p className="text-red-500 text-center mb-4">{error}</p>
+        )}
 
         {/* Star Rating Section */}
         <div className="flex justify-center mb-6">
@@ -73,15 +106,17 @@ export default function Reviews() {
 
         <textarea
           rows="4"
+          value={comment}
+          onChange={handleCommentChange}
           className="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-[#172b59]"
           placeholder="Leave a comment..."
         ></textarea>
-        <a
-          href="/success"
+        <button
+          onClick={handleSubmit}
           className="block text-center text-white px-6 py-3 mt-6 rounded-full bg-[#172b59] hover:bg-[#0d1a33] active:bg-[#0b1627] shadow-lg transition-transform transform hover:scale-105"
         >
           Send
-        </a>
+        </button>
         <div className="text-center mt-4">
           <a
             rel="noopener noreferrer"
@@ -93,10 +128,8 @@ export default function Reviews() {
         </div>
       </div>
       <div style={{ width: '1000px', marginLeft: '-200px' }}>
-    <UserReviews />
-</div>
-
-
+        <UserReviews />
+      </div>
     </div>
   );
 }
