@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserService from '../../service/UserService';
 
-function Appoinments() {
+function Appointments() {
     const [users, setUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -34,10 +34,10 @@ function Appoinments() {
     };
 
     return (
-        <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-10">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-10 ">
             <div className="items-start justify-between md:flex">
-                <div className="max-w-lg">
-                    <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
+                <div className="max-w-lg text-start ml-16">
+                    <h3 className="text-gray-800 text-xl font-bold sm:text-2xl ">
                         Physio Accounts
                     </h3>
                     <p className="text-gray-600 mt-2">
@@ -45,7 +45,7 @@ function Appoinments() {
                     </p>
                 </div>
             </div>
-            <div className="mt-4 mb-8">
+            <div className="mt-4 mb-8 text-start ml-16">
                 <input
                     type="text"
                     placeholder="Search by name"
@@ -54,13 +54,11 @@ function Appoinments() {
                     className="p-2 border border-gray-300 rounded-lg w-1/4"
                 />
             </div>
-            <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
-                <table className="w-full table-auto text-sm text-left">
+            <div className="w-3/4 mx-auto"> {/* Container with reduced width */}
+                <table className="w-full table-auto text-sm text-left shadow-sm border rounded-lg">
                     <thead className="bg-gray-50 text-gray-600 font-medium border-b">
                         <tr>
-                            <th className="py-3 px-6">Name</th>
-                            <th className="py-3 px-6">Email</th>
-                            <th className="py-3 px-6">Specialty</th>
+                            <th className="py-3 px-6">Physiotherapist</th>
                             <th className="py-3 px-6"></th>
                         </tr>
                     </thead>
@@ -78,8 +76,6 @@ function Appoinments() {
                                         <span className="block text-gray-700 text-xs">{user.email}</span>
                                     </div>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">Specialty Info</td> {/* Placeholder for specialty info */}
                                 <td className="text-right px-6 whitespace-nowrap">
                                     <button
                                         onClick={() => window.location.href = `/calender?physioId=${user.id}`}
@@ -97,4 +93,4 @@ function Appoinments() {
     );
 }
 
-export default Appoinments;
+export default Appointments;

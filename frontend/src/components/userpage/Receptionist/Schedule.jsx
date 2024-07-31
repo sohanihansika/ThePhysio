@@ -17,15 +17,15 @@ const Appointments = () => {
   ];
 
   const tableItemsUpcoming = [
-    { time: "9.00 - 9.30", name: "Bob", doc: "Steven", room: "1", status: "Done" },
-    { time: "9.00 - 9.30", name: "Christine", doc: "Peter", room: "2", status: "Pending" },
-    { time: "9.00 - 9.30", name: "Charlotte", doc: "John", room: "4", status: "Not Paid" },
+    { time: "9.30 - 10.00", name: "Shane", doc: "Steven", room: "1", status: "Done" },
+    { time: "9.30 - 10.00", name: "Holly", doc: "Peter", room: "2", status: "Pending" },
+    { time: "10.00 - 10.30", name: "Stephnie", doc: "John", room: "4", status: "Not Paid" },
   ];
 
   const tableItemsPast = [
-    { time: "9.00 - 9.30", name: "Bob", doc: "Steven", room: "1", status: "Done" },
-    { time: "9.00 - 9.30", name: "Christine", doc: "Peter", room: "2", status: "Pending" },
-    { time: "9.00 - 9.30", name: "Charlotte", doc: "John", room: "4", status: "Not Paid" },
+    { time: "8.30 - 9.00", name: "Justin", doc: "Steven", room: "1", status: "Done" },
+    { time: "8.30 - 9.00", name: "Niki", doc: "Peter", room: "2", status: "Pending" },
+    { time: "8.30 - 9.00", name: "Rodrick", doc: "John", room: "4", status: "Not Paid" },
   ];
 
   const handleDateChange = (date) => {

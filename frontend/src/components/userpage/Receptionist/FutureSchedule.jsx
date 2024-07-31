@@ -11,8 +11,8 @@ const Appointments = () => {
   const tableItems = [
     { time: "9.00 - 9.30", name: "Bob", doc: "Steven", room: "1", status: "Done" },
     { time: "9.00 - 9.30", name: "Christine", doc: "Peter", room: "2", status: "Pending" },
-    { time: "9.00 - 9.30", name: "Yasmine", doc: "Lewis", room: "3", status: "Done" },
-    { time: "9.00 - 9.30", name: "Charlotte", doc: "John", room: "4", status: "Not Paid" },
+    { time: "9.30 - 10.00", name: "Yasmine", doc: "Lewis", room: "3", status: "Done" },
+    { time: "10.30 - 11.00", name: "Charlotte", doc: "John", room: "4", status: "Not Paid" },
   ];
 
   const handleRescheduleClick = (item) => {
