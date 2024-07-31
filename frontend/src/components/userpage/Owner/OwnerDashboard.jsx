@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUsers, FaReceipt, FaCalendarCheck, FaRegClock, FaRegFileAlt, FaCog } from 'react-icons/fa';
+import { FaUsers, FaReceipt, FaCalendarCheck, FaRegClock, FaRegFileAlt } from 'react-icons/fa';
 import { Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
@@ -26,9 +26,9 @@ const AdminDashboard = () => {
             icon: <FaReceipt />
         },
         {
-            title: "System Health",
-            desc: "All Systems Operational",
-            path: "/system-status",
+            title: "Active Sessions",
+            desc: "35",
+            path: "/sessions",
             icon: <FaRegClock />
         },
         {
@@ -98,12 +98,10 @@ const AdminDashboard = () => {
                             <a href={item.path}>
                                 <div className="flex items-start justify-center p-4">
                                     <div className="space-y-2">
-                                        <div className="flex items-center justify-center">
-                                            <span className="mr-2 text-6xl text-blue-500">{item.icon}</span>
-                                            <div>
-                                                <h4 className="text-gray-800 font-semibold text-xl">{item.title}</h4>
-                                                <p className="text-gray-600 text-3xl mb-3 text-center">{item.desc}</p>
-                                            </div>
+                                        <div className="flex items-center justify-center flex-col">
+                                            <span className="text-6xl text-blue-500">{item.icon}</span>
+                                            <h4 className="text-gray-800 font-semibold text-xl text-center mt-2">{item.title}</h4>
+                                            <p className="text-gray-600 text-3xl mb-3 text-center">{item.desc}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +112,7 @@ const AdminDashboard = () => {
 
                 {/* Charts */}
                 <div className="mt-12">
-                    <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-3">Dashboard Charts</h3>
+                    <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-3">Insights and Analytics</h3>
                     <div className="mt-6 flex flex-row gap-4">
                         <div className="w-full md:w-1/2 p-4 border rounded-lg shadow-lg">
                             <h4 className="text-gray-800 text-sm font-bold mt-3">Weekly Reservations</h4>
