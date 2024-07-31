@@ -1,3 +1,4 @@
+// Sidebar.jsx
 import React, { useState, useEffect } from 'react';
 import UserService from '../service/UserService';
 import { FaBars, FaHome,FaPhotoVideo, FaUserTie, FaRegClock, FaRegStar, FaUsers, FaFileAlt, FaRegFrown, FaChartLine, FaBullhorn, FaCalendarCheck, FaRegClipboard, FaSignOutAlt } from "react-icons/fa";
@@ -5,11 +6,11 @@ import { HiDocumentReport } from "react-icons/hi";
 import { VscPreview } from "react-icons/vsc";
 import { CgGym } from "react-icons/cg";
 import { MdOutlinePayments, MdOutlineReviews } from "react-icons/md";
+import { FiStar } from 'react-icons/fi';
+import { FiUpload } from 'react-icons/fi';
 import { CgProfile } from "react-icons/cg";
 
-
-
-function Sidebar() {
+function Sidebar({ onCollapse }) {
     const [isAuthenticated, setIsAuthenticated] = useState(UserService.isAuthenticated());
     const [isAdmin, setIsAdmin] = useState(UserService.isAdmin());
     const [isUser, setIsUser] = useState(UserService.isUser());
@@ -19,7 +20,7 @@ function Sidebar() {
     const [isManager, setIsManager] = useState(UserService.isManager());
     const [isCoach, setIsCoach] = useState(UserService.isCoach());
     const [profileInfo, setProfileInfo] = useState({});
-    const [isCollapsed, setIsCollapsed] = useState(false); // State to manage sidebar collapse
+    const [isCollapsed, setIsCollapsed] = useState(false);
 
     useEffect(() => {
         fetchProfileInfo();
@@ -28,7 +29,7 @@ function Sidebar() {
     const fetchProfileInfo = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await UserService.getMyProfile(token);
+            const response = await UserService.getYourProfile(token);
             setProfileInfo(response.ourUsers);
         } catch (error) {
             console.error('Error fetching profile information:', error);
@@ -36,9 +37,10 @@ function Sidebar() {
     };
 
     const handleLogout = () => {
-        const confirmDelete = window.confirm('Are you sure you want to logout?');
+        const confirmDelete = window.confirm('Are you sure you want to logout this user?');
         if (confirmDelete) {
-            UserService.logout(); // Ensure the user is logged out before redirecting
+            location.href = '/';
+            UserService.logout();
             setIsAuthenticated(false);
             setIsAdmin(false);
             setIsUser(false);
@@ -47,7 +49,6 @@ function Sidebar() {
             setIsPhysio(false);
             setIsManager(false);
             setIsCoach(false);
-            location.href = '/';
         }
     };
 
@@ -55,19 +56,35 @@ function Sidebar() {
         return null;
     }
 
+    const toggleCollapse = () => {
+        setIsCollapsed(prevState => {
+          const newState = !prevState;
+          onCollapse(newState); // Notify the parent component
+          return newState;
+        });
+      };
+      const [activeLink, setActiveLink] = useState('/'); // Default active link
+
+  const handleLinkClick = (path) => {
+    setActiveLink(path);
+  };
+
+  const getLinkClass = (path) => {
+    return `flex items-center gap-x-2 p-2 rounded-lg duration-150 ${
+      activeLink === path ? 'bg-white text-[#172b59]' : 'text-white hover:bg-gray-700'
+    }`;
+  };
+
     return (
-        <nav
-         className={`fixed top-0 left-0 h-full bg-[#172b59] border-r z-10 text-gray-800 ${isCollapsed ? 'w-16' : 'w-64'}`}>
-            <div className="flex flex-col h-full">
-                <div className='h-16 flex items-center justify-between px-6'>
+        <nav className={`fixed top-0 left-0 h-full bg-[#172b59] border-r z-10 text-gray-100 ${isCollapsed ? 'w-16' : 'w-64'}`}>
+            <div className="flex items-center justify-between px-4 py-4">
                     <a href='/dashboard' className={`flex-none ${isCollapsed ? 'hidden' : ''}`}>
                         <img src="./src/assets/logowithoutback.png" width={isCollapsed ? 50 : 140} className="mx-auto mt-12" />
                     </a>
-                    {/* <button onClick={() => setIsCollapsed(!isCollapsed)} className="text-white focus:outline-none">
-                        <FaBars size={24} color="#ffffff" />
-                    </button> */}
-                </div>
-                <div className="flex-1 flex flex-col h-full overflow-auto mt-12">
+                <FaBars onClick={toggleCollapse} />
+                <h1 className={`text-white font-bold ${isCollapsed ? 'hidden' : 'block'}`}></h1>
+            </div>
+            <div className="flex-1 flex flex-col h-2/3 overflow-auto mt-12">
                     <ul className="px-4 text-sm font-medium flex-1">
                         {isAdmin && (
                             <>
@@ -82,7 +99,7 @@ function Sidebar() {
                                         <FaUserTie />
                                         {!isCollapsed && <p>Staff Accounts</p>}
                                     </a>
-                                </li>
+                                </li>                     
                                 <li>
                                     <a href="/useraccounts" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                         <FaUsers />
@@ -112,13 +129,25 @@ function Sidebar() {
                         {isUser && (
                             <>
                                 <li>
-                                    <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                <a
+                href="/dashboard"
+                className={getLinkClass('/dashboard')}
+                onClick={() => handleLinkClick('/dashboard')}
+              >
+                                {/* <a href="/dashboard" className={getLinkClass('/dashboard')} onClick={() => handleLinkClick('/dashboard')}> */}
+
+                                    {/* <a href="/dashboard" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150"> */}
                                         <FaHome />
                                         {!isCollapsed && <p>Dashboard</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/appoinments" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                <a
+                href="/appoinments"
+                className={getLinkClass('/appoinments')}
+                onClick={() => handleLinkClick('/appoinments')}
+              >
+                                    {/* <a href="/appoinments" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150"> */}
                                         <FaCalendarCheck />
                                         {!isCollapsed && <p>Make Appointments</p>}
                                     </a>
@@ -238,21 +267,21 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/repairvehicles" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/coachAppointment" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaCalendarCheck />
-                                       {!isCollapsed && <p>Assigned Jobs</p>}
+                                       {!isCollapsed && <p>Appointments</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/completedjobs" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <FaRegClipboard />
-                                       {!isCollapsed && <p>Completed Jobs</p>}
+                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       <FiStar />
+                                       {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/vehiclehistory" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <MdOutlinePayments />
-                                       {!isCollapsed && <p>Vehicle History</p>}
+                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       < FiUpload />
+                                       {!isCollapsed && <p>Advertiesments</p>}
                                     </a>
                                 </li>
                             </>
@@ -292,15 +321,15 @@ function Sidebar() {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/reviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/ viewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <VscPreview />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/uploadVideos" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/video-advertisement" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaPhotoVideo />
-                                       {!isCollapsed && <p>Upload Videos</p>}
+                                       {!isCollapsed && <p>Advertisement</p>}
                                     </a>
                                 </li>
                                 
@@ -337,9 +366,11 @@ function Sidebar() {
                             </>
                         )}
                     </ul>
+                    <hr className="my-2 border-white" />
+
                     <div>
                         <ul className="px-4 pb-4 text-sm font-medium">
-                            <li>
+                        <li>
                                 <a href="/profile" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                     <CgProfile />
                                     {!isCollapsed && <p>Profile</p>}
@@ -351,12 +382,11 @@ function Sidebar() {
                                     {!isCollapsed && <p>Sign Out</p>}
                                 </a>
                             </li>
-                        </ul>
-                    </div>
+                        </ul>      
                 </div>
-            </div>
+           </div>
         </nav>
     );
 }
 
-export default Sidebar;
+export default Sidebar;

@@ -1,48 +1,30 @@
 import React from 'react'
 
-import DashboardCards from './DashboardCards';
-// import Calender1 from '../userpage/Receptionist/Calender1';
+// import DashboardCards from './DashboardCards';
+import Upcomming from '../User/dashComponent/upcomming';
+import Calendar from '../User/calender';
+import Cards from '../User/dashComponent/cards';
 
 
 
-
-const FeaturesSection = () => {
+export default function PhysioDashboard() {
     return (
-        <section className="py-28" style={{ background: "linear-gradient(152.92deg, rgba(192, 132, 252, 0.2) 4.54%, rgba(232, 121, 249, 0.17) 34.2%, rgba(192, 132, 252, 0.1) 77.55%)" }}>
-            <div className="max-w-screen-xl mx-auto px-4 md:text-center md:px-8">
-                <div className="max-w-xl space-y-3 md:mx-auto">
-                    <h3 className="text-indigo-600 font-semibold">
-                        Other feature have us
-                    </h3>
-                    {/* <p className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-                        Exercise is the key to a <span className= "text-blue-800 font-semibold">Healthy</span> LifeStyle
-                    </p> */}
-                    <p className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-                        The Physio<span className= "text-blue-800 font-semibold"> Gym</span> 
-                    </p>
-                    <p className="text-gray-600">
-                    Exercise is the key to a Healthy LifeStyle</p>
-                </div>
-                <div className="mt-4">
-                    <a href="javascript:void(0)" className="inline-block py-2 px-4 text-white font-medium bg-gray-800 duration-150 hover:bg-gray-700 active:bg-gray-900 rounded-lg shadow-md hover:shadow-none">
-                        Join Us
-                    </a>
-                </div>
-            </div>
-        </section>
-    )
-}
-
-const MainComponent = () => {
-    return (
-      <div>
+      <div className="max-w-full mx-auto px-4"> {/* Maximum full width */}
         
-    
-        <DashboardCards/> 
-        <FeaturesSection />
-      </div>
-    );
-  };
+        <Cards />
+        <div className="flex justify-center items-center flex-wrap gap-24 mt-6"> {/* Flex container for Upcomming and Calendar */}
+          <div className="flex-1 min-w-[300px] max-w-[600px]"> {/* Ensures both components are responsive */}
+            <Upcomming />
+          </div>
+          <div className="flex-1 min-w-[200px] max-w-[600px]"> {/* Ensures both components are responsive */}
+          <h1 className="text-xl font-bold text-[#172b59] p-6">Make Appoinment</h1>
   
-  export default MainComponent;
+            <Calendar />
+          </div>
+        </div>
+        
+        
+      </div>
+    )
+  }
   
