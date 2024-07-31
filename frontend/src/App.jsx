@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -63,6 +63,8 @@ import TimeSlots from './components/userpage/User/timeSlots';
 import AddAppoinmet from './components/userpage/User/AddAppoinment';
 import SelectPayment from './components/userpage/User/SelectPayment';
 import paymentpopup from './components/userpage/User/paymentpopup';
+import NotAvilavle from './components/userpage/User/notavilPopup';
+import ReservedPopup from './components/userpage/User/reservedPopup'
 import UserDashboardLink from './components/userpage/Admin/UserDashboardLink';
 import NaviBar from './components/userpage/User/GymMember/NaviBar';
 import Membership from './components/userpage/User/GymMember/Membership';
@@ -117,29 +119,27 @@ import Appointment2 from './components/userpage/Manager/Appointment2';
 
 
 function App() {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
+  const handleSidebarCollapse = (isCollapsed) => {
+    setIsSidebarCollapsed(isCollapsed);
+  };
   return (
     <BrowserRouter>
-      <div
-        className={`content ${
-          !UserService.isAuthenticated() ? "w-full" : "w-full"
-        }`}
-      >
-        {/* <div>
-          <Navbar />
-        </div> */}
-      </div>
       <div className="App flex">
         {UserService.isAuthenticated() && (
-          <div className="w-72">
-            <Sidebar />
-          </div>
+          <Sidebar onCollapse={handleSidebarCollapse} />
         )}
         <div
-          className={`content ${
-            UserService.isAuthenticated() ? "custom-width" : "w-full"
-          }`}
-          style={{ width: UserService.isAuthenticated() ? 'calc(100vw - 16rem)' : '100vw' }}
-        >
+  className={`content transition-all duration-300`}
+  style={{ 
+    ...(UserService.isAuthenticated() 
+      ? isSidebarCollapsed 
+        ? { width: '95%', marginLeft: '5%' }
+        : { width: '83.5%', marginLeft: '16.5%' }
+      : { width: '100%', marginLeft: '0%' })
+  }}
+>
           <Routes>
             {!UserService.isAuthenticated() && (
               <>
@@ -246,6 +246,11 @@ function App() {
                   <Route path="/popup" element={<Popup />}/>
                   <Route path="/physioprofile" element={<PhysioProfile />}/>
                   <Route path="/calendar" element={<Calendar />} />
+              
+                  <Route path="/notavilPopup" element={<NotAvilavle />} />
+                  <Route path="/reserved" element={<ReservedPopup />} />
+
+
 
 
                                     

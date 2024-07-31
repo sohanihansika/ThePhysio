@@ -1,128 +1,129 @@
 import React from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'font-awesome/css/font-awesome.min.css';
+
 import '../../../CSS/prescription.css';
 
 const PrescriptionForm = () => {
-  // Dummy data
-  const patientData = {
-    indexNo: '12345',
-    patientId: '67890',
-    name: 'John Doe',
-    age: '45',
-    referredBy: 'Dr. Smith',
-    presentingCondition: 'Back pain, Difficulty in movement',
-    bodyChartPart: 'Back',
-    painSeverity: '7',
-    aggravatingFactors: 'Long sitting, Heavy lifting',
-    easingFactors: 'Rest, Pain relievers',
-    hxPresentingCondition: 'Chronic back pain for 2 years',
-    investigations: 'MRI Scan, X-ray',
-    medication: 'Painkillers, Muscle relaxants',
-    previousRx: 'Physiotherapy sessions',
-    pmh: 'Hypertension, Diabetes',
-    redFlags: 'CVD',
-    patientGoals: 'Improve mobility, Reduce pain'
+  // Dummy data (same as before)
+  const reportData = {
+    indexNo: 'PT2024-0728',
+    referredBy: 'Dr. Sarah Johnson',
+    contactNo: '+1 (555) 123-4567',
+    name: 'Michael Thompson',
+    dob: '1985-03-15',
+    occupation: 'Software Developer',
+    presentingCondition: 'Lower back pain radiating to left leg',
+    hxPresentingCondition: 'Gradual onset over 3 months, worsened after long periods of sitting',
+    investigations: 'MRI shows mild disc bulge at L4-L5',
+    medication: 'Ibuprofen 400mg PRN, Cyclobenzaprine 10mg at night',
+    previousRx: 'Heat therapy, gentle stretching exercises',
+    pmh: 'Hypertension (controlled with medication)',
+    redFlags: ['CVD', 'Tx pain'],
+    patientGoals: 'Return to regular exercise routine, improve posture at work'
+  };
+
+  const sectionStyle = {
+    marginBottom: '30px',
+    padding: '15px',
+    backgroundColor: '#f0f4f8',
+    borderRadius: '8px'
+  };
+
+  const headingStyle = {
+    color: '#2c5282',
+    backgroundColor: '#e2e8f0',
+    padding: '8px',
+    borderRadius: '4px',
+    marginBottom: '10px'
   };
 
   return (
-    <div
-      className="wrapper"
-      style={{ backgroundColor: 'rgba(243, 244, 246, 1)' }} // Adjust opacity if needed
-    >
-      <div className="prescription_form">
-        <table className="prescription" border="1">
-          <tbody>
-            <tr>
-              <td colSpan="3">
-                <div className="header">
-                  <div className="logo">
-                    <img
+    <div className="wrapper" style={{ backgroundColor: '#f3f4f6', padding: '20px' }}>
+      <div className="assessment-form" style={{ backgroundColor: 'white', padding: '30px', borderRadius: '10px' }}>
+        <div className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+        <img
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR56Sg3QFXTwU0vgTY-7xFI9Db3yeXpS0VYpA&s"
                       alt="Hospital Logo"
                       style={{ maxHeight: '60px' }}
-                    />
-                  </div>
-                  <div className="credentials">
-                    <p><strong>Index No:</strong> {patientData.indexNo}</p>
-                    <p><strong>Patient ID:</strong> {patientData.patientId}</p>
-                    <p><strong>Patient Name:</strong> {patientData.name}</p>
-                    <p><strong>Age:</strong> {patientData.age}</p>
-                    <p><strong>Referred By:</strong> {patientData.referredBy}</p>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td width="40%">
-                <div className="desease_details">
-                  <div className="present">
-                    <h5>Presenting Condition</h5>
-                    <p>{patientData.presentingCondition}</p>
-                  </div>
-                  <hr />
-                  <div className="bodychart">
-                    <h5>Body chart</h5>
-                    <br />
+                    />          <h1 style={{ color: '#3366cc' }}>PHYSIOTHERAPY ASSESSMENT REPORT</h1>
+        </div>
+        
+        <div className="patient-info" style={sectionStyle}>
+          <h3 style={headingStyle}>Patient Information</h3>
+          <p><strong>Index No:</strong> {reportData.indexNo}</p>
+          <p><strong>Referred By:</strong> {reportData.referredBy}</p>
+          <p><strong>Contact No:</strong> {reportData.contactNo}</p>
+          <p><strong>Name:</strong> {reportData.name}</p>
+          <p><strong>DOB:</strong> {reportData.dob}</p>
+          <p><strong>Occupation:</strong> {reportData.occupation}</p>
+        </div>
+
+        <div className="assessment-details" style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div className="left-column" style={{ width: '48%' }}>
+            <div style={sectionStyle}>
+              <h3 style={headingStyle}>Presenting Condition</h3>
+              <p>{reportData.presentingCondition}</p>
+            </div>
+
+            <div style={sectionStyle}>
+              <h3 style={headingStyle}>Body Chart</h3>
+              
                     <img
                       src="https://img.freepik.com/free-photo/lumbars-muscles_1048-1899.jpg?ga=GA1.1.319732266.1661310700&semt=ais_user"
                       style={{ maxHeight: '50px' }}
                       alt="Body Chart"
                     />
-                    <p><strong>Part Affected:</strong> {patientData.bodyChartPart}</p>
-                  </div>
-                  <hr />
-                  <div className="serverity">
-                    <h5>Pain Severity</h5>
-                    <p>{patientData.painSeverity}</p>
-                  </div>
-                  <hr />
-                  <div className="factor">
-                    <h5>Aggravating Factors</h5>
-                    <p>{patientData.aggravatingFactors}</p>
-                  </div>
-                </div>
-              </td>
-              <td width="60%" valign="top">
-                <h5>Easing factors</h5>
-                <p>{patientData.easingFactors}</p>
-                <hr />
-                <div className="condition">
-                  <h5>Hx of Presenting Condition</h5>
-                  <p>{patientData.hxPresentingCondition}</p>
-                </div>
-                <hr />
-                <div className="invest">
-                  <h5>Investigations</h5>
-                  <p>{patientData.investigations}</p>
-                </div>
-                <hr />
-                <div className="medi">
-                  <h5>Medication</h5>
-                  <p>{patientData.medication}</p>
-                </div>
-              </td>
-              <td width="60%" valign="top">
-                <h5>Previous Rx</h5>
-                <p>{patientData.previousRx}</p>
-                <hr />
-                <div className="pmh">
-                  <h5>PMH</h5>
-                  <p>{patientData.pmh}</p>
-                  <h5>Red flags</h5>
-                  <p>{patientData.redFlags}</p>
-                </div>
-                <hr />
-                <div className="goals">
-                  <h5>Patient Goals</h5>
-                  <p>{patientData.patientGoals}</p>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="button_group">
-          <button className="issue_prescription btn btn-success">Issue</button>
+              <p>P&N Numbness: Left leg</p>
+            </div>
+
+            <div style={sectionStyle}>
+              <h3 style={headingStyle}>Pain Assessment</h3>
+              <p><strong>Severity:</strong> 7/10 at worst, 3/10 at best</p>
+              <p><strong>Aggravating Factors:</strong> Prolonged sitting, bending forward, lifting heavy objects</p>
+              <p><strong>Easing Factors:</strong> Walking, lying flat, gentle stretching</p>
+            </div>
+          </div>
+          
+          <div className="right-column" style={{ width: '48%' }}>
+            <div style={sectionStyle}>
+              <h3 style={headingStyle}>History of Presenting Condition</h3>
+              <p>{reportData.hxPresentingCondition}</p>
+            </div>
+
+            <div style={sectionStyle}>
+              <h3 style={headingStyle}>Investigations</h3>
+              <p>{reportData.investigations}</p>
+            </div>
+
+            <div style={sectionStyle}>
+              <h3 style={headingStyle}>Medication</h3>
+              <p>{reportData.medication}</p>
+            </div>
+
+            <div style={sectionStyle}>
+              <h3 style={headingStyle}>Previous Treatment</h3>
+              <p>{reportData.previousRx}</p>
+            </div>
+
+            <div style={sectionStyle}>
+              <h3 style={headingStyle}>Past Medical History</h3>
+              <p>{reportData.pmh}</p>
+            </div>
+
+            <div style={sectionStyle}>
+              <h3 style={headingStyle}>Red Flags</h3>
+              <p>{reportData.redFlags.join(', ')}</p>
+            </div>
+
+            <div style={sectionStyle}>
+              <h3 style={headingStyle}>Patient Expectations/Goals</h3>
+              <p>{reportData.patientGoals}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer" style={{ marginTop: '30px', textAlign: 'right' }}>
+          <p><strong>Assessed by:</strong> Dr. Emily Parker, PT, DPT</p>
+          <p><strong>Date:</strong> {new Date().toLocaleDateString()}</p>
         </div>
       </div>
     </div>
