@@ -58,6 +58,7 @@ import ReadMore2_P from './components/userpage/Physio/GymMember/ReadMore2';
 import ReadMore3_P from './components/userpage/Physio/GymMember/ReadMore3';
 import ReadMore4_P from './components/userpage/Physio/GymMember/ReadMore4';
 import ReadMore5_P from './components/userpage/Physio/GymMember/ReadMore5';
+import LeaveHandle from './components/userpage/Owner/LeaveHandle';
 
 import UserDashboard from './components/userpage/User/UserDashboard';
 
@@ -138,6 +139,8 @@ import FinancialReport from './components/userpage/Owner/reports/financialReport
 import MembershipReport from './components/userpage/Owner/reports/membershipReoprt';
 import CustomerFeedbackReport from './components/userpage/Owner/reports/customerFeedbackReport';
 import OwnerReports from './components/userpage/Owner/ownerReports';
+import Leavepopup from './components/userpage/Owner/leavepopup';
+import Videoconfirm from './components/userpage/Owner/videoconfirm'
 
 
 import ViewAppointment from './components/userpage/Manager/ViewAppointment';
@@ -252,6 +255,14 @@ function App() {
                   <Route path="/financialReport" element={<FinancialReport />} />
                   <Route path="/membershipReport" element={<MembershipReport />} />
                   <Route path="/ownerReports" element={<OwnerReports />} />
+                  <Route path="/leavehandle" element={<LeaveHandle />} />
+                  <Route path="/leavepopup" element={<Leavepopup />} />
+                  <Route path="/videoconfirm" element={<Videoconfirm />} />
+
+                  
+
+                  
+
                   
 
                 </>
@@ -335,7 +346,9 @@ function App() {
                   <Route path="/reservationSchedule" element={<ReservationSchedule />}/>
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
                   <Route path="/issuePrescription" element={<IssuePrescription />} />
-                  <Route path="/video-Advertisements" element={<Advertisements />} />                  
+                  <Route path="/video-Advertisements" element={<Advertisements />} />  
+ 
+                                  
 
 
 

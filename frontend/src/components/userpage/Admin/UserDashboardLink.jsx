@@ -45,7 +45,7 @@ export default () => {
 
 return(
     <section className="py-2">
-      <div className="max-w-screen-xl mx-auto px-12 md:px-12">
+      <div className="max-w-screen-xl mx-auto px-12 md:px-12 ">
 
       {/* <button type="button" className="px-8 py-3 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-100">Patients</button>
       <button type="button" className="px-8 py-3 font-semibold rounded-full dark:bg-gray-800 dark:text-gray-100">Physiotherapists</button>
