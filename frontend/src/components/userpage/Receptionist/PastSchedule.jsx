@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 const Appointments = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [nameSearchQuery, setNameSearchQuery] = useState('');
+  const [statusSearchQuery, setStatusSearchQuery] = useState('');
   const [tableItems, setTableItems] = useState([
     { time: "9.00 - 9.30", name: "Bob", doc: "Steven", room: "1", status: "Done" },
     { time: "9.00 - 9.30", name: "Christine", doc: "Peter", room: "2", status: "Pending" },
@@ -9,12 +10,17 @@ const Appointments = () => {
     { time: "9.00 - 9.30", name: "Charlotte", doc: "John", room: "4", status: "Not Paid" }
   ]);
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value.toLowerCase());
+  const handleNameSearchChange = (e) => {
+    setNameSearchQuery(e.target.value.toLowerCase());
+  };
+
+  const handleStatusSearchChange = (e) => {
+    setStatusSearchQuery(e.target.value.toLowerCase());
   };
 
   const filteredItems = tableItems.filter(item =>
-    item.status.toLowerCase().includes(searchQuery)
+    item.name.toLowerCase().includes(nameSearchQuery) &&
+    item.status.toLowerCase().includes(statusSearchQuery)
   );
 
   return (
@@ -27,14 +33,29 @@ const Appointments = () => {
         </div>
       </div>
 
-      <div className="mt-4">
-        <input
-          type="text"
-          placeholder="Search by payment status..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className="px-4 py-2 border rounded-md"
-        />
+      <div className="mt-4 flex gap-4">
+        <div className="flex items-center flex-1">
+          <label htmlFor="name-search" className="text-black font-md">Name:</label>
+          <input
+            id="name-search"
+            type="text"
+            placeholder="Enter name..."
+            value={nameSearchQuery}
+            onChange={handleNameSearchChange}
+            className="px-4 py-2 border rounded-md w-1/2"
+          />
+        </div>
+        <div className="flex items-center flex-1">
+          <label htmlFor="status-search" className="text-black mr-2 font-md">Status: </label>
+          <input
+            id="status-search"
+            type="text"
+            placeholder="Enter status..."
+            value={statusSearchQuery}
+            onChange={handleStatusSearchChange}
+            className="px-4 py-2 border rounded-md w-1/2"
+          />
+        </div>
       </div>
 
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">

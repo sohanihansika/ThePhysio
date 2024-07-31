@@ -5,13 +5,13 @@ import Footer1 from './Footer1';
 
 const GymHero = () => {
   return (
-    <div className="relative bg-white text-black max-w-full">
+    <div className="relative bg-gray-300 text-black max-w-full">
       {/* Navigation Bar */}
       <nav className="flex justify-between items-center py-6 px-4 md:px-8 max-w-8xl mx-auto w-full bg-[#051B40] text-white ">
         <div className="text-2xl font-bold">GymName</div>
         <ul className="flex space-x-4">
           <li><a href="#home" className="hover:text-gray-400">Home</a></li>
-          <li><a href="#about" className="hover:text-gray-400">About</a></li>
+          <li><a href="#about-us" className="hover:text-gray-400">Coaches</a></li> {/* Updated link */}
           <li><a href="/gymMembership" className="hover:text-gray-400">Membership</a></li>
           <li><a href="/subscription" className="hover:text-gray-400">Subscription</a></li>
         </ul>
@@ -27,12 +27,12 @@ const GymHero = () => {
         </div>
       </div>
       
-        <Card1/>
-        <AbtUs/>
-        <Footer1 />
-        
+      <Card1/>
+      <div id="about-us"> {/* Add id here */}
+        <AbtUs />
+      </div>
+      <Footer1 />
     </div>
-    
   );
 }
 

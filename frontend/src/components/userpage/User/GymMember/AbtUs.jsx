@@ -1,35 +1,73 @@
-import { useState } from "react";
+import React from "react";
 
-export default () => {
-    return (
-        <>
-            <section className="py-6 dark:bg-gray-100 dark:text-gray-900 -mt-10">
-                <div className="container mx-auto flex flex-col items-center justify-center px-4 lg:px-8 bg-white">
-                    <div className="flex flex-col lg:flex-row items-center justify-between space-y-5 lg:space-y-0">
-                        <div className="flex-none space-y-5 lg:max-w-lg lg:mr-8">
-                            <h1 className=" text-lg text-black font-bold md:text-5xl">
-                                About us
-                            </h1>
-                            <h2 className="text-4xl text-gray-800 font-extrabold md:text-5xl">
-                                We help startups to build your health and fitness
-                            </h2>
-                            <p>
-                                Our Gym is the best choice that you have ever made to maintain your health and fitness. There are multiple packages over 20 that you can follow in your comfy time.  
-                            </p>
-                            <a href="/subscription" className="flex items-center justify-center gap-x-2 py-2 px-4 text-white hover:text-gray-500 font-medium duration-150 active:bg-gray-100  bg-[#051B40] border rounded-lg md:inline-flex">
-                                More
-                            </a>
-                        </div>
-                        <div className="flex-none mt-8 lg:mt-0">
-                            <img
-                                src="./src/assets/GymPlans/gym2.png"
-                                className="w-full lg:w-auto lg:max-w-md md:rounded-tl-[108px]"
-                                alt="Startup"
-                            />
-                        </div>
-                    </div>
+function MembershipOptions() {
+  return (
+    <div className="flex justify-center items-center"> {/* Removed min-h-screen and mt-5 */}
+      <section className="py-4 dark:bg-gray-800 dark:text-gray-100"> {/* Reduced padding */}
+
+        <div className="container flex flex-col items-center justify-center p-4 mx-auto sm:p-6"> {/* Reduced padding */}
+          <h1 className="text-4xl font-bold leading-none text-center">Our Coaches</h1>
+          <div className="relative flex items-center mt-5"> {/* Container for the cards and arrow buttons */}
+            <button className="absolute left-0 z-10 p-2 bg-gray-200 rounded-full"> {/* Left arrow button */}
+              &#9664;
+            </button>
+            <div className="flex flex-wrap justify-center space-x-10 mx-12"> {/* Increased spacing */}
+              <div className="flex flex-col overflow-hidden border-2 rounded-md bg-[#051B40] w-70 md:w-64"> {/* Adjusted width */}
+                <div className="flex flex-col items-center justify-center px-2 py-2 space-y-5 dark:bg-gray-100 text-white">
+                  <p className="text-xl font-medium">Coach</p>
+                  <p className="text-4xl font-bold">Mandy</p>
+                  <p className="text-lg font-medium">Gym Trainer</p>
                 </div>
-            </section>
-        </>
-    );
-};
+                <div className="flex flex-col items-center justify-center px-2 py-2 dark:bg-gray-50">
+                  <img src="./src/assets/GymPlans/coach1.jpg" alt="Individual Plan" className="w-full h-auto" />
+                  <div className="flex justify-between space-x-2 mt-4">
+                    <a href="/viewCoach" className="px-4 py-2 text-lg font-semibold rounded bg-white dark:text-gray-50">
+                      View
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col overflow-hidden border-2 rounded-md bg-[#051B40] w-70 md:w-64"> {/* Adjusted width */}
+                <div className="flex flex-col items-center justify-center px-2 py-2 space-y-5 dark:bg-gray-100 text-white">
+                  <p className="text-xl font-medium">Coach</p>
+                  <p className="text-4xl font-bold">Joe</p>
+                  <p className="text-lg font-medium">Zumba Trainer</p>
+                </div>
+                <div className="flex flex-col items-center justify-center px-2 py-3 dark:bg-gray-50">
+                  <img src="./src/assets/GymPlans/coach2.jpg" alt="Individual Plan" className="w-full h-auto" />
+                  <div className="flex justify-between space-x-2 mt-4">
+                    <a href="/viewCoach" className="px-4 py-2 text-lg font-semibold rounded bg-white dark:text-gray-50">
+                      View
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col overflow-hidden border-2 rounded-md bg-[#051B40] w-70 md:w-64"> {/* Adjusted width */}
+                <div className="flex flex-col items-center justify-center px-2 py-2 space-y-5 dark:bg-gray-100 text-white">
+                  <p className="text-xl font-medium">Coach</p>
+                  <p className="text-4xl font-bold">Bob</p>
+                  <p className="text-lg font-medium">Gym Trainer</p>
+                </div>
+                <div className="flex flex-col items-center justify-center px-2 py-3 dark:bg-gray-50">
+                  <img src="./src/assets/GymPlans/coach3.jpg" alt="Individual Plan" className="w-full h-auto" />
+                  <div className="flex justify-between space-x-2 mt-4">
+                    <a href="/viewCoach" className="px-4 py-2 text-lg font-semibold rounded bg-white dark:text-gray-50">
+                      View
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button className="absolute right-0 z-10 p-2 bg-gray-200 rounded-full"> {/* Right arrow button */}
+              &#9654;
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export default MembershipOptions;
