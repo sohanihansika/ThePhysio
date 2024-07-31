@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import { FaUpload, FaFileVideo } from 'react-icons/fa';
+import { FaFileVideo } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import video1 from '../../../assets/1.mp4';
 import video2 from '../../../assets/2.mp4';
 import video3 from '../../../assets/3.mp4';
 import video4 from '../../../assets/4.mp4';
 import video5 from '../../../assets/5.mp4';
 
-const dummyVideos = [
-  video1,
-  video2,
-  video3,
-  video4,
-  video5,
-];
+const dummyVideos = [video1, video2, video3, video4, video5];
 
 const initialAdvertisements = [
   {
@@ -80,6 +75,7 @@ const Advertisements = () => {
   const [updatedTitle, setUpdatedTitle] = useState('');
   const [updatedDescription, setUpdatedDescription] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('both');
+  const navigate = useNavigate();
 
   const handleUpdateAd = (id) => {
     setAds(
@@ -124,15 +120,16 @@ const Advertisements = () => {
     handleUpdateAd(id);
   };
 
+  const handleSave = () => {
+    navigate('/videoconfirm');
+  };
+
   const filteredAds = ads.filter(
     (ad) => selectedCategory === 'both' || ad.category === selectedCategory
   );
 
   return (
-    <div
-      className="container mx-auto p-4"
-      
-    >
+    <div className="container mx-auto p-4">
       <input
         type="file"
         accept="video/*"
@@ -141,9 +138,7 @@ const Advertisements = () => {
         id="uploadButton"
       />
       <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-bold">Advertisements</h1>
-        </div>
+        <h1 className="text-3xl font-bold">Advertisements</h1>
         <div className="flex items-center space-x-4">
           <select
             value={selectedCategory}
@@ -195,6 +190,7 @@ const Advertisements = () => {
                   <button
                     type="submit"
                     className="bg-[#000099] text-white p-2 rounded-md flex-1"
+                    onClick={handleSave}
                   >
                     Save
                   </button>
@@ -258,7 +254,7 @@ const Advertisements = () => {
                   </button>
                   <button
                     onClick={() => handleDeleteAd(ad.id)}
-                    className="bg-[#000099] text-white p-2 rounded-md flex-1 hover:bg-red-500"
+                    className="bg-red-500 text-white p-2 rounded-md flex-1 hover:bg-red-600"
                   >
                     Delete
                   </button>

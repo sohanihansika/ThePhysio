@@ -79,13 +79,16 @@ function Sidebar({ onCollapse }) {
         <nav className={`fixed top-0 left-0 h-full bg-[#172b59] border-r z-10 text-gray-100 ${isCollapsed ? 'w-16' : 'w-64'}`}>
             <div className="flex items-center justify-between px-4 py-4">
                     <a href='/dashboard' className={`flex-none ${isCollapsed ? 'hidden' : ''}`}>
-                        <img src="./src/assets/logowithoutback.png" width={isCollapsed ? 50 : 140} className="mx-auto mt-12" />
-                    </a>
+                    <img 
+                        src="./src/assets/logowithoutback.png" 
+                        width={isCollapsed ? 50 : 140} 
+                        style={{ marginTop: '0', marginLeft: '0' }} // Adjust these values as needed
+                    />                    </a>
                 <FaBars onClick={toggleCollapse} />
                 <h1 className={`text-white font-bold ${isCollapsed ? 'hidden' : 'block'}`}></h1>
             </div>
-            <div className="flex-1 flex flex-col h-2/3 overflow-auto mt-12">
-                    <ul className="px-4 text-sm font-medium flex-1">
+            <div className="flex-1 flex flex-col h-2/3 overflow-auto mt-6">
+                    <ul className="px-4  text-l flex-1">
                         {isAdmin && (
                             <>
                                 <li>
@@ -250,6 +253,12 @@ function Sidebar({ onCollapse }) {
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="/leavehandle" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                       <FaRegStar />
+                                       {!isCollapsed && <p>Physio Leave</p>}
+                                    </a>
+                                </li>
                             </>
                         )}
                        {isCoach && (
@@ -383,21 +392,20 @@ function Sidebar({ onCollapse }) {
                             </>
                         )}
                     </ul>
-                    <div>
-                        <ul className="px-4 pb-4 text-sm font-medium">
-                       
-                            <li>
-                                <a href="/" onClick={handleLogout} className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
-                                    <FaSignOutAlt />
-                                    {!isCollapsed && <p>Sign Out</p>}
-                                </a>
-                            </li>
-                        </ul>      
-                    </div>
+                    <div> {/* Added top margin here */}
+                    <ul className="px-4 pb-4 text-l font-medium ">
+                        <li>
+                            <a href="/" onClick={handleLogout} className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                <FaSignOutAlt />
+                                {!isCollapsed && <p>Sign Out</p>}
+                            </a>
+                        </li>
+                    </ul>      
+                </div>
                     <hr className="my-2 border-white/50" />
 
                     <div>
-                        <ul className="px-4 pb-4 text-sm font-medium">
+                        <ul className="px-4 pb-4 text-l font-medium">
                         <li>
                           <a href="/profile" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                              <CgProfile size={48} className='mr-10' />

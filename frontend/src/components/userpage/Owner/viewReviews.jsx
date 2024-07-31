@@ -88,16 +88,16 @@ const Reviews = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {(reviewType === 'all' || reviewType === 'physiotherapist') && (
           <div>
-            <h2 className="text-2xl font-bold mb-4 text-[#000099]">Physiotherapist Reviews</h2>
+            <h2 className="text-2xl font-bold mb-4 text-[#172b59]">Physiotherapist Reviews</h2>
             {filteredPhysiotherapistReviews.length > 0 ? (
               filteredPhysiotherapistReviews.map((reviewItem) => (
                 <div key={reviewItem.name} className="mb-4 p-4 bg-white shadow-md rounded-md border border-gray-200">
-                  <h2 className="text-xl font-semibold mb-2 text-[#000099]">{reviewItem.name}</h2>
+                  <h2 className="text-xl font-semibold mb-2 text-[#5771b3]">{reviewItem.name}</h2>
                   {reviewItem.reviews.map((review, index) => (
                     <div key={index} className="mb-2">
                       <div className="flex items-center mb-1">
                         {[...Array(review.rating)].map((_, i) => (
-                          <FaStar key={i} className="w-4 h-4 text-yellow-500" />
+                          <FaStar key={i} className="w-4 h-4 text-yellow-200" />
                         ))}
                       </div>
                       <p className="text-gray-700 text-sm">{review.comment}</p>
@@ -113,16 +113,16 @@ const Reviews = () => {
         )}
         {(reviewType === 'all' || reviewType === 'gymCoach') && (
           <div>
-            <h2 className="text-2xl font-bold mb-4 text-[#000099]">Gym Coach Reviews</h2>
+            <h2 className="text-2xl font-bold mb-4 text-[#172b59]">Gym Coach Reviews</h2>
             {filteredGymCoachReviews.length > 0 ? (
               filteredGymCoachReviews.map((reviewItem) => (
                 <div key={reviewItem.name} className="mb-4 p-4 bg-white shadow-md rounded-md border border-gray-200">
-                  <h2 className="text-xl font-semibold mb-2 text-[#000099]">{reviewItem.name}</h2>
+                  <h2 className="text-xl font-semibold mb-2 text-[#5771b3]">{reviewItem.name}</h2>
                   {reviewItem.reviews.map((review, index) => (
                     <div key={index} className="mb-2">
                       <div className="flex items-center mb-1">
                         {[...Array(review.rating)].map((_, i) => (
-                          <FaStar key={i} className="w-4 h-4 text-yellow-500" />
+                          <FaStar key={i} className="w-4 h-4 text-yellow-200" />
                         ))}
                       </div>
                       <p className="text-gray-700 text-sm">{review.comment}</p>
@@ -138,16 +138,16 @@ const Reviews = () => {
         )}
         {(reviewType === 'all' || reviewType === 'company') && (
           <div>
-            <h2 className="text-2xl font-bold mb-4 text-[#000099]">Company Reviews</h2>
+            <h2 className="text-2xl font-bold mb-4 text-[#172b59]">Company Reviews</h2>
             {filteredCompanyReviews.length > 0 ? (
               filteredCompanyReviews.map((reviewItem) => (
                 <div key={reviewItem.name} className="mb-4 p-4 bg-white shadow-md rounded-md border border-gray-200">
-                  <h2 className="text-xl font-semibold mb-2 text-[#000099]">{reviewItem.name}</h2>
+                  <h2 className="text-xl font-semibold mb-2 text-[#5771b3]">{reviewItem.name}</h2>
                   {reviewItem.reviews.map((review, index) => (
                     <div key={index} className="mb-2">
                       <div className="flex items-center mb-1">
                         {[...Array(review.rating)].map((_, i) => (
-                          <FaStar key={i} className="w-4 h-4 text-yellow-500" />
+                          <FaStar key={i} className="w-4 h-4 text-yellow-200" />
                         ))}
                       </div>
                       <p className="text-gray-700 text-sm">{review.comment}</p>
