@@ -1,84 +1,166 @@
-import React, { useState, useEffect } from 'react';
-import { format, isAfter, isBefore, parseISO } from 'date-fns';
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { useNavigate } from 'react-router-dom';
 
-const GymCoachAppointment = () => {
-  // Dummy data for appointments
-  const [appointments] = useState([
-    { id: 1, date: '2024-07-29', time: '10:00', user: 'John Doe' },
-    { id: 2, date: '2024-07-29', time: '11:00', user: 'Jane Smith' },
-    { id: 3, date: '2024-07-29', time: '09:00', user: 'Alice Johnson' },
-    { id: 4, date: '2024-07-30', time: '10:00', user: 'Wade Wilson' },
-    { id: 5, date: '2024-07-30', time: '11:00', user: 'Norman Johnson' },
-    { id: 6, date: '2024-07-30', time: '13:00', user: 'Bruise Johnson' },
-    { id: 7, date: '2024-07-31', time: '09:00', user: 'Alice Doe' },
-    { id: 8, date: '2024-07-31', time: '10:00', user: 'Alice Mendez' },
-    { id: 9, date: '2024-07-28', time: '09:00', user: 'Douglas Johnson' },
-    { id: 10, date: '2024-08-07', time: '09:00', user: 'Michael Johnson' },
-    { id: 11, date: '2024-08-08', time: '09:00', user: 'Tineesha Johnson' },
-    { id: 12, date: '2024-08-08', time: '11:00', user: 'Samadhi Johnson' }
-  ]);
+export const tableItemsOngoing = [
+  { time: "9.00 - 10.00", name: "Bob", session: "Cardio", room: "1", date: "2024-07-31" },
+  { time: "9.00 - 10.00", name: "Christine", session: "Strength", room: "1", date: "2024-07-31" },
+  { time: "9.00 - 10.00", name: "Charlotte", session: "HIIT", room: "4", date: "2024-07-31" },
+];
 
-  const currentDateTime = new Date();
+export const tableItemsUpcoming = [
+  { time: "9.00 - 9.30", name: "Bob", session: "Functional", room: "1", date: "2024-08-01" },
+  { time: "9.00 - 9.30", name: "Christine", session: "HIIT", room: "2", date: "2024-08-01" },
+  { time: "9.00 - 9.30", name: "Charlotte", session: "Cardio", room: "4", date: "2024-08-01" },
+];
 
-  const completedAppointments = appointments.filter(appointment =>
-    isBefore(parseISO(`${appointment.date}T${appointment.time}:00`), currentDateTime)
-  );
+export const tableItemsPast = [
+  { time: "9.00 - 9.30", name: "Bob", session: "Suspension", room: "1", date: "2024-07-30" },
+  { time: "9.00 - 9.30", name: "Christine", session: "Cardio", room: "2", date: "2024-07-30" },
+  { time: "9.00 - 9.30", name: "Charlotte", session: "HIIT", room: "4", date: "2024-07-30" },
+];
 
-  const upcomingAppointments = appointments.filter(appointment =>
-    isAfter(parseISO(`${appointment.date}T${appointment.time}:00`), currentDateTime)
-  );
+const Appointments = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const navigate = useNavigate();
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleButtonClick = () => {
+    if (selectedDate) {
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
+      const selectedDateWithoutTime = new Date(selectedDate);
+      selectedDateWithoutTime.setHours(0, 0, 0, 0);
+
+      if (selectedDateWithoutTime < currentDate) {
+        navigate('/pastListC');
+      } else if (selectedDateWithoutTime > currentDate) {
+        navigate('/futureListC');
+      } else {
+        window.location.reload();
+      }
+    } else {
+      alert("Please select a date first.");
+    }
+  };
 
   return (
-    <div className="container mx-auto p-4">
-      <h3 className="text-2xl font-bold text-gray-800 mt-6">Completed Appointments</h3>
-      {completedAppointments.length > 0 ? (
-        <table className="table-auto w-full mt-4 border-collapse border border-gray-300 shadow-md">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border px-4 py-2 text-center text-gray-700">Date</th>
-              <th className="border px-4 py-2 text-center text-gray-700">Time</th>
-              <th className="border px-4 py-2 text-center text-gray-700">User</th>
-            </tr>
-          </thead>
-          <tbody>
-            {completedAppointments.map(appointment => (
-              <tr key={appointment.id} className="bg-gray-100 even:bg-gray-200 hover:bg-gray-300 transition-all">
-                <td className="border px-4 py-2 text-center">{appointment.date}</td>
-                <td className="border px-4 py-2 text-center">{appointment.time}</td>
-                <td className="border px-4 py-2 text-center">{appointment.user}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p className="mt-4 text-center text-gray-600">No Completed Appointments</p>
-      )}
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
+      <div className="mb-4 flex justify-between items-center">
+        <div>
+          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">Today Schedule</h3>
+        </div>
+        <div className="flex items-center">
+          <DatePicker
+            selected={selectedDate}
+            onChange={handleDateChange}
+            className="px-4 py-2 border rounded-md"
+            placeholderText="Select a date"
+          />
+          <button
+            onClick={handleButtonClick}
+            className="ml-4 px-4 py-2 bg-blue-500 text-white rounded-md"
+          >
+            View Schedule
+          </button>
+        </div>
+      </div>
 
-      <h3 className="text-2xl font-bold text-gray-800 mt-6">Upcoming Appointments</h3>
-      {upcomingAppointments.length > 0 ? (
-        <table className="table-auto w-full mt-4 border-collapse border border-gray-300 shadow-md">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border px-4 py-2 text-center text-gray-700">Date</th>
-              <th className="border px-4 py-2 text-center text-gray-700">Time</th>
-              <th className="border px-4 py-2 text-center text-gray-700">User</th>
+      <div className="items-start justify-between md:flex">
+        <div className="max-w-lg">
+          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">Ongoing Appointments</h3>
+        </div>
+      </div>
+      <div className="mt-6 shadow-sm border rounded-lg overflow-x-auto">
+        <table className="w-full table-auto text-sm text-left">
+          <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+            <tr>
+              <th className="py-3 px-6">Time</th>
+              <th className="py-3 px-6">Member Name</th>
+              <th className="py-3 px-6">Session Type</th>
+              {/* <th className="py-3 px-6">Room No</th> */}
             </tr>
           </thead>
-          <tbody>
-            {upcomingAppointments.map(appointment => (
-              <tr key={appointment.id} className="bg-gray-100 even:bg-gray-200 hover:bg-gray-300 transition-all">
-                <td className="border px-4 py-2 text-center">{appointment.date}</td>
-                <td className="border px-4 py-2 text-center">{appointment.time}</td>
-                <td className="border px-4 py-2 text-center">{appointment.user}</td>
+          <tbody className="text-black divide-y">
+            {tableItemsOngoing.map((item, idx) => (
+              <tr key={idx}>
+                <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.session}</td>
+                {/* <td className="px-6 py-4 whitespace-nowrap">{item.room}</td> */}
               </tr>
             ))}
           </tbody>
         </table>
-      ) : (
-        <p className="mt-4 text-center text-gray-600">No Upcoming Appointments</p>
-      )}
+      </div>
+
+      <div className="items-start justify-between md:flex">
+        <div className="max-w-lg">
+          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-6">Upcoming Appointments</h3>
+        </div>
+      </div>
+      <div className="mt-6 shadow-sm border rounded-lg overflow-x-auto">
+        <table className="w-full table-auto text-sm text-left">
+          <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+            <tr>
+              <th className="py-3 px-6">Time</th>
+              <th className="py-3 px-6">Member Name</th>
+              <th className="py-3 px-6">Session Type</th>
+              {/* <th className="py-3 px-6">Room No</th> */}
+            </tr>
+          </thead>
+          <tbody className="text-black divide-y">
+            {tableItemsUpcoming.map((item, idx) => (
+              <tr key={idx}>
+                <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.session}</td>
+                {/* <td className="px-6 py-4 whitespace-nowrap">{item.room}</td> */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="items-start justify-between md:flex">
+        <div className="max-w-lg">
+          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-6">Past Appointments</h3>
+        </div>
+      </div>
+      <div className="mt-6 shadow-sm border rounded-lg overflow-x-auto">
+        <table className="w-full table-auto text-sm text-left">
+          <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+            <tr>
+              <th className="py-3 px-6">Time</th>
+              <th className="py-3 px-6">Member Name</th>
+              <th className="py-3 px-6">Session Type</th>
+              {/* <th className="py-3 px-6">Room No</th> */}
+            </tr>
+          </thead>
+          <tbody className="text-black divide-y">
+            {tableItemsPast.map((item, idx) => (
+              <tr key={idx}>
+                <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{item.session}</td>
+                {/* <td className="px-6 py-4 whitespace-nowrap">{item.room}</td> */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* <div className="mt-7 flex justify-end">
+        <a href="/dashboard" className="py-2 px-4 bg-[#051B40] text-white rounded-md">
+          Back
+        </a>
+      </div> */}
     </div>
   );
 };
 
-export default GymCoachAppointment;
+export default Appointments;

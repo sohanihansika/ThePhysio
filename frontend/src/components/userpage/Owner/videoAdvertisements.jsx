@@ -50,6 +50,24 @@ const initialAdvertisements = [
     description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.',
     category: 'clinic',
   },
+  {
+    id: 6,
+    title: 'Belly Fat Reduction',
+    url: dummyVideos[3],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+  },
+  {
+    id: 7,
+    title: 'Weight Loss',
+    url: dummyVideos[4],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+  },
+  {
+    id: 8,
+    title: 'Gym Workout',
+    url: dummyVideos[5],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+  }
 ];
 
 const truncateTitle = (title) => {

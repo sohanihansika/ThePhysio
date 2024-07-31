@@ -213,6 +213,12 @@ function Sidebar({ onCollapse }) {
                                        {!isCollapsed && <p>Payments</p>}
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="/adVideo" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                       <FaBullhorn />
+                                       {!isCollapsed && <p>Advertisements</p>}
+                                    </a>
+                                </li>
                             </>
                         )}
 
