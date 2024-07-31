@@ -78,6 +78,8 @@ import ReadMore from './components/userpage/User/GymMember/ReadMore';
 import SubscriptionForm from './components/userpage/User/GymMember/SubscriptionForm';
 import Payment2 from './components/userpage/User/GymMember/Payment2';
 import PopUp1 from './components/userpage/User/GymMember/PopUp1';
+import MemberPop from './components/userpage/User/GymMember/MemberPop';
+import ViewCoach from './components/userpage/User/GymMember/ViewCoach';
 
 import ReadMore1 from './components/userpage/User/GymMember/Readmore1';
 import ReadMore2 from './components/userpage/User/GymMember/ReadMore2';
@@ -264,6 +266,8 @@ function App() {
                   <Route path="/readmore3" element={<ReadMore3 />}/>
                   <Route path="/readmore4" element={<ReadMore4 />}/>
                   <Route path="/readmore5" element={<ReadMore5 />}/>
+                  <Route path="/memberpop" element={<MemberPop />}/>
+                  <Route path="/viewCoach" element={<ViewCoach />}/>
 
                                     
                 </>
@@ -319,6 +323,7 @@ function App() {
                   <Route path="/appointment1" element={<Appointment1 />} />
                   <Route path="/popup2" element={<PopUp2 />} />
                   <Route path="/popup3" element={<PopUp3 />} />
+                  <Route path="/video-advertisements" element={<Advertisements />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

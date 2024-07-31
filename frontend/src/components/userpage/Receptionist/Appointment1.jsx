@@ -37,7 +37,7 @@ export default () => {
             <Dialog.Description className="mt-1 text-sm leading-relaxed text-center text-black">
               Patient name  : Peter <br/>
               Doctor        : Steve <br/>
-              New date      : Steve <br/>
+              New date      : 2024/07/31 <br/>
               New Time      : 10.00-10.30 <br/>
             </Dialog.Description>
             <div className="items-center gap-2 mt-3 text-sm sm:flex">
