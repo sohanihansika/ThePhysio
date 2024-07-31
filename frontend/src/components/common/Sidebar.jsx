@@ -1,7 +1,7 @@
 // Sidebar.jsx
 import React, { useState, useEffect } from 'react';
 import UserService from '../service/UserService';
-import { FaBars, FaHome,FaPhotoVideo, FaUserTie, FaUsers, FaFileAlt, FaRegFrown, FaChartLine, FaBullhorn, FaCalendarCheck, FaRegClipboard, FaSignOutAlt } from "react-icons/fa";
+import { FaBars, FaHome,FaPhotoVideo, FaUserTie, FaRegClock, FaRegStar, FaUsers, FaFileAlt, FaRegFrown, FaChartLine, FaBullhorn, FaCalendarCheck, FaRegClipboard, FaSignOutAlt } from "react-icons/fa";
 import { HiDocumentReport } from "react-icons/hi";
 import { VscPreview } from "react-icons/vsc";
 import { CgGym } from "react-icons/cg";
@@ -227,13 +227,13 @@ function Sidebar({ onCollapse }) {
                                 </li>
                                 <li>
                                     <a href="/staff" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <FaCalendarCheck />
-                                       {!isCollapsed && <p>Staff</p>}
+                                       <FaUserTie />
+                                       {!isCollapsed && <p>Staff Accounts</p>}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/schedules" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <FaRegClipboard />
+                                       <FaRegClock />
                                        {!isCollapsed && <p>Schedules</p>}
                                     </a>
                                 </li>
@@ -251,7 +251,7 @@ function Sidebar({ onCollapse }) {
                                 </li>
                                 <li>
                                     <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
-                                       <MdOutlineReviews />
+                                       <FaRegStar />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
