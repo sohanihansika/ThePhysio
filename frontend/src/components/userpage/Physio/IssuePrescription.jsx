@@ -160,7 +160,7 @@ const PrescriptionForm = () => {
                     </div>
                   </div>
                 </td>
-                <td width="60%" valign="top">
+                <td width="30%" valign="top">
                   <div className="details_section">
                     <h5>Easing Factors</h5>
                     <textarea
@@ -205,7 +205,7 @@ const PrescriptionForm = () => {
                     </div>
                   </div>
                 </td>
-                <td width="60%" valign="top">
+                <td width="50%" valign="top">
                   <div className="details_section">
                     <h5>Previous Rx</h5>
                     <textarea

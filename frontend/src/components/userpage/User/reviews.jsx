@@ -92,7 +92,11 @@ export default function Reviews() {
           </a>
         </div>
       </div>
-      <UserReviews />
+      <div style={{ width: '1000px', marginLeft: '-200px' }}>
+    <UserReviews />
+</div>
+
+
     </div>
   );
 }

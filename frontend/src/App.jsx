@@ -36,6 +36,7 @@ import Staff from './components/userpage/Owner/Staff';
 import PhysioDashboard from './components/userpage/Physio/PhysioDashboard';
 import GenerateReports from './components/userpage/Physio/GenerateReports';
 import Leaves from './components/userpage/Physio/Leaves';
+import ApplyLeave  from './components/userpage/Physio/aaplyLeave';
 import MakeAppoinmemt from './components/userpage/Physio/MakeAppoinmemt';
 import PatientReports from './components/userpage/Physio/PatientReports';
 import ReservationSchedule from './components/userpage/Physio/ReservationSchudule';
@@ -290,6 +291,7 @@ function App() {
                   <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
                   <Route path='/generateReports' element={<GenerateReports/>} />
                   <Route path='/leaves' element={<Leaves/>} />
+                  <Route path='/applyLeave' element={<ApplyLeave/>} />
                   <Route path='/makeAppoinment' element={<MakeAppoinmemt/>} />
                   <Route path='/patientReports' element={<PatientReports/>} />
                   <Route path='/reservationSchedule' element={<ReservationSchedule/>} />
@@ -300,6 +302,7 @@ function App() {
                   <Route path="/schedule" element={<Schedule />}/>
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
                   <Route path="/issuePrescription" element={<IssuePrescription />} />
+                  <Route path="/video-Advertisements" element={<Advertisements />} />
 
 
 
