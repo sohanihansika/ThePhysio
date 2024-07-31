@@ -65,7 +65,7 @@ const AppointmentPage = () => {
         {/* Left Side: Calendar */}
         <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
           <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mb-4">
-            Calendar
+            Add Appointment
           </h3>
           <Calendar
             onChange={handleDateChange}
@@ -132,7 +132,7 @@ const AppointmentPage = () => {
 
       {/* Cards for Schedule and Payment pages */}
       <div className="mt-8 flex justify-between">
-        <Link to="/schedule" className="w-1/2 p-10 bg-[#051B40] border rounded-lg shadow-sm mr-4 hover:bg-[#051B40]">
+        <Link to="/schedule" className="w-80 p-10 bg-[#051B40] border rounded-lg shadow-sm mr-4 hover:bg-[#051B40]">
           <div className="flex-none mb-4">
             <FaRegClipboard size={24} color="white" />
           </div>

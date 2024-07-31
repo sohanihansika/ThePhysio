@@ -13,15 +13,15 @@ function MembershipOptions() {
             </button>
             <div className="flex flex-wrap justify-center space-x-10 mx-12"> {/* Increased spacing */}
               <div className="flex flex-col overflow-hidden border-2 rounded-md bg-[#051B40] w-70 md:w-64"> {/* Adjusted width */}
-                <div className="flex flex-col items-center justify-center px-2 py-2 space-y-5 dark:bg-gray-100 text-white">
+                <div className="flex flex-col items-center justify-center px-2 py-2 space-y-5 bg-[#051B40] text-white">
                   <p className="text-xl font-medium">Coach</p>
                   <p className="text-4xl font-bold">Mandy</p>
                   <p className="text-lg font-medium">Gym Trainer</p>
                 </div>
-                <div className="flex flex-col items-center justify-center px-2 py-2 dark:bg-gray-50">
+                <div className="flex flex-col items-center justify-center px-2 py-2 bg-[#051B40]">
                   <img src="./src/assets/GymPlans/coach1.jpg" alt="Individual Plan" className="w-full h-auto" />
                   <div className="flex justify-between space-x-2 mt-4">
-                    <a href="/viewCoach" className="px-4 py-2 text-lg font-semibold rounded bg-white dark:text-gray-50">
+                    <a href="/viewCoach" className="px-4 py-2 text-lg font-semibold rounded bg-white dark:text-black">
                       View
                     </a>
                   </div>
@@ -29,15 +29,15 @@ function MembershipOptions() {
               </div>
 
               <div className="flex flex-col overflow-hidden border-2 rounded-md bg-[#051B40] w-70 md:w-64"> {/* Adjusted width */}
-                <div className="flex flex-col items-center justify-center px-2 py-2 space-y-5 dark:bg-gray-100 text-white">
+                <div className="flex flex-col items-center justify-center px-2 py-2 space-y-5 bg-[#051B40] text-white">
                   <p className="text-xl font-medium">Coach</p>
                   <p className="text-4xl font-bold">Joe</p>
                   <p className="text-lg font-medium">Zumba Trainer</p>
                 </div>
-                <div className="flex flex-col items-center justify-center px-2 py-3 dark:bg-gray-50">
+                <div className="flex flex-col items-center justify-center px-2 py-3 bg-[#051B40]">
                   <img src="./src/assets/GymPlans/coach2.jpg" alt="Individual Plan" className="w-full h-auto" />
                   <div className="flex justify-between space-x-2 mt-4">
-                    <a href="/viewCoach" className="px-4 py-2 text-lg font-semibold rounded bg-white dark:text-gray-50">
+                    <a href="/viewCoach" className="px-4 py-2 text-lg font-semibold rounded bg-white dark:text-black">
                       View
                     </a>
                   </div>
@@ -45,15 +45,15 @@ function MembershipOptions() {
               </div>
 
               <div className="flex flex-col overflow-hidden border-2 rounded-md bg-[#051B40] w-70 md:w-64"> {/* Adjusted width */}
-                <div className="flex flex-col items-center justify-center px-2 py-2 space-y-5 dark:bg-gray-100 text-white">
+                <div className="flex flex-col items-center justify-center px-2 py-2 space-y-5 bg-[#051B40] text-white">
                   <p className="text-xl font-medium">Coach</p>
                   <p className="text-4xl font-bold">Bob</p>
                   <p className="text-lg font-medium">Gym Trainer</p>
                 </div>
-                <div className="flex flex-col items-center justify-center px-2 py-3 dark:bg-gray-50">
+                <div className="flex flex-col items-center justify-center px-2 py-3 bg-[#051B40]">
                   <img src="./src/assets/GymPlans/coach3.jpg" alt="Individual Plan" className="w-full h-auto" />
                   <div className="flex justify-between space-x-2 mt-4">
-                    <a href="/viewCoach" className="px-4 py-2 text-lg font-semibold rounded bg-white dark:text-gray-50">
+                    <a href="/viewCoach" className="px-4 py-2 text-lg font-semibold rounded bg-white dark:text-black">
                       View
                     </a>
                   </div>
