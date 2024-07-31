@@ -48,6 +48,9 @@ import ManagerDashboard from './components/userpage/Manager/ManagerDashboard';
 
 import CoachDashboard from './components/userpage/Coach/CoachDashboard';
 import GymCoachAppointment from './components/userpage/Coach/GymCoachAppointment';
+import SubscriptionPlans from './components/userpage/Coach/SubscriptionPlans';
+import GymPastList from './components/userpage/Coach/GymPastList';
+import GymFutureList from './components/userpage/Coach/GymFutureList';
 
 import ReceptionistDashboard from './components/userpage/Receptionist/ReceptionistDashboard';
 
@@ -314,6 +317,9 @@ function App() {
                   <Route path="/coachAppointment" element={<GymCoachAppointment />} />
                   <Route path="/video-advertisements" element={<Advertisements />} />
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
+                  <Route path="/subscriptionPlans" element={<SubscriptionPlans />} />
+                  <Route path="/pastListC" element={<GymPastList />} />
+                  <Route path="/futureListC" element={<GymFutureList />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

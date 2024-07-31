@@ -5,7 +5,10 @@ import { FaUpload, FaFileVideo } from 'react-icons/fa';
 const dummyVideos = [
   'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid3.mp4',
   'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid2.mp4',
-  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid1.mp4'
+  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/vid1.mp4',
+  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/GymC1.mp4',
+  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/GymC2.mp4',
+  'https://github.com/sohanihansika/ThePhysio/blob/Keheliya-New/frontend/src/assets/GymC3.mp4'
 ];
 
 const initialAdvertisements = [
@@ -39,6 +42,24 @@ const initialAdvertisements = [
     url: dummyVideos[1],
     description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
   },
+  {
+    id: 6,
+    title: 'Belly Fat Reduction',
+    url: dummyVideos[3],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+  },
+  {
+    id: 7,
+    title: 'Weight Loss',
+    url: dummyVideos[4],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+  },
+  {
+    id: 8,
+    title: 'Gym Workout',
+    url: dummyVideos[5],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+  }
 
 ];
 
