@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -36,6 +36,7 @@ import Staff from './components/userpage/Owner/Staff';
 import PhysioDashboard from './components/userpage/Physio/PhysioDashboard';
 import GenerateReports from './components/userpage/Physio/GenerateReports';
 import Leaves from './components/userpage/Physio/Leaves';
+import ApplyLeave  from './components/userpage/Physio/aaplyLeave';
 import MakeAppoinmemt from './components/userpage/Physio/MakeAppoinmemt';
 import PatientReports from './components/userpage/Physio/PatientReports';
 import ReservationSchedule from './components/userpage/Physio/ReservationSchudule';
@@ -67,6 +68,8 @@ import TimeSlots from './components/userpage/User/timeSlots';
 import AddAppoinmet from './components/userpage/User/AddAppoinment';
 import SelectPayment from './components/userpage/User/SelectPayment';
 import paymentpopup from './components/userpage/User/paymentpopup';
+import NotAvilavle from './components/userpage/User/notavilPopup';
+import ReservedPopup from './components/userpage/User/reservedPopup'
 import UserDashboardLink from './components/userpage/Admin/UserDashboardLink';
 import NaviBar from './components/userpage/User/GymMember/NaviBar';
 import Membership from './components/userpage/User/GymMember/Membership';
@@ -77,8 +80,18 @@ import PlanPayments from './components/userpage/User/GymMember/PlanPayments';
 import PrescriptionForm from './components/userpage/User/PrescriptionForm';
 import Popup from './components/userpage/User/Popup';
 import PhysioProfile from './components/userpage/User/PhysioProfile';
+import ReadMore from './components/userpage/User/GymMember/ReadMore';
+import SubscriptionForm from './components/userpage/User/GymMember/SubscriptionForm';
+import Payment2 from './components/userpage/User/GymMember/Payment2';
+import PopUp1 from './components/userpage/User/GymMember/PopUp1';
+import MemberPop from './components/userpage/User/GymMember/MemberPop';
+import ViewCoach from './components/userpage/User/GymMember/ViewCoach';
 
-import Calender3 from './components/userpage/Physio/Calender3';
+import ReadMore1 from './components/userpage/User/GymMember/Readmore1';
+import ReadMore2 from './components/userpage/User/GymMember/ReadMore2';
+import ReadMore3 from './components/userpage/User/GymMember/ReadMore3';
+import ReadMore4 from './components/userpage/User/GymMember/ReadMore4';
+import ReadMore5 from './components/userpage/User/GymMember/ReadMore5';import IssuePrescription from './components/userpage/Physio/IssuePrescription';
 
 
 
@@ -96,6 +109,9 @@ import UnPaid from './components/userpage/Receptionist/UnPaid';
 import TimeSlot from './components/userpage/Receptionist/TimeSlots';
 import TimeSlot1 from './components/userpage/Receptionist/TimeSlots1';
 import Appointment1 from './components/userpage/Receptionist/Appointment1';
+import PopUp2 from './components/userpage/Receptionist/PopUp2';
+import PopUp3 from './components/userpage/Receptionist/PopUp3';
+import AdVideo from './components/userpage/Receptionist/AdVideo';
 
 
 import Schedules from './components/userpage/Owner/schedules';
@@ -121,29 +137,27 @@ import Appointment2 from './components/userpage/Manager/Appointment2';
 
 
 function App() {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
+  const handleSidebarCollapse = (isCollapsed) => {
+    setIsSidebarCollapsed(isCollapsed);
+  };
   return (
     <BrowserRouter>
-      <div
-        className={`content ${
-          !UserService.isAuthenticated() ? "w-full" : "w-full"
-        }`}
-      >
-        {/* <div>
-          <Navbar />
-        </div> */}
-      </div>
       <div className="App flex">
         {UserService.isAuthenticated() && (
-          <div className="w-72">
-            <Sidebar />
-          </div>
+          <Sidebar onCollapse={handleSidebarCollapse} />
         )}
         <div
-          className={`content ${
-            UserService.isAuthenticated() ? "custom-width" : "w-full"
-          }`}
-          style={{ width: UserService.isAuthenticated() ? 'calc(100vw - 16rem)' : '100vw' }}
-        >
+  className={`content transition-all duration-300`}
+  style={{ 
+    ...(UserService.isAuthenticated() 
+      ? isSidebarCollapsed 
+        ? { width: '95%', marginLeft: '5%' }
+        : { width: '83.5%', marginLeft: '16.5%' }
+      : { width: '100%', marginLeft: '0%' })
+  }}
+>
           <Routes>
             {!UserService.isAuthenticated() && (
               <>
@@ -249,7 +263,21 @@ function App() {
                   <Route path="/schedule" element={<Schedule />}/>
                   <Route path="/popup" element={<Popup />}/>
                   <Route path="/physioprofile" element={<PhysioProfile />}/>
-                  <Route path="/calendar" element={<Calendar />} />
+                  <Route path="/readmore" element={<ReadMore />}/>
+                  <Route path="/subscriptionForm" element={<SubscriptionForm />}/>
+                  <Route path="/payment2" element={<Payment2 />}/>
+                  <Route path="/popup1" element={<PopUp1 />}/>
+                  <Route path="/readmore1" element={<ReadMore1 />}/>
+                  <Route path="/readmore2" element={<ReadMore2 />}/>
+                  <Route path="/readmore3" element={<ReadMore3 />}/>
+                  <Route path="/readmore4" element={<ReadMore4 />}/>
+                  <Route path="/readmore5" element={<ReadMore5 />}/>              
+                  <Route path="/memberpop" element={<MemberPop />}/>
+                  <Route path="/viewCoach" element={<ViewCoach />}/>
+                  <Route path="/notavilPopup" element={<NotAvilavle />} />
+                  <Route path="/reserved" element={<ReservedPopup />} />
+
+
 
 
                                     
@@ -271,14 +299,21 @@ function App() {
                   <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
                   <Route path='/generateReports' element={<GenerateReports/>} />
                   <Route path='/leaves' element={<Leaves/>} />
+                  <Route path='/applyLeave' element={<ApplyLeave/>} />
                   <Route path='/makeAppoinment' element={<MakeAppoinmemt/>} />
                   <Route path='/patientReports' element={<PatientReports/>} />
                   <Route path='/reservationSchedule' element={<ReservationSchedule/>} />
-                  <Route path='/reviews' element={<Reviews/>} />
+                  {/* <Route path='/reviews' element={<Reviews/>} /> */}
                   <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                   <Route path="/appoinments" element={<Appoinments />} />
                   <Route path="/schedule" element={<Schedule />}/>
+                  <Route path="/ViewReviews" element={<OwnerReviews />} />
+                  <Route path="/issuePrescription" element={<IssuePrescription />} />
+                  <Route path="/video-Advertisements" element={<Advertisements />} />
+
+
+
 
 
                 </>
@@ -304,6 +339,9 @@ function App() {
                   <Route path="/timeSlots" element={<TimeSlot />} />
                   <Route path="/timeSlots1" element={<TimeSlot1 />} />
                   <Route path="/appointment1" element={<Appointment1 />} />
+                  <Route path="/popup2" element={<PopUp2 />} />
+                  <Route path="/popup3" element={<PopUp3 />} />
+                  <Route path="/adVideo" element={<AdVideo />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
                 </>
               )}

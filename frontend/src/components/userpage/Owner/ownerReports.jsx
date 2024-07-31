@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import { FaFilePdf, FaCalendarAlt, FaChartBar, FaFileAlt, FaUsers, FaComments } from 'react-icons/fa';
+import logo from '/ThePhysio/frontend/src/assets/LOGO.jpg'; // Ensure the path is correct
 
 const dummyData = {
   customerFeedback: [
@@ -67,81 +68,94 @@ const ReportSelector = () => {
       alert(error);
       return;
     }
-
+  
     const doc = new jsPDF();
-
-    // Define the title and its color
-    const title = 'The Physio';
-    doc.setFontSize(24);
-    doc.setTextColor(0, 0, 139); // Dark blue color
-
-    // Title positioning at the top-left corner
-    doc.text(title, 20, 20); // Adjusted xPosition to 20
-
-    // Add the report type to the left side
-    const reportType = `${selectedReport.replace(/([A-Z])/g, ' $1').toUpperCase()} Report`;
-    doc.setFontSize(12);
-    doc.setTextColor(0, 0, 0); // Black color
-    doc.text(reportType, 10, 30);
-
-    // Add selected date range if present
-    if (startDate && endDate) {
+  
+    try {
+      // Add the logo
+      const logoWidth = 25; // Adjust the width as needed
+      const logoHeight = 20; // Adjust the height as needed
+      doc.addImage(logo, 'jpg', 10, 10, logoWidth, logoHeight);
+  
+      // Define the title and its color
+      const title = 'The Physio';
+      const titleXPosition = 10 + logoWidth + 10; // Position title right after the logo with some padding
+      const titleYPosition = 20; // Adjust this value to vertically align with the logo
+  
+      doc.setFontSize(30);
+      doc.setTextColor(0, 0, 139); // Dark blue color
+      doc.text(title, titleXPosition, titleYPosition);
+  
+      // Add the report type to the left side
+      const reportType = `${selectedReport.replace(/([A-Z])/g, ' $1').toUpperCase()} Report`;
       doc.setFontSize(12);
       doc.setTextColor(0, 0, 0); // Black color
-      doc.text(`Start Date: ${startDate}`, 10, 40);
-      doc.text(`End Date: ${endDate}`, 10, 50);
-    }
-
-    // Add generated date
-    doc.setFontSize(12);
-    doc.text(`Generated Date: ${new Date().toLocaleDateString()}`, 10, 60);
-
-    // Add data
-    doc.setFontSize(12);
-    doc.text('Data:', 10, 70);
-
-    const data = dummyData[selectedReport];
-    let yOffset = 80;
-
-    // Filter data based on the selected date range
-    const filteredData = data.filter(item => {
-      const itemStartDate = new Date(item.startDate || item.date);
-      const itemEndDate = new Date(item.endDate || item.date);
-      return itemStartDate >= new Date(startDate) && itemEndDate <= new Date(endDate);
-    });
-
-    if (filteredData.length === 0) {
-      doc.text('No data available for the selected date range.', 10, yOffset);
-    } else {
-      filteredData.forEach(item => {
-        for (const [key, value] of Object.entries(item)) {
-          doc.text(`${key}: ${value}`, 10, yOffset);
-          yOffset += 10;
-        }
-        yOffset += 10;
+      doc.text(reportType, 10, 40);
+  
+      // Add selected date range if present
+      if (startDate && endDate) {
+        doc.setFontSize(12);
+        doc.setTextColor(0, 0, 0); // Black color
+        doc.text(`Start Date: ${startDate}`, 10, 50);
+        doc.text(`End Date: ${endDate}`, 10, 60);
+      }
+  
+      // Add generated date
+      doc.setFontSize(12);
+      doc.text(`Generated Date: ${new Date().toLocaleDateString()}`, 10, 70);
+  
+      // Add data
+      doc.setFontSize(12);
+      doc.text('Data:', 10, 80);
+  
+      const data = dummyData[selectedReport];
+      let yOffset = 90;
+  
+      // Filter data based on the selected date range
+      const filteredData = data.filter(item => {
+        const itemStartDate = new Date(item.startDate || item.date);
+        const itemEndDate = new Date(item.endDate || item.date);
+        return itemStartDate >= new Date(startDate) && itemEndDate <= new Date(endDate);
       });
+  
+      if (filteredData.length === 0) {
+        doc.text('No data available for the selected date range.', 10, yOffset);
+      } else {
+        filteredData.forEach(item => {
+          for (const [key, value] of Object.entries(item)) {
+            doc.text(`${key}: ${value}`, 10, yOffset);
+            yOffset += 10;
+          }
+          yOffset += 10;
+        });
+      }
+  
+      // Add footer
+      const footerText = 'The Physio | Contact: thephysio@gmail.com | Phone: (+94) 71 23-4567';
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0); // Black color
+      doc.text(footerText, 10, doc.internal.pageSize.height - 10);
+  
+      const pdfBlob = doc.output('blob');
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      setPdfPreview(pdfUrl);
+    } catch (error) {
+      console.error("Error generating PDF:", error);
     }
-
-    const pdfBlob = doc.output('blob');
-    const pdfUrl = URL.createObjectURL(pdfBlob);
-    setPdfPreview(pdfUrl);
   };
 
   return (
-    
-    <div className="relative min-h-screen flex flex-col items-center justify-start pt-12 bg-fixed bg-cover bg-center "
+    <div className="relative min-h-screen flex flex-col items-center justify-start pt-12 bg-fixed bg-cover bg-center"
       style={{ 
         backgroundImage: "url('./src/assets/GymPlans/physiotherapist.jpg')" 
       }}
     >
-
-      <div className="w-full relative mb-8">
-        <h1 className="text-3xl font-bold mb-4 text-black">
-          Generate Reports
-        </h1>
-      </div>
-
-      <div className="container p-12 border-gray-100 shadow-lg rounded-lg w-full md:w-3/4 lg:w-1/2 bg-white bg-opacity-70">
+      <div className="w-full relative mb-10">
+  <div className="flex items-center justify-between">
+    <h1 className="text-3xl font-bold text-[#000000] ml-3 mt-0 ">Generate Reports</h1>
+  </div>
+</div>
+      <div className="container p-7 border-gray-100 shadow-lg rounded-lg w-full md:w-3/4 lg:w-1/2 bg-white bg-opacity-70">
         <div className="flex flex-col items-start mb-4">
           <label className="text-gray-700 mb-1"><FaFileAlt className="inline-block mr-2" /> Report Type:</label>
           <select
@@ -167,27 +181,20 @@ const ReportSelector = () => {
             onChange={handleEndDateChange}
             className="border border-gray-300 p-3 rounded-md mb-4 w-full"
           />
-          {error && <p className="text-red-500 mb-4">{error}</p>}
+          {error && <p className="text-red-500">{error}</p>}
           <button
             onClick={handleGenerateReport}
-            className="bg-[#000099] text-white p-3 rounded-md hover:bg-[#00007f] w-full flex items-center justify-center"
-            disabled={!!error}
+            className="bg-[#000099] text-white p-3 rounded-md hover:bg-[#00007f]"
           >
-            <FaFilePdf className="mr-2" /> Generate Report
+            <FaFilePdf className="inline-block mr-2" /> Generate Report
           </button>
         </div>
+        {pdfPreview && (
+          <div className="mt-4">
+            <iframe src={pdfPreview} width="100%" height="600px" title="PDF Preview"></iframe>
+          </div>
+        )}
       </div>
-      {pdfPreview && (
-        <div className="mt-8 w-full md:w-3/4 lg:w-1/2">
-          <h2 className="text-xl font-semibold mb-4 text-center">PDF Preview</h2>
-          <iframe
-            src={pdfPreview}
-            style={{ width: '100%', height: '600px' }}
-            title="PDF Preview"
-            className="border border-white rounded-md shadow-md"
-          />
-        </div>
-      )}
     </div>
   );
 };

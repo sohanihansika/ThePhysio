@@ -60,7 +60,7 @@ function Appoinments() {
                         <tr>
                             <th className="py-3 px-6">Name</th>
                             <th className="py-3 px-6">Email</th>
-                            <th className="py-3 px-6">Specialty</th>
+                            <th className="py-3 px-6">Profile</th>
                             <th className="py-3 px-6"></th>
                         </tr>
                     </thead>
@@ -79,7 +79,14 @@ function Appoinments() {
                                     </div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">Specialty Info</td> {/* Placeholder for specialty info */}
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                <button
+                                        onClick={() => window.location.href = `/physioprofile`}
+                                        className="flex items-center gap-x-2 text-blue-600 p-2 rounded-lg hover:bg-blue-100 hover:text-blue-500 active:bg-blue-200 duration-150 leading-none px-3 font-medium"
+                                    >
+                                        View Profile
+                                    </button>
+                                </td> {/* Placeholder for specialty info */}
                                 <td className="text-right px-6 whitespace-nowrap">
                                     <button
                                         onClick={() => window.location.href = `/calendar?physioId=${user.id}`}

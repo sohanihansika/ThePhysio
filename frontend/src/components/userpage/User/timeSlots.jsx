@@ -46,7 +46,7 @@ const TimeSlots = () => {
       <div className="legend">
         <div className="legend-item">
           <div className="color-box red"></div>
-          <span>Not available</span>
+          <span>Reserved</span>
         </div>
         <div className="legend-item">
           <div className="color-box blue"></div>
@@ -55,7 +55,7 @@ const TimeSlots = () => {
       </div>
       <style jsx>{`
         .container {
-          max-width: 800px;
+          max-width: 1000px;
           margin: 0 auto;
           padding: 40px 20px;
           background-color: #eef3f7;

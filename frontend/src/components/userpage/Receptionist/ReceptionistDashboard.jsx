@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
 import { Calendar } from 'react-calendar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css'; // Import calendar styles
-import {     FaMoneyCheckAlt, FaRegClipboard } from "react-icons/fa";
+import { FaMoneyCheckAlt, FaRegClipboard } from "react-icons/fa";
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+
+// Registering the chart components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
 const AppointmentPage = () => {
   const [date, setDate] = useState(new Date());
+  const navigate = useNavigate(); // Hook to programmatically navigate
 
   const handleDateChange = (newDate) => {
     setDate(newDate);
+
+    // Check if the newDate is today or in the future
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time part to compare only the date
+
+    if (newDate >= today) {
+      navigate('/doctors1'); // Navigate to doctors1 page when a date is selected
+    }
   };
 
   const tableItems = [
@@ -17,34 +32,54 @@ const AppointmentPage = () => {
     { time: "9.00 - 9.30", name: "Charlotte", doc: "John", room: "4", status: "Not Paid" },
   ];
 
+  // Data for charts
+  const sessionsData = {
+    labels: ['Morning', 'Afternoon', 'Evening'],
+    datasets: [
+      {
+        label: 'Total Sessions',
+        data: [30, 45, 20], // Example data for total sessions
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const monthlyAppointmentsData = {
+    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+    datasets: [
+      {
+        label: 'Monthly Appointments',
+        data: [120, 150, 170, 140], // Example data
+        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+        borderColor: 'rgba(153, 102, 255, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
-      <div className="flex justify-between items-start">
-        {/* Calendar and Add Appointment Button on the left */}
-        <div className="w-80">
+      <div className="flex flex-col lg:flex-row">
+        {/* Left Side: Calendar */}
+        <div className="w-full lg:w-1/3 mb-8 lg:mb-0">
           <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mb-4">
-            Add Appointments
+            Add Appointment
           </h3>
           <Calendar
             onChange={handleDateChange}
             value={date}
             className="border rounded-lg shadow-sm"
           />
-          <Link to="/doctors1">
-            <button
-              className="mt-4 py-2 px-4 bg-[#051B40] text-white rounded-md shadow-sm hover:bg-[#040F2F] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              Add Appointment
-            </button>
-          </Link>
         </div>
 
-        {/* Appointments Table on the right */}
-        <div className="flex-grow ml-8">
+        {/* Right Side: Appointments Table */}
+        <div className="w-full lg:w-2/3 lg:pl-8">
           <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mb-4">
             Ongoing Appointments
           </h3>
-          <div className="shadow-sm border rounded-lg overflow-x-auto">
+          <div className="shadow-sm border rounded-lg overflow-x-auto mb-8">
             <table className="w-full table-auto text-sm text-left">
               <thead className="bg-gray-50 text-gray-600 font-medium border-b">
                 <tr>
@@ -75,21 +110,39 @@ const AppointmentPage = () => {
         </div>
       </div>
 
+      {/* Charts Section */}
+      <div className="flex flex-col lg:flex-row mt-8">
+        <div className="w-full lg:w-1/2 p-4 lg:pl-0 lg:pr-4 mb-8">
+          <h3 className="text-gray-800 text-xl font-bold mb-4">
+            Total Sessions
+          </h3>
+          <div className="w-full h-[200px]"> {/* Increased height */}
+            <Bar data={sessionsData} options={{ responsive: true, maintainAspectRatio: false }} />
+          </div>
+        </div>
+        <div className="w-full lg:w-1/2 p-4 lg:pl-4 lg:pr-0">
+          <h3 className="text-gray-800 text-xl font-bold mb-4">
+            Monthly Appointments
+          </h3>
+          <div className="w-full h-[200px]"> {/* Increased height */}
+            <Bar data={monthlyAppointmentsData} options={{ responsive: true, maintainAspectRatio: false }} />
+          </div>
+        </div>
+      </div>
+
       {/* Cards for Schedule and Payment pages */}
       <div className="mt-8 flex justify-between">
-
-        <Link to="/schedule" className="w-1/2 p-10 bg-[#051B40] border rounded-lg shadow-sm mr-4 hover:bg-[#051B40]">
-        <div className="flex-none">
-        <FaRegClipboard />
-        </div>
-          <h3 className="text-white text-xl font-bold sm:text-2xl mb-4">Schedule</h3>
+        <Link to="/schedule" className="w-80 p-10 bg-[#051B40] border rounded-lg shadow-sm mr-4 hover:bg-[#051B40]">
+          <div className="flex-none mb-4">
+            <FaRegClipboard size={24} color="white" />
+          </div>
+          <h3 className="text-white text-xl font-bold sm:text-2xl">Schedule</h3>
         </Link>
-
         <Link to="/unpaid" className="w-1/2 p-10 bg-[#051B40] border rounded-lg shadow-sm ml-4 hover:bg-[#051B40]">
-        <div className="flex-none">
-        <FaMoneyCheckAlt />
-        </div>
-          <h3 className="text-white text-xl font-bold sm:text-2xl mb-4">Payments</h3>
+          <div className="flex-none mb-4">
+            <FaMoneyCheckAlt size={24} color="white" />
+          </div>
+          <h3 className="text-white text-xl font-bold sm:text-2xl">Payments</h3>
         </Link>
       </div>
     </div>

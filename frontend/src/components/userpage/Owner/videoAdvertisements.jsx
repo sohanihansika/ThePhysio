@@ -16,31 +16,36 @@ const initialAdvertisements = [
     id: 1,
     title: 'New Product',
     url: dummyVideos[0],
-    description: 'Check out our exciting new product launch video. Don’t miss out on the latest updates!'
+    description: 'Check out our exciting new product launch video. Don’t miss out on the latest updates!',
+    category: 'clinic'
   },
   {
     id: 2,
     title: 'Summer Sale',
     url: dummyVideos[1],
-    description: 'Get ready for our summer sale with huge discounts on all items. Watch the video to know more.'
+    description: 'Get ready for our summer sale with huge discounts on all items. Watch the video to know more.',
+    category: 'gym'
   },
   {
     id: 3,
     title: 'Customer Special',
     url: dummyVideos[2],
-    description: 'Hear what our customers have to say about their experience with our services. Their satisfaction is our priority.'
+    description: 'Hear what our customers have to say about their experience with our services. Their satisfaction is our priority.',
+    category: 'clinic'
   },
   {
     id: 4,
     title: 'New Celebration',
     url: dummyVideos[0],
-    description: 'Join us in celebrating the new year with amazing offers and events. Watch the video to find out more!'
+    description: 'Join us in celebrating the new year with amazing offers and events. Watch the video to find out more!',
+    category: 'gym'
   },
   {
     id: 5,
     title: 'Behind the Scenes',
     url: dummyVideos[1],
-    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.',
+    category: 'clinic'
   },
   {
     id: 6,
@@ -60,7 +65,6 @@ const initialAdvertisements = [
     url: dummyVideos[5],
     description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
   }
-
 ];
 
 const truncateTitle = (title) => {
@@ -72,6 +76,7 @@ const Advertisements = () => {
   const [editingAdId, setEditingAdId] = useState(null);
   const [updatedTitle, setUpdatedTitle] = useState('');
   const [updatedDescription, setUpdatedDescription] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('both');
 
   const handleUpdateAd = (id) => {
     setAds(
@@ -101,7 +106,8 @@ const Advertisements = () => {
         id: ads.length + 1,
         title: `New Video ${ads.length + 1}`,
         url: newVideoUrl,
-        description: 'Description pending...'
+        description: 'Description pending...',
+        category: selectedCategory // Use the selected category for new videos
       };
       setAds([newAd, ...ads]);
       // Set the new ad as editable
@@ -116,8 +122,21 @@ const Advertisements = () => {
     handleUpdateAd(id);
   };
 
+  // Filter ads based on the selected category
+  const filteredAds = ads.filter(ad =>
+    selectedCategory === 'both' || ad.category === selectedCategory
+  );
+
   return (
-    <div className="container mx-auto p-4 relative mt-5">
+    <div
+      className="container mx-auto p-4"
+      style={{
+        backgroundImage: `url('./src/assets/GymPlans/physiotherapist.jpg')`, // Replace with your image URL
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+    
       <input
         type="file"
         accept="video/*"
@@ -125,19 +144,31 @@ const Advertisements = () => {
         className="hidden"
         id="uploadButton"
       />
-      <label
-      htmlFor="uploadButton"
-      className="absolute top-4 right-4 bg-[#000099] text-white p-2 rounded-md cursor-pointer flex items-center"
-    >
-      <FaFileVideo className="mr-2" />
-      New
-    </label>
-
-      <div className="absolute top-0 left-0 p-4">
-        <h1 className="text-3xl font-bold">Advertisements</h1>
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-3xl font-bold">Advertisements</h1>
+        </div>
+        <div className="flex items-center space-x-4">
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="border border-gray-300 p-2 rounded-md"
+          >
+            <option value="both">All</option>
+            <option value="clinic">Clinic</option>
+            <option value="gym">Gym</option>
+          </select>
+          <label
+            htmlFor="uploadButton"
+            className="bg-[#000099] text-white p-2 rounded-md cursor-pointer flex items-center"
+          >
+            <FaFileVideo className="mr-2" />
+            New
+          </label>
+        </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-16">
-        {ads.map((ad) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
+        {filteredAds.map((ad) => (
           <div key={ad.id} className="bg-gray-100 shadow-md rounded-md p-4 flex flex-col">
             {editingAdId === ad.id ? (
               <form onSubmit={(e) => handleSubmit(e, ad.id)} className="flex flex-col h-full">
