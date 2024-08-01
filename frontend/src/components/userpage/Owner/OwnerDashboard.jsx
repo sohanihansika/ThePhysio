@@ -15,7 +15,7 @@ const AdminDashboard = () => {
         },
         {
             title: "Reservations",
-            desc: "120 Daily",
+            desc: "120",
             path: "/reservations",
             icon: <FaCalendarCheck />
         },
@@ -33,7 +33,7 @@ const AdminDashboard = () => {
         },
         {
             title: "Recent Updates",
-            desc: "View Updates",
+            desc: "3",
             path: "/updates",
             icon: <FaRegFileAlt />
         },
@@ -90,24 +90,22 @@ const AdminDashboard = () => {
 
     return (
         <section className="py-4">
-            <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+            <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-8">
                 {/* Metrics Cards */}
-                <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-                    {metrics.map((item, idx) => (
-                        <li key={idx} className="border rounded-2xl bg-blue-100 shadow-lg">
-                            <a href={item.path}>
-                                <div className="flex items-start justify-center p-4">
-                                    <div className="space-y-2">
-                                        <div className="flex items-center justify-center flex-col">
-                                            <span className="text-6xl text-blue-500">{item.icon}</span>
-                                            <h4 className="text-gray-800 font-semibold text-xl text-center mt-2">{item.title}</h4>
-                                            <p className="text-gray-600 text-3xl mb-3 text-center">{item.desc}</p>
-                                        </div>
-                                    </div>
+                <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+                {metrics.map((item, idx) => (
+                    <li key={idx} className="border rounded-lg bg-blue-100 p-4 shadow-md flex flex-col justify-between w-full w-84 h-32">
+                        <a href={item.path} className="w-full h-full flex flex-col">
+                            <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center space-x-2">
+                                    <span className="text-4xl">{item.icon}</span>
+                                    <h4 className="text-gray-800 font-semibold text-lg">{item.title}</h4>
                                 </div>
-                            </a>
-                        </li>
-                    ))}
+                                <p className="text-gray-600 text-4xl text-right">{item.desc}</p>
+                            </div>
+                        </a>
+                    </li>
+                ))}
                 </ul>
 
                 {/* Charts */}

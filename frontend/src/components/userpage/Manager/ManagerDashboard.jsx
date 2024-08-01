@@ -27,7 +27,7 @@ export default () => {
         },
         {
             title: "Reservations",
-            desc: "70 Daily",
+            desc: "70",
             path: "/reservations",
             icon: <FaCalendarCheck />
         },
@@ -119,25 +119,23 @@ export default () => {
     return (
         <section className="py-2">
             <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-                <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-                    {integrations.map((item, idx) => (
-                        <li key={idx} className="border rounded-2xl bg-blue-100 p-3">
-                            <div className="flex items-start justify-center p-4">
-                                <div className="space-y-2">
-                                    <a href={item.path}>
-                                        <div className="flex-shrink-0 items-center">
-                                            <div className="flex items-center justify-center">
-                                                <span className="mr-2 text-6xl">{item.icon}</span>
-                                                <h4 className="text-gray-800 font-semibold text-xl">{item.title}</h4>
-                                            </div>
-                                            <p className="text-gray-600 text-3xl mb-3 text-center">{item.desc}</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+            <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+            {
+                integrations.map((item, idx) => (
+                    <li key={idx} className="border rounded-lg bg-blue-100 p-2 shadow-md w-84 h-32">
+                       <a href={item.path} className="w-full h-full">
+                         <div className="flex items-center justify-between p-2 h-full">
+                            <div className="flex items-center space-x-2">
+                               <span className="text-4xl">{item.icon}</span>
+                               <h4 className="text-gray-800 font-semibold text-lg">{item.title}</h4>
+                             </div>
+                             <p className="text-gray-600 text-4xl text-right w-1/2">{item.desc}</p>
+                         </div>
+                       </a>
+                    </li>
+                ))
+            }
+            </ul>
             </div>
 
             {/* Charts */}

@@ -109,24 +109,23 @@ const CoachDashboard = () => {
 
   return (
     <section className='py-2'>
-      <div className='max-w-screen-xl mx-auto px-4 md:px-8'>
-        <h2 className='text-3xl font-bold text-gray-800'>Coach Dashboard</h2>
-        <ul className='mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-          {integrations.map((item, idx) => (
-            <li key={idx} className="border rounded-2xl bg-blue-100 p-4 shadow-md hover:bg-blue-200 transition-colors" onClick={item.action}>
-              <div className="flex items-start justify-center">
-                <div className="space-y-2">
-                  <a href={item.path}>
-                    <div className="flex-shrink-0 items-center text-center">
-                      <span className="text-6xl mb-2">{item.icon}</span>
-                      <h4 className="text-gray-800 font-semibold text-xl mb-1">{item.title}</h4>
-                      <p className="text-gray-600 text-lg">{item.desc}</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </li>
-          ))}
+      <div className='max-w-screen-xl mx-auto px-4 md:px-8 mt-1'>
+        <ul className="mt-5 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+            {
+                integrations.map((item, idx) => (
+                    <li key={idx} className="border rounded-lg bg-blue-100 p-2 shadow-md w-84 h-32">
+                       <a href={item.path} className="w-full h-full">
+                         <div className="flex items-center justify-between p-2 h-full">
+                            <div className="flex items-center space-x-2">
+                               <span className="text-4xl">{item.icon}</span>
+                               <h4 className="text-gray-800 font-semibold text-lg">{item.title}</h4>
+                             </div>
+                             <p className="text-gray-600 text-4xl text-right w-1/2">{item.desc}</p>
+                         </div>
+                       </a>
+                    </li>
+                ))
+            }
         </ul>
         <div ref={todayAppointmentsRef} className='mt-16'>
           <h3 className="text-2xl font-bold text-gray-800">Today's Appointments</h3>
@@ -155,32 +154,26 @@ const CoachDashboard = () => {
             <p className="mt-4 text-center text-gray-600">No Appointments Today</p>
           )}
         </div>
-        <div className='mt-16 flex flex-wrap gap-20'> {/* Increased gap */}
-          <div className='flex-1 max-w-xs'>
-            <h3 className="text-xl font-bold text-gray-800">Weekly Appointments</h3>
-            <div className="chart-container mb-8 border-2 border-gray-300 p-4 rounded-lg"> {/* Added border, padding, and rounded corners */}
+        <div className='mt-16 flex gap-28'> 
+          <div className='py-3 '>
+            <h3 className="text-xl font-bold text-gray-800 ">Weekly Appointments</h3>
+            <div className="chart-container mb-8 border-2 border-gray-300 p-4 rounded-lg shadow-lg flex items-center justify-center " style={{ width: '400px', height: '300px' }}> 
               <Bar data={weeklyData} options={{ responsive: true, plugins: { legend: { display: false }, title: { display: true, text: 'Weekly Appointments' } } }} />
             </div>
           </div>
-          {/* <div className='flex-1 max-w-xs'>
-            <h3 className="text-xl font-bold text-gray-800">Monthly Appointments</h3>
-            <div className="chart-container mb-8 border-2 border-gray-300 p-4 rounded-lg"> 
-              <Bar data={monthlyData} options={{ responsive: true, plugins: { legend: { display: false }, title: { display: true, text: 'Monthly Appointments' } } }} />
-            </div>
-          </div> */}
-          <div className='flex-1 max-w-xs'>
+          <div className='py-2  '>
             <h3 className="text-xl font-bold text-gray-800">Subscriber Distribution</h3>
-            <div className="chart-container mb-8 border-2 border-gray-300 p-4 rounded-lg shadow-lg"> {/* Added border, padding, and rounded corners */}
+            <div className="chart-container mb-4 border-2 border-gray-300 p-4 rounded-lg shadow-lg  " style={{ width: '400px', height: '300px' }}> {/* Increased padding and added shadow */}
               <Pie 
                 data={pieData} 
                 options={{
                   responsive: true, 
                   plugins: {
                     legend: {
-                      position: 'bottom', // Position the legend at the bottom
+                      position: 'right', // Position the legend at the bottom
                       labels: {
-                        boxWidth: 20,
-                        padding: 15
+                        boxWidth: 10,
+                        padding: 20
                       }
                     }, 
                     tooltip: { 

@@ -16,7 +16,7 @@ export default () => {
         }, {
             title: "Reservation",
             desc: "70",
-            path:"",
+            path:"/Schedule",
             icon: <FaCalendarCheck  />
   
       
@@ -112,23 +112,23 @@ const paymentsData = {
 return (
     
     <section className="py-2">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-8">
         
 
-           <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-            {
+        <ul className="mt-4 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+        {
                 integrations.map((item, idx) => (
                     <li key={idx} className="border rounded-lg bg-blue-100 p-2 shadow-md w-84 h-32">
-    <a href={item.path} className="w-full h-full">
-        <div className="flex items-center justify-between p-2 h-full">
-            <div className="flex items-center space-x-2">
-                <span className="text-4xl">{item.icon}</span>
-                <h4 className="text-gray-800 font-semibold text-lg">{item.title}</h4>
-            </div>
-            <p className="text-gray-600 text-4xl text-right w-1/2">{item.desc}</p>
-        </div>
-    </a>
-</li>
+                       <a href={item.path} className="w-full h-full">
+                         <div className="flex items-center justify-between p-2 h-full">
+                            <div className="flex items-center space-x-2">
+                               <span className="text-4xl">{item.icon}</span>
+                               <h4 className="text-gray-800 font-semibold text-lg">{item.title}</h4>
+                             </div>
+                             <p className="text-gray-600 text-4xl text-right w-1/2">{item.desc}</p>
+                         </div>
+                       </a>
+                    </li>
                 ))
             }
             </ul>
