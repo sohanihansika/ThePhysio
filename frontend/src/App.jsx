@@ -130,6 +130,7 @@ import Appointment1 from './components/userpage/Receptionist/Appointment1';
 import PopUp2 from './components/userpage/Receptionist/PopUp2';
 import PopUp3 from './components/userpage/Receptionist/PopUp3';
 import AdVideo from './components/userpage/Receptionist/AdVideo';
+import ReschedulePopup from './components/userpage/Receptionist/reschedulePopup';
 
 
 import Schedules from './components/userpage/Owner/schedules';
@@ -314,6 +315,8 @@ function App() {
                   <Route path="/viewCoach" element={<ViewCoach />}/>
                   <Route path="/notavilPopup" element={<NotAvilavle />} />
                   <Route path="/reserved" element={<ReservedPopup />} />
+                  <Route path="/reschedulePopup" element={<ReschedulePopup />} />
+
 
 
 
@@ -398,6 +401,12 @@ function App() {
                   <Route path="/popup3" element={<PopUp3 />} />
                   <Route path="/adVideo" element={<AdVideo />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
+                  <Route path="/reschedulePopup" element={<ReschedulePopup />} />
+                  <Route path="/calendar" element={<Calendar />} />
+                  <Route path="/timeslots" element={<TimeSlots />} />
+                  <Route path="/addappoinment" element={<AddAppoinmet />} />
+                  <Route path="/selectpayment" element={<SelectPayment />} />
+                  <Route path="/paymentpopup" element={<paymentpopup />} />
                 </>
               )}
               {!UserService.isCoach() ? (

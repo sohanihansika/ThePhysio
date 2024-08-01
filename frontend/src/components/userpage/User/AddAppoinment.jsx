@@ -12,6 +12,10 @@ const AddAppointment = () => {
   const [cardType, setCardType] = useState('');
 
   const handlePayment = () => {
+    if (!cardNumber || !expiryDate || !cvv || !cardholderName || !cardType) {
+      alert('Please fill in all the fields before proceeding.');
+      return;
+    }
     navigate("/popup");
   };
 
@@ -38,7 +42,7 @@ const AddAppointment = () => {
 
   return (
     <div className="payment-container">
-      <div className="spacer"></div> {/* Spacer element */}
+      <div className="spacer"></div>
       <h2>Payment Details</h2>
       <form className="payment-form">
         <div className="form-group">
@@ -126,7 +130,7 @@ const AddAppointment = () => {
           border: 1px solid #e5e5e5;
         }
         .spacer {
-          height: 50px; /* Adjust this value to move the form lower */
+          height: 50px;
         }
         .payment-container h2 {
           text-align: center;

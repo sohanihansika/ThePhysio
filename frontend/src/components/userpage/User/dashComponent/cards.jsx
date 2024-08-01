@@ -3,7 +3,7 @@ import { FaCalendarCheck, FaUserMd, FaDumbbell } from 'react-icons/fa'; // Impor
 
 export default function Cards() {
   return (
-    <div className="mt-8 flex space-x-4">
+    <div className="mt-8 flex space-x-4 ml-10">
       <div className="border rounded-lg bg-blue-100 p-4 shadow-md w-96 h-32 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <FaCalendarCheck className="text-4xl text-gray-800" />

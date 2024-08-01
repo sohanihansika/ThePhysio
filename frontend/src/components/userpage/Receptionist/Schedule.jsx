@@ -173,6 +173,7 @@ const Appointments = () => {
               <th className="py-3 px-6">Doctor</th>
               <th className="py-3 px-6">Room No</th>
               <th className="py-3 px-6">Payment Status</th>
+              <th className="py-3 px-6">Rescedule</th>
             </tr>
           </thead>
           <tbody className="text-black divide-y">
@@ -192,6 +193,12 @@ const Appointments = () => {
                   >
                     {item.status}
                   </span>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                              <a href="/reschedulePopup" className="flex items-center gap-x-2 p-2 rounded-lg text-blue-950 hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                        <p>Rescedule</p>
+                                    </a>
+                  
                 </td>
               </tr>
             ))}
