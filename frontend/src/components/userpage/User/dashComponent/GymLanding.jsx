@@ -26,7 +26,7 @@ export default () => {
                     </p>
                 </div>
                 <div className="mt-4">
-                    <a href="javascript:void(0)" className="inline-block py-2 px-4 text-white font-medium rounded-lg shadow-md hover:shadow-none" style={{ backgroundColor: '#172b59', transition: 'background-color 0.15s ease-in-out' }}>
+                    <a href="/gymNavibar" className="inline-block py-2 px-4 text-white font-medium rounded-lg shadow-md hover:shadow-none" style={{ backgroundColor: '#172b59', transition: 'background-color 0.15s ease-in-out' }}>
                         Join Now
                     </a>
                 </div>

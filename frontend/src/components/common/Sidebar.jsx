@@ -87,7 +87,7 @@ function Sidebar({ onCollapse }) {
                 <FaBars onClick={toggleCollapse} />
                 <h1 className={`text-white font-bold ${isCollapsed ? 'hidden' : 'block'}`}></h1>
             </div>
-            <div className="flex-1 flex flex-col h-2/3 overflow-auto mt-6">
+            <div className="flex-1 flex flex-col h-4/5 overflow-auto mt-6">
                     <ul className="px-4  text-l flex-1">
                         {isAdmin && (
                             <>
@@ -392,16 +392,18 @@ function Sidebar({ onCollapse }) {
                             </>
                         )}
                     </ul>
-                    <div> {/* Added top margin here */}
-                    <ul className="px-4 pb-4 text-l font-medium ">
-                        <li>
-                            <a href="/" onClick={handleLogout} className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
-                                <FaSignOutAlt />
-                                {!isCollapsed && <p>Sign Out</p>}
-                            </a>
-                        </li>
-                    </ul>      
-                </div>
+                    <div className="mt-24"> {/* This pushes the content to the bottom */}
+        <div className="mb-0"> {/* This adds margin before the sign-out button */}
+            <ul className="px-4 pb-4 text-l font-medium">
+                <li>
+                    <a href="/" onClick={handleLogout} className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                        <FaSignOutAlt />
+                        {!isCollapsed && <p>Sign Out</p>}
+                    </a>
+                </li>
+            </ul>      
+        </div>
+    </div>
                     <hr className="my-2 border-white/50" />
 
                     <div>
