@@ -129,7 +129,7 @@ const Calender = () => {
   return (
     <div style={containerStyle}>
       <div style={cardStyle}>
-        <h1 style={headerStyle}>Appointment Calendar</h1>
+        <h1 style={headerStyle}>Appointments Calendar</h1>
         <div style={buttonContainerStyle}>
           <button onClick={handlePreviousMonth} style={buttonStyle}>
             Previous Month
