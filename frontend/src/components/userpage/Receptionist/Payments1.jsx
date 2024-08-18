@@ -1,41 +1,53 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const PaymentForm = () => {
+const ManualPayment = () => {
   const initialFormData = {
     name: '',
     amount: '',
     paymentMethod: 'credit_card',
+    cardType: 'visa', // Default card type
     cardNumber: '',
-    expiryDate: '',
+    expiryMonth: '',
+    expiryYear: '',
     cvv: '',
   };
 
   const [formData, setFormData] = useState(initialFormData);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const navigate = useNavigate(); // Hook for navigation
+
+  const maskCardNumber = (cardNumber) => {
+    if (cardNumber.length <= 4) return cardNumber;
+    return "************" + cardNumber.slice(-4);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (name === "cardNumber") {
+      const inputNumber = value.replace(/\D/g, ""); // Remove any non-digit characters
+      setFormData({
+        ...formData,
+        [name]: maskCardNumber(inputNumber),
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    setShowSuccess(true);
-  };
+    // Handle form submission logic here if needed
 
-  const handleClosePopup = () => {
-    setShowSuccess(false);
-    setFormData(initialFormData); // Reset the form data
+    // Navigate to the popup page
+    navigate('/popup3');
   };
 
   return (
-    
     <div className="relative max-w-lg mx-auto p-4 bg-[#C0C0C0] rounded-md shadow-md mt-6">
-      <h2 className="text-xl font-bold mb-4">Manual Payment</h2>
+      <h2 className="text-xl font-bold mb-4">Payment</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-black">Name</label>
@@ -75,12 +87,42 @@ const PaymentForm = () => {
           >
             <option value="credit_card">Credit Card</option>
             <option value="paypal">Cash</option>
-            <option value="bank_transfer">Bank Transfer</option>
           </select>
         </div>
 
         {formData.paymentMethod === 'credit_card' && (
-          <>
+          <div>
+            <h3 className="text-lg font-bold mb-4">Card Details</h3>
+
+            {/* Card Type Selection */}
+            <fieldset className="mb-4">
+              <legend className="block text-sm font-medium text-black">Card Type</legend>
+              <div className="flex space-x-4 mt-2">
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="cardType"
+                    value="visa"
+                    checked={formData.cardType === 'visa'}
+                    onChange={handleChange}
+                    className="mr-2"
+                  />
+                  <img src="./src/assets/visapng.png" alt="Visa" className="w-8 h-5" />
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="cardType"
+                    value="mastercard"
+                    checked={formData.cardType === 'mastercard'}
+                    onChange={handleChange}
+                    className="mr-2"
+                  />
+                  <img src="./src/assets/master.png" alt="MasterCard" className="w-8 h-5" />
+                </label>
+              </div>
+            </fieldset>
+
             <div className="mb-4">
               <label htmlFor="cardNumber" className="block text-sm font-medium text-black">Card Number</label>
               <input
@@ -94,33 +136,63 @@ const PaymentForm = () => {
               />
             </div>
             
-            <div className="mb-4">
-              <label htmlFor="expiryDate" className="block text-sm font-medium text-black">Expiry Date</label>
-              <input
-                type="text"
-                id="expiryDate"
-                name="expiryDate"
-                value={formData.expiryDate}
-                onChange={handleChange}
-                placeholder="MM/YY"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                required
-              />
+            <div className="flex mb-4 space-x-4">
+              <div className="w-1/2">
+                <label htmlFor="expiryMonth" className="block text-sm font-medium text-black">Expiry Month</label>
+                <select
+                  id="expiryMonth"
+                  name="expiryMonth"
+                  value={formData.expiryMonth}
+                  onChange={handleChange}
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  required
+                >
+                  <option value="">Month</option>
+                  {[...Array(12).keys()].map(month => (
+                    <option key={month + 1} value={String(month + 1).padStart(2, '0')}>
+                      {String(month + 1).padStart(2, '0')} - {new Date(0, month).toLocaleString('default', { month: 'long' })}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="w-1/2">
+                <label htmlFor="expiryYear" className="block text-sm font-medium text-black">Expiry Year</label>
+                <select
+                  id="expiryYear"
+                  name="expiryYear"
+                  value={formData.expiryYear}
+                  onChange={handleChange}
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  required
+                >
+                  <option value="">Year</option>
+                  {Array.from({ length: 10 }, (_, i) => {
+                    const year = new Date().getFullYear() + i;
+                    return (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
             </div>
-            
+
             <div className="mb-4">
-              <label htmlFor="cvv" className="block text-sm font-medium text-black">CVV</label>
+              <label htmlFor="cvn" className="block text-sm font-medium text-black">CVN</label>
               <input
                 type="text"
-                id="cvv"
+                id="cvn"
                 name="cvv"
                 value={formData.cvv}
                 onChange={handleChange}
+                placeholder="3 digits behind the card"
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 required
               />
             </div>
-          </>
+          </div>
         )}
 
         <button
@@ -130,42 +202,8 @@ const PaymentForm = () => {
           Submit Payment
         </button>
       </form>
-
-
-      {/* Success Popup */}
-      {showSuccess && (
-        <>
-          {/* Backdrop for blurring */}
-          <div className="fixed inset-0 bg-gray-800 bg-opacity-50 z-40" />
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="max-w-md mx-4 px-4 py-6 rounded-md border-l-4 border-green-500 bg-green-50">
-              <div className="flex justify-between items-start">
-                <div className="flex">
-                  <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 rounded-full text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                  <div className="self-center ml-3">
-                    <span className="text-green-600 font-semibold">Success</span>
-                    <p className="text-green-600 mt-1">Payment was successful!</p>
-                  </div>
-                </div>
-                <button onClick={handleClosePopup} className="text-green-500 ml-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-
     </div>
-    
-    
   );
 };
 
-export default PaymentForm;
+export default ManualPayment;

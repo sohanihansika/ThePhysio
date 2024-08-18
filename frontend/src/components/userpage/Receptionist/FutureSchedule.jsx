@@ -5,7 +5,8 @@ const Appointments = () => {
   const [isRescheduleModalOpen, setIsRescheduleModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
   const [actionType, setActionType] = useState(""); // "reschedule" or "cancel"
-  const [searchQuery, setSearchQuery] = useState(""); // For the search bar
+  const [searchQuery, setSearchQuery] = useState(""); // For the payment status search bar
+  const [nameSearchQuery, setNameSearchQuery] = useState(""); // For the name search bar
 
   const tableItems = [
     { time: "9.00 - 9.30", name: "Bob", doc: "Steven", room: "1", status: "Done" },
@@ -49,8 +50,13 @@ const Appointments = () => {
     setSearchQuery(e.target.value);
   };
 
+  const handleNameSearchChange = (e) => {
+    setNameSearchQuery(e.target.value);
+  };
+
   const filteredTableItems = tableItems.filter(item =>
-    item.status.toLowerCase().includes(searchQuery.toLowerCase())
+    item.status.toLowerCase().includes(searchQuery.toLowerCase()) &&
+    item.name.toLowerCase().includes(nameSearchQuery.toLowerCase())
   );
 
   return (
@@ -61,15 +67,30 @@ const Appointments = () => {
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="mt-8">
-        <input
-          type="text"
-          placeholder="Search by payment status..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className="px-4 py-2 border rounded-md"
-        />
+      {/* Search Bars */}
+      <div className="mt-8 flex space-x-4">
+        <div className="flex items-center space-x-2">
+          <label htmlFor="nameSearch" className="text-gray-700">Name:</label>
+          <input
+            id="nameSearch"
+            type="text"
+            placeholder="Search by name..."
+            value={nameSearchQuery}
+            onChange={handleNameSearchChange}
+            className="px-4 py-2 border rounded-md"
+          />
+        </div>
+        <div className="flex items-center space-x-2">
+          <label htmlFor="statusSearch" className="text-gray-700">Payment Status:</label>
+          <input
+            id="statusSearch"
+            type="text"
+            placeholder="Search by payment status..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            className="px-4 py-2 border rounded-md"
+          />
+        </div>
       </div>
 
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">

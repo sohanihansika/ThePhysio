@@ -1,7 +1,68 @@
 import React, { useState } from 'react';
+import { FaFileVideo } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import video1 from '../../../assets/1.mp4';
+import video2 from '../../../assets/2.mp4';
+import video3 from '../../../assets/3.mp4';
+import video4 from '../../../assets/4.mp4';
+import video5 from '../../../assets/5.mp4';
+
+const dummyVideos = [video1, video2, video3, video4, video5];
 
 const initialAdvertisements = [
-  // Your initial data here
+  {
+    id: 1,
+    title: 'New Product',
+    url: dummyVideos[0],
+    description: 'Check out our exciting new product launch video. Don’t miss out on the latest updates!',
+    category: 'clinic',
+  },
+  {
+    id: 2,
+    title: 'Summer Sale',
+    url: dummyVideos[1],
+    description: 'Get ready for our summer sale with huge discounts on all items. Watch the video to know more.',
+    category: 'gym',
+  },
+  {
+    id: 3,
+    title: 'Customer Special',
+    url: dummyVideos[2],
+    description: 'Hear what our customers have to say about their experience with our services. Their satisfaction is our priority.',
+    category: 'clinic',
+  },
+  {
+    id: 4,
+    title: 'New Celebration',
+    url: dummyVideos[3],
+    description: 'Join us in celebrating the new year with amazing offers and events. Watch the video to find out more!',
+    category: 'gym',
+  },
+  {
+    id: 5,
+    title: 'Behind the Scenes',
+    url: dummyVideos[4],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.',
+    category: 'clinic',
+  },
+  {
+    id: 6,
+    title: 'Belly Fat Reduction',
+    url: dummyVideos[3],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+  },
+  {
+    id: 7,
+    title: 'Weight Loss',
+    url: dummyVideos[4],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+  },
+  {
+    id: 8,
+    title: 'Gym Workout',
+    url: dummyVideos[5],
+    description: 'Take a peek behind the scenes of our latest project. Discover the hard work and creativity involved.'
+  }
 ];
 
 const truncateTitle = (title) => {
@@ -13,6 +74,8 @@ const Advertisements = () => {
   const [editingAdId, setEditingAdId] = useState(null);
   const [updatedTitle, setUpdatedTitle] = useState('');
   const [updatedDescription, setUpdatedDescription] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('both');
+  const navigate = useNavigate();
 
   const handleUpdateAd = (id) => {
     setAds(
@@ -28,7 +91,10 @@ const Advertisements = () => {
   };
 
   const handleDeleteAd = (id) => {
-    setAds(ads.filter((ad) => ad.id !== id));
+    const confirmDelete = window.confirm('Are you sure you want to delete this advertisement?');
+    if (confirmDelete) {
+      setAds(ads.filter((ad) => ad.id !== id));
+    }
   };
 
   const handleFileChange = (e) => {
@@ -39,35 +105,64 @@ const Advertisements = () => {
         id: ads.length + 1,
         title: `New Video ${ads.length + 1}`,
         url: newVideoUrl,
-        description: 'Description pending...'
+        description: 'Description pending...',
+        category: selectedCategory,
       };
-      setAds([newAd, ...ads]); // Prepend the new video to the top
+      setAds([newAd, ...ads]);
+      setEditingAdId(newAd.id);
+      setUpdatedTitle(newAd.title);
+      setUpdatedDescription(newAd.description);
     }
   };
 
+  const handleSubmit = (e, id) => {
+    e.preventDefault();
+    handleUpdateAd(id);
+  };
+
+  const handleSave = () => {
+    navigate('/videoconfirm');
+  };
+
+  const filteredAds = ads.filter(
+    (ad) => selectedCategory === 'both' || ad.category === selectedCategory
+  );
+
   return (
     <div className="container mx-auto p-4">
-      <div className="flex flex-col items-center mb-4">
-        <h1 className="text-3xl font-bold mb-4">Video Advertisements</h1>
-        <input
-          type="file"
-          accept="video/*"
-          onChange={handleFileChange}
-          className="hidden"
-          id="uploadButton"
-        />
-        <label
-          htmlFor="uploadButton"
-          className="bg-[#000099] text-white p-2 rounded-md cursor-pointer"
-        >
-          Upload Video
-        </label>
+      <input
+        type="file"
+        accept="video/*"
+        onChange={handleFileChange}
+        className="hidden"
+        id="uploadButton"
+      />
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-3xl font-bold">Advertisements</h1>
+        <div className="flex items-center space-x-4">
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="border border-gray-300 p-2 rounded-md"
+          >
+            <option value="both">All</option>
+            <option value="clinic">Clinic</option>
+            <option value="gym">Gym</option>
+          </select>
+          <label
+            htmlFor="uploadButton"
+            className="bg-[#000099] text-white p-2 rounded-md cursor-pointer flex items-center"
+          >
+            <FaFileVideo className="mr-2" />
+            New
+          </label>
+        </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {ads.map((ad) => (
-          <div key={ad.id} className="bg-white shadow-md rounded-md p-4 flex flex-col">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
+        {filteredAds.map((ad) => (
+          <div key={ad.id} className="bg-gray-100 shadow-md rounded-md p-4 flex flex-col">
             {editingAdId === ad.id ? (
-              <>
+              <form onSubmit={(e) => handleSubmit(e, ad.id)} className="flex flex-col h-full">
                 <input
                   type="text"
                   value={updatedTitle}
@@ -93,12 +188,14 @@ const Advertisements = () => {
                 />
                 <div className="flex space-x-2 mt-auto">
                   <button
-                    onClick={() => handleUpdateAd(ad.id)}
+                    type="submit"
                     className="bg-[#000099] text-white p-2 rounded-md flex-1"
+                    onClick={handleSave}
                   >
                     Save
                   </button>
                   <button
+                    type="button"
                     onClick={() => {
                       setEditingAdId(null);
                       setUpdatedTitle('');
@@ -109,7 +206,7 @@ const Advertisements = () => {
                     Cancel
                   </button>
                 </div>
-              </>
+              </form>
             ) : (
               <>
                 <h2
@@ -118,10 +215,10 @@ const Advertisements = () => {
                   style={{
                     overflow: 'hidden',
                     display: '-webkit-box',
-                    WebkitLineClamp: 2, // Limit to 2 lines
+                    WebkitLineClamp: 2,
                     WebkitBoxOrient: 'vertical',
                     textOverflow: 'ellipsis',
-                    marginBottom: '10px' // Adjust spacing between title and video
+                    marginBottom: '10px',
                   }}
                 >
                   {truncateTitle(ad.title)}
@@ -137,9 +234,9 @@ const Advertisements = () => {
                   style={{
                     overflow: 'hidden',
                     display: '-webkit-box',
-                    WebkitLineClamp: 3, // Limit to 3 lines
+                    WebkitLineClamp: 3,
                     WebkitBoxOrient: 'vertical',
-                    textOverflow: 'ellipsis'
+                    textOverflow: 'ellipsis',
                   }}
                 >
                   {ad.description}
@@ -157,7 +254,7 @@ const Advertisements = () => {
                   </button>
                   <button
                     onClick={() => handleDeleteAd(ad.id)}
-                    className="bg-[#000099] text-white p-2 rounded-md flex-1 hover:bg-red-500"
+                    className="bg-red-500 text-white p-2 rounded-md flex-1 hover:bg-red-600"
                   >
                     Delete
                   </button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import backgroundImage from '../../assets/1.jpg'; // Adjust the import path accordingly
+import backgroundImage from '../../assets/aboutus.jpg'; // Adjust the import path accordingly
 
 export default function AboutUs() {
     return (
@@ -24,13 +24,14 @@ export default function AboutUs() {
                             </a>
                         </div>
                     </div>
-                    <div className="mt-12 md:mt-0">
-                        <img 
-                            src={backgroundImage} 
-                            alt="About Us Image" 
-                            className="object-cover rounded-lg shadow-md w-full h-full" 
-                        />
-                    </div>
+                    <div className="mt-12  ml-24 md:mt-0" style={{ width: '70%', height: '700px' }}>
+    <img 
+        src={backgroundImage} 
+        alt="About Us Image" 
+        className="object-cover rounded-lg shadow-md w-full h-full" 
+    />
+</div>
+
                 </div>
             </div>
         </section>

@@ -1,61 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import UserService from '../service/UserService';
+import avater from '../../assets/user2.png'
 import { Link } from 'react-router-dom';
 
-function Profile() {
-    const [profileInfo, setProfileInfo] = useState({});
+export default function PhysioProfile() {
+  const [profileInfo, setProfileInfo] = useState({});
+  const [isAdmin, setIsAdmin] = useState(UserService.isAdmin());
+    const [isUser, setIsUser] = useState(UserService.isUser());
+    const [isReceptionist, setIsReceptionist] = useState(UserService.isReceptionist());
+    const [isOwner, setIsOwner] = useState(UserService.isOwner());
+    const [isPhysio, setIsPhysio] = useState(UserService.isPhysio());
+    const [isManager, setIsManager] = useState(UserService.isManager());
+    const [isCoach, setIsCoach] = useState(UserService.isCoach());
+  useEffect(() => {
+    fetchProfileInfo();
+  }, []);
 
-    useEffect(() => {
-        fetchProfileInfo();
-    }, []);
-
-    const fetchProfileInfo = async () => {
-        try {
-            const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-            const response = await UserService.getMyProfile(token);
-            setProfileInfo(response.ourUsers);
-        } catch (error) {
-            console.error('Error fetching profile information:', error);
-        }
-    };
-
-    const formatDate = (dateString) => {
-      if (!dateString) return '';
-      return new Date(dateString).toISOString().split('T')[0];
+  const fetchProfileInfo = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await UserService.getMyProfile(token);
+      setProfileInfo(response.ourUsers);
+    } catch (error) {
+      console.error('Error fetching profile information:', error);
+    }
   };
 
-    return (
-      <div className="profile-page-container">
-        <section className="p-6 dark:text-gray-800">
-          <form noValidate className="container w-full max-w-xl p-8 mx-auto space-y-6 rounded-md shadow dark:bg-gray-50">
-            <h2 className="w-full text-3xl font-bold leading-tight text-center">Profile</h2>
-            <div>
-              <label htmlFor="name" className="block mb-1 ml-1 font-bold">Name :</label>
-              <input id="name" type="text" placeholder="Your name" value={profileInfo.name || ''} readOnly className="block w-full p-2 rounded bg-gray-100" />
-            </div>
-            <div>
-              <label htmlFor="email" className="block mb-1 ml-1 font-bold">Email :</label>
-              <input id="email" type="email" placeholder="Email" value={profileInfo.email || ''} readOnly className="block w-full p-2 rounded bg-gray-100" />
-            </div>
-            <div>
-              <label htmlFor="address" className="block mb-1 ml-1 font-bold">Address :</label>
-              <input id="address" type="text" placeholder="Address" value={profileInfo.address || ''} readOnly className="block w-full p-2 rounded bg-gray-100" />
-            </div>
-            <div>
-              <label htmlFor="contact_no" className="block mb-1 ml-1 font-bold">Contact Number :</label>
-              <input id="contact_no" type="text" placeholder="Contact Number" value={profileInfo.contact_no || ''} readOnly className="block w-full p-2 rounded bg-gray-100" />
-            </div>
-            <div>
-              <label htmlFor="added_date" className="block mb-1 ml-1 font-bold">Added Date :</label>
-              <input id="added_date" type="text" placeholder="Contact Number" value={formatDate(profileInfo.added_date) || ''} readOnly className="block w-full p-2 rounded bg-gray-100" />
-            </div>
-            <div>
-              <Link to={`/editProfile/${profileInfo.id}`} className="w-full px-4 py-2 font-bold rounded shadow text-center  block bg-[#172b59] text-gray-50 hover:bg-[#425ea0]">Edit Profile</Link>
-            </div>
-          </form>
-        </section>
-      </div>
-    );
-}
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    return new Date(dateString).toISOString().split('T')[0];
+  };
 
-export default Profile;
+  return (
+    <div className="p-16 bg-gray-100 min-h-screen">
+      <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
+        <div className="relative">
+          <div className="h-48 bg-gray-100"></div>
+          <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <img src={avater} alt="Profile" className="w-32 h-32 rounded-full border-4 border-white shadow-lg" />
+          </div>
+        </div>
+        
+        <div className="pt-16 pb-8 text-center">
+          <h1 className="text-3xl font-bold text-gray-800">{profileInfo.name || 'Name'}</h1>
+          <div className="text-xl text-gray-600">
+          {isUser && <p>USER</p>}
+          {isAdmin && <p>ADMIN</p>}
+          {isPhysio && <p>PHYSIO</p>}
+          {isOwner && <p>OWNER</p>}
+          {isReceptionist && <p>RECEPTIONIST</p>}
+          {isManager && <p>MANGER</p>}
+          {isCoach && <p>COACH</p>}
+          </div>
+          
+          
+        </div>
+
+        <div className="pb-8 px-8">
+          <div className="text-center space-y-4">
+            <p className="text-gray-700"><b>Email:</b> {profileInfo.email || 'Email'}</p>
+            <p className="text-gray-700"><b>Address:</b> {profileInfo.address || 'Address'}</p>
+            <p className="text-gray-700"><b>Contact:</b> {profileInfo.contact_no || 'Contact Number'}</p>
+            <p className="text-gray-600"><b>Joined:</b> {formatDate(profileInfo.added_date)}</p>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link 
+              to={`/editProfile/${profileInfo.id}`} 
+              className="px-6 py-2 bg-gray-700 text-white rounded hover:bg-gray-400 transition duration-300"
+            >
+              Edit Profile
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
