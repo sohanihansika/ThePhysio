@@ -1,115 +1,108 @@
-/* PrescriptionForm.css */
-.wrapper {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 30px;
-    background-color: #28385d; /* Light blue background */
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-  }
-  
-  .prescription_form {
-    padding: 20px;
-  }
-  
-  .prescription {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  .prescription th,
-  .prescription td {
-    padding: 20px;
-    text-align: left;
-    vertical-align: top;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-  
-  .logo img {
-    max-height: 70px;
-  }
-  
-  .credentials {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .credentials label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .input {
-    width: 95%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 1.1em;
-  }
-  
-  .desease_details h5,
-  .condition h5,
-  .invest h5,
-  .medi h5,
-  .pmh h5,
-  .goals h5,
-  .serverity h5,
-  .factor h5,
-  .bodychart h5,
-  .previous_rx h5,
-  .easing_factors h5,
-  .red_flags h5 {
-    margin-bottom: 15px;
-    font-size: 1.2em;
-    color: #00796b; /* Dark teal color */
-  }
-  
-  .symp {
-    list-style: none;
-    padding: 15px;
-    margin: 0;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    min-height: 50px;
-    background-color: #ffffff;
-  }
-  
-  .symp:hover {
-    background-color: #f1f1f1;
-    cursor: text;
-  }
-  
-  .button_group {
-    margin-top: 30px;
-    text-align: center;
-  }
-  
-  .button_group .btn {
-    padding: 12px 25px;
-    font-size: 1.1em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-success {
-    background-color: #0F4D92; /* Blue color */
-    color: white;
-  }
-  
-  .btn-success:hover {
-    background-color: #0277bd; /* Darker blue on hover */
-  }
-  
+.assessment-form {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid #172b59;
+  border-radius: 10px;
+  background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 100px;
+}
+
+.hospital-logo {
+  width: 80px;
+  height: auto;
+}
+
+.form-title h2 {
+  font-size: 24px;
+  color: #172b59;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.patient-info {
+  text-align: right;
+}
+
+.patient-info p {
+  margin: 0;
+}
+
+.patient-details, .medical-details {
+  margin-bottom: 20px;
+}
+
+.patient-details p, .medical-details p {
+  margin: 5px 0;
+}
+
+h3 {
+  font-size: 20px;
+  color: #172b59;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.left-column, .right-column {
+  width: 48%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.left-column {
+  margin-right: 4%;
+}
+
+.body-chart {
+  width: 100px;
+  height: auto;
+}
+
+.pain-severity-section p {
+  font-weight: bold;
+}
+
+.footer-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.generate-report {
+  background-color: #172b59;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.generate-report:hover {
+  background-color: #0f1b3d;
+}
+
+.doctor-statement {
+  font-size: 18px;
+  color: #d9534f;
+  font-weight: bold;
+  border: 2px solid #d9534f;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff0f0;
+  margin-top: 20px;
+  text-align: center;
+}

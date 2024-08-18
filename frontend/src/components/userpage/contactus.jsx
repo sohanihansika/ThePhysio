@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../assets/1.jpg';
+import backgroundImage from '../../assets/actual2.jpg';
 
 export default function ContactUs() {
   const [email, setEmail] = useState('');

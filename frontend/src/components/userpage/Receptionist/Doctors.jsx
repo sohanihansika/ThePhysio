@@ -51,7 +51,7 @@ function Appoinments() {
                     placeholder="Search by name"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="p-2 border border-gray-300 rounded-lg w-full"
+                    className="p-2 border border-gray-300 rounded-lg w-1/4"
                 />
             </div>
             <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
@@ -82,7 +82,7 @@ function Appoinments() {
                                 <td className="px-6 py-4 whitespace-nowrap">Specialty Info</td> {/* Placeholder for specialty info */}
                                 <td className="text-right px-6 whitespace-nowrap">
                                     <button
-                                        onClick={() => window.location.href = `/calender?physioId=${user.id}`}
+                                        onClick={() => window.location.href = `/calendar`}
                                         className="flex items-center gap-x-2 text-blue-600 p-2 rounded-lg hover:bg-blue-100 hover:text-blue-500 active:bg-blue-200 duration-150 leading-none px-3 font-medium"
                                     >
                                         Add Appointment

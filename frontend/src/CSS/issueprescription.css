@@ -1,0 +1,120 @@
+.wrapper {
+  padding: 40px;
+  background-color: #eaeff1;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prescription_form {
+  max-width: 1200px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.logo img {
+  max-height: 80px;
+}
+
+.credentials label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+.credentials .input {
+  width: 80%; /* Reduced width */
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.credentials .input:focus {
+  border-color: #172b59;
+  outline: none;
+}
+
+.prescription {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.prescription th, .prescription td {
+  padding: 15px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #ddd;
+}
+
+.prescription th {
+  background-color: #172b59;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.prescription td {
+  background-color: #f8f9fa;
+}
+
+.details_section h5 {
+  margin: 20px 0 10px;
+  color: #444;
+  font-size: 18px;
+}
+
+.details_section .input {
+  width: 80%; /* Reduced width */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.details_section .input:focus {
+  background-color: #fff;
+  border-color: #172b59;
+  outline: none;
+}
+
+.button_group {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.issue_prescription {
+  background-color: #172b59;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.issue_prescription:hover {
+  background-color: #0e1b3b;
+  transform: translateY(-2px);
+}

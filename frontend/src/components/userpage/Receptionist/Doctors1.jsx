@@ -51,7 +51,7 @@ function Appoinments() {
                     placeholder="Search by name"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="p-2 border border-gray-300 rounded-lg w-full"
+                    className="p-2 border border-gray-300 rounded-lg w-1/4"
                 />
             </div>
             <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">

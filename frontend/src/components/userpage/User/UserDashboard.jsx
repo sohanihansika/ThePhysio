@@ -19,7 +19,7 @@ export default function UserDashboard() {
           <Upcomming />
         </div>
         <div className="flex-1 min-w-[200px] max-w-[600px]"> {/* Ensures both components are responsive */}
-        <h1 className="text-xl font-bold text-[#172b59] p-6">Make Appoinment</h1>
+        {/* <h1 className="text-xl font-bold text-[#172b59] p-6">Make Appoinment</h1> */}
 
           <Calendar />
         </div>

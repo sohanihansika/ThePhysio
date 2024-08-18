@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Appointments = () => {
   const [selectedDate, setSelectedDate] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [statusSearchQuery, setStatusSearchQuery] = useState('');
+  const [nameSearchQuery, setNameSearchQuery] = useState('');
   const navigate = useNavigate();
 
   // Sample data for appointments
@@ -50,32 +51,39 @@ const Appointments = () => {
     }
   };
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
+  const handleStatusSearchChange = (e) => {
+    setStatusSearchQuery(e.target.value);
+  };
+
+  const handleNameSearchChange = (e) => {
+    setNameSearchQuery(e.target.value);
   };
 
   const filteredTableItemsOngoing = tableItemsOngoing.filter(item =>
-    item.status.toLowerCase().includes(searchQuery.toLowerCase())
+    item.name.toLowerCase().includes(nameSearchQuery.toLowerCase()) &&
+    item.status.toLowerCase().includes(statusSearchQuery.toLowerCase())
   );
 
   const filteredTableItemsUpcoming = tableItemsUpcoming.filter(item =>
-    item.status.toLowerCase().includes(searchQuery.toLowerCase())
+    item.name.toLowerCase().includes(nameSearchQuery.toLowerCase()) &&
+    item.status.toLowerCase().includes(statusSearchQuery.toLowerCase())
   );
 
   const filteredTableItemsPast = tableItemsPast.filter(item =>
-    item.status.toLowerCase().includes(searchQuery.toLowerCase())
+    item.name.toLowerCase().includes(nameSearchQuery.toLowerCase()) &&
+    item.status.toLowerCase().includes(statusSearchQuery.toLowerCase())
   );
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
       <div className="mb-4 flex justify-between items-center">
-        <div className="flex items-center">
-          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mr-4">Select Date</h3>
+        <h3 className="text-gray-800 text-2xl font-bold sm:text-2xl mr-4">Today Schedule</h3>
+        <div className="flex items-center ml-auto">
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
             className="px-4 py-2 border rounded-md"
-            placeholderText="Select a date"
+            placeholderText="Select a date for schedule"
           />
           <button
             onClick={handleButtonClick}
@@ -84,13 +92,29 @@ const Appointments = () => {
             View Schedule
           </button>
         </div>
-        <div>
+      </div>
+
+      <div className="mb-4 flex gap-6">
+      <div className="mt-5 flex items-center space-x-4">
+        <label htmlFor="name-search" className="text-sm font-medium text-black"> Name:</label>
           <input
+            id="name-search"
             type="text"
-            placeholder="Search by payment status..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-            className="px-4 py-2 border rounded-md"
+            placeholder="Enter name..."
+            value={nameSearchQuery}
+            onChange={handleNameSearchChange}
+            className="w-1/2 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          />
+        </div>
+        <div className="mt-5 flex items-center space-x-4">
+        <label htmlFor="status-search" className="text-sm font-medium text-black">Payment Status:</label>
+          <input
+            id="status-search"
+            type="text"
+            placeholder="Enter status..."
+            value={statusSearchQuery}
+            onChange={handleStatusSearchChange}
+            className="w-1/2 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
           />
         </div>
       </div>
@@ -149,6 +173,7 @@ const Appointments = () => {
               <th className="py-3 px-6">Doctor</th>
               <th className="py-3 px-6">Room No</th>
               <th className="py-3 px-6">Payment Status</th>
+              <th className="py-3 px-6">Rescedule</th>
             </tr>
           </thead>
           <tbody className="text-black divide-y">
@@ -168,6 +193,12 @@ const Appointments = () => {
                   >
                     {item.status}
                   </span>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                              <a href="/reschedulePopup" className="flex items-center gap-x-2 p-2 rounded-lg text-blue-950 hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                        <p>Rescedule</p>
+                                    </a>
+                  
                 </td>
               </tr>
             ))}
@@ -213,12 +244,6 @@ const Appointments = () => {
             ))}
           </tbody>
         </table>
-      </div>
-
-      <div className="mt-7 flex justify-end">
-        <a href="/dashboard" className="py-2 px-4 bg-[#051B40] text-white rounded-md">
-          Back
-        </a>
       </div>
     </div>
   );

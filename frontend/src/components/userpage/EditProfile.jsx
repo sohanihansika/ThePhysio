@@ -153,7 +153,7 @@ function UpdateUser() {
             {contactError && <p className="text-red-500 text-sm mt-1">{contactError}</p>}
         </div>
         <div>
-            <button type="submit" className="w-full px-4 py-2 font-bold rounded shadow text-center block bg-[#172b59] text-gray-50 hover:bg-[#425ea0]">Update</button>
+            <button type="submit" className="w-full px-4 py-2 font-bold rounded shadow text-center block bg-[#172b59] text-gray-50 hover:bg-gray-700">Update</button>
             {error && <p className="text-red-500 text-center mt-2">{error}</p>}
             {emptyFieldError && <p className="text-red-500 text-center mt-2">{emptyFieldError}</p>}
           

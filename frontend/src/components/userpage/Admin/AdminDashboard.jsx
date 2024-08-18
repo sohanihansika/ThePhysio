@@ -15,15 +15,15 @@ export default () => {
             
         }, {
             title: "Reservation",
-            desc: "70 Daily",
-            path:"",
+            desc: "70",
+            path:"/Schedule",
             icon: <FaCalendarCheck  />
   
       
         }, 
         {
           title: "Reports",
-          desc: "0",
+          desc: "10",
           path:"/ownerReports",
           icon: <FaReceipt  />
   
@@ -112,32 +112,22 @@ const paymentsData = {
 return (
     
     <section className="py-2">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-8">
         
 
-           <ul className="mt-16 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-            {
+        <ul className="mt-4 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
+        {
                 integrations.map((item, idx) => (
-                    <li key={idx} className="border rounded-2xl bg-blue-100">
-                        <div className="flex items-start justify-center p-4">
-                            <div className="space-y-2">
-                                <a href={item.path}>
-                                    
-
-                                    <div className="flex-shrink-0 items-center">
-                                        <div className="flex items-center justify-center ">
-                                        <span className="mr-2 text-6xl">{item.icon}</span>
-                                           <h4 className="text-gray-800 font-semibold text-xl">{item.title}</h4>
-                                    </div>
-                                        <p className="text-gray-600 text-3xl mb-3 text-center">{item.desc}</p>
-                                    </div>
-                                </a>
-
-
-
-                            </div>
-                        </div>
-                        
+                    <li key={idx} className="border rounded-lg bg-blue-100 p-2 shadow-md w-84 h-32">
+                       <a href={item.path} className="w-full h-full">
+                         <div className="flex items-center justify-between p-2 h-full">
+                            <div className="flex items-center space-x-2">
+                               <span className="text-4xl">{item.icon}</span>
+                               <h4 className="text-gray-800 font-semibold text-lg">{item.title}</h4>
+                             </div>
+                             <p className="text-gray-600 text-4xl text-right w-1/2">{item.desc}</p>
+                         </div>
+                       </a>
                     </li>
                 ))
             }
@@ -152,7 +142,7 @@ return (
         <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-12">
             <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-3">Dashboard Charts</h3>
             <div className="mt-6 flex flex-row gap-4">
-                <div className="w-full md:w-1/2 p-4 border rounded-lg">
+                <div className="w-full md:w-1/2 p-10 border rounded-lg shadow-lg">
                     {/* <div className="max-w-screen-sm mx-auto px-2 md:px-4 mt-12"> */}
                        <h4 className="text-gray-800 text-sm font-bold mt-3">Weekly Reservations</h4>
                        <div className="mt-3">
@@ -161,7 +151,7 @@ return (
                 </div>
 
                           {/* Payments Pie Chart */}
-                <div className="w-full md:w-1/2 p-4 border rounded-lg">
+                <div className="w-full md:w-1/2 p-10 border rounded-lg shadow-lg">
                    <h4 className="text-gray-800 text-sm font-bold  mt-3">Payments Distribution</h4>
                    <div className="mt-3">
                        <Pie data={paymentsData} options={{ maintainAspectRatio: false }} height={200} />
