@@ -76,16 +76,17 @@ function PhysioLeaves() {
             <div className="items-start justify-between md:flex mb-8">
                 <div className="max-w-lg">
                     <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
-                        Your Leaves
+                         Leaves
                     </h3>
                     <p className="text-gray-600 mt-2">
-                        View your leave history and apply for new leaves.
+                        View leave history and apply for new leaves.
                     </p>
                 </div>
             </div>
             
             <div className="bg-white shadow-md rounded-lg p-6 mb-8">
                 <h4 className="text-gray-700 text-xl font-semibold mb-4">
+                    Remaining Leaves: <span className="text-[#3e4c6b]">{remainingLeaves}/14</span>
                     Remaining Leaves: <span className="text-[#3e4c6b]">{remainingLeaves}/14</span>
                 </h4>
                 <button 
@@ -99,7 +100,7 @@ function PhysioLeaves() {
             {error && <p className="text-red-500 mb-4">{error}</p>}
 
             <div className="space-y-8">
-                <div>
+            <div>
                     <h4 className="text-gray-800 text-xl font-semibold mb-4">Approved Leaves</h4>
                     <div className="shadow-md rounded-lg overflow-hidden">
                         <table className="w-full table-auto text-sm">
@@ -129,6 +130,33 @@ function PhysioLeaves() {
     ))}
 </tbody>
 
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h4 className="text-gray-800 text-xl font-semibold mb-4">Rejected Leaves</h4>
+                    <div className="shadow-md rounded-lg overflow-hidden">
+                        <table className="w-full table-auto text-sm">
+                            <thead className="bg-[#a8b4ce] text-white">
+                                <tr>
+                                    <th className="py-3 px-6 text-left">Date</th>
+                                    <th className="py-3 px-6 text-left">Reason</th>
+                                    <th className="py-3 px-6 text-left">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white divide-y divide-gray-200">
+                                {rejectedLeaves.map((leave, idx) => (
+                                    <tr key={idx} className="hover:bg-gray-50">
+                                        <td className="px-6 py-4 whitespace-nowrap">{leave.date}</td>
+                                        <td className="px-6 py-4">{leave.reason}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                {leave.status}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
                         </table>
                     </div>
                 </div>

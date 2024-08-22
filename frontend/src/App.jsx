@@ -160,6 +160,7 @@ import CreatePackage from './components/userpage/Manager/CreatePackage';
 import Packages from './components/userpage/Manager/Packages';
 import EditPackage from './components/userpage/Manager/EditPackage';
 import Subscribers from './components/userpage/Manager/Subscribers';
+import Appoinments_P from './components/userpage/Physio/appoinments_P';
 
 
 
@@ -351,7 +352,7 @@ function App() {
                   <Route path='/reviews' element={<Reviews/>} />
                   <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
-                  <Route path="/appoinments" element={<Appoinments />} />
+                  <Route path="/appoinments_P" element={<Appoinments_P />} />
                   <Route path="/reservationSchedule" element={<ReservationSchedule />}/>
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
                   <Route path="/issuePrescription" element={<IssuePrescription />} />
