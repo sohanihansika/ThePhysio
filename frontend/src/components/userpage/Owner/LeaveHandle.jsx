@@ -1,61 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LeaveService from '../../service/LeaveService'; // Adjust the import path as needed
-import UserService from '../../service/UserService'; // Adjust the import path as needed
 
 function PhysioRequestsDashboard() {
-    const [physioRequests, setPhysioRequests] = useState([]);
-    const [pendingRequests, setPendingRequests] = useState([]);
-    const [reviewedRequests, setReviewedRequests] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [profileInfo, setProfileInfo] = useState({});
+    // Sample data for physio requests
+    const [physioRequests, setPhysioRequests] = useState([
+        { id: 1, patientName: 'John Doe', requestDate: '2024-05-15', reason: 'Back pain', status: 'Approved' },
+        { id: 2, patientName: 'Jane Smith', requestDate: '2024-06-22', reason: 'Knee injury', status: 'Pending' },
+        { id: 3, patientName: 'Sam Johnson', requestDate: '2024-07-10', reason: 'Post-surgery recovery', status: 'Approved' },
+        { id: 4, patientName: 'Emily Davis', requestDate: '2024-08-05', reason: 'Sports injury', status: 'Pending' },
+        { id: 5, patientName: 'Alex Brown', requestDate: '2024-06-10', reason: 'Chronic pain', status: 'Disapproved' },
+        { id: 6, patientName: 'Sophia Lee', requestDate: '2024-07-15', reason: 'Shoulder pain', status: 'Disapproved' }
+    ]);
+
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchRequests = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const data = await LeaveService.getAllleaves(token);
-                console.log(data);
-                setPhysioRequests(data);
-
-                // Separate requests into pending and reviewed
-                const pending = data.filter(request => request.status === 1);
-                const reviewed = data.filter(request => request.status !== 1);
-                setPendingRequests(pending);
-                setReviewedRequests(reviewed);
-
-                // Fetch profile info for all physios once the requests are loaded
-                const physioIds = [...new Set(data.map(request => request.physioId))]; // Get unique physioIds
-                physioIds.forEach(physioId => fetchProfileInfo(physioId));
-            } catch (err) {
-                setError('Failed to fetch data');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchRequests();
-    }, []);
-
-    const fetchProfileInfo = async (physioId) => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await UserService.getUserById(physioId, token);
-            console.log('Fetched profile information:', response);
-            setProfileInfo(prevState => ({ ...prevState, [physioId]: response.ourUsers.name }));
-        } catch (error) {
-            console.error('Error fetching profile information:', error);
-        }
-    };
-
     const handleReviewRequest = (request) => {
-        navigate(`/leavepopup?id=${request.id}`, { state: { request } });
+        navigate(`/leavepopup`);
     };
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    const handleStatusChange = (id, newStatus) => {
+        setPhysioRequests(prevRequests =>
+            prevRequests.map(request =>
+                request.id === id ? { ...request, status: newStatus } : request
+            )
+        );
+    };
+
+    // Split requests into approved, pending, and disapproved
+    const approvedRequests = physioRequests.filter(request => request.status === 'Approved');
+    const pendingRequests = physioRequests.filter(request => request.status === 'Pending');
+    const disapprovedRequests = physioRequests.filter(request => request.status === 'Disapproved');
+
+    // Combine approved and disapproved requests for the "Viewed Requests" table
+    const viewedRequests = [...approvedRequests, ...disapprovedRequests];
 
     return (
         <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-10">
@@ -81,19 +58,21 @@ function PhysioRequestsDashboard() {
                                     <th className="py-3 px-6 text-left">Patient Name</th>
                                     <th className="py-3 px-6 text-left">Request Date</th>
                                     <th className="py-3 px-6 text-left">Reason</th>
+                                    <th className="py-3 px-6 text-left">Status</th>
                                     <th className="py-3 px-6 text-left">Action</th>
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {pendingRequests.map((request) => (
                                     <tr key={request.id} className="hover:bg-gray-50">
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            {profileInfo[request.physioId] || 'Loading...'}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            {new Date(request.date).toLocaleDateString()}
-                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{request.patientName}</td>
+                                        <td className="px-6 py-4">{request.requestDate}</td>
                                         <td className="px-6 py-4">{request.reason}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                {request.status}
+                                            </span>
+                                        </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <button
                                                 onClick={() => handleReviewRequest(request)}
@@ -109,9 +88,9 @@ function PhysioRequestsDashboard() {
                     </div>
                 </div>
 
-                {/* Reviewed Requests Table */}
+                {/* Viewed Requests Table */}
                 <div>
-                    <h4 className="text-gray-800 text-xl font-semibold mb-4">Reviewed Requests</h4>
+                    <h4 className="text-gray-800 text-xl font-semibold mb-4">Viewed Requests</h4>
                     <div className="shadow-md rounded-lg overflow-hidden">
                         <table className="w-full table-auto text-sm">
                             <thead className="bg-[#a8b4ce] text-white">
@@ -120,31 +99,30 @@ function PhysioRequestsDashboard() {
                                     <th className="py-3 px-6 text-left">Request Date</th>
                                     <th className="py-3 px-6 text-left">Reason</th>
                                     <th className="py-3 px-6 text-left">Status</th>
-                                    <th className="py-3 px-6 text-left">Action</th>
-
+                                    <th className="py-3 px-6 text-left">Change Status</th> {/* Added column for status change */}
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
-                                {reviewedRequests.map((request) => (
+                                {viewedRequests.map((request) => (
                                     <tr key={request.id} className="hover:bg-gray-50">
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            {profileInfo[request.physioId] || 'Loading...'}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            {new Date(request.date).toLocaleDateString()}
-                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap">{request.patientName}</td>
+                                        <td className="px-6 py-4">{request.requestDate}</td>
                                         <td className="px-6 py-4">{request.reason}</td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            {request.status === 2 && 'Approved'}
-                                            {request.status === 3 && 'Disapproved'}
+                                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${request.status === 'Approved' ? 'bg-green-100 text-green-800' : request.status === 'Disapproved' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                                                {request.status}
+                                            </span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <button
-                                                onClick={() => handleReviewRequest(request)}
-                                                className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out"
+                                            <select
+                                                value={request.status}
+                                                onChange={(e) => handleStatusChange(request.id, e.target.value)}
+                                                className="px-2 py-1 bg-gray-100 border border-gray-300 rounded-md"
                                             >
-                                                Change Status
-                                            </button>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Approved">Approved</option>
+                                                <option value="Disapproved">Disapproved</option>
+                                            </select>
                                         </td>
                                     </tr>
                                 ))}
