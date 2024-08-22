@@ -83,10 +83,12 @@ import UserReviews from './components/userpage/User/userReviews';
 import Calendar from './components/userpage/User/calender';
 import TimeSlots from './components/userpage/User/timeSlots';
 import AddAppoinmet from './components/userpage/User/AddAppoinment';
+import AppoinmentDetails from './components/userpage/User/apponmentDetails';
 import SelectPayment from './components/userpage/User/SelectPayment';
-import paymentpopup from './components/userpage/User/paymentpopup';
+import Paymentpopup from './components/userpage/User/paymentpopup';
 import NotAvilavle from './components/userpage/User/notavilPopup';
-import ReservedPopup from './components/userpage/User/reservedPopup'
+import ReservedPopup from './components/userpage/User/reservedPopup';
+import BookingUpdate from './components/userpage/User/Bookingupdate';
 import UserDashboardLink from './components/userpage/Admin/UserDashboardLink';
 import PrescriptionForm from './components/userpage/User/PrescriptionForm';
 import Popup from './components/userpage/User/Popup';
@@ -158,7 +160,6 @@ import CreatePackage from './components/userpage/Manager/CreatePackage';
 import Packages from './components/userpage/Manager/Packages';
 import EditPackage from './components/userpage/Manager/EditPackage';
 import Subscribers from './components/userpage/Manager/Subscribers';
-import Appoinments_P from './components/userpage/Physio/appoinments_P';
 
 
 
@@ -291,8 +292,9 @@ function App() {
                   <Route path="/calendar" element={<Calendar />} />
                   <Route path="/timeslots" element={<TimeSlots />} />
                   <Route path="/addappoinment" element={<AddAppoinmet />} />
+                  <Route path="/appoinmentdetails" element={<AppoinmentDetails />} />
                   <Route path="/selectpayment" element={<SelectPayment />} />
-                  <Route path="/paymentpopup" element={<paymentpopup />} />
+                  <Route path="/paymentpopup" element={<Paymentpopup />} />
                   <Route path="/gymNavibar" element={<NaviBar />} />
                   <Route path="/gymMembership" element={<Membership />} /> 
                   <Route path="/halfyear" element={<Halfyear />} />
@@ -305,7 +307,8 @@ function App() {
                   <Route path="/physioprofile" element={<PhysioProfile />}/>
                   <Route path="/readmore" element={<ReadMore />}/>
                   <Route path="/subscriptionForm" element={<SubscriptionForm />}/>
-                  <Route path="/payment2" element={<Payment2 />}/>
+                  <Route path="/payment2" element={<Payment2 />}/>  
+                  <Route path="/bookingUpdate" element={<BookingUpdate />}/>
                   <Route path="/popup1" element={<PopUp1 />}/>
                   <Route path="/readmore1" element={<ReadMore1 />}/>
                   <Route path="/readmore2" element={<ReadMore2 />}/>
@@ -348,7 +351,7 @@ function App() {
                   <Route path='/reviews' element={<Reviews/>} />
                   <Route path='/uploadVideos' element={<UploadVideos/>} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
-                  <Route path="/appoinments_P" element={<Appoinments_P />} />
+                  <Route path="/appoinments" element={<Appoinments />} />
                   <Route path="/reservationSchedule" element={<ReservationSchedule />}/>
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
                   <Route path="/issuePrescription" element={<IssuePrescription />} />
