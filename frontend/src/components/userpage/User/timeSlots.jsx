@@ -1,14 +1,9 @@
 import React from 'react';
-import { useNavigate,
-  useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const TimeSlots = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const queryParams = new URLSearchParams(location.search);
-  const physioId = queryParams.get('physioId');
-  const selectedDate = queryParams.get('date');
   // Generate half-hour time slots from 8 AM to 6 PM
   const slots = [];
   const startHour = 8; // 8 AM
@@ -27,10 +22,9 @@ const TimeSlots = () => {
 
   const handleSlotClick = (slot) => {
     if (!redSlots.includes(slot)) {
-      navigate(`/appoinmentdetails?physioId=${physioId}&date=${selectedDate}&slot=${slot}`);
+      navigate('/addappoinment');
     }
   };
-  
 
   return (
     <div className="container">
