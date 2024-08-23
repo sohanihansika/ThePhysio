@@ -25,19 +25,6 @@ const Appointments = () => {
     }
   };
 
-<<<<<<< HEAD
-  const tableItemsUpcoming = [
-    { time: "9.30 - 10.00", name: "Shane", doc: "Steven", room: "1", status: "Done" },
-    { time: "9.30 - 10.00", name: "Holly", doc: "Peter", room: "2", status: "Pending" },
-    { time: "10.00 - 10.30", name: "Stephnie", doc: "John", room: "4", status: "Not Paid" },
-  ];
-
-  const tableItemsPast = [
-    { time: "8.30 - 9.00", name: "Justin", doc: "Steven", room: "1", status: "Done" },
-    { time: "8.30 - 9.00", name: "Niki", doc: "Peter", room: "2", status: "Pending" },
-    { time: "8.30 - 9.00", name: "Rodrick", doc: "John", room: "4", status: "Not Paid" },
-  ];
-=======
   const fetchUserDetails = async (userId) => {
     try {
       const token = localStorage.getItem('token');
@@ -59,7 +46,6 @@ const Appointments = () => {
       }
     });
   }, [appointments]);
->>>>>>> aacac68741713a00ab901bce88e49f645b0fc6ec
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
