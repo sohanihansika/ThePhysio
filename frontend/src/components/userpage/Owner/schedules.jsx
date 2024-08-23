@@ -35,7 +35,6 @@ const Schedules = () => {
     >
       <div className="mb-8">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-[#000000]">Schedules</h1>
           <div className="flex items-center">
             <input
               type="date"
@@ -73,9 +72,9 @@ const Schedules = () => {
       <div className="grid grid-cols-1 gap-6">
         {(scheduleType === 'both' || scheduleType === 'clinic') && (
           <div>
-            <h2 className="text-2xl font-bold mb-4 text-[#000099]">Physiotherapy Schedules</h2>
+            <h2 className="text-2xl font-bold mb-4 text-[#172b59]">Physiotherapy Schedules</h2>
             <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-md">
-              <thead className="bg-[#000099] text-white">
+              <thead className="bg-gray-300 text-white">
                 <tr>
                   <th className="py-3 px-4 border-b">Patient Name</th>
                   <th className="py-3 px-4 border-b">Physiotherapist</th>
@@ -104,9 +103,9 @@ const Schedules = () => {
         )}
         {(scheduleType === 'both' || scheduleType === 'gym') && (
           <div>
-            <h2 className="text-2xl font-bold mb-4 text-[#000099]">Gym Schedules</h2>
+            <h2 className="text-2xl font-bold mb-4 text-[#172b59]">Gym Schedules</h2>
             <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-md">
-              <thead className="bg-[#000099] text-white">
+              <thead className="bg-gray-300 text-white">
                 <tr>
                   <th className="py-3 px-4 border-b">Gym Member</th>
                   <th className="py-3 px-4 border-b">Gym Coach</th>

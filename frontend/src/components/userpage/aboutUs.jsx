@@ -24,7 +24,7 @@ export default function AboutUs() {
                             </a>
                         </div>
                     </div>
-                    <div className="mt-12  ml-11 md:mt-0" style={{ width: '70%', height: '700px' }}>
+                    <div className="mt-12  ml-24 md:mt-0" style={{ width: '70%', height: '700px' }}>
     <img 
         src={backgroundImage} 
         alt="About Us Image" 

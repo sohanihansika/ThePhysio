@@ -1,17 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../../../assets/1.jpg'
+import LeaveService from '../../service/LeaveService';
+import UserService from '../../service/UserService';
+import backgroundImage from '../../../assets/1.jpg';
 
 function ApplyLeave() {
     const [leaveDate, setLeaveDate] = useState('');
     const [leaveReason, setLeaveReason] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [leaves, setLeaves] = useState([]); // State to hold fetched leaves
     const navigate = useNavigate();
+
+    const getToken = () => {
+        return localStorage.getItem('token');
+    };
+
+    const fetchProfileInfo = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await UserService.getMyProfile(token);
+            console.log('Fetched profile information:', response);
+
+            const userId = response.ourUsers.id;
+            console.log('userid:', userId);
+
+            return userId;
+        } catch (error) {
+            console.error('Error fetching profile information:', error);
+        }
+    };
+
+    useEffect(() => {
+        const fetchLeaves = async () => {
+            try {
+                setLoading(true);
+                const token = getToken();
+                const leavesData = await LeaveService.getAllleaves(token);
+                setLeaves(leavesData);
+            } catch (err) {
+                setError('Failed to fetch leave records.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchLeaves();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Leave application:', { date: leaveDate, reason: leaveReason });
-        // TODO: Add API call to submit leave application
-        navigate('/leaves');
+        setLoading(true);
+        setError(null);
+
+        try {
+            const token = getToken();
+            const userId = await fetchProfileInfo(); // Await the fetched user ID
+
+            const leave = {
+                date: leaveDate,
+                reason: leaveReason,
+                physioId: userId // Add physioId to the leave object
+            };
+
+            await LeaveService.saveleave(leave, token);
+            navigate('/leaves');
+        } catch (err) {
+            setError('Failed to apply for leave. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -69,15 +127,37 @@ function ApplyLeave() {
                             </div>
                         </div>
 
+                        {error && (
+                            <div className="text-red-500 text-sm">
+                                {error}
+                            </div>
+                        )}
+
                         <div>
                             <button
                                 type="submit"
-                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#172b59] hover:bg-[#1e3a7b] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#172b59]"
+                                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#172b59] hover:bg-[#1e3a7b]'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#172b59]`}
+                                disabled={loading}
                             >
-                                Apply for Leave
+                                {loading ? 'Submitting...' : 'Apply for Leave'}
                             </button>
                         </div>
                     </form>
+
+                    {leaves.length > 0 && (
+                        <div className="mt-8">
+                            <h3 className="text-lg font-semibold text-gray-900">Leave Records</h3>
+                            <ul className="list-disc pl-5">
+                                {leaves.map((leave, index) => (
+                                    <li key={index} className="text-sm text-gray-700">
+                                        <div>Date: {new Date(leave.date).toLocaleDateString()}</div>
+                                        <div>Reason: {leave.reason}</div>
+                                        <div>Physio ID: {leave.physioId}</div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

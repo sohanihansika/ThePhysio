@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
-import UserReviews from '../Owner/viewReviews'; // Ensure to import the UserReviews component if it's in another file
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import UserReviews from '../Owner/viewReviews';
 
 export default function Reviews() {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // Initialize navigate
-1
+  const [selectedDoctor, setSelectedDoctor] = useState(''); // State for selected doctor
+  const navigate = useNavigate();
+
+  // Example list of doctors
+  const doctors = [
+    { id: 1, name: 'Dr. John Smith' },
+    { id: 2, name: 'Dr. Jane Doe' },
+    { id: 3, name: 'Dr. Emily Johnson' },
+  ];
+
   const handleRatingChange = (event) => {
     setRating(Number(event.target.value));
   };
@@ -17,41 +24,44 @@ export default function Reviews() {
     setComment(event.target.value);
   };
 
-  const handleSubmit = () => {
-    if (rating === 0 || comment.trim() === '') {
-      setError('Please fill out both the rating and comment fields.');
+  const handleDoctorChange = (event) => {
+    setSelectedDoctor(event.target.value);
+  };
 
+  const handleSubmit = () => {
+    if (rating === 0 || comment.trim() === '' || selectedDoctor === '') {
+      setError('Please fill out all fields including selecting a doctor.');
       return;
     }
-    else{
-      navigate('/success');
-    }
-    
+    navigate('/success');
+
     // Handle submission logic here
     console.log('Rating:', rating);
     console.log('Comment:', comment);
+    console.log('Selected Doctor:', selectedDoctor);
 
     // Clear the fields after submission
     setRating(0);
     setComment('');
+    setSelectedDoctor('');
     setError('');
   };
 
   const starStyle = {
-    fontSize: '2rem', // Adjust size as needed
-    color: '#d3d3d3', // Default color
+    fontSize: '2rem',
+    color: '#d3d3d3',
     cursor: 'pointer',
     transition: 'color 0.2s',
   };
 
   const starCheckedStyle = {
     ...starStyle,
-    color: '#ffcc00', // Color when selected
+    color: '#ffcc00',
   };
 
   const starHoverStyle = {
     ...starStyle,
-    color: '#ffcc00', // Color when hovered
+    color: '#ffcc00',
   };
 
   return (
@@ -68,6 +78,27 @@ export default function Reviews() {
         {error && (
           <p className="text-red-500 text-center mb-4">{error}</p>
         )}
+
+        {/* Dropdown Menu for Selecting Doctor */}
+        <div className="mb-6">
+          <label htmlFor="doctor" className="block text-gray-700 mb-2">
+            Select Doctor
+          </label>
+          <select
+            id="doctor"
+            value={selectedDoctor}
+            onChange={handleDoctorChange}
+            className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-[#172b59]"
+          >
+            <option value="">Select a doctor</option>
+            {doctors.map((doctor) => (
+              <option key={doctor.id} value={doctor.name}>
+                {doctor.name}
+              </option>
+            ))}
+          </select>
+          
+        </div>
 
         {/* Star Rating Section */}
         <div className="flex justify-center mb-6">

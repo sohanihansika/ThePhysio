@@ -78,7 +78,7 @@ function Appointments() {
                                 </td>
                                 <td className="text-right px-6 whitespace-nowrap">
                                     <button
-                                        onClick={() => window.location.href = `/calender?physioId=${user.id}`}
+                                        onClick={() => window.location.href = `/calendar`}
                                         className="flex items-center gap-x-2 text-blue-600 p-2 rounded-lg hover:bg-blue-100 hover:text-blue-500 active:bg-blue-200 duration-150 leading-none px-3 font-medium"
                                     >
                                         Add Appointment

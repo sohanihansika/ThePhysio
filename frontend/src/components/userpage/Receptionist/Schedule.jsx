@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import UserService from '../../service/UserService';
+import BookingService from '../../service/BookingService';
 
 const Appointments = () => {
+  const [users, setUsers] = useState({});
+
   const [selectedDate, setSelectedDate] = useState(null);
   const [statusSearchQuery, setStatusSearchQuery] = useState('');
-  const [nameSearchQuery, setNameSearchQuery] = useState('');
+  const [userSearchQuery, setUserSearchQuery] = useState('');
+  const [appointments, setAppointments] = useState([]);
   const navigate = useNavigate();
 
-  // Sample data for appointments
-  const tableItemsOngoing = [
-    { time: "9.00 - 9.30", name: "Bob", doc: "Steven", room: "1", status: "Done" },
-    { time: "9.00 - 9.30", name: "Christine", doc: "Peter", room: "2", status: "Pending" },
-    { time: "9.00 - 9.30", name: "Charlotte", doc: "John", room: "4", status: "Not Paid" },
-  ];
+  const fetchAppointments = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const fetchedAppointments = await BookingService.getAllBookings(token);
+      setAppointments(fetchedAppointments);
+    } catch (err) {
+      console.error('Error fetching appointments:', err);
+      alert('Failed to fetch appointments.');
+    }
+  };
 
+<<<<<<< HEAD
   const tableItemsUpcoming = [
     { time: "9.30 - 10.00", name: "Shane", doc: "Steven", room: "1", status: "Done" },
     { time: "9.30 - 10.00", name: "Holly", doc: "Peter", room: "2", status: "Pending" },
@@ -27,9 +37,47 @@ const Appointments = () => {
     { time: "8.30 - 9.00", name: "Niki", doc: "Peter", room: "2", status: "Pending" },
     { time: "8.30 - 9.00", name: "Rodrick", doc: "John", room: "4", status: "Not Paid" },
   ];
+=======
+  const fetchUserDetails = async (userId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const user = await UserService.getUserById(userId, token);
+      setUsers(prevUsers => ({...prevUsers, [userId]: user}));
+    } catch (err) {
+      console.error('Error fetching user details:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchAppointments();
+  }, []);
+
+  useEffect(() => {
+    appointments.forEach(appointment => {
+      if (appointment.userId && !users[appointment.userId]) {
+        fetchUserDetails(appointment.userId);
+      }
+    });
+  }, [appointments]);
+>>>>>>> aacac68741713a00ab901bce88e49f645b0fc6ec
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+  };
+
+  const handleDelete = async (appointmentId) => {
+    const token = localStorage.getItem('token');
+    try {
+      const confirmDelete = window.confirm('Are you sure you want to delete this appointment?');
+      if (confirmDelete) {
+        await BookingService.deleteBooking(appointmentId, token);
+        alert('Booking deleted successfully');
+        fetchAppointments();
+      }
+    } catch (err) {
+      console.error('Error deleting booking:', err);
+      alert('Failed to delete booking.');
+    }
   };
 
   const handleButtonClick = () => {
@@ -55,29 +103,25 @@ const Appointments = () => {
     setStatusSearchQuery(e.target.value);
   };
 
-  const handleNameSearchChange = (e) => {
-    setNameSearchQuery(e.target.value);
+  const handleUserSearchChange = (e) => {
+    setUserSearchQuery(e.target.value);
   };
 
-  const filteredTableItemsOngoing = tableItemsOngoing.filter(item =>
-    item.name.toLowerCase().includes(nameSearchQuery.toLowerCase()) &&
-    item.status.toLowerCase().includes(statusSearchQuery.toLowerCase())
-  );
+  const filteredAppointments = appointments.filter((appointment) => {
+    const matchesUserId = userSearchQuery
+      ? appointment.userId.toLowerCase().includes(userSearchQuery.toLowerCase())
+      : true;
+    const matchesStatus = statusSearchQuery
+      ? appointment.paymentStatus.toLowerCase().includes(statusSearchQuery.toLowerCase())
+      : true;
 
-  const filteredTableItemsUpcoming = tableItemsUpcoming.filter(item =>
-    item.name.toLowerCase().includes(nameSearchQuery.toLowerCase()) &&
-    item.status.toLowerCase().includes(statusSearchQuery.toLowerCase())
-  );
-
-  const filteredTableItemsPast = tableItemsPast.filter(item =>
-    item.name.toLowerCase().includes(nameSearchQuery.toLowerCase()) &&
-    item.status.toLowerCase().includes(statusSearchQuery.toLowerCase())
-  );
+    return matchesUserId && matchesStatus;
+  });
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
       <div className="mb-4 flex justify-between items-center">
-        <h3 className="text-gray-800 text-2xl font-bold sm:text-2xl mr-4">Today Schedule</h3>
+        <h3 className="text-gray-800 text-2xl font-bold sm:text-2xl mr-4">Appointments</h3>
         <div className="flex items-center ml-auto">
           <DatePicker
             selected={selectedDate}
@@ -95,19 +139,19 @@ const Appointments = () => {
       </div>
 
       <div className="mb-4 flex gap-6">
-      <div className="mt-5 flex items-center space-x-4">
-        <label htmlFor="name-search" className="text-sm font-medium text-black"> Name:</label>
+        <div className="mt-5 flex items-center space-x-4">
+          <label htmlFor="user-search" className="text-sm font-medium text-black">User ID:</label>
           <input
-            id="name-search"
+            id="user-search"
             type="text"
-            placeholder="Enter name..."
-            value={nameSearchQuery}
-            onChange={handleNameSearchChange}
+            placeholder="Enter user ID..."
+            value={userSearchQuery}
+            onChange={handleUserSearchChange}
             className="w-1/2 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
           />
         </div>
         <div className="mt-5 flex items-center space-x-4">
-        <label htmlFor="status-search" className="text-sm font-medium text-black">Payment Status:</label>
+          <label htmlFor="status-search" className="text-sm font-medium text-black">Payment Status:</label>
           <input
             id="status-search"
             type="text"
@@ -119,119 +163,56 @@ const Appointments = () => {
         </div>
       </div>
 
-      <div className="items-start justify-between md:flex">
-        <div className="max-w-lg">
-          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">Ongoing Appointments</h3>
-        </div>
-      </div>
       <div className="mt-6 shadow-sm border rounded-lg overflow-x-auto">
         <table className="w-full table-auto text-sm text-left">
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
+              <th className="py-3 px-6">User</th>
+              <th className="py-3 px-6">Physio</th>
+              <th className="py-3 px-6">Date</th>
               <th className="py-3 px-6">Time</th>
-              <th className="py-3 px-6">Patient Name</th>
-              <th className="py-3 px-6">Doctor</th>
-              <th className="py-3 px-6">Room No</th>
               <th className="py-3 px-6">Payment Status</th>
-            </tr>
-          </thead>
-          <tbody className="text-black divide-y">
-            {filteredTableItemsOngoing.map((item, idx) => (
-              <tr key={idx}>
-                <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.doc}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.room}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span
-                    className={`px-4 py-3 rounded-full font-semibold text-xs ${
-                      item.status === 'Done'
-                        ? 'text-green-600 bg-green-50'
-                        : 'text-blue-600 bg-blue-50'
-                    }`}
-                  >
-                    {item.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+              <th className="py-3 px-6"></th>
+              <th className="py-3 px-6"></th>
 
-      <div className="items-start justify-between md:flex">
-        <div className="max-w-lg">
-          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-6">Upcoming Appointments</h3>
-        </div>
-      </div>
-      <div className="mt-6 shadow-sm border rounded-lg overflow-x-auto">
-        <table className="w-full table-auto text-sm text-left">
-          <thead className="bg-gray-50 text-gray-600 font-medium border-b">
-            <tr>
-              <th className="py-3 px-6">Time</th>
-              <th className="py-3 px-6">Patient Name</th>
-              <th className="py-3 px-6">Doctor</th>
-              <th className="py-3 px-6">Room No</th>
-              <th className="py-3 px-6">Payment Status</th>
             </tr>
           </thead>
           <tbody className="text-black divide-y">
-            {filteredTableItemsUpcoming.map((item, idx) => (
+            {filteredAppointments.map((appointment, idx) => (
               <tr key={idx}>
-                <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.doc}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.room}</td>
+<td className="px-6 py-4 whitespace-nowrap">
+            {appointment.userId || 'Unknown User'}
+          </td>                <td className="px-6 py-4 whitespace-nowrap">{appointment.physioId || 'Unknown Physio'}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{appointment.date ? new Date(appointment.date).toLocaleDateString() : 'N/A'}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{appointment.timeslot || 'N/A'}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span
                     className={`px-4 py-3 rounded-full font-semibold text-xs ${
-                      item.status === 'Done'
+                      appointment.paymentStatus === 'Paid'
                         ? 'text-green-600 bg-green-50'
-                        : 'text-blue-600 bg-blue-50'
+                        : appointment.paymentStatus === 'Pending'
+                        ? 'text-yellow-600 bg-yellow-50'
+                        : 'text-red-600 bg-red-50'
                     }`}
                   >
-                    {item.status}
+                    {appointment.paymentStatus || 'Unknown'}
                   </span>
+                  
                 </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="items-start justify-between md:flex">
-        <div className="max-w-lg">
-          <h3 className="text-gray-800 text-xl font-bold sm:text-2xl mt-6">Past Appointments</h3>
-        </div>
-      </div>
-      <div className="mt-6 shadow-sm border rounded-lg overflow-x-auto">
-        <table className="w-full table-auto text-sm text-left">
-          <thead className="bg-gray-50 text-gray-600 font-medium border-b">
-            <tr>
-              <th className="py-3 px-6">Time</th>
-              <th className="py-3 px-6">Patient Name</th>
-              <th className="py-3 px-6">Doctor</th>
-              <th className="py-3 px-6">Room No</th>
-              <th className="py-3 px-6">Payment Status</th>
-            </tr>
-          </thead>
-          <tbody className="text-black divide-y">
-            {filteredTableItemsPast.map((item, idx) => (
-              <tr key={idx}>
-                <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.doc}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.room}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span
-                    className={`px-4 py-3 rounded-full font-semibold text-xs ${
-                      item.status === 'Done'
-                        ? 'text-green-600 bg-green-50'
-                        : 'text-blue-600 bg-blue-50'
-                    }`}
+                <td className="text-right px-6 whitespace-nowrap flex">
+                <Link
+                    to={`/bookingUpdate?bookingId=${appointment.id }`}
+                    className="py-2 px-3 font-medium text-blue-900 text-xl hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
+                  >Edit
+                  </Link>
+                </td>
+                <td className="text-right px-6 whitespace-nowrap flex">
+                  <button
+                    onClick={() => handleDelete(appointment.id)}
+                    className="py-2 px-4 font-medium text-white bg-red-700 rounded-lg shadow-md hover:bg-red-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transform transition-transform duration-150 hover:scale-105 active:scale-95"
                   >
-                    {item.status}
-                  </span>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

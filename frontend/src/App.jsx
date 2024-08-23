@@ -58,6 +58,7 @@ import ReadMore2_P from './components/userpage/Physio/GymMember/ReadMore2';
 import ReadMore3_P from './components/userpage/Physio/GymMember/ReadMore3';
 import ReadMore4_P from './components/userpage/Physio/GymMember/ReadMore4';
 import ReadMore5_P from './components/userpage/Physio/GymMember/ReadMore5';
+import LeaveHandle from './components/userpage/Owner/LeaveHandle';
 
 import UserDashboard from './components/userpage/User/UserDashboard';
 
@@ -82,10 +83,12 @@ import UserReviews from './components/userpage/User/userReviews';
 import Calendar from './components/userpage/User/calender';
 import TimeSlots from './components/userpage/User/timeSlots';
 import AddAppoinmet from './components/userpage/User/AddAppoinment';
+import AppoinmentDetails from './components/userpage/User/apponmentDetails';
 import SelectPayment from './components/userpage/User/SelectPayment';
-import paymentpopup from './components/userpage/User/paymentpopup';
+import Paymentpopup from './components/userpage/User/paymentpopup';
 import NotAvilavle from './components/userpage/User/notavilPopup';
-import ReservedPopup from './components/userpage/User/reservedPopup'
+import ReservedPopup from './components/userpage/User/reservedPopup';
+import BookingUpdate from './components/userpage/User/Bookingupdate';
 import UserDashboardLink from './components/userpage/Admin/UserDashboardLink';
 import PrescriptionForm from './components/userpage/User/PrescriptionForm';
 import Popup from './components/userpage/User/Popup';
@@ -129,6 +132,7 @@ import Appointment1 from './components/userpage/Receptionist/Appointment1';
 import PopUp2 from './components/userpage/Receptionist/PopUp2';
 import PopUp3 from './components/userpage/Receptionist/PopUp3';
 import AdVideo from './components/userpage/Receptionist/AdVideo';
+import ReschedulePopup from './components/userpage/Receptionist/reschedulePopup';
 
 
 import Schedules from './components/userpage/Owner/schedules';
@@ -138,6 +142,8 @@ import FinancialReport from './components/userpage/Owner/reports/financialReport
 import MembershipReport from './components/userpage/Owner/reports/membershipReoprt';
 import CustomerFeedbackReport from './components/userpage/Owner/reports/customerFeedbackReport';
 import OwnerReports from './components/userpage/Owner/ownerReports';
+import Leavepopup from './components/userpage/Owner/leavepopup';
+import Videoconfirm from './components/userpage/Owner/videoconfirm'
 
 
 import ViewAppointment from './components/userpage/Manager/ViewAppointment';
@@ -219,6 +225,8 @@ function App() {
                   <Route path="/membershipReport" element={<MembershipReport />} />
                   <Route path="/ownerReports" element={<OwnerReports />} />
                   <Route path="/video-advertisements" element={<Advertisements />} />
+                  <Route path="/schedule" element={<Schedule />}/>
+
 
 
                   <Route path="/staffUpdate/:userId" element={<StaffUpdate />} />
@@ -252,6 +260,14 @@ function App() {
                   <Route path="/financialReport" element={<FinancialReport />} />
                   <Route path="/membershipReport" element={<MembershipReport />} />
                   <Route path="/ownerReports" element={<OwnerReports />} />
+                  <Route path="/leavehandle" element={<LeaveHandle />} />
+                  <Route path="/leavepopup" element={<Leavepopup />} />
+                  <Route path="/videoconfirm" element={<Videoconfirm />} />
+
+                  
+
+                  
+
                   
 
                 </>
@@ -276,8 +292,9 @@ function App() {
                   <Route path="/calendar" element={<Calendar />} />
                   <Route path="/timeslots" element={<TimeSlots />} />
                   <Route path="/addappoinment" element={<AddAppoinmet />} />
+                  <Route path="/appoinmentdetails" element={<AppoinmentDetails />} />
                   <Route path="/selectpayment" element={<SelectPayment />} />
-                  <Route path="/paymentpopup" element={<paymentpopup />} />
+                  <Route path="/paymentpopup" element={<Paymentpopup />} />
                   <Route path="/gymNavibar" element={<NaviBar />} />
                   <Route path="/gymMembership" element={<Membership />} /> 
                   <Route path="/halfyear" element={<Halfyear />} />
@@ -290,7 +307,8 @@ function App() {
                   <Route path="/physioprofile" element={<PhysioProfile />}/>
                   <Route path="/readmore" element={<ReadMore />}/>
                   <Route path="/subscriptionForm" element={<SubscriptionForm />}/>
-                  <Route path="/payment2" element={<Payment2 />}/>
+                  <Route path="/payment2" element={<Payment2 />}/>  
+                  <Route path="/bookingUpdate" element={<BookingUpdate />}/>
                   <Route path="/popup1" element={<PopUp1 />}/>
                   <Route path="/readmore1" element={<ReadMore1 />}/>
                   <Route path="/readmore2" element={<ReadMore2 />}/>
@@ -301,6 +319,8 @@ function App() {
                   <Route path="/viewCoach" element={<ViewCoach />}/>
                   <Route path="/notavilPopup" element={<NotAvilavle />} />
                   <Route path="/reserved" element={<ReservedPopup />} />
+                  <Route path="/reschedulePopup" element={<ReschedulePopup />} />
+
 
 
 
@@ -335,7 +355,9 @@ function App() {
                   <Route path="/reservationSchedule" element={<ReservationSchedule />}/>
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
                   <Route path="/issuePrescription" element={<IssuePrescription />} />
-                  <Route path="/video-Advertisements" element={<Advertisements />} />                  
+                  <Route path="/video-Advertisements" element={<Advertisements />} />  
+ 
+                                  
 
 
 
@@ -383,6 +405,12 @@ function App() {
                   <Route path="/popup3" element={<PopUp3 />} />
                   <Route path="/adVideo" element={<AdVideo />} />
                   <Route path="*" element={<Navigate to="/dashboard" />} />
+                  <Route path="/reschedulePopup" element={<ReschedulePopup />} />
+                  <Route path="/calendar" element={<Calendar />} />
+                  <Route path="/timeslots" element={<TimeSlots />} />
+                  <Route path="/addappoinment" element={<AddAppoinmet />} />
+                  <Route path="/selectpayment" element={<SelectPayment />} />
+                  <Route path="/paymentpopup" element={<paymentpopup />} />
                 </>
               )}
               {!UserService.isCoach() ? (
