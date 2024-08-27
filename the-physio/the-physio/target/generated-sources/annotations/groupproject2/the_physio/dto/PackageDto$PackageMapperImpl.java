@@ -5,7 +5,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-08-23T17:54:44+0530",
+    date = "2024-08-27T13:12:28+0530",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 22.0.1 (Oracle Corporation)"
 )
 public class PackageDto$PackageMapperImpl implements PackageDto.PackageMapper {
