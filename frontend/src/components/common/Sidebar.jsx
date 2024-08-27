@@ -309,7 +309,7 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/appoinments_P" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                    <a href="/appoinments" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaCalendarCheck />
                                        {!isCollapsed && <p>Make Appoinment</p>}
                                     </a>
