@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default () => {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  const physioId = queryParams.get('physioId');
+  
+  console.log('Physio ID:', physioId);
 
   const handleOkClick = () => {
     setIsOpen(false);
-    navigate("/calendar"); // Adjust the navigation as needed
+    navigate(`/calendar?physioId=${physioId}`); // Adjust the navigation as needed
   };
 
   return (
@@ -32,7 +38,7 @@ export default () => {
               </svg>
             </div>
             <Dialog.Title className="text-xl font-bold text-gray-800 text-center mt-4">
-              All Time Slots Are Booked
+              Physio is not available
             </Dialog.Title>
             <Dialog.Description className="mt-2 text-sm leading-relaxed text-center text-gray-500">
             The physiotherapist is not available on this day. Please select another date.

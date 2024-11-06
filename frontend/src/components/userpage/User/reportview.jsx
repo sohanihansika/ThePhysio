@@ -1,37 +1,77 @@
-import React, { useState } from 'react';
-import yourImage from '../../../assets/report.png'; 
+import React, { useState, useEffect } from 'react';
+import yourImage from '../../../assets/report.png';
+import MediReprtService from '../../service/MediReprtService';
+import UserService from '../../service/UserService'; // Ensure UserService is imported
 
-const integrations = [
-    {
-        title: "Report 01",
-        desc: "This was uploaded by Dr. Shantha.",
-        icon: <img src={yourImage} alt="Your Icon" className="w-10 h-10" />,
-        doctor: "Dr. Shantha",
-    },
-    {
-        title: "Report 02",
-        desc: "This was uploaded by Dr. Ramani.",
-        icon: <img src={yourImage} alt="Your Icon" className="w-10 h-10" />,
-        doctor: "Dr. Ramani",
-    },
-    {
-        title: "Report 03",
-        desc: "This was uploaded by Dr. Shantha.",
-        icon: <img src={yourImage} alt="Your Icon" className="w-10 h-10" />,
-        doctor: "Dr. Shantha",
-    },
-];
+export default ({ token }) => {
+    const [reports, setReports] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [physioFilter, setPhysioFilter] = useState(""); // State for physio filter
+    const [currentUserId, setCurrentUserId] = useState(null); // State for current user ID
 
-export default () => {
-    const [doctorFilter, setDoctorFilter] = useState("");
+    useEffect(() => {
+        const fetchReportsAndPhysios = async () => {
+            try {
+                const tokenValue = localStorage.getItem("token");
+                if (!tokenValue) {
+                    setError('No token found');
+                    setLoading(false);
+                    return;
+                }
 
-    const handleDoctorFilterChange = (event) => {
-        setDoctorFilter(event.target.value);
+                // Fetch current user profile
+                const userProfileResponse = await UserService.getMyProfile(tokenValue);
+                console.log('Current user profile:', userProfileResponse);
+                const currentUserId = userProfileResponse.ourUsers.id;
+                setCurrentUserId(currentUserId || 'N/A');
+
+                const response = await MediReprtService.getAllReport(tokenValue);
+
+                console.log('Full API response:', response);
+
+                const reportsArray = Array.isArray(response) ? response : [response];
+
+                // Fetch physio names for each report
+                const reportsWithPhysioNames = await Promise.all(reportsArray.map(async (report) => {
+                    try {
+                        const physioResponse = await UserService.getUserById(report.physioId, tokenValue);
+                        console.log(`Physio response for ID ${report.physioId}:`, physioResponse);
+                        const physioName = physioResponse.ourUsers ? physioResponse.ourUsers.name : 'N/A';
+                        return { ...report, physioName: physioName || 'N/A' };
+                    } catch (error) {
+                        console.error(`Error fetching physio name for ID ${report.physioId}:`, error);
+                        return { ...report, physioName: 'N/A' };
+                    }
+                }));
+
+                console.log('Reports with physio names:', reportsWithPhysioNames);
+
+                setReports(reportsWithPhysioNames);
+            } catch (err) {
+                console.error('Error fetching reports:', err);
+                setError(err.message || 'An error occurred while fetching reports');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchReportsAndPhysios();
+    }, [token]);
+
+    const handlePhysioFilterChange = (event) => {
+        setPhysioFilter(event.target.value);
     };
 
-    const filteredReports = integrations.filter((report) =>
-        doctorFilter === "" || report.doctor.toLowerCase().includes(doctorFilter.toLowerCase())
+    // Filter reports by physio name and current user's ID
+    const filteredReports = reports.filter((report) =>
+        (physioFilter === "" || report.physioName.toLowerCase().includes(physioFilter.toLowerCase())) &&
+        (currentUserId === null || report.userId === currentUserId)
     );
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
+    if (filteredReports.length === 0) return <p>No reports found.</p>;
 
     return (
         <section className="py-16">
@@ -44,32 +84,40 @@ export default () => {
                         </p>
                     </div>
                     <div className="flex items-center">
-                        <label htmlFor="doctor-filter" className="mr-2 text-gray-700">Filter by Doctor:</label>
+                        <label htmlFor="physio-filter" className="mr-2 text-gray-700">Filter by Physio:</label>
                         <input
-                            id="doctor-filter"
+                            id="physio-filter"
                             type="text"
-                            value={doctorFilter}
-                            onChange={handleDoctorFilterChange}
-                            placeholder="Enter doctor name"
+                            value={physioFilter}
+                            onChange={handlePhysioFilterChange}
+                            placeholder="Enter physio name"
                             className="border rounded-lg px-3 py-2"
                         />
                     </div>
+                </div>
+                <div className="mb-4">
+                    <h2 className="text-gray-800 font-semibold">Current User ID: {currentUserId}</h2>
                 </div>
                 <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     {filteredReports.map((item, idx) => (
                         <li key={idx} className="border rounded-lg">
                             <div className="flex items-start justify-between p-4">
                                 <div className="space-y-2">
-                                    {item.icon}
-                                    <h4 className="text-gray-800 font-semibold">{item.title}</h4>
-                                    <p className="text-gray-600 text-sm">{item.desc}</p>
+                                    <img src={yourImage} alt="Report Icon" className="w-10 h-10" />
+                                    <h4 className="text-gray-500 font-semibold">Dr. {item.physioName || 'N/A'}</h4>
+                                    <h4 className="text-gray-500 font-semibold">
+                                       {item.date ? new Date(item.date).toISOString().split('T')[0] : 'N/A'}
+                                    </h4>
+
+
+                                  
                                 </div>
                                 <button className="text-gray-700 text-sm border rounded-lg px-3 py-2 duration-150 hover:bg-gray-100">
                                     Connect with doctor
                                 </button>
                             </div>
                             <div className="py-5 px-4 border-t text-right">
-                                <a href="/prescriptionForm" className="text-indigo-600 hover:text-indigo-500 text-sm font-medium">
+                                <a href={`/prescriptionForm?reportId=${item.id || ''}`} className="text-indigo-600 hover:text-indigo-500 text-sm font-medium">
                                     View Report
                                 </a>
                             </div>

@@ -30,10 +30,6 @@ public class LeaveController {
     }
 
     @PostMapping
-//    public Leave saveLeave(@RequestBody Leave leave) {
-//        return leaveService.saveLeave(leave);
-//    }
-
     public ResponseEntity<Leave> saveLeave(@RequestBody Leave leave) {
         try {
             Leave savedLeave = leaveService.saveLeave(leave);
