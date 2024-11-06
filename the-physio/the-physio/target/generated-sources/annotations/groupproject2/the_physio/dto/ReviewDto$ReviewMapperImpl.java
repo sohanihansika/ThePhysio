@@ -8,7 +8,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-06T10:39:28+0530",
+    date = "2024-11-06T10:42:12+0530",
     comments = "version: 1.4.2.Final, compiler: Eclipse JDT (IDE) 3.40.0.z20241023-1306, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 public class ReviewDto$ReviewMapperImpl implements ReviewMapper {

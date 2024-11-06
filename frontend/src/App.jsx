@@ -7,6 +7,7 @@ import Landingpage from './components/userpage/Landingpage';
 import LoginPage from './components/auth/LoginPage';
 import RegistrationPage from './components/auth/RegistrationPage';
 import UserService from './components/service/UserService';
+import ManagerService from './components/service/ManagerService';
 import ProtectedRoute from './components/ProtectedRoute';
 import Sidebar from './components/common/Sidebar';
 import Home from './components/userpage/Home';
@@ -448,7 +449,7 @@ function App() {
                   <Route path="/view-review" element={<ViewReview />}/>
                   <Route path="/createPackage" element={<CreatePackage />}/>
                   <Route path="/packages" element={<Packages />}/>
-                  <Route path="/editPackage" element={<EditPackage />}/>
+                  <Route path="/editPackage/:packageId" element={<EditPackage />}/>
                   <Route path="/subscribers" element={<Subscribers />}/>
                   
                   
