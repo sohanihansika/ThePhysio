@@ -1,20 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserReviews from '../Owner/viewReviews';
+import UserService from '../../service/UserService'; // Adjust import path as needed
+import ReviewService from '../../service/ReviewService'; // Ensure this import path is correct
 
 export default function Reviews() {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [error, setError] = useState('');
-  const [selectedDoctor, setSelectedDoctor] = useState(''); // State for selected doctor
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedPerson, setSelectedPerson] = useState('');
+  const [physios, setPhysios] = useState([]);
+  const [coaches, setCoaches] = useState([]);
+  const [errorFetching, setErrorFetching] = useState('');
   const navigate = useNavigate();
+  const token = localStorage.getItem("token"); // Replace with actual token retrieval method
 
-  // Example list of doctors
-  const doctors = [
-    { id: 1, name: 'Dr. John Smith' },
-    { id: 2, name: 'Dr. Jane Doe' },
-    { id: 3, name: 'Dr. Emily Johnson' },
-  ];
+  useEffect(() => {
+    // Fetch Physios and Coaches from the API
+    const fetchData = async () => {
+      try {
+        const physiosResponse = await UserService.getAllPhysios(token);
+        const coachesResponse = await UserService.getAllCoaches(token);
+
+        if (physiosResponse.statusCode === 200) {
+          setPhysios(physiosResponse.ourUsersList || []); // Set physios data
+        } else {
+          setErrorFetching('Failed to fetch physios data.');
+        }
+
+        if (coachesResponse.statusCode === 200) {
+          setCoaches(coachesResponse.ourUsersList || []); // Set coaches data
+        } else {
+          setErrorFetching('Failed to fetch coaches data.');
+        }
+
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+        setErrorFetching('Failed to load data.');
+      }
+    };
+
+    fetchData();
+  }, [token]);
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+    setSelectedPerson('');
+  };
 
   const handleRatingChange = (event) => {
     setRating(Number(event.target.value));
@@ -24,26 +57,46 @@ export default function Reviews() {
     setComment(event.target.value);
   };
 
-  const handleDoctorChange = (event) => {
-    setSelectedDoctor(event.target.value);
+  const handlePersonChange = (event) => {
+    setSelectedPerson(event.target.value);
   };
 
-  const handleSubmit = () => {
-    if (rating === 0 || comment.trim() === '' || selectedDoctor === '') {
-      setError('Please fill out all fields including selecting a doctor.');
+  const handleSubmit = async () => {
+    if ((selectedCategory === 'Physio' || selectedCategory === 'GymCoach') && selectedPerson === '') {
+      setError('Please select a person to review.');
       return;
     }
-    navigate('/success');
+    if (rating === 0 || comment.trim() === '' || selectedCategory === '') {
+      setError('Please fill out all fields including selecting a category.');
+      return;
+    }
 
-    // Handle submission logic here
-    console.log('Rating:', rating);
-    console.log('Comment:', comment);
-    console.log('Selected Doctor:', selectedDoctor);
+    // Prepare the review object
+    const review = {
+      rate: rating,
+      created_date: new Date().toISOString(), // Set the current date in ISO format
+      comment: comment,
+      category: selectedCategory,
+      physioId: selectedCategory === 'Physio' ? physios.find(p => p.name === selectedPerson)?.id : null,
+      coachId: selectedCategory === 'GymCoach' ? coaches.find(c => c.name === selectedPerson)?.id : null,
+    };
+
+    try {
+      
+      // Save review data using ReviewService
+      await ReviewService.saveReview(review, token);
+      // Navigate to the success page
+      navigate('/success');
+    } catch (error) {
+      console.error('Failed to submit review:', error);
+      setError('Failed to submit review. Please try again later.');
+    }
 
     // Clear the fields after submission
     setRating(0);
     setComment('');
-    setSelectedDoctor('');
+    setSelectedCategory('');
+    setSelectedPerson('');
     setError('');
   };
 
@@ -78,27 +131,49 @@ export default function Reviews() {
         {error && (
           <p className="text-red-500 text-center mb-4">{error}</p>
         )}
+        {errorFetching && (
+          <p className="text-red-500 text-center mb-4">{errorFetching}</p>
+        )}
 
-        {/* Dropdown Menu for Selecting Doctor */}
+        {/* Dropdown Menu for Selecting Category */}
         <div className="mb-6">
-          <label htmlFor="doctor" className="block text-gray-700 mb-2">
-            Select Doctor
+          <label htmlFor="category" className="block text-gray-700 mb-2">
+            Select Category
           </label>
           <select
-            id="doctor"
-            value={selectedDoctor}
-            onChange={handleDoctorChange}
+            id="category"
+            value={selectedCategory}
+            onChange={handleCategoryChange}
             className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-[#172b59]"
           >
-            <option value="">Select a doctor</option>
-            {doctors.map((doctor) => (
-              <option key={doctor.id} value={doctor.name}>
-                {doctor.name}
-              </option>
-            ))}
+            <option value="">Select a category</option>
+            <option value="Physio">Physio</option>
+            <option value="GymCoach">GymCoach</option>
+            <option value="Company">Company</option>
           </select>
-          
         </div>
+
+        {/* Dropdown Menu for Selecting Person (Conditional) */}
+        {(selectedCategory === 'Physio' || selectedCategory === 'GymCoach') && (
+          <div className="mb-6">
+            <label htmlFor="person" className="block text-gray-700 mb-2">
+              Select {selectedCategory}
+            </label>
+            <select
+              id="person"
+              value={selectedPerson}
+              onChange={handlePersonChange}
+              className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-[#172b59]"
+            >
+              <option value="">Select a {selectedCategory}</option>
+              {(selectedCategory === 'Physio' ? physios : coaches).map((person) => (
+                <option key={person.id} value={person.name}>
+                  {person.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         {/* Star Rating Section */}
         <div className="flex justify-center mb-6">

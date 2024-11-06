@@ -5,23 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8ddf262-e948-48b0-853d-7b540bcac4b7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/service/BookingService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/service/BookingService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/service/UserService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/Owner/viewReviews.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/Owner/viewReviews.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/Physio/IssuePrescription.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/Physio/IssuePrescription.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/Physio/PatientReports.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/Physio/PatientReports.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/PrescriptionForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/PrescriptionForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/calender.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/calender.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/notavilPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/notavilPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/reportview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/reportview.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/reservedPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/reservedPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/reviews.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/reviews.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/timeSlots.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/timeSlots.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/userReviews.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/userpage/User/userReviews.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/controller/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/controller/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/controller/LeaveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/controller/LeaveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/controller/UserManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/controller/UserManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/dto/BookingDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/dto/BookingDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/entity/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/entity/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/repository/UsersRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/repository/UsersRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/BookingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/UsersManagementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/UsersManagementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/impl/BookingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/groupproject2/the_physio/service/impl/BookingServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/ThePhysioApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/ThePhysioApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/CorsConfig$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/CorsConfig$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/CorsConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/CorsConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/JWTAuthFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/config/JWTAuthFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/controller/VideoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/controller/VideoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/dto/VideoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/dto/VideoDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/entity/Video.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/entity/Video.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/exception/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/exception/ResourceNotFoundException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/repository/VideoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/repository/VideoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/JWTUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/JWTUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/OurUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/OurUserDetailsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/VideoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/VideoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/impl/VideoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/groupproject2/the_physio/service/impl/VideoServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,17 +63,20 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectId" id="2iaJvSHPMByGKKjV555AO8MQEXB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/ThePhysio"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hasini/OneDrive/Desktop/group2/ThePhysio/the-physio/the-physio&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
