@@ -8,9 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="the-physio" />
-        <module name="ThePhysio" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ThePhysio" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
