@@ -3,6 +3,7 @@ package groupproject2.the_physio.dto;
 
 
 import groupproject2.the_physio.entity.Booking;
+import org.mapstruct.Mapper;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -117,7 +118,7 @@ public class BookingDto implements Serializable {
             this.paymentStatus = paymentStatus;
         }
     }
-
+@Mapper
     // Mapper Interface
     public interface BookingMapper {
         BookingMapper INSTANCE = org.mapstruct.factory.Mappers.getMapper(BookingMapper.class);

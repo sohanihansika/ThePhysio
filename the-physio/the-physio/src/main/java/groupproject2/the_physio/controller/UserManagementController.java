@@ -44,11 +44,23 @@ public class UserManagementController {
     public ResponseEntity<ReqRes> getPhysios() {
         return ResponseEntity.ok(userManagementService.findAllPhysios());
     }
-
+    @GetMapping("/anyuser/get-coaches")
+    public ResponseEntity<ReqRes> getCoaches() {
+        return ResponseEntity.ok((ReqRes) userManagementService.findAllCoaches());
+    }
+    @GetMapping("/anyuser/get-users")
+    public ResponseEntity<ReqRes> getUsers() {
+        return ResponseEntity.ok(userManagementService.findAllUsers());
+    }
 
     @GetMapping("/anyuser/get-user/{userId}")
     public ResponseEntity<ReqRes> getUserById(@PathVariable Integer userId) {
         return ResponseEntity.ok(userManagementService.getUsersById(userId));
+    }
+
+    @GetMapping("/anyuser/get-name/{userId}")
+    public ResponseEntity<ReqRes> getUserNameById(@PathVariable Long userId) {
+        return ResponseEntity.ok(userManagementService.getUsernameById(userId));
     }
 
     @PutMapping("/anyuser/update/{userId}")

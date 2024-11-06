@@ -67,6 +67,31 @@ class UserService{
         }
     }
 
+    static async getAllCoaches(token){
+        try{
+
+            const response = await axios.get(`${UserService.BASE_URL}/anyuser/get-coaches`, {
+                headers: {Authorization: `Bearer ${token}`}
+            });
+            return response.data;
+            
+        }catch(err){
+            throw err;
+        }
+    }
+    static async getAllPatients(token){
+        try{
+
+            const response = await axios.get(`${UserService.BASE_URL}/anyuser/get-users`, {
+                headers: {Authorization: `Bearer ${token}`}
+            });
+            return response.data;
+            
+        }catch(err){
+            throw err;
+        }
+    }
+
     
     static async getMyProfile(token){
         try{

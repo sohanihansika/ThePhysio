@@ -7,7 +7,7 @@ class BookingService{
     static async saveBooking(booking,token){
         try{
 
-            const response = await axios.post(`${BookingService.BASE_URL}/booking`, booking,{
+            const response = await axios.post(`${BookingService.BASE_URL}/booking/with-email`, booking,{
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
