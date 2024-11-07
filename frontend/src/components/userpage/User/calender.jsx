@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { useNavigate, useLocation } from 'react-router-dom';
+import LeaveService from '../../service/LeaveService'; // Adjust the path according to your project structure
 
 const Calender = () => {
   const [date, setDate] = useState(new Date());
+  const [unavailableDates, setUnavailableDates] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -13,34 +15,75 @@ const Calender = () => {
   
   console.log('Physio ID:', physioId);
 
-  const unavailableDates = [
-    new Date(2024, 7, 28), // August 28, 2024
-  ];
-
-  const allBookedDates = [
-    new Date(2024, 7, 1),  // August 1, 2024
-    new Date(2024, 7, 15), // August 15, 2024
-  ];
+  useEffect(() => {
+    const fetchUnavailableDates = async () => {
+      const token = localStorage.getItem('token'); // Replace with your token retrieval method
+      try {
+        const allLeaves = await LeaveService.getAllleaves(token);
+        console.log("All leaves:", allLeaves);
+  
+        // Ensure physioId is treated as a string or number consistently
+        const physioIdNumber = Number(physioId);
+        console.log("Physio ID for filtering:", physioIdNumber);
+  
+        // Filter leaves based on physioId and status
+        const physioLeaves = allLeaves.filter(leave => 
+          leave.physioId === physioIdNumber && leave.status === 2
+        );
+        console.log("Filtered leaves:", physioLeaves);
+        
+        // Convert dates to Date objects
+        const dates = physioLeaves.map(leave => new Date(leave.date));
+        setUnavailableDates(dates);
+      } catch (error) {
+        console.error('Failed to fetch leave data:', error);
+        setUnavailableDates([]);
+      }
+    };
+  
+    fetchUnavailableDates();
+  }, [physioId]);
+  
 
   const isUnavailableDay = (date) => {
     return unavailableDates.some(d => d.toDateString() === date.toDateString());
   };
 
   const isAllBookedDay = (date) => {
+    // Example: Return true for a specific set of dates (or modify this as needed)
+    const allBookedDates = [
+      new Date(2024, 7, 1),  // August 1, 2024
+      new Date(2024, 7, 15) // August 15, 2024
+    ];
     return allBookedDates.some(d => d.toDateString() === date.toDateString());
   };
 
   const handleDateChange = (selectedDate) => {
     setDate(selectedDate);
-    if (isUnavailableDay(selectedDate)) {
-      navigate('/notavilPopup');
-    } else if (isAllBookedDay(selectedDate)) {
-      navigate('/reserved');
+    
+    // Normalize the selected date to ensure it's at the start of the day
+    const normalizedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
+    
+    // Add one day to the normalized date
+    const nextDay = new Date(normalizedDate);
+    nextDay.setDate(nextDay.getDate() + 1);
+    
+    // Format the next day as YYYY-MM-DD
+    const formattedNextDay = nextDay.toISOString().split('T')[0];
+  
+    if (isUnavailableDay(normalizedDate)) {
+      console.log('Navigating to /notavilPopup');
+      navigate(`/notavilPopup?physioId=${physioId}`); // Adjust the navigation as needed
+
+    } else if (isAllBookedDay(normalizedDate)) {
+      console.log('Navigating to /reserved');
+      navigate(`/reserved?physioId=${physioId}`); // Adjust the navigation as needed
+
     } else {
-      navigate(`/timeslots?physioId=${physioId}&date=${selectedDate.toISOString().split('T')[0]}`);
+      console.log(`Navigating to /timeslots?physioId=${physioId}&date=${formattedNextDay}`);
+      navigate(`/timeslots?physioId=${physioId}&date=${formattedNextDay}`);
     }
   };
-
   
 
   const handleNextMonth = () => {
@@ -53,9 +96,6 @@ const Calender = () => {
     setDate(prevMonth);
   };
 
-  // Styles
-
-  
   const containerStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -139,7 +179,7 @@ const Calender = () => {
           </button>
         </div>
         <div style={calendarContainerStyle}>
-        <Calendar
+          <Calendar
             onChange={handleDateChange}
             value={date}
             tileClassName={({ date, view }) => {
@@ -161,14 +201,11 @@ const Calender = () => {
         <div style={legendStyle}>
           <div style={colorBoxStyle}></div>
           <span>Days the physiotherapist is not available</span>
-         
         </div>
         <div style={legendStyle}>
           <div style={colorBoxStyle1}></div>
           <span>Days the physiotherapist is all booked</span>
-         
         </div>
-        
       </div>
     </div>
   );
