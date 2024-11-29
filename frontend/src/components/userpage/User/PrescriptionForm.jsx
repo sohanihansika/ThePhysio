@@ -1,25 +1,81 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import MediReprtService from '../../service/MediReprtService';
+import UserService from '../../service/UserService'; // Import the UserService
 import '../../../CSS/prescription.css';
 
 const PrescriptionForm = () => {
-  // Dummy data (same as before)
-  const reportData = {
-    indexNo: 'PT2024-0728',
-    referredBy: 'Dr. Sarah Johnson',
-    contactNo: '+1 (555) 123-4567',
-    name: 'Michael Thompson',
-    dob: '1985-03-15',
-    occupation: 'Software Developer',
-    presentingCondition: 'Lower back pain radiating to left leg',
-    hxPresentingCondition: 'Gradual onset over 3 months, worsened after long periods of sitting',
-    investigations: 'MRI shows mild disc bulge at L4-L5',
-    medication: 'Ibuprofen 400mg PRN, Cyclobenzaprine 10mg at night',
-    previousRx: 'Heat therapy, gentle stretching exercises',
-    pmh: 'Hypertension (controlled with medication)',
-    redFlags: ['CVD', 'Tx pain'],
-    patientGoals: 'Return to regular exercise routine, improve posture at work'
-  };
+  const [reportData, setReportData] = useState(null);
+  const [userDetails, setUserDetails] = useState(null); // State for user details
+  const [username, setUsername] = useState('');
+  const [error, setError] = useState(null);
+  const location = useLocation();
+  
+  // Extract reportId from URL
+  const queryParams = new URLSearchParams(location.search);
+  const reportId = queryParams.get('reportId');
+
+  useEffect(() => {
+    const fetchReportData = async () => {
+      if (reportId) {
+        try {
+          const token = localStorage.getItem("token");
+          const data = await MediReprtService.getReportById(reportId, token);
+          setReportData(data);
+        } catch (err) {
+          setError('Error fetching report data');
+        } 
+      }
+    };
+
+    fetchReportData();
+  }, [reportId]);
+
+ 
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      if (reportData && reportData.userId) {
+        try {
+          const token = localStorage.getItem("token");
+          const response = await UserService.getUserById(reportData.userId, token);
+          setUserDetails(response.ourUsers); // Access the ourUsers property
+          console.log(response.ourUsers);
+        } catch (err) {
+          setError('Error fetching user details');
+        }
+      }
+    };
+
+    fetchUserDetails();
+  }, [reportData]);
+
+
+  useEffect(() => {
+    const fetchUsername = async () => {
+      if (reportData && reportData.physioId) {
+        try {
+          const token = localStorage.getItem("token");
+          const response = await UserService.getUserById(reportData.physioId, token);
+          const physioName = response.ourUsers ? response.ourUsers.name : 'N/A';
+setUsername(physioName);
+          console.log(response);
+          console.log(physioName);
+
+        } catch (error) {
+          console.error('Error fetching username:', error);
+          setError('Error fetching username');
+        }
+      }
+    };
+
+    fetchUsername();
+  }, [reportData]);
+
+  if (error) return <p>Error: {error}</p>;
+  if (!reportData || !userDetails) return <p>No report or user data available.</p>;
+
+  const formattedDate = new Date(reportData.date).toLocaleDateString('en-GB'); // Format as DD/MM/YYYY
 
   const sectionStyle = {
     marginBottom: '30px',
@@ -40,21 +96,21 @@ const PrescriptionForm = () => {
     <div className="wrapper" style={{ backgroundColor: '#f3f4f6', padding: '20px' }}>
       <div className="assessment-form" style={{ backgroundColor: 'white', padding: '30px', borderRadius: '10px' }}>
         <div className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
-        <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR56Sg3QFXTwU0vgTY-7xFI9Db3yeXpS0VYpA&s"
-                      alt="Hospital Logo"
-                      style={{ maxHeight: '60px' }}
-                    />          <h1 style={{ color: '#3366cc' }}>PHYSIOTHERAPY ASSESSMENT REPORT</h1>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR56Sg3QFXTwU0vgTY-7xFI9Db3yeXpS0VYpA&s"
+            alt="Hospital Logo"
+            style={{ maxHeight: '60px' }}
+          />
+          <h1 style={{ color: '#3366cc' }}>PHYSIOTHERAPY ASSESSMENT REPORT</h1>
         </div>
         
         <div className="patient-info" style={sectionStyle}>
           <h3 style={headingStyle}>Patient Information</h3>
-          <p><strong>Index No:</strong> {reportData.indexNo}</p>
-          <p><strong>Referred By:</strong> {reportData.referredBy}</p>
-          <p><strong>Contact No:</strong> {reportData.contactNo}</p>
-          <p><strong>Name:</strong> {reportData.name}</p>
-          <p><strong>DOB:</strong> {reportData.dob}</p>
-          <p><strong>Occupation:</strong> {reportData.occupation}</p>
+          <p><strong>Index No:</strong> {reportData.userId}</p>
+          <p><strong>Contact No:</strong> {userDetails.contact_no}</p>
+          <p><strong>Name:</strong> {userDetails.name}</p>
+          <p><strong>Date:</strong> {formattedDate}</p> {/* Display formatted date */}
+          <p><strong>Email:</strong> {userDetails.email}</p> {/* Add Email if available */}
         </div>
 
         <div className="assessment-details" style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -66,20 +122,19 @@ const PrescriptionForm = () => {
 
             <div style={sectionStyle}>
               <h3 style={headingStyle}>Body Chart</h3>
-              
-                    <img
-                      src="https://img.freepik.com/free-photo/lumbars-muscles_1048-1899.jpg?ga=GA1.1.319732266.1661310700&semt=ais_user"
-                      style={{ maxHeight: '50px' }}
-                      alt="Body Chart"
-                    />
-              <p>P&N Numbness: Left leg</p>
+              <img
+                src={reportData.bodyChart}
+                style={{ maxHeight: '50px' }}
+                alt="Body Chart"
+              />
+              <p>P&N Numbness: {reportData.painAssessment1}</p>
             </div>
 
             <div style={sectionStyle}>
               <h3 style={headingStyle}>Pain Assessment</h3>
-              <p><strong>Severity:</strong> 7/10 at worst, 3/10 at best</p>
-              <p><strong>Aggravating Factors:</strong> Prolonged sitting, bending forward, lifting heavy objects</p>
-              <p><strong>Easing Factors:</strong> Walking, lying flat, gentle stretching</p>
+              <p><strong>Severity:</strong> {reportData.painAssessment1}</p>
+              <p><strong>Aggravating Factors:</strong> {reportData.redFlags.join(', ')}</p>
+              <p><strong>Easing Factors:</strong> {reportData.medication}</p>
             </div>
           </div>
           
@@ -122,7 +177,7 @@ const PrescriptionForm = () => {
         </div>
 
         <div className="footer" style={{ marginTop: '30px', textAlign: 'right' }}>
-          <p><strong>Assessed by:</strong> Dr. Emily Parker, PT, DPT</p>
+          <p><strong>Assessed by:</strong> Dr. {username || 'Loading...'}</p>
           <p><strong>Date:</strong> {new Date().toLocaleDateString()}</p>
         </div>
       </div>

@@ -15,15 +15,15 @@ function Appointments() {
     const fetchUsers = async () => {
         try {
             const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-            const response = await UserService.getAllPhysios(token);
+            const response = await UserService.getAllPatients(token);
             setUsers(response.ourUsersList); // Assuming the list of users is under the key 'ourUsersList'
         } catch (error) {
             console.error('Error fetching users:', error);
         }
     };
 
-    const handleMakeReportClick = () => {
-        navigate(`/issuePrescription?physioId`);
+    const handleMakeReportClick = (userId) => {
+        navigate(`/issuePrescription?userId=${userId}`);
     };
 
     return (
@@ -54,13 +54,13 @@ function Appointments() {
                                     <img src={userImage} className="w-10 h-10 rounded-full" alt="User" />
                                     <div>
                                         <span className="block text-gray-700 text-sm font-medium">{user.name}</span>
-                                        <span className="block text-gray-700 text-xs">{user.email}</span>
+                                        <span className="block text-gray-700 text-xs">{user.eamil}</span>
                                     </div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
                                 <td className="text-right px-6 whitespace-nowrap">
                                     <button 
-                                        onClick={handleMakeReportClick}
+                                        onClick={() => handleMakeReportClick(user.id)}
                                         className="flex items-center gap-x-2 text-blue-600 p-2 rounded-lg hover:bg-lightblue hover:text-blue-500 active:bg-gray-100 duration-150 leading-none px-3 font-medium hover:bg-gray-50"
                                     >
                                         Make Report

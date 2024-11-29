@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default () => {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  const physioId = queryParams.get('physioId');
+  
+  console.log('Physio ID:', physioId);
 
   const handleOkClick = () => {
     setIsOpen(false);
-    navigate("/calendar"); // Adjust the navigation as needed
+    navigate(`/calendar?physioId=${physioId}`); // Adjust the navigation as needed
   };
 
   return (
