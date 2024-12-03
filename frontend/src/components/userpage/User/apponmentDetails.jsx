@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import UserService from '../../service/UserService'; // Replace with the correct path
+import UserService from '../../service/UserService';
 import BookingService from '../../service/BookingService';
 
 export default function AppointmentDetails() {
@@ -10,20 +10,48 @@ export default function AppointmentDetails() {
   const physioId = queryParams.get('physioId');
   const date = queryParams.get('date');
   const time_slot = queryParams.get('slot');
+  const [currentUserId, setCurrentUserId] = useState(null); // To store current user ID
+
 
   const [physioDetails, setPhysioDetails] = useState(null);
   const [formData, setFormData] = useState({
-    physioId:physioId,        // Now explicitly matches the database column name
-    userId: '10', // Set user_id directly to 10
+    physioId: physioId,
+    userId: null, // Initially null
     date,
-    timeslot:time_slot,
-    paymentStatus: 'Not Paid',   // New field for payment status
+    timeslot: time_slot,
+    paymentStatus: 'Not Paid',
   });
+  
+  // Update formData whenever currentUserId changes
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      userId: currentUserId,
+    }));
+  }, [currentUserId]);
+  
+  // Fetch current user profile
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const tokenValue = localStorage.getItem('token');
+        const userProfileResponse = await UserService.getMyProfile(tokenValue);
+        console.log('User profile response:', userProfileResponse);
+        const userId = userProfileResponse?.ourUsers?.id || 'N/A';
+        setCurrentUserId(userId);
+      } catch (error) {
+        console.error('Error fetching user profile:', error);
+        setCurrentUserId('N/A');
+      }
+    };
+    fetchUserProfile();
+  }, []); // Empty dependency array to fetch profile only once on component mount
+  
+ 
 
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    // Fetch physio details if physioId is present
     const fetchPhysioDetails = async () => {
       try {
         const response = await UserService.getUserById(physioId, token);
@@ -49,32 +77,22 @@ export default function AppointmentDetails() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
     try {
       const res = await BookingService.saveBooking(formData, token);
-  
       if (res.statusCode === 200) {
         navigate(`/selectpayment?physioId=${physioId}&date=${date}&slot=${time_slot}`);
       } else {
         navigate(`/selectpayment?physioId=${physioId}&date=${date}&slot=${time_slot}`);
-
       }
     } catch (error) {
       if (error.response && error.response.status === 403) {
-        console.log(error);
-
-        navigate('/appoinments'); // Redirect to login or another appropriate page
+        navigate('/appoinments');
       } else {
         console.error(error.response?.data?.message || error.message);
         alert('An unexpected error occurred. Please try again later.');
       }
     }
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   navigate(`/selectpayment?physioId=${physioId}&date=${date}&slot=${time_slot}`);
-  // };
 
   return (
     <div style={styles.container}>
@@ -121,15 +139,15 @@ export default function AppointmentDetails() {
           />
         </div>
         <div style={styles.formGroup}>
-        <label style={styles.label}>Amount:</label>
-        <input
-          type="text"
-          value="Rs 2000.00"
-          readOnly
-          style={styles.input}
-        />
+          <label style={styles.label}>Amount:</label>
+          <input
+            type="text"
+            value="Rs 2000.00"
+            readOnly
+            style={styles.input}
+          />
         </div>
-        <button type="submit" style={styles.button}>Pay</button>
+        <button type="submit" style={styles.button}>Proceed to Payment</button>
       </form>
     </div>
   );
@@ -137,48 +155,58 @@ export default function AppointmentDetails() {
 
 const styles = {
   container: {
-    maxWidth: '500px',
-    margin: '0 auto',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    backgroundColor: '#f9f9f9',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    maxWidth: '600px',
+    margin: '20px auto',
+    padding: '30px',
+    border: '1px solid #e0e0e0',
+    borderRadius: '12px',
+    backgroundColor: '#ffffff',
+    boxShadow: '0 6px 18px rgba(0, 0, 0, 0.06)',
   },
   title: {
     textAlign: 'center',
-    color: '#172b59',
+    color: '#34495e',
     marginBottom: '20px',
+    fontSize: '1.8rem',
+    fontWeight: '600',
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
+    gap: '15px',
   },
   formGroup: {
-    marginBottom: '15px',
+    display: 'flex',
+    flexDirection: 'column',
   },
   label: {
-    marginBottom: '5px',
-    fontWeight: 'bold',
-    color: '#172b59',
+    fontSize: '1rem',
+    fontWeight: '500',
+    marginBottom: '8px',
+    color: '#2c3e50',
   },
   input: {
-    padding: '10px',
-    fontSize: '16px',
-    borderRadius: '4px',
-    border: '1px solid #172b59',
+    padding: '12px',
+    fontSize: '1rem',
+    borderRadius: '6px',
+    border: '1px solid #dcdde1',
     outline: 'none',
-    backgroundColor: '#e9ecef',
-    color: '#495057',
+    backgroundColor: '#f9f9f9',
+    color: '#34495e',
+    transition: 'border-color 0.3s ease',
   },
   button: {
-    padding: '10px',
-    fontSize: '16px',
-    color: '#fff',
+    padding: '12px 15px',
+    fontSize: '1rem',
+    color: '#ffffff',
     backgroundColor: '#172b59',
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '8px',
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
+    fontWeight: '600',
+  },
+  buttonHover: {
+    backgroundColor: '#1d6a96',
   },
 };
