@@ -5,8 +5,9 @@ import UserService from "../../../service/UserService";
 import { useLocation } from "react-router-dom";
 import logo from "../../../../assets/logowithoutback .png"; // Ensure the logo path is correct
 
-const MembershipReport = () => {
-  const [membershipData, setMembershipData] = useState([]);
+
+const StaffReport = () => {
+  const [staffData, setStaffData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const location = useLocation();
@@ -16,16 +17,14 @@ const MembershipReport = () => {
   const endDate = queryParams.get("endDate");
 
   useEffect(() => {
-    const fetchMembershipData = async () => {
+    const fetchStaffData = async () => {
       try {
         const token = localStorage.getItem("token");
 
-        const response = await UserService.getAllPatients(token);
-        console.log(response);
-        const allPatients = response.ourUsersList || [];
-        console.log(allPatients);
+        const response = await UserService.getAllUsers(token);
+        const allStaffs = response.ourUsersList || [];
 
-        if (!Array.isArray(allPatients)) {
+        if (!Array.isArray(allStaffs)) {
           setError("Data is not in the expected format.");
           return;
         }
@@ -33,21 +32,21 @@ const MembershipReport = () => {
         // Convert startDate and endDate to Date objects for filtering
         const start = new Date(startDate);
         const end = new Date(endDate);
-        console.log("Start Date: ", start);
+        const filteredUsers = response.ourUsersList.filter(user => ['PHYSIO', 'COACH', 'MANAGER', 'RECEPTIONIST'].includes(user.role));
 
-        const filteredPatients = allPatients.filter((patient) => {
-          if (!patient.added_date) {
+        const filteredStaffs = filteredUsers.filter((staff) => {
+          if (!staff.added_date) {
             return false;
           }
 
-          const added_date = new Date(patient.added_date).toISOString().split("T")[0];
+          const added_date = new Date(staff.added_date).toISOString().split("T")[0];
           const startDateString = new Date(start).toISOString().split("T")[0];
           const endDateString = new Date(end).toISOString().split("T")[0];
-console.log("Start Date: ", startDateString);
+
           return added_date >= startDateString && added_date <= endDateString;
         });
 
-        setMembershipData(filteredPatients);
+        setStaffData(filteredStaffs);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -55,7 +54,7 @@ console.log("Start Date: ", startDateString);
       }
     };
 
-    fetchMembershipData();
+    fetchStaffData();
   }, [startDate, endDate]);
 
   // Function to generate and download the PDF
@@ -64,7 +63,7 @@ console.log("Start Date: ", startDateString);
     const logoWidth = 25;
     const logoHeight = 20;
     const title = "The Physio";
-    const reportTitle = "Membership Report";
+    const reportTitle = "Staff Report";
 
     // Add the logo in the top right corner
     doc.addImage(logo, "jpg", 160, 10, logoWidth, logoHeight);
@@ -82,14 +81,15 @@ console.log("Start Date: ", startDateString);
     doc.text(`To Date: ${endDate}`, 20, 50);
 
     // Table headers
-    const headers = ["ID", "Name", "Membership Date", "Address", "Contact No", "Email"];
-    const data = membershipData.map((patient) => [
-      patient.id,
-      patient.name,
-      new Date(patient.added_date).toLocaleDateString(),
-      patient.address,
-      patient.contact_no,
-      patient.email,
+    const headers = ["ID", "Name","Possition", "Added Date", "Address", "Contact No", "Email"];
+    const data = staffData.map((staff) => [
+      staff.id,
+      staff.name,
+      staff.role,
+      new Date(staff.added_date).toLocaleDateString(),
+      staff.address,
+      staff.contact_no,
+      staff.email,
     ]);
 
     // Add table with auto table plugin
@@ -116,7 +116,7 @@ console.log("Start Date: ", startDateString);
     doc.text(footerText, 10, doc.internal.pageSize.height - 10);
 
     // Save the PDF
-    doc.save("membership-report.pdf");
+    doc.save("staff-report.pdf");
   };
 
   if (loading) {
@@ -129,9 +129,9 @@ console.log("Start Date: ", startDateString);
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2 style={{ fontWeight: "bold", marginBottom: "20px" }}>Membership Report</h2>
-      {membershipData.length === 0 ? (
-        <p>No memberships found within the selected date range.</p>
+      <h2 style={{ fontWeight: "bold", marginBottom: "20px" }}>Staff Report</h2>
+      {staffData.length === 0 ? (
+        <p>No staffs found within the selected date range.</p>
       ) : (
         <div style={{ width: "100%", overflowX: "auto" }}>
           <table
@@ -147,21 +147,23 @@ console.log("Start Date: ", startDateString);
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Membership Date</th>
+                <th>Possition</th>
+                <th>Added Date</th>
                 <th>Address</th>
                 <th>Contact No</th>
                 <th>Email</th>
               </tr>
             </thead>
             <tbody>
-              {membershipData.map((patient) => (
-                <tr key={patient.id}>
-                  <td>{patient.id}</td>
-                  <td>{patient.name}</td>
-                  <td>{new Date(patient.added_date).toLocaleDateString()}</td>
-                  <td>{patient.address}</td>
-                  <td>{patient.contact_no}</td>
-                  <td>{patient.email}</td>
+              {staffData.map((staff) => (
+                <tr key={staff.id}>
+                  <td>{staff.id}</td>
+                  <td>{staff.name}</td>
+                  <td>{staff.role}</td>
+                  <td>{new Date(staff.added_date).toLocaleDateString()}</td>
+                  <td>{staff.address}</td>
+                  <td>{staff.contact_no}</td>
+                  <td>{staff.email}</td>
                 </tr>
               ))}
             </tbody>
@@ -187,4 +189,4 @@ console.log("Start Date: ", startDateString);
   );
 };
 
-export default MembershipReport;
+export default StaffReport;
