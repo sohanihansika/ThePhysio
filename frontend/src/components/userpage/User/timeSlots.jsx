@@ -5,61 +5,41 @@ import BookingService from '../../service/BookingService'; // Adjust the import 
 const TimeSlots = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const queryParams = new URLSearchParams(location.search);
   const physioId = queryParams.get('physioId');
   const selectedDate = queryParams.get('date');
-  
+
   const [redSlots, setRedSlots] = useState([]);
-  const token = localStorage.getItem("token");// Assuming you have a function to get the auth token
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     const fetchBookings = async () => {
       try {
         const allBookings = await BookingService.getAllBookings(token);
-        console.log("NotfilteredBookings", allBookings);
-  
-        // Normalize selectedDate to match the format in allBookings
         const formattedSelectedDate = new Date(selectedDate).toISOString().split('T')[0];
-        console.log("Formatted Selected Date:", formattedSelectedDate);
-  
-        // Check the type and value of physioId
-        console.log("Physio ID (from query):", physioId);
-  
-        // Filter bookings based on physioId and normalized date
+
+        // Filter bookings by physioId and date
         const filteredBookings = allBookings.filter(booking => {
-          // Extract date part from booking.date
-          const bookingDate = new Date(booking.date).toISOString().split('T')[0]; // Normalize booking.date to "YYYY-MM-DD"
-          console.log("Booking Date:", bookingDate, "Booking Physio ID:", booking.physioId);
-  
-          // Log types and values for debugging
-          console.log(`Comparing: booking.physioId=${booking.physioId} and physioId=${physioId}`);
-          
-          // Ensure physioId comparison is type-safe
+          const bookingDate = new Date(booking.date).toISOString().split('T')[0];
           return booking.physioId === Number(physioId) && bookingDate === formattedSelectedDate;
         });
-  
-        console.log("filteredBookings", filteredBookings);
-  
-        // Extract booked slots
+
+        // Extract reserved slots
         const bookedSlots = filteredBookings.map(booking => booking.timeslot);
-        
         setRedSlots(bookedSlots);
       } catch (error) {
         console.error('Error fetching bookings:', error);
       }
     };
-  
-    fetchBookings(); // Invoke the fetchBookings function
-  
-  }, [physioId, selectedDate, token]); // Dependency array to trigger effect when these values change
-  
-  
-  
+
+    fetchBookings();
+  }, [physioId, selectedDate, token]);
 
   // Generate half-hour time slots from 8 AM to 6 PM
   const slots = [];
   const startHour = 8; // 8 AM
-  const endHour = 18;  // 6 PM
+  const endHour = 18; // 6 PM
 
   for (let hour = startHour; hour < endHour; hour++) {
     for (let minute = 0; minute < 60; minute += 30) {
@@ -70,10 +50,32 @@ const TimeSlots = () => {
   }
 
   const handleSlotClick = (slot) => {
-    if (!redSlots.includes(slot)) {
+    if (!redSlots.includes(slot) && isSlotInFuture(slot)) {
       navigate(`/appoinmentdetails?physioId=${physioId}&date=${selectedDate}&slot=${slot}`);
-      
     }
+  };
+
+  const isSlotInFuture = (slot) => {
+    if (selectedDate === new Date().toISOString().split('T')[0]) {
+      const [startTime] = slot.split(' - ');
+      const [slotHour, slotMinute] = startTime.split(':').map(Number);
+      const now = new Date();
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
+
+      return (
+        slotHour > currentHour ||
+        (slotHour === currentHour && slotMinute > currentMinute)
+      );
+    }
+    return true; // All slots available for future dates
+  };
+
+  const isPastSlot = (slot) => {
+    if (selectedDate === new Date().toISOString().split('T')[0]) {
+      return !isSlotInFuture(slot);
+    }
+    return false; // No past slots for future dates
   };
 
   return (
@@ -82,12 +84,25 @@ const TimeSlots = () => {
       <div className="slots">
         {slots.map(slot => (
           <div
-            className={`slot ${redSlots.includes(slot) ? 'red-slot' : ''}`}
+            className={`slot ${
+              redSlots.includes(slot)
+                ? 'red-slot'
+                : isPastSlot(slot)
+                ? 'gray-slot'
+                : ''
+            }`}
             key={slot}
-            onClick={() => handleSlotClick(slot)}
+            onClick={() => !redSlots.includes(slot) && !isPastSlot(slot) && handleSlotClick(slot)}
             role="button"
             tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') handleSlotClick(slot); }}
+            onKeyDown={(e) => {
+              if (
+                e.key === 'Enter' &&
+                !redSlots.includes(slot) &&
+                !isPastSlot(slot)
+              )
+                handleSlotClick(slot);
+            }}
           >
             {slot}
           </div>
@@ -98,6 +113,10 @@ const TimeSlots = () => {
           <div className="color-box red"></div>
           <span>Reserved</span>
         </div>
+        {/* <div className="legend-item">
+          <div className="color-box gray"></div>
+          <span>Past Time Slot</span>
+        </div> */}
         <div className="legend-item">
           <div className="color-box blue"></div>
           <span>Available</span>
@@ -136,11 +155,19 @@ const TimeSlots = () => {
           transform: translateY(-5px);
         }
         .red-slot {
-          background-color: #D32F2F; /* Matte red color */
+          background-color: #D32F2F; /* Matte red color for reserved slots */
           cursor: not-allowed;
         }
         .red-slot:hover {
           background-color: #D32F2F;
+          transform: none;
+        }
+        .gray-slot {
+          background-color: #D3D3D3; /* Light gray for past time slots */
+          cursor: not-allowed;
+        }
+        .gray-slot:hover {
+          background-color: #D3D3D3;
           transform: none;
         }
         h2 {
@@ -165,6 +192,9 @@ const TimeSlots = () => {
         }
         .color-box.red {
           background-color: #D32F2F; /* Same matte red color for legend */
+        }
+        .color-box.gray {
+          background-color: #D3D3D3; /* Light gray for past time slots */
         }
         .color-box.blue {
           background-color: #b0c4de;

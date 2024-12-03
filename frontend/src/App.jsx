@@ -95,10 +95,12 @@ import UserDashboardLink from './components/userpage/Admin/UserDashboardLink';
 import PrescriptionForm from './components/userpage/User/PrescriptionForm';
 import Popup from './components/userpage/User/Popup';
 import PhysioProfile from './components/userpage/User/PhysioProfile';
+import Paymentconfirmpop from './components/userpage/User/paymentconfirmpop'
 
 import ReadMore from './components/userpage/User/GymMember/ReadMore';
 import NaviBar from './components/userpage/User/GymMember/NaviBar';
 import Membership from './components/userpage/User/GymMember/Membership';
+import AbtUs from './components/userpage/User/GymMember/AbtUs';
 import Halfyear from './components/userpage/User/GymMember/HalfYear';
 import FullYear from './components/userpage/User/GymMember/FullYear';
 import Subscription from './components/userpage/User/GymMember/Subscrpition';
@@ -143,7 +145,8 @@ import Advertisements from './components/userpage/Owner/videoAdvertisements';
 import OwnerReviews from './components/userpage/Owner/viewReviews';
 import FinancialReport from './components/userpage/Owner/reports/financialReport';
 import MembershipReport from './components/userpage/Owner/reports/membershipReoprt';
-import CustomerFeedbackReport from './components/userpage/Owner/reports/customerFeedbackReport';
+import LeaveReport from './components/userpage/Owner/reports/leaveReport';
+import StaffReport from './components/userpage/Owner/reports/staffReport';
 import OwnerReports from './components/userpage/Owner/ownerReports';
 import Leavepopup from './components/userpage/Owner/leavepopup';
 import Videoconfirm from './components/userpage/Owner/videoconfirm'
@@ -225,7 +228,7 @@ function App() {
                   <Route path="/useraccounts" element={<UserAccounts />} />
                   <Route path="/users" element={<UserDashboardLink />} />
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
-                  <Route path="/customerFeedbackReport" element={<CustomerFeedbackReport />} />
+                  {/* <Route path="/customerFeedbackReport" element={<CustomerFeedbackReport />} /> */}
                   <Route path="/financialReport" element={<FinancialReport />} />
                   <Route path="/membershipReport" element={<MembershipReport />} />
                   <Route path="/ownerReports" element={<OwnerReports />} />
@@ -261,9 +264,10 @@ function App() {
                   <Route path="/schedules" element={<Schedules />} />
                   <Route path="/video-advertisements" element={<Advertisements />} />
                   <Route path="/ViewReviews" element={<OwnerReviews />} />
-                  <Route path="/customerFeedbackReport" element={<CustomerFeedbackReport />} />
+                  <Route path="/staffReport" element={<StaffReport />} />
                   <Route path="/financialReport" element={<FinancialReport />} />
                   <Route path="/membershipReport" element={<MembershipReport />} />
+                  <Route path="/leaveReport" element={<LeaveReport />} />
                   <Route path="/ownerReports" element={<OwnerReports />} />
                   <Route path="/leavehandle" element={<LeaveHandle />} />
                   <Route path="/leavepopup" element={<Leavepopup />} />
@@ -287,7 +291,7 @@ function App() {
                   <Route path="/admin/user-management" element={<Navigate to="/profile" />} />
                   <Route path="/update-user/:userId" element={<Navigate to="/profile" />} />
                   <Route path="/appoinments" element={<Appoinments />} />
-                  <Route path="/physiocard" element={<PhysioCards />} />
+                  <Route path="/physiocards" element={<PhysioCards />} />
                   <Route path="/reviews" element={<Reviewss />} />
                   <Route path="/reservations" element={<Reservations />} />
                   <Route path="/makeappoinment" element={<Makeappoinment />} />
@@ -304,7 +308,8 @@ function App() {
                   <Route path="/selectpayment" element={<SelectPayment />} />
                   <Route path="/paymentpopup" element={<Paymentpopup />} />
                   <Route path="/gymNavibar" element={<NaviBar />} />
-                  <Route path="/gymMembership" element={<Membership />} /> 
+                  <Route path="/gymMembership" element={<Membership />} />
+                  <Route path="/AbtUs" element={<AbtUs />} /> 
                   <Route path="/halfyear" element={<Halfyear />} />
                   <Route path="/fullyear" element={<FullYear />} />
                   <Route path="/subscription" element={<Subscription />} />
@@ -328,7 +333,7 @@ function App() {
                   <Route path="/notavilPopup" element={<NotAvilavle />} />
                   <Route path="/reserved" element={<ReservedPopup />} />
                   <Route path="/reschedulePopup" element={<ReschedulePopup />} />
-                  <Route path="/finalize" element={<FinalizeMembership />} />
+                  <Route path="/Paymentconfirmpop" element={<Paymentconfirmpop />} />                  <Route path="/finalize" element={<FinalizeMembership />} />
                   <Route path="/membership" element={<Memberships />} />
 
 

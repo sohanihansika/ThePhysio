@@ -1,108 +1,188 @@
-import React, { useState } from 'react';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import React, { useEffect, useState } from "react";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable"; // Import jspdf-autotable
+import UserService from "../../../service/UserService";
+import { useLocation } from "react-router-dom";
+import logo from "../../../../assets/logowithoutback .png"; // Ensure the logo path is correct
 
 const MembershipReport = () => {
-  const [searchName, setSearchName] = useState('');
+  const [membershipData, setMembershipData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
 
-  // Placeholder data for membership report
-  const membershipData = [
-    { member: 'Alice Johnson', status: 'Active', startDate: '2024-06-01', endDate: '2025-06-01' },
-    { member: 'Bob Smith', status: 'Expired', startDate: '2023-06-01', endDate: '2024-06-01' },
-    { member: 'Charlie Brown', status: 'Active', startDate: '2024-05-01', endDate: '2025-05-01' },
-    { member: 'David Williams', status: 'Active', startDate: '2024-04-01', endDate: '2025-04-01' },
-    { member: 'Eve Miller', status: 'Expired', startDate: '2023-05-01', endDate: '2024-05-01' },
-    // Add more data as needed
-  ];
+  const startDate = queryParams.get("startDate");
+  const endDate = queryParams.get("endDate");
 
-  // Function to filter membership data by member name
-  const filterDataByName = (data) => {
-    return data.filter(entry =>
-      entry.member.toLowerCase().includes(searchName.toLowerCase())
-    );
-  };
+  useEffect(() => {
+    const fetchMembershipData = async () => {
+      try {
+        const token = localStorage.getItem("token");
 
-  // Function to generate and download PDF
-  const downloadPDF = () => {
-    const input = document.getElementById('reportTable');
+        const response = await UserService.getAllPatients(token);
+        console.log(response);
+        const allPatients = response.ourUsersList || [];
+        console.log(allPatients);
 
-    html2canvas(input).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
-      const imgWidth = 210;
-      const imgHeight = canvas.height * imgWidth / canvas.width;
+        if (!Array.isArray(allPatients)) {
+          setError("Data is not in the expected format.");
+          return;
+        }
 
-      // Add title and subtitle
-      pdf.setFontSize(22);
-      pdf.text('The Physio', 10, 10);
-      pdf.setFontSize(16);
-      pdf.text('Membership Report', 10, 20);
+        // Convert startDate and endDate to Date objects for filtering
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        console.log("Start Date: ", start);
 
-      // Add date information
-      pdf.setFontSize(12);
-      pdf.text(`Report Date: ${new Date().toLocaleDateString()}`, 10, 30);
-      pdf.text(`Selected Member: ${searchName || 'N/A'}`, 10, 40);
+        const filteredPatients = allPatients.filter((patient) => {
+          if (!patient.added_date) {
+            return false;
+          }
 
-      // Add the table image
-      pdf.addImage(imgData, 'PNG', 0, 50, imgWidth, imgHeight);
-      pdf.save('membership-report.pdf');
+          const added_date = new Date(patient.added_date).toISOString().split("T")[0];
+          const startDateString = new Date(start).toISOString().split("T")[0];
+          const endDateString = new Date(end).toISOString().split("T")[0];
+console.log("Start Date: ", startDateString);
+          return added_date >= startDateString && added_date <= endDateString;
+        });
+
+        setMembershipData(filteredPatients);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMembershipData();
+  }, [startDate, endDate]);
+
+  // Function to generate and download the PDF
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    const logoWidth = 25;
+    const logoHeight = 20;
+    const title = "The Physio";
+    const reportTitle = "Membership Report";
+
+    // Add the logo in the top right corner
+    doc.addImage(logo, "jpg", 160, 10, logoWidth, logoHeight);
+
+    // Title for the report and center-align
+    doc.setFontSize(20);
+    doc.setFont("helvetica", "bold");
+    doc.text(title, 20, 20);
+    doc.setFontSize(16);
+    doc.text(reportTitle, 20, 30);
+
+    // Add date range
+    doc.setFontSize(12);
+    doc.text(`From Date: ${startDate}`, 20, 40);
+    doc.text(`To Date: ${endDate}`, 20, 50);
+
+    // Table headers
+    const headers = ["ID", "Name", "Membership Date", "Address", "Contact No", "Email"];
+    const data = membershipData.map((patient) => [
+      patient.id,
+      patient.name,
+      new Date(patient.added_date).toLocaleDateString(),
+      patient.address,
+      patient.contact_no,
+      patient.email,
+    ]);
+
+    // Add table with auto table plugin
+    doc.autoTable({
+      head: [headers],
+      body: data,
+      startY: 60, // Starting Y position for the table
+      theme: "striped",
+      headStyles: {
+        fillColor: [0, 0, 139], // Dark blue background for the header
+        fontSize: 12,
+        textColor: [255, 255, 255],
+        fontStyle: "bold",
+      },
+      bodyStyles: { fontSize: 10 },
+      tableWidth: "auto", // Make the table width adjust automatically to the content
+      styles: { cellPadding: 3, fontSize: 10 },
+      margin: { horizontal: 10 },
     });
+
+    // Footer with contact details
+    const footerText = "The Physio | Contact: thephysio@gmail.com | Phone: (+94) 71 23-4567";
+    doc.setFontSize(8);
+    doc.text(footerText, 10, doc.internal.pageSize.height - 10);
+
+    // Save the PDF
+    doc.save("membership-report.pdf");
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Gym Membership Report</h1>
-
-      {/* Search Input */}
-      <div className="mb-4">
-        <input
-          type="text"
-          value={searchName}
-          onChange={(e) => setSearchName(e.target.value)}
-          className="border border-gray-300 p-2 rounded-md"
-          placeholder="Search by member name"
-        />
-      </div>
-
-      {/* Button to Download PDF */}
-      <div className="mb-4">
-        <button
-          onClick={downloadPDF}
-          className="bg-blue-500 text-white p-2 rounded-md"
-        >
-          Download Report as PDF
-        </button>
-      </div>
-
-      {/* Membership Table */}
-      <div id="reportTable">
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr>
-              <th className="py-2 border">Member Name</th>
-              <th className="py-2 border">Status</th>
-              <th className="py-2 border">Start Date</th>
-              <th className="py-2 border">End Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filterDataByName(membershipData).length > 0 ? (
-              filterDataByName(membershipData).map((membership, index) => (
-                <tr key={index} className="text-center">
-                  <td className="py-2 border">{membership.member}</td>
-                  <td className="py-2 border">{membership.status}</td>
-                  <td className="py-2 border">{membership.startDate}</td>
-                  <td className="py-2 border">{membership.endDate}</td>
-                </tr>
-              ))
-            ) : (
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      <h2 style={{ fontWeight: "bold", marginBottom: "20px" }}>Membership Report</h2>
+      {membershipData.length === 0 ? (
+        <p>No memberships found within the selected date range.</p>
+      ) : (
+        <div style={{ width: "100%", overflowX: "auto" }}>
+          <table
+            style={{
+              width: "80%",
+              margin: "0 auto",
+              borderCollapse: "collapse",
+              border: "1px solid #ddd",
+              textAlign: "center",
+            }}
+          >
+            <thead style={{ backgroundColor: "#000099", color: "white" }}>
               <tr>
-                <td colSpan="4" className="py-2 text-center text-gray-700">No memberships found for the selected name.</td>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Membership Date</th>
+                <th>Address</th>
+                <th>Contact No</th>
+                <th>Email</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {membershipData.map((patient) => (
+                <tr key={patient.id}>
+                  <td>{patient.id}</td>
+                  <td>{patient.name}</td>
+                  <td>{new Date(patient.added_date).toLocaleDateString()}</td>
+                  <td>{patient.address}</td>
+                  <td>{patient.contact_no}</td>
+                  <td>{patient.email}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div style={{ textAlign: "right", marginTop: "20px" }}>
+            <button
+              onClick={generatePDF}
+              style={{
+                backgroundColor: "#000099",
+                color: "white",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

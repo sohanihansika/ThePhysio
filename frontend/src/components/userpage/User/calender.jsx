@@ -12,27 +12,18 @@ const Calender = () => {
 
   const queryParams = new URLSearchParams(location.search);
   const physioId = queryParams.get('physioId');
-  
-  console.log('Physio ID:', physioId);
 
   useEffect(() => {
     const fetchUnavailableDates = async () => {
       const token = localStorage.getItem('token'); // Replace with your token retrieval method
       try {
         const allLeaves = await LeaveService.getAllleaves(token);
-        console.log("All leaves:", allLeaves);
-  
-        // Ensure physioId is treated as a string or number consistently
+
         const physioIdNumber = Number(physioId);
-        console.log("Physio ID for filtering:", physioIdNumber);
-  
-        // Filter leaves based on physioId and status
-        const physioLeaves = allLeaves.filter(leave => 
-          leave.physioId === physioIdNumber && leave.status === 2
+        const physioLeaves = allLeaves.filter(
+          leave => leave.physioId === physioIdNumber && leave.status === 2
         );
-        console.log("Filtered leaves:", physioLeaves);
-        
-        // Convert dates to Date objects
+
         const dates = physioLeaves.map(leave => new Date(leave.date));
         setUnavailableDates(dates);
       } catch (error) {
@@ -40,19 +31,17 @@ const Calender = () => {
         setUnavailableDates([]);
       }
     };
-  
+
     fetchUnavailableDates();
   }, [physioId]);
-  
 
   const isUnavailableDay = (date) => {
     return unavailableDates.some(d => d.toDateString() === date.toDateString());
   };
 
   const isAllBookedDay = (date) => {
-    // Example: Return true for a specific set of dates (or modify this as needed)
     const allBookedDates = [
-      new Date(2024, 7, 1),  // August 1, 2024
+      new Date(2024, 12, 11), // August 1, 2024
       new Date(2024, 7, 15) // August 15, 2024
     ];
     return allBookedDates.some(d => d.toDateString() === date.toDateString());
@@ -60,40 +49,61 @@ const Calender = () => {
 
   const handleDateChange = (selectedDate) => {
     setDate(selectedDate);
-    
-    // Normalize the selected date to ensure it's at the start of the day
-    const normalizedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate());
-    
-    // Add one day to the normalized date
+
+    const normalizedDate = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      selectedDate.getDate()
+    );
+
     const nextDay = new Date(normalizedDate);
     nextDay.setDate(nextDay.getDate() + 1);
-    
-    // Format the next day as YYYY-MM-DD
+
     const formattedNextDay = nextDay.toISOString().split('T')[0];
-  
+
     if (isUnavailableDay(normalizedDate)) {
-      console.log('Navigating to /notavilPopup');
-      navigate(`/notavilPopup?physioId=${physioId}`); // Adjust the navigation as needed
-
+      navigate(`/notavilPopup?physioId=${physioId}`);
     } else if (isAllBookedDay(normalizedDate)) {
-      console.log('Navigating to /reserved');
-      navigate(`/reserved?physioId=${physioId}`); // Adjust the navigation as needed
-
+      navigate(`/reserved?physioId=${physioId}`);
     } else {
-      console.log(`Navigating to /timeslots?physioId=${physioId}&date=${formattedNextDay}`);
       navigate(`/timeslots?physioId=${physioId}&date=${formattedNextDay}`);
     }
   };
-  
 
-  const handleNextMonth = () => {
-    const nextMonth = new Date(date.getFullYear(), date.getMonth() + 1, 1);
-    setDate(nextMonth);
+  const tileDisabled = ({ date }) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time for comparison
+    return (
+      date < today || // Disable past dates
+      isUnavailableDay(date) || // Disable unavailable dates
+      date.getDay() === 0 // Disable Sundays
+    );
   };
 
-  const handlePreviousMonth = () => {
-    const prevMonth = new Date(date.getFullYear(), date.getMonth() - 1, 1);
-    setDate(prevMonth);
+  const tileClassName = ({ date }) => {
+    let className = "";
+
+    if (date < new Date()) {
+      // Past dates
+      className = "past-date";
+    }
+
+    if (isUnavailableDay(date)) {
+      // Unavailable dates
+      className = "unavailable-date";
+    }
+
+    if (isAllBookedDay(date)) {
+      // All booked dates
+      className = "booked-date";
+    }
+
+    if (date.getDay() === 0) {
+      // Sundays
+      className = "sunday-date";
+    }
+
+    return className;
   };
 
   const containerStyle = {
@@ -111,7 +121,8 @@ const Calender = () => {
     padding: '1.5rem',
     backgroundColor: '#fff',
     borderRadius: '0.5rem',
-    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+    boxShadow:
+      '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
   };
 
   const headerStyle = {
@@ -120,22 +131,6 @@ const Calender = () => {
     textAlign: 'center',
     marginBottom: '1.5rem',
     color: '#172b59',
-  };
-
-  const buttonContainerStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: '1rem',
-  };
-
-  const buttonStyle = {
-    padding: '0.5rem 1rem',
-    margin: '0.5rem',
-    color: '#fff',
-    backgroundColor: '#172b59',
-    borderRadius: '0.25rem',
-    cursor: 'pointer',
-    border: 'none',
   };
 
   const calendarContainerStyle = {
@@ -159,10 +154,11 @@ const Calender = () => {
     backgroundColor: 'orange',
     marginRight: '0.5rem',
   };
+
   const colorBoxStyle1 = {
     width: '1rem',
     height: '1rem',
-    backgroundColor: '#006edc',
+    backgroundColor: '#6500dc',
     marginRight: '0.5rem',
   };
 
@@ -170,32 +166,12 @@ const Calender = () => {
     <div style={containerStyle}>
       <div style={cardStyle}>
         <h1 style={headerStyle}>Appointment Calendar</h1>
-        <div style={buttonContainerStyle}>
-          <button onClick={handlePreviousMonth} style={buttonStyle}>
-            Previous Month
-          </button>
-          <button onClick={handleNextMonth} style={buttonStyle}>
-            Next Month
-          </button>
-        </div>
         <div style={calendarContainerStyle}>
           <Calendar
             onChange={handleDateChange}
             value={date}
-            tileClassName={({ date, view }) => {
-              if (view === 'month') {
-                if (date.getDate() === new Date().getDate() && date.getMonth() === new Date().getMonth()) {
-                  return 'bg-blue-100 text-blue-800';
-                }
-                if (isUnavailableDay(date)) {
-                  return 'bg-orange-500 text-white';
-                }
-                if (isAllBookedDay(date)) {
-                  return 'bg-blue-500 text-white';
-                }
-              }
-              return '';
-            }}
+            tileDisabled={tileDisabled}
+            tileClassName={tileClassName} // Apply custom classes for the tiles
           />
         </div>
         <div style={legendStyle}>
