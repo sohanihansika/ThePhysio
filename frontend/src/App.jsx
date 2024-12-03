@@ -85,6 +85,7 @@ import Calendar from './components/userpage/User/calender';
 import TimeSlots from './components/userpage/User/timeSlots';
 import AddAppoinmet from './components/userpage/User/AddAppoinment';
 import AppoinmentDetails from './components/userpage/User/apponmentDetails';
+import RescheduleAppoinment from './components/userpage/User/RescheduleAppoinment';
 import SelectPayment from './components/userpage/User/SelectPayment';
 import Paymentpopup from './components/userpage/User/paymentpopup';
 import NotAvilavle from './components/userpage/User/notavilPopup';
@@ -115,12 +116,13 @@ import ReadMore3 from './components/userpage/User/GymMember/ReadMore3';
 import ReadMore4 from './components/userpage/User/GymMember/ReadMore4';
 import ReadMore5 from './components/userpage/User/GymMember/ReadMore5';
 import IssuePrescription from './components/userpage/Physio/IssuePrescription';
-
+import RescheduleCalander from './components/userpage/User/RescheduleCalander';
 
 
 import Doctors from './components/userpage/Receptionist/Doctors';
 import Calender from './components/userpage/Receptionist/Calender';
 import Schedule from './components/userpage/Receptionist/Schedule';
+import ScheduleList from './components/userpage/User/ScheduleList';
 import PastSchedule from './components/userpage/Receptionist/PastSchedule';
 import FutureSchedule from './components/userpage/Receptionist/FutureSchedule';
 import Calender1 from './components/userpage/Receptionist/Calender1';
@@ -129,7 +131,7 @@ import Doctors1 from './components/userpage/Receptionist/Doctors1';
 import AddAppointment from './components/userpage/Receptionist/AddAppointment';
 import Payments1 from './components/userpage/Receptionist/Payments1';
 import UnPaid from './components/userpage/Receptionist/UnPaid';
-import TimeSlot from './components/userpage/Receptionist/TimeSlots';
+import TimeSlott from './components/userpage/Receptionist/TimeSlots';
 import TimeSlot1 from './components/userpage/Receptionist/TimeSlots1';
 import Appointment1 from './components/userpage/Receptionist/Appointment1';
 import PopUp2 from './components/userpage/Receptionist/PopUp2';
@@ -164,6 +166,8 @@ import CreatePackage from './components/userpage/Manager/CreatePackage';
 import Packages from './components/userpage/Manager/Packages';
 import EditPackage from './components/userpage/Manager/EditPackage';
 import Subscribers from './components/userpage/Manager/Subscribers';
+import FinalizeMembership from './components/userpage/User/GymMember/FinalizeMembershi';
+import Memberships from './components/userpage/User/GymMember/membershipconfirm';
 
 
 
@@ -295,9 +299,12 @@ function App() {
                   <Route path="/success" element={<Success />} />
                   <Route path="/userreviews" element={<UserReviews />} />
                   <Route path="/calendar" element={<Calendar />} />
+                  <Route path="/recalendar" element={<RescheduleCalander />} />
                   <Route path="/timeslots" element={<TimeSlots />} />
+                  <Route path="/timeslott" element={<TimeSlott />} />
                   <Route path="/addappoinment" element={<AddAppoinmet />} />
                   <Route path="/appoinmentdetails" element={<AppoinmentDetails />} />
+                  <Route path="/rescheduleappoinment" element={<RescheduleAppoinment />} />
                   <Route path="/selectpayment" element={<SelectPayment />} />
                   <Route path="/paymentpopup" element={<Paymentpopup />} />
                   <Route path="/gymNavibar" element={<NaviBar />} />
@@ -308,7 +315,7 @@ function App() {
                   <Route path="/subscription" element={<Subscription />} />
                   <Route path="/planPayments" element={<PlanPayments />} />
                   <Route path="/prescriptionForm" element={<PrescriptionForm />} />
-                  <Route path="/schedule" element={<Schedule />}/>
+                  <Route path="/schedulelist" element={<ScheduleList />}/>
                   <Route path="/popup" element={<Popup />}/>
                   <Route path="/physioprofile" element={<PhysioProfile />}/>
                   <Route path="/readmore" element={<ReadMore />}/>
@@ -326,7 +333,9 @@ function App() {
                   <Route path="/notavilPopup" element={<NotAvilavle />} />
                   <Route path="/reserved" element={<ReservedPopup />} />
                   <Route path="/reschedulePopup" element={<ReschedulePopup />} />
-                  <Route path="/Paymentconfirmpop" element={<Paymentconfirmpop />} />
+                  <Route path="/Paymentconfirmpop" element={<Paymentconfirmpop />} />                  <Route path="/finalize" element={<FinalizeMembership />} />
+                  <Route path="/membership" element={<Memberships />} />
+
 
 
 
@@ -404,7 +413,9 @@ function App() {
                   <Route path="/appointment" element={<AddAppointment />}/>
                   <Route path="/payments1" element={<Payments1 />}/>
                   <Route path="/unpaid" element={<UnPaid />} />
-                  <Route path="/timeSlots" element={<TimeSlot />} />
+                  <Route path="/timeslots" element={<TimeSlots />} />
+
+                  <Route path="/timeSlots" element={<TimeSlott />} />
                   <Route path="/timeSlots1" element={<TimeSlot1 />} />
                   <Route path="/appointment1" element={<Appointment1 />} />
                   <Route path="/popup2" element={<PopUp2 />} />
@@ -417,6 +428,17 @@ function App() {
                   <Route path="/addappoinment" element={<AddAppoinmet />} />
                   <Route path="/selectpayment" element={<SelectPayment />} />
                   <Route path="/paymentpopup" element={<paymentpopup />} />
+                  <Route path="/appoinments" element={<Appoinments />} />
+                  <Route path="/appoinmentdetails" element={<AppoinmentDetails />} />
+                  <Route path="/timeslots" element={<TimeSlots />} />
+                  <Route path="/recalendar" element={<RescheduleCalander />} />
+                  <Route path="/timeslott" element={<TimeSlott />} />
+                  <Route path="/rescheduleappoinment" element={<RescheduleAppoinment />} />
+
+
+
+
+
                 </>
               )}
               {!UserService.isCoach() ? (

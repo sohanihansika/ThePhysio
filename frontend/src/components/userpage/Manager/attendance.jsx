@@ -1,195 +1,119 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import MembershipService from '../../service/ManagerService';
 
-// Dummy data for attendance
-const dummyData = {
-    "123": ["2024-07-01", "2024-07-05", "2024-07-10"],
-    "456": ["2024-07-02", "2024-07-07", "2024-07-11"],
-    "789": ["2024-07-03", "2024-07-08", "2024-07-12"],
-};
+const MembershipAttendance = () => {
+  const [memberships, setMemberships] = useState([]);
+  const [attendance, setAttendance] = useState({});
+  
 
-const AttendancePage = () => {
-    const [memberId, setMemberId] = useState('');
-    const [attendanceDates, setAttendanceDates] = useState([]);
-    const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  useEffect(() => {
+    const fetchMemberships = async () => {
+      try {
+        const tokenValue = localStorage.getItem('token');
+        const allMemberships = await MembershipService.getAllMemberships(tokenValue);
 
-    const today = new Date().toISOString().split('T')[0]; // Today's date in YYYY-MM-DD format
+        if (Array.isArray(allMemberships)) {
+          setMemberships(allMemberships);
 
-    const handleMemberIdChange = (event) => {
-        setMemberId(event.target.value);
-    };
-
-    const handleCheckAttendance = () => {
-        if (dummyData[memberId]) {
-            setAttendanceDates(dummyData[memberId]);
+          // Initialize attendance state from fetched memberships
+          const initialAttendance = {};
+          allMemberships.forEach((membership) => {
+            initialAttendance[membership.id] = membership.timeSlots
+              ? membership.timeSlots.split(', ') // Convert to array
+              : [];
+          });
+          setAttendance(initialAttendance);
         } else {
-            setAttendanceDates([]);
+          console.error('Expected an array of memberships, but received:', allMemberships);
         }
+      } catch (error) {
+        console.error('Error fetching memberships:', error);
+      }
     };
+    fetchMemberships();
+  }, []);
 
-    const handleReset = () => {
-        setMemberId('');
-        setAttendanceDates([]);
-    };
+  const handleAttendanceChange = async (membershipId, timeSlotIndex) => {
+    try {
+      const tokenValue = localStorage.getItem('token');
 
-    const handleToggleAttendance = (date) => {
-        if (date === today) {
-            if (memberId) {
-                setAttendanceDates((prevDates) => {
-                    if (prevDates.includes(date)) {
-                        const newDates = prevDates.filter(d => d !== date);
-                        dummyData[memberId] = newDates; // Update dummy data
-                        return newDates;
-                    } else {
-                        const newDates = [...prevDates, date].sort();
-                        dummyData[memberId] = newDates; // Update dummy data
-                        return newDates;
-                    }
-                });
-            }
-        } else {
-            alert("You can only mark attendance for today's date.");
-        }
-    };
+      // Toggle attendance state locally
+      setAttendance((prevState) => {
+        const updatedMembershipAttendance = [...prevState[membershipId]];
+        updatedMembershipAttendance[timeSlotIndex] =
+          updatedMembershipAttendance[timeSlotIndex] === 'T' ? 'F' : 'T';
+        return { ...prevState, [membershipId]: updatedMembershipAttendance };
+      });
 
-    const handlePreviousMonth = () => {
-        if (currentMonth === 0) {
-            setCurrentMonth(11);
-            setCurrentYear(currentYear - 1);
-        } else {
-            setCurrentMonth(currentMonth - 1);
-        }
-    };
+      // Prepare updated attendance string for the backend
+      const updatedAttendance = attendance[membershipId]
+        .map((slot, index) =>
+          index === timeSlotIndex ? (slot === 'T' ? 'F' : 'T') : slot
+        )
+        .join(', ');
 
-    const handleNextMonth = () => {
-        if (currentMonth === 11) {
-            setCurrentMonth(0);
-            setCurrentYear(currentYear + 1);
-        } else {
-            setCurrentMonth(currentMonth + 1);
-        }
-    };
+      // Call the backend API to persist the update
+      await MembershipService.updateAttendance(membershipId, updatedAttendance, tokenValue);
+      console.log('Attendance updated successfully');
+    } catch (error) {
+      console.error('Error updating attendance:', error);
+    }
+  };
 
-    const getDaysInMonth = (month, year) => {
-        return new Date(year, month + 1, 0).getDate();
-    };
+  if (!Array.isArray(memberships)) {
+    return <div>Loading memberships...</div>;
+  }
 
-    const generateCalendar = () => {
-        const daysInMonth = getDaysInMonth(currentMonth, currentYear);
-        const calendar = [];
+  return (
+    <div className="membership-container" style={{ padding: '20px', backgroundColor: '#f8f9fa' }}>
+      {memberships.length === 0 ? (
+        <div>No memberships available</div>
+      ) : (
+        memberships.map((membership) => {
+          const timeSlots = attendance[membership.id] || [];
 
-        for (let i = 1; i <= daysInMonth; i++) {
-            const date = `${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
-            const isAttended = attendanceDates.includes(date);
-            const isToday = date === today;
+          return (
+            <div
+              key={membership.id}
+              className="membership-card"
+              style={{
+                marginBottom: '15px',
+                border: '1px solid #ddd',
+                borderRadius: '8px',
+                padding: '15px',
+                backgroundColor: '#ffffff',
+              }}
+            >
+              <div className="membership-info" style={{ marginBottom: '10px' }}>
+                <h3 style={{ color: '#6c757d' }}>{membership.userId}</h3>
+                <p style={{ fontWeight: 'bold', color: '#007bff' }}>{membership.type}</p>
+              </div>
 
-            calendar.push(
-                <div
-                    key={i}
-                    className={`day-container ${isAttended ? 'attended' : ''} ${isToday ? 'today' : ''}`}
-                    style={{
-                        textAlign: 'center',
-                        margin: '5px',
-                    }}
-                >
-                    <div
-                        className="day"
-                        style={{
-                            padding: '10px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            backgroundColor: isAttended ? 'green' : 'white',
-                            color: isAttended ? 'white' : 'black',
-                            cursor: isToday ? 'pointer' : 'not-allowed',
-                            transition: 'background-color 0.3s, color 0.3s',
-                        }}
-                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = isToday ? '#f0f0f0' : e.currentTarget.style.backgroundColor}
-                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = isAttended ? 'green' : 'white'}
-                        onClick={() => isToday && handleToggleAttendance(date)}
-                    >
-                        {i}
-                    </div>
-                </div>
-            );
-        }
-
-        return calendar;
-    };
-
-    const monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-
-    return (
-        <div className="relative min-h-screen p-4">
-            {/*<div
-                className="absolute inset-0"
-                style={{
-                    backgroundImage: `url('./src/assets/GymPlans/gymp.jpg')`, // Replace with your image URL
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    opacity: 0.8, // 70% opacity of the background image
-                    zIndex: -1,
-                }}
-            ></div>*/}
-            
-            <div className="mb-8">
-            <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">Mark Attendance</h3>
-                <div className="flex flex-col items-center mt-4">
-                    <div className="flex items-center mb-4">
+              <div className="time-slots" style={{ marginTop: '15px' }}>
+                {timeSlots.length > 0 ? (
+                  timeSlots.map((timeSlot, index) => (
+                    <div key={index} style={{ marginBottom: '10px' }}>
+                      <label style={{ fontSize: '16px', fontWeight: 'bold' }}>
                         <input
-                            type="text"
-                            placeholder="Enter Member ID"
-                            value={memberId}
-                            onChange={handleMemberIdChange}
-                            className="border border-gray-300 p-2 rounded-md mr-2"
-                            style={{ width: '200px' }}
+                          type="checkbox"
+                          checked={timeSlot === 'T'}
+                          onChange={() => handleAttendanceChange(membership.id, index)}
+                          style={{ marginRight: '10px' }}
                         />
-                        <button
-                            onClick={handleCheckAttendance}
-                            className="bg-[#007BFF] text-white p-2 rounded-md cursor-pointer transition hover:bg-[#0056b3]"
-                        >
-                            Check Attendance
-                        </button>
-                        <button
-                            onClick={handleReset}
-                            className="bg-[#FF4C4C] text-white p-2 rounded-md cursor-pointer transition hover:bg-[#cc0000] ml-2"
-                        >
-                            Reset
-                        </button>
+                        {`Week ${Math.floor(index / 7) + 1}, Slot ${index % 7 + 1}`} {/* Example format */}
+                      </label>
                     </div>
-                    {attendanceDates.length > 0 && (
-                        <div style={{ marginTop: '20px', maxWidth: '600px' }}>
-                            <h2 className="text-2xl font-bold mb-4 text-[#000099] text-center">
-                                {monthNames[currentMonth]} {currentYear}
-                            </h2>
-                            <div className="flex justify-between mb-4">
-                                <button
-                                    onClick={handlePreviousMonth}
-                                    className="bg-[#007BFF] text-white p-2 rounded-md cursor-pointer transition hover:bg-[#0056b3]"
-                                >
-                                    Previous Month
-                                </button>
-                                <button
-                                    onClick={handleNextMonth}
-                                    className="bg-[#007BFF] text-white p-2 rounded-md cursor-pointer transition hover:bg-[#0056b3]"
-                                >
-                                    Next Month
-                                </button>
-                            </div>
-                            <div
-                                className="grid grid-cols-7 gap-2"
-                                style={{ maxWidth: '600px', margin: '0 auto' }}
-                            >
-                                {generateCalendar()}
-                            </div>
-                        </div>
-                    )}
-                </div>
+                  ))
+                ) : (
+                  <div>No time slots available</div>
+                )}
+              </div>
             </div>
-        </div>
-    );
+          );
+        })
+      )}
+    </div>
+  );
 };
 
-export default AttendancePage;
+export default MembershipAttendance;

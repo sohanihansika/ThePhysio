@@ -78,6 +78,9 @@ function Packages() {
                     {pkg.packagePrice}Rs
                     <span className="text-xl dark:text-black">/mo</span>
                   </p>
+                  <p className="text-4xl font-bold">
+                    {pkg.timeDue} Months
+                  </p>
                   <p className="text-lg font-medium">{pkg.daysPerWeek} days per week</p>
                 </div>
                 <div className="flex flex-col items-center justify-center px-2 py-4 bg-gray-400">
