@@ -206,7 +206,7 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/adVideo" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
+                                    <a href="/advertisement-view" className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-700 text-white duration-150">
                                        <FaBullhorn />
                                        {!isCollapsed && <p>Advertisements</p>}
                                     </a>
@@ -283,7 +283,7 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/video-advertisements" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                    <a href="/advertisement-view" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        < FiUpload />
                                        {!isCollapsed && <p>Advertiesments</p>}
                                     </a>
@@ -321,19 +321,19 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/reservationSchedule" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaRegClipboard />
                                        {!isCollapsed && <p>Reservation Schedule</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/reviews" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                    <a href="/viewReviews" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <VscPreview />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/video-advertisement" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                    <a href="/advertisement-view" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaPhotoVideo />
                                        {!isCollapsed && <p>Advertisement</p>}
                                     </a>
@@ -378,7 +378,7 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/view-review" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                    <a href="/ViewReviews" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                     <FaRegStar />
                                        {!isCollapsed && <p>Reviews</p>}
                                     </a>
