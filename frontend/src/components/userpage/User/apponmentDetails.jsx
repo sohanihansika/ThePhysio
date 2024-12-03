@@ -54,11 +54,9 @@ export default function AppointmentDetails() {
       const res = await BookingService.saveBooking(formData, token);
   
       if (res.statusCode === 200) {
-        alert('Booking registered successfully');
-        navigate('/success');
+        navigate(`/selectpayment?physioId=${physioId}&date=${date}&slot=${time_slot}`);
       } else {
-        alert(`Error: ${res.message}`);
-        navigate('/appoinments'); // Redirect to login or another appropriate page
+        navigate(`/selectpayment?physioId=${physioId}&date=${date}&slot=${time_slot}`);
 
       }
     } catch (error) {
@@ -72,6 +70,11 @@ export default function AppointmentDetails() {
       }
     }
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   navigate(`/selectpayment?physioId=${physioId}&date=${date}&slot=${time_slot}`);
+  // };
 
   return (
     <div style={styles.container}>
@@ -117,7 +120,16 @@ export default function AppointmentDetails() {
             style={styles.input}
           />
         </div>
-        <button type="submit" style={styles.button}>Submit</button>
+        <div style={styles.formGroup}>
+        <label style={styles.label}>Amount:</label>
+        <input
+          type="text"
+          value="Rs 2000.00"
+          readOnly
+          style={styles.input}
+        />
+        </div>
+        <button type="submit" style={styles.button}>Pay</button>
       </form>
     </div>
   );
