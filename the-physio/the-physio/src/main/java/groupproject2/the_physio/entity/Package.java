@@ -29,6 +29,7 @@ public class Package {
 
 
 
+
     public Long getPackageId() {
         return packageId;
     }
@@ -76,6 +77,8 @@ public class Package {
     public void setPackagePrice(int packagePrice) {
         this.packagePrice = packagePrice;
     }
+
+
 
     // Automatically set the added_date before persisting the entity
     @PrePersist

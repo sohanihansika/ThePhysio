@@ -1,23 +1,107 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
+import BookingService from '../../service/BookingService';
+import UserService from '../../service/UserService';
 
 const Appointments = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [appointments, setAppointments] = useState([]);
+  const [users, setUsers] = useState({});
 
-  const tableItems = [
-    { time: "9.00 - 9.30", name: "Bob", doc: "Steven", room: "1", status: "Not Paid" },
-    { time: "9.00 - 9.30", name: "Christine", doc: "Peter", room: "2", status: "Pending" },
-    { time: "9.00 - 9.30", name: "Yasmine", doc: "Lewis", room: "3", status: "Pending" },
-    { time: "9.00 - 9.30", name: "Charlotte", doc: "John", room: "4", status: "Not Paid" },
-  ];
+  // Fetch appointments with payment status "Not Paid"
+  const fetchAppointments = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const allAppointments = await BookingService.getAllBookings(token);
+      console.log('All appointments:', allAppointments);
+      const unpaidAppointments = allAppointments.filter(
+        (appointment) => appointment.paymentStatus === 'Not Paid'
+      );
+      console.log('Unpaid appointments:', unpaidAppointments);
+      setAppointments(unpaidAppointments);
+    } catch (err) {
+      console.error('Error fetching appointments:', err);
+      alert('Failed to fetch appointments.');
+    }
+  };
+
+  // Fetch user details by userId
+  const fetchUserDetails = async (userId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const user = await UserService.getUserById(userId, token);
+      setUsers((prevUsers) => ({ ...prevUsers, [userId]: user }));
+    } catch (err) {
+      console.error('Error fetching user details:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchAppointments();
+  }, []);
+
+  useEffect(() => {
+    appointments.forEach((appointment) => {
+      if (appointment.userId && !users[appointment.userId]) {
+        fetchUserDetails(appointment.userId);
+      }
+    });
+  }, [appointments]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  const filteredItems = tableItems.filter(item =>
-    item.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handlePaymentConfirmation = (appointmentId) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to change the state from "Not Paid" to "Paid"?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, proceed',
+      cancelButtonText: 'Cancel',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const token = localStorage.getItem('token');
+  
+          // Fetch the full appointment details
+          const appointment = await BookingService.getBookingById(appointmentId, token);
+          
+          // Prepare the updated appointment object
+          const updatedAppointment = { 
+            ...appointment, 
+            paymentStatus: 'Paid' // Update the payment status
+          };
+  
+          // Send the update request
+          const response = await BookingService.BookingUpdate(updatedAppointment, token);
+  
+          if (response.statusCode === 200 || response.success) {
+            Swal.fire('Error!', response.message || 'Failed to update payment status.', 'error');
+            fetchAppointments(); // Refresh the appointments list
+          } else {
+            Swal.fire('Updated!', 'The payment status has been updated to "Paid".', 'success');
+            fetchAppointments(); // Refresh the appointments list
 
+
+          }
+          
+        } catch (err) {
+          console.error('Error updating payment status:', err);
+          Swal.fire('Error!', 'An unexpected error occurred. Please try again.', 'error');
+        }
+      }
+    });
+  };
+  
+  
+
+  const filteredAppointments = appointments.filter((appointment) =>
+    users[appointment.userId]?.name?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
       <div className="items-start justify-between md:flex">
@@ -43,40 +127,42 @@ const Appointments = () => {
         <table className="w-full table-auto text-sm text-left">
           <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
+              <th className="py-3 px-6">Id</th>
+              <th className="py-3 px-6">Patient Id</th>
+              <th className="py-3 px-6">Physio Id</th>
               <th className="py-3 px-6">Time</th>
-              <th className="py-3 px-6">Patient Name</th>
-              <th className="py-3 px-6">Doctor</th>
-              <th className="py-3 px-6">Room No</th>
               <th className="py-3 px-6">Payment Status</th>
               <th className="py-3 px-6"></th>
             </tr>
           </thead>
           <tbody className="text-black divide-y">
-            {filteredItems.length > 0 ? (
-              filteredItems.map((item, idx) => (
+            {appointments.length > 0 ? (
+              appointments.map((appointment, idx) => (
                 <tr key={idx}>
-                  <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{item.doc}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{item.room}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{appointment.id}</td>
+                  {/* <td className="px-6 py-4 whitespace-nowrap">{users[appointment.userId]?.name || 'Unknown'}</td> */}
+                  <td className="px-6 py-4 whitespace-nowrap">{appointment.userId}</td>
+
+                  <td className="px-6 py-4 whitespace-nowrap">{appointment.physioId}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{appointment.timeslot}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-4 py-3 rounded-full font-semibold text-xs ${item.status === "Done" ? "text-green-600 bg-green-50" : "text-blue-600 bg-blue-50"}`}>
-                      {item.status}
+                    <span className="px-4 py-3 rounded-full font-semibold text-xs text-blue-600 bg-blue-50">
+                      {appointment.paymentStatus}
                     </span>
                   </td>
                   <td className="text-center whitespace-nowrap">
-                    <a
-                      href="/payments1"
+                    <button
+                      onClick={() => handlePaymentConfirmation(appointment.id)}
                       className="py-1.5 px-3 text-white duration-150 bg-[#051B40] border rounded-lg"
                     >
                       Pay
-                    </a>
+                    </button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="6" className="py-4 text-center text-gray-500">No appointments found</td>
+                <td colSpan="6" className="py-4 text-center text-gray-500">No unpaid appointments found</td>
               </tr>
             )}
           </tbody>

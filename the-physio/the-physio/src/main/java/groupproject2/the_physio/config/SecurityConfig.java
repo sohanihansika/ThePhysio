@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request-> request.requestMatchers("/auth/**", "/public/**").permitAll()
                         .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
                         .requestMatchers("/owner/**").hasAnyAuthority("OWNER")
-                        .requestMatchers("/manager/**").hasAnyAuthority("MANAGER")
+                        .requestMatchers("/manager/**").hasAnyAuthority("MANAGER", "USER")
                         .requestMatchers("/user/**").hasAnyAuthority("USER")
                         .requestMatchers("/anyuser/**").hasAnyAuthority("ADMIN","USER","RECEPTIONIST","OWNER","PHYSIO","MANAGER","COACH")
                         .requestMatchers("/adminowner/**").hasAnyAuthority("ADMIN","OWNER")
