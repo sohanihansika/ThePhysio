@@ -9,6 +9,8 @@ import { MdOutlinePayments, MdOutlineReviews } from "react-icons/md";
 import { FiStar } from 'react-icons/fi';
 import { FiUpload } from 'react-icons/fi';
 import { CgProfile } from "react-icons/cg";
+import Swal from 'sweetalert2';
+
 
 function Sidebar({ onCollapse }) {
     const [isAuthenticated, setIsAuthenticated] = useState(UserService.isAuthenticated());
@@ -36,21 +38,49 @@ function Sidebar({ onCollapse }) {
         }
     };
 
+    // const handleLogout = () => {
+    //     const confirmDelete = window.confirm('Are you sure you want to logout this user?');
+    //     if (confirmDelete) {
+    //         location.href = '/';
+    //         UserService.logout();
+    //         setIsAuthenticated(false);
+    //         setIsAdmin(false);
+    //         setIsUser(false);
+    //         setIsReceptionist(false);
+    //         setIsOwner(false);
+    //         setIsPhysio(false);
+    //         setIsManager(false);
+    //         setIsCoach(false);
+    //     }
+    // };
+
     const handleLogout = () => {
-        const confirmDelete = window.confirm('Are you sure you want to logout this user?');
-        if (confirmDelete) {
-            location.href = '/';
-            UserService.logout();
-            setIsAuthenticated(false);
-            setIsAdmin(false);
-            setIsUser(false);
-            setIsReceptionist(false);
-            setIsOwner(false);
-            setIsPhysio(false);
-            setIsManager(false);
-            setIsCoach(false);
-        }
-    };
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Do you want to logout this user?!',
+            // icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Logout',
+            cancelButtonText: 'Cancel',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                UserService.logout(); // Perform the logout
+                setIsAuthenticated(false);
+                setIsAdmin(false);
+                setIsUser(false);
+                setIsReceptionist(false);
+                setIsOwner(false);
+                setIsPhysio(false);
+                setIsManager(false);
+                setIsCoach(false);
+                location.href = '/';
+    
+                // Swal.fire('Logged Out!', 'You have been logged out successfully.', 'success');
+            }
+        });
+    } 
 
     if (!isAuthenticated) {
         return null;
@@ -145,7 +175,7 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/schedule" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                    <a href="/schedulelist" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                         <FaRegClipboard />
                                         {!isCollapsed && <p>Schedule</p>}
                                     </a>
@@ -188,7 +218,7 @@ function Sidebar({ onCollapse }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/doctors" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
+                                    <a href="/appoinments" className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
                                        <FaCalendarCheck />
                                        {!isCollapsed && <p>Add Appointments</p>}
                                     </a>
@@ -393,13 +423,16 @@ function Sidebar({ onCollapse }) {
                         )}
                     </ul>
                     <div className="mt-24"> {/* This pushes the content to the bottom */}
-        <div className="mb-0"> {/* This adds margin before the sign-out button */}
+            <div className="mb-0"> {/* This adds margin before the sign-out button */}
             <ul className="px-4 pb-4 text-l font-medium">
                 <li>
-                    <a href="/" onClick={handleLogout} className="flex items-center gap-x-2 p-2 rounded-lg text-white hover:bg-white/80 hover:text-[#172b59] duration-150">
-                        <FaSignOutAlt />
-                        {!isCollapsed && <p>Sign Out</p>}
-                    </a>
+                <a  onClick={handleLogout} className="flex items-center gap-x-2 text-white p-2 rounded-lg  hover:bg-lightblue hover:text-driveazered active:bg-gray-100 duration-150">
+                                            <div className="absolute left-0 w-1.5 h-full rounded-r-full bg-gray-600 scale-y-0 group-hover:scale-y-100 transition-transform ease-in-out" />
+                                            <div className="flex-none">
+                                                <FaSignOutAlt />
+                                            </div>
+                                            <p className="flex-1">Logout</p>
+                </a>
                 </li>
             </ul>      
         </div>

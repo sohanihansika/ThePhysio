@@ -2,6 +2,7 @@ package groupproject2.the_physio.dto;
 
 import groupproject2.the_physio.entity.Package;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,6 +20,16 @@ public class PackageDto implements Serializable {
         private int daysPerWeek;
 
         private int PackagePrice;
+
+        public int getTimeDue() {
+            return TimeDue;
+        }
+
+        public void setTimeDue(int timeDue) {
+            TimeDue = timeDue;
+        }
+
+        private  int TimeDue;
 
 
 
@@ -74,7 +85,6 @@ public class PackageDto implements Serializable {
 
         private Date added_date;
 
-
         public Long getPackageId() {
             return packageId;
         }
@@ -128,9 +138,22 @@ public class PackageDto implements Serializable {
     public interface PackageMapper{
         PackageMapper INSTANCE = org.mapstruct.factory.Mappers.getMapper(PackageMapper.class);
 
-        Package fromRequestToEntity(PackageRequest packageRequest);
+
+    Package fromRequestToEntity(PackageRequest packageRequest);
 
         PackageResponse fromEntityToResponse(Package packageEntity);
     }
+
+//    @Mapper
+//    public interface PackageMapper {
+//        PackageMapper INSTANCE = Mappers.getMapper(PackageMapper.class);
+//
+//        @Mapping(target = "timeDue", defaultValue = "0")  // Ensure default value for timeDue
+//        Package fromRequestToEntity(PackageRequest packageRequest);
+//
+//        @Mapping(target = "timeDue", defaultValue = "0")  // Ensure default value for timeDue
+//        PackageResponse fromEntityToResponse(Package packageEntity);
+//    }
+
 
 }

@@ -80,7 +80,7 @@ const TimeSlots = () => {
 
   return (
     <div className="container">
-      <h2>Select Suitable Time Slots</h2>
+      <h2>Select Suitable Time Slotsxxxxx</h2>
       <div className="slots">
         {slots.map(slot => (
           <div

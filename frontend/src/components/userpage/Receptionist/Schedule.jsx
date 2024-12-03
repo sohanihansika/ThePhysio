@@ -4,6 +4,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Link, useNavigate } from 'react-router-dom';
 import UserService from '../../service/UserService';
 import BookingService from '../../service/BookingService';
+import Swal from 'sweetalert2';
+
 
 const Appointments = () => {
   const [users, setUsers] = useState({});
@@ -104,6 +106,28 @@ const Appointments = () => {
     return matchesUserId && matchesStatus;
   });
 
+  const handleReschedule = (appointment) => {
+    const today = new Date();
+    const scheduledDate = new Date(appointment.date);
+  
+    // Check if today's date is at least 2 days before the scheduled date
+    const diffInTime = scheduledDate - today;
+    const diffInDays = Math.ceil(diffInTime / (1000 * 60 * 60 * 24));
+  
+    if (diffInDays >= 2) {
+      // Navigate to the reschedule page
+      window.location.href = `/recalendar?physioId=${appointment.physioId}&Slot=${appointment.timeslot}&Id=${appointment.id}&date=${appointment.date.split('T')[0]}`;
+    } else {
+      // Show SweetAlert message
+      Swal.fire({
+        icon: 'error',
+        title: 'Cannot Reschedule',
+        text: 'Sorry, you can only reschedule at least 2 days before the scheduled date.',
+        confirmButtonText: 'OK',
+      });
+    }
+  };
+
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8 mt-6">
       <div className="mb-4 flex justify-between items-center">
@@ -185,19 +209,18 @@ const Appointments = () => {
                   </span>
                   
                 </td>
-                <td className="text-right px-6 whitespace-nowrap flex">
-                <Link
-                    to={`/bookingUpdate?bookingId=${appointment.id }`}
-                    className="py-2 px-3 font-medium text-blue-900 text-xl hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
-                  >Edit
-                  </Link>
-                </td>
+                <button
+  onClick={() => handleReschedule(appointment)}
+  className="py-1 px-2 font-medium text-white bg-[#172b59] rounded-md shadow-sm hover:bg-[#101b3e] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#172b59] focus:ring-opacity-50 transform transition-transform duration-150 hover:scale-105 active:scale-95 mr-2"
+>
+  Reschedule
+</button>
                 <td className="text-right px-6 whitespace-nowrap flex">
                   <button
                     onClick={() => handleDelete(appointment.id)}
                     className="py-2 px-4 font-medium text-white bg-red-700 rounded-lg shadow-md hover:bg-red-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transform transition-transform duration-150 hover:scale-105 active:scale-95"
                   >
-                    Delete
+                      Delete  
                   </button>
                 </td>
               </tr>

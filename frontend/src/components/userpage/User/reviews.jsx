@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import UserReviews from '../Owner/viewReviews';
 import UserService from '../../service/UserService'; // Adjust import path as needed
 import ReviewService from '../../service/ReviewService'; // Ensure this import path is correct
+import Swal from 'sweetalert2';
+
 
 export default function Reviews() {
   const [rating, setRating] = useState(0);
@@ -82,11 +84,17 @@ export default function Reviews() {
     };
 
     try {
-      
       // Save review data using ReviewService
       await ReviewService.saveReview(review, token);
-      // Navigate to the success page
-      navigate('/success');
+
+      // Show SweetAlert success message
+      Swal.fire({
+        title: 'Review Submitted!',
+        text: 'Your review has been successfully submitted!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      });
+
     } catch (error) {
       console.error('Failed to submit review:', error);
       setError('Failed to submit review. Please try again later.');
@@ -98,7 +106,8 @@ export default function Reviews() {
     setSelectedCategory('');
     setSelectedPerson('');
     setError('');
-  };
+};
+
 
   const starStyle = {
     fontSize: '2rem',

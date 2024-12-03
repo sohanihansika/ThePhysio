@@ -1,8 +1,66 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import BookingService from '../../service/BookingService'; // Adjust the import path
 
 const TimeSlots = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  const queryParams = new URLSearchParams(location.search);
+  const physioId = queryParams.get('physioId');
+  const Id =queryParams.get('Id');
+  const currentSlot = queryParams.get('Slot');
+  const newDate= queryParams.get('Newdate');
+  const Olddate= queryParams.get('Olddate');
+  console.log("current slot",newDate);
+
+  const selectedDate = queryParams.get('date');
+  
+  const [redSlots, setRedSlots] = useState([]);
+  const token = localStorage.getItem("token");// Assuming you have a function to get the auth token
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const allBookings = await BookingService.getAllBookings(token);
+        console.log("NotfilteredBookings", allBookings);
+  
+        // Normalize selectedDate to match the format in allBookings
+        const formattedSelectedDate = new Date(selectedDate).toISOString().split('T')[0];
+        console.log("Formatted Selected Date:", formattedSelectedDate);
+  
+        // Check the type and value of physioId
+        console.log("Physio ID (from query):", physioId);
+  
+        // Filter bookings based on physioId and normalized date
+        const filteredBookings = allBookings.filter(booking => {
+          // Extract date part from booking.date
+          const bookingDate = new Date(booking.date).toISOString().split('T')[0]; // Normalize booking.date to "YYYY-MM-DD"
+          console.log("Booking Date:", bookingDate, "Booking Physio ID:", booking.physioId);
+  
+          // Log types and values for debugging
+          console.log(`Comparing: booking.physioId=${booking.physioId} and physioId=${physioId}`);
+          
+          // Ensure physioId comparison is type-safe
+          return booking.physioId === Number(physioId) && bookingDate === formattedSelectedDate;
+        });
+  
+        console.log("filteredBookings", filteredBookings);
+  
+        // Extract booked slots
+        const bookedSlots = filteredBookings.map(booking => booking.timeslot);
+        
+        setRedSlots(bookedSlots);
+      } catch (error) {
+        console.error('Error fetching bookings:', error);
+      }
+    };
+  
+    fetchBookings(); // Invoke the fetchBookings function
+  
+  }, [physioId, selectedDate, token]); // Dependency array to trigger effect when these values change
+  
+  
+  
 
   // Generate half-hour time slots from 8 AM to 6 PM
   const slots = [];
@@ -17,33 +75,55 @@ const TimeSlots = () => {
     }
   }
 
-  // Define which time slots should be red and non-clickable
-  const redSlots = ["08:00 - 08:30", "10:00 - 10:30", "12:00 - 12:30","13:00 - 13:00"];
+  // const handleSlotClick = (slot) => {
+  //   if (!redSlots.includes(slot)) {
+  //     navigate(`/rescheduleappoinment?Current=${currentSlot}&New=${slot}&Id=${Id}`);
+  //   }
+  // };
 
   const handleSlotClick = (slot) => {
     if (!redSlots.includes(slot)) {
-      navigate('/payments');
+      navigate(`/rescheduleappoinment?Current=${currentSlot}&New=${slot}&Id=${Id}&NewDate=${newDate}`);
     }
   };
+  
+  
 
   return (
     <div className="container">
-<h2>Select Suitable Time Slots</h2>
-<div className="slots">
-        {slots.map(slot => (
-          <div
-            className={`slot ${redSlots.includes(slot) ? 'red-slot' : ''}`}
-            key={slot}
-            onClick={() => handleSlotClick(slot)}
-            role="button"
-            tabIndex="0"
-            onKeyDown={(e) => { if (e.key === 'Enter') handleSlotClick(slot); }}
-          >
-            {slot}
-          </div>
-        ))}
+      <h2>Select Suitable Time Slddddddots</h2>
+      <div className="slots">
+      {slots.map(slot => {
+    const isRedSlot = redSlots.includes(slot);
+    const isGreenSlot = newDate === Olddate && slot === currentSlot; // Green only if newDate equals Olddate
+
+    return (
+      <div
+        className={`slot 
+          ${isRedSlot ? 'red-slot' : ''} 
+          ${isGreenSlot ? 'green-slot' : ''}`}
+        key={slot}
+        onClick={() => !isRedSlot && handleSlotClick(slot)} // Clickable if not a red slot
+        role="button"
+        tabIndex="0"
+        onKeyDown={(e) => {
+          if (!isRedSlot && e.key === 'Enter') handleSlotClick(slot);
+        }}
+      >
+        {slot}
       </div>
+    );
+  })}
+
+</div>
+
+
+
       <div className="legend">
+        <div className="legend-item">
+          <div className="color-box green"></div>
+          <span>Current</span>
+        </div>
         <div className="legend-item">
           <div className="color-box red"></div>
           <span>Reserved</span>
@@ -55,7 +135,7 @@ const TimeSlots = () => {
       </div>
       <style jsx>{`
         .container {
-          max-width: 800px;
+          max-width: 1000px;
           margin: 0 auto;
           padding: 40px 20px;
           background-color: #eef3f7;
@@ -119,6 +199,17 @@ const TimeSlots = () => {
         .color-box.blue {
           background-color: #b0c4de;
         }
+          .green-slot {
+  background-color: #388E3C; /* Green color */
+  color: #ffffff; /* White text for better visibility */
+  cursor: pointer;
+}
+
+.green-slot:hover {
+  background-color: #2E7D32; /* Darker green for hover effect */
+  transform: translateY(-5px); /* Maintain hover effect */
+}
+
       `}</style>
     </div>
   );
