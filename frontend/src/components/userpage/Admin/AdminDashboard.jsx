@@ -1,36 +1,80 @@
-import React from 'react'
+import React, { useState ,useEffect } from 'react';
 import { FaUsers,FaReceipt,FaCalendarCheck  } from "react-icons/fa6";
+import UserService from '../../service/UserService';
+import BookingService from '../../service/BookingService';
+import ReviewService from '../../service/ReviewService';
 
 import { Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 export default () => {
+
+    const [userCount, setUserCount] = useState(0);
+    const [reservationCount, setReservationCount] = useState(0);
+    const [reportCount, setReportCount] = useState(0);
+    const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+
+    useEffect(() => {
+        // Fetch Users Count
+        const fetchUserCount = async () => {
+            try {
+                const users = await UserService.getAllUsers(token);
+                // Assuming `ourUsersList` contains the array of users
+                setUserCount(users?.ourUsersList?.length || 0);
+            } catch (err) {
+                console.error("Error fetching users", err);
+                setUserCount(0); // Handle gracefully by setting the count to 0
+            }
+        };
+        
+
+        // Fetch Reservations Count
+        const fetchReservationCount = async () => {
+            try {
+                const bookings = await BookingService.getAllBookings(token);
+                setReservationCount(bookings.length);
+            } catch (err) {
+                console.error("Error fetching bookings", err);
+            }
+        };
+
+        // Fetch Reports Count
+        const fetchReportCount = async () => {
+            try {
+                const reports = await ReviewService.getAllreviews(token);
+                setReportCount(reports.length);
+            } catch (err) {
+                console.error("Error fetching reports", err);
+            }
+        };
+
+        fetchUserCount();
+        fetchReservationCount();
+        fetchReportCount();
+    }, [token]);
+
     const integrations = [
         {
             title: "Users",
-            desc: "100",
-            path:"/users",
+            desc: userCount,
+            path: "/users",
             icon: <FaUsers />
-            
-        }, {
-            title: "Reservation",
-            desc: "70",
-            path:"/Schedule",
-            icon: <FaCalendarCheck  />
-  
-      
-        }, 
+        },
         {
-          title: "Reports",
-          desc: "10",
-          path:"/ownerReports",
-          icon: <FaReceipt  />
-  
-          
-      },
-        
-      ]
+            title: "Reservation",
+            desc: reservationCount,
+            path: "/Schedule",
+            icon: <FaCalendarCheck />
+        },
+        {
+            title: "Reports",
+            desc: reportCount,
+            path: "/ownerReports",
+            icon: <FaReceipt />
+        },
+    ];
+
 const tableItems = [
     {
         avatar: "https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ",

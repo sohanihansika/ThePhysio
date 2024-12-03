@@ -10,9 +10,13 @@
         <module name="the-physio" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ThePhysio" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ThePhysio" options="-parameters" />
       <module name="the-physio" options="-parameters" />
     </option>
   </component>

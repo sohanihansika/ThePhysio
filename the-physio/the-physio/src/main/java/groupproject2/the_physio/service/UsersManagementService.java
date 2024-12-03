@@ -4,6 +4,7 @@ import groupproject2.the_physio.dto.ReqRes;
 import groupproject2.the_physio.entity.OurUsers;
 import groupproject2.the_physio.repository.UsersRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,6 +27,9 @@ public class UsersManagementService {
     private AuthenticationManager authenticationManager;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private EmailService emailService;
 
     public ReqRes userRegister(ReqRes userRegistrationRequest){
         ReqRes resp = new ReqRes();
@@ -66,21 +70,31 @@ public class UsersManagementService {
         return resp;
     }
 
-    public ReqRes empRegister(ReqRes empRegistrationRequest){
+    public ReqRes empRegister(ReqRes empRegistrationRequest) {
         ReqRes resp = new ReqRes();
 
         try {
+            // Validate input
+            if (empRegistrationRequest.getEmail() == null || empRegistrationRequest.getEmail().isEmpty()) {
+                resp.setStatusCode(400);
+                resp.setMessage("Email cannot be null or empty");
+                return resp;
+            }
             if (empRegistrationRequest.getPassword() == null || empRegistrationRequest.getPassword().isEmpty()) {
                 resp.setStatusCode(400);
                 resp.setMessage("Password cannot be null or empty");
                 return resp;
             }
+
+            // Check if user already exists
             Optional<OurUsers> existingUserByEmail = usersRepo.findByEmail(empRegistrationRequest.getEmail());
             if (existingUserByEmail.isPresent()) {
                 resp.setStatusCode(400);
-                resp.setMessage("Email is already Exist!");
-                return resp;}
+                resp.setMessage("Email already exists!");
+                return resp;
+            }
 
+            // Create new user but don't save yet
             OurUsers ourUser = new OurUsers();
             ourUser.setEmail(empRegistrationRequest.getEmail());
             ourUser.setContact_no(empRegistrationRequest.getContact_no());
@@ -89,20 +103,41 @@ public class UsersManagementService {
             ourUser.setRole(empRegistrationRequest.getRole());
             ourUser.setAdded_date(LocalDateTime.now());
             ourUser.setPassword(passwordEncoder.encode(empRegistrationRequest.getPassword()));
-            OurUsers ourUsersResult = usersRepo.save(ourUser);
-            if (ourUsersResult.getId()>0) {
-                resp.setOurUsers((ourUsersResult));
-                resp.setMessage("Employee Saved Successfully");
+
+            // Send email with login credentials
+            String subject = "Welcome to the Physio Clinic!";
+            String body = "Hello " + empRegistrationRequest.getName() + ",\n\n" +
+                    "Your account has been created successfully.\n\n" +
+                    "Your login email is: " + empRegistrationRequest.getEmail() + "\n" +
+                    "Your password is: " + empRegistrationRequest.getPassword() + "\n\n" +
+                    "Please keep this information secure.\n\n" +
+                    "Thank you,\nThe Physio Clinic Team";
+            String[] cc= new String[]{"hasini@gmail.com"};
+
+            try {
+                emailService.sendMail(empRegistrationRequest.getEmail(), cc, subject, body);
+
+                // If email is sent successfully, save user to database
+                OurUsers ourUsersResult = usersRepo.save(ourUser);
+
+                // Respond with success
+                resp.setOurUsers(ourUsersResult);
+                resp.setMessage("Employee saved successfully and email sent.");
                 resp.setStatusCode(200);
+            } catch (MailException mailException) {
+                // Handle email sending failure
+                resp.setStatusCode(500);
+                resp.setError("Failed to send email. User registration not completed. Please try again.");
+                // Optionally log the mailException for debugging purposes
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             resp.setStatusCode(500);
-            resp.setError(e.getMessage());
+            resp.setError("An error occurred while registering the employee. Please try again.");
+            // Optionally, log the error using a logger here
         }
         return resp;
     }
-
 
     public ReqRes login(ReqRes loginRequest){
         ReqRes response = new ReqRes();
@@ -288,6 +323,27 @@ public class UsersManagementService {
         }
     }
 
+    public ReqRes findAllUsers() {
+        ReqRes reqRes = new ReqRes();
+
+        try {
+            List<OurUsers> result = usersRepo.findAllByRole("USER");
+            if (!result.isEmpty()){
+                reqRes.setOurUsersList(result);
+                reqRes.setStatusCode(200);
+                reqRes.setMessage("Successful");
+            } else {
+                reqRes.setStatusCode(404);
+                reqRes.setMessage("No Users Found");
+            }
+            return reqRes;
+        } catch (Exception e) {
+            reqRes.setStatusCode(500);
+            reqRes.setMessage("Error occurred: " + e.getMessage());
+            return reqRes;
+        }
+    }
+
     public ReqRes empUpdate(Integer userId, OurUsers updatedEmp) {
         ReqRes reqRes = new ReqRes();
         try {
@@ -331,4 +387,43 @@ public class UsersManagementService {
     }
 
 
+
+    public ReqRes getUsernameById(Long id) {
+        ReqRes reqRes = new ReqRes();
+        try {
+            // Fetch the name using the ID
+            String name = usersRepo.findNameById(id)
+                    .orElseThrow(() -> new RuntimeException("User Not Found"));
+
+            // Set the fetched name in the response
+            reqRes.setName(name);
+            reqRes.setStatusCode(200);
+            reqRes.setMessage("User with ID '" + id + "' found successfully");
+        } catch (Exception e) {
+            reqRes.setStatusCode(500);
+            reqRes.setMessage("Error occurred: " + e.getMessage());
+        }
+        return reqRes;
+    }
+
+    public Object findAllCoaches() {
+        ReqRes reqRes = new ReqRes();
+
+        try {
+            List<OurUsers> result = usersRepo.findAllByRole("COACH");
+            if (!result.isEmpty()){
+                reqRes.setOurUsersList(result);
+                reqRes.setStatusCode(200);
+                reqRes.setMessage("Successful");
+            } else {
+                reqRes.setStatusCode(404);
+                reqRes.setMessage("No Physiotherapists Found");
+            }
+            return reqRes;
+        } catch (Exception e) {
+            reqRes.setStatusCode(500);
+            reqRes.setMessage("Error occurred: " + e.getMessage());
+            return reqRes;
+        }
+    }
 }
