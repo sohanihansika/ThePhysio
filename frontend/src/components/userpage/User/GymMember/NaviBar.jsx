@@ -12,8 +12,10 @@ const GymHero = () => {
         <ul className="flex space-x-4">
           <li><a href="#home" className="hover:text-gray-400">Home</a></li>
           <li><a href="/abtus" className="hover:text-gray-400">Coaches</a></li> {/* Updated link */}
-          <li><a href="/gymMembership" className="hover:text-gray-400">Membership</a></li>
-          <li><a href="/subscription" className="hover:text-gray-400">Subscription</a></li>
+          {/* <li><a href="/gymMembership" className="hover:text-gray-400">Membership</a></li> */}
+          <li><a href="/membership" className="hover:text-gray-400">Membership</a></li> 
+
+          {/* <li><a href="/subscription" className="hover:text-gray-400">Subscription</a></li> */}
         </ul>
       </nav>
       
