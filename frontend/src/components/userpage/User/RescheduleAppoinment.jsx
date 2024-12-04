@@ -65,7 +65,7 @@ export default function AppointmentDetails() {
             Swal.fire('Rescheduled!', 'Your appointment has been rescheduled.', 'success');
             navigate('/appointments');
           } else {
-            alert(`Error: ${res.message}`);
+            //alert(`Error: ${res.message}`);
             navigate('/schedulelist');
           }
         } catch (error) {

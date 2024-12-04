@@ -91,7 +91,7 @@ const TimeSlots = () => {
 
   return (
     <div className="container">
-      <h2>Select Suitable Time Slddddddots</h2>
+      <h2>Select Suitable Time</h2>
       <div className="slots">
       {slots.map(slot => {
     const isRedSlot = redSlots.includes(slot);
@@ -198,6 +198,9 @@ const TimeSlots = () => {
         }
         .color-box.blue {
           background-color: #b0c4de;
+        }
+          .color-box.green {
+          background-color: #388E3C;
         }
           .green-slot {
   background-color: #388E3C; /* Green color */
