@@ -35,39 +35,58 @@ const ReportSelector = () => {
   };
 
   const handleGenerateReport = () => {
+    const today = new Date().toISOString().split('T')[0]; // Current date in YYYY-MM-DD format
+  
+    // Validate if the start date is earlier than the end date
+    if (startDate && endDate && startDate >= endDate) {
+      setError("Start date must be earlier than the end date.");
+      return;
+    }
+  
+    // Validate specific report conditions
+    if (selectedReport === "patients" || selectedReport === "staff") {
+      // Start and end dates must not be in the future
+      if (startDate > today || endDate > today) {
+        setError("For Patients and Staff reports, dates cannot be in the future.");
+        return;
+      }
+    }
+  
     if (!selectedReport) {
-      setError('Please select a report type.');
+      setError("Please select a report type.");
       return;
     }
-
+  
     if (!overallReport && (!startDate || !endDate)) {
-      setError('Please select a date range or choose Overall Report.');
+      setError("Please select a date range or choose Overall Report.");
       return;
     }
-
-    setError('');
+  
+    // If all validations pass
+    setError("");
     const queryParams = new URLSearchParams({
       startDate,
       endDate,
     }).toString();
-
+  
     switch (selectedReport) {
-      case 'patients':
+      case "patients":
         navigate(`/membershipReport?${queryParams}`);
         break;
-      case 'staff':
+      case "staff":
         navigate(`/staffreport?${queryParams}`);
         break;
-      case 'financial':
+      case "financial":
         navigate(`/financialreport?${queryParams}`);
         break;
-      case 'leave':
+      case "leave":
         navigate(`/leavereport?${queryParams}`);
         break;
       default:
-        setError('Invalid report type selected.');
+        setError("Invalid report type selected.");
     }
   };
+  
 
   useEffect(() => {
     console.log("startDate", startDate);
