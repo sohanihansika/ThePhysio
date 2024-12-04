@@ -1,21 +1,72 @@
-import React from 'react'
+import React, { useState ,useEffect } from 'react';
 import { FaUsers,FaReceipt,FaCalendarCheck  } from "react-icons/fa6";
 
 import { Bar, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
+
+import UserService from '../../service/UserService';
+import BookingService from '../../service/BookingService';
+import ReviewService from '../../service/ReviewService';
+
+
 export default () => {
+
+  const [userCount, setUserCount] = useState(0);
+  const [reservationCount, setReservationCount] = useState(0);
+  const [reportCount, setReportCount] = useState(0);
+  const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+
+  useEffect(() => {
+      // Fetch Users Count
+      const fetchUserCount = async () => {
+          try {
+              const users = await UserService.getAllUsers(token);
+              // Assuming ourUsersList contains the array of users
+              setUserCount(users?.ourUsersList?.length || 0);
+          } catch (err) {
+              console.error("Error fetching users", err);
+              setUserCount(0); // Handle gracefully by setting the count to 0
+          }
+      };
+      
+
+      // Fetch Reservations Count
+      const fetchReservationCount = async () => {
+          try {
+              const bookings = await BookingService.getAllBookings(token);
+              setReservationCount(bookings.length);
+          } catch (err) {
+              console.error("Error fetching bookings", err);
+          }
+      };
+
+  // Fetch Reports Count
+  const fetchReportCount = async () => {
+    try {
+        const reports = await ReviewService.getAllreviews(token);
+        setReportCount(reports.length);
+    } catch (err) {
+        console.error("Error fetching reports", err);
+    }
+};
+
+fetchUserCount();
+fetchReservationCount();
+fetchReportCount();
+}, [token]);
+
     const integrations = [
         {
             title: "Users",
-            desc: "100",
+            desc: userCount,
             path:"/users",
             icon: <FaUsers />
             
         }, {
             title: "Reservation",
-            desc: "70",
+            desc: reservationCount,
             path:"/Schedule",
             icon: <FaCalendarCheck  />
   
@@ -23,7 +74,7 @@ export default () => {
         }, 
         {
           title: "Reports",
-          desc: "10",
+          desc: reportCount,
           path:"/ownerReports",
           icon: <FaReceipt  />
   
